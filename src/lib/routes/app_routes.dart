@@ -1,5 +1,5 @@
 import 'package:dugbet/routes/app_pages.dart';
-import 'package:dugbet/views/pages/home_page.dart';
+import 'package:dugbet/views/pages/home/home_page.dart';
 import 'package:dugbet/views/pages/splash_page.dart';
 import 'package:get/get.dart';
 
@@ -11,7 +11,7 @@ class AppRoute {
         ),
         GetPage(
           name: AppPage.homePage,
-          page: () => const HomePage(),
+          page: () => HomePage(),
         ),
       ];
 }
