@@ -37,10 +37,8 @@ class SplashPage extends StatelessWidget {
               fontWeight: FontWeight.w400,
             ),
           ),
-          const SizedBox(
-            height: 84,
-          ),
-          SvgPicture.asset("assets/images/logo.svg"),
+
+          SvgPicture.asset("assets/images/logo.svg",fit: BoxFit.cover,height: 300,),
           const SizedBox(
             height: 64,
           ),
