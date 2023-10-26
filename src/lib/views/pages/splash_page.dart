@@ -1,6 +1,9 @@
 import 'package:dugbet/consts/colors.dart';
 import 'package:dugbet/routes/app_pages.dart';
+import 'package:dugbet/views/widgets/string_button.dart';
 import 'package:dugbet/views/widgets/gradient_background.dart';
+import 'package:dugbet/views/widgets/widget_button.dart';
+import 'package:dugbet/views/widgets/string_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -37,17 +40,24 @@ class SplashPage extends StatelessWidget {
               fontWeight: FontWeight.w400,
             ),
           ),
-
-          SvgPicture.asset("assets/images/logo.svg",fit: BoxFit.cover,height: 300,),
+          SvgPicture.asset(
+            "assets/images/logo.svg",
+            height: 300,
+          ),
           const SizedBox(
             height: 64,
           ),
         ]),
       ),
-      floatingActionButton: FloatingActionButton.small(
-        onPressed: () => Get.toNamed(AppPage.homePage),
+      floatingActionButton: WidgetButton(
+        callback: () => Get.toNamed(AppPage.homePage),
+        isGradient: true,
         child: const Icon(Icons.add),
       ),
+      // floatingActionButton: StringButton(
+      //   title: "Add",
+      //   callback: () => Get.toNamed(AppPage.homePage),
+      // ),
     );
   }
 }

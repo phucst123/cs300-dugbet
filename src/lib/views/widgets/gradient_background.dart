@@ -12,7 +12,8 @@ class GradientBackground extends StatelessWidget {
       children: [
         Positioned.fill(
             child: Container(
-          decoration: BoxDecoration(gradient: ColorPalette.secondaryGradient),
+          decoration:
+              const BoxDecoration(gradient: ColorPalette.secondaryGradient),
         )),
         Positioned.fill(child: SafeArea(child: child))
       ],
