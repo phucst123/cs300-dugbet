@@ -1,5 +1,7 @@
 import 'package:dugbet/consts/colors.dart';
 import 'package:dugbet/routes/app_pages.dart';
+import 'package:dugbet/views/dialogs/email_dialog.dart';
+import 'package:dugbet/views/dialogs/sign_up_dialog.dart';
 import 'package:dugbet/views/widgets/string_button.dart';
 import 'package:dugbet/views/widgets/gradient_background.dart';
 import 'package:dugbet/views/widgets/widget_button.dart';
@@ -50,7 +52,12 @@ class SplashPage extends StatelessWidget {
         ]),
       ),
       floatingActionButton: WidgetButton(
-        callback: () => Get.toNamed(AppPage.homePage),
+        callback: () {
+          showDialog(
+            context: context,
+            builder: (_) => SignUpDialog(),
+          );
+        },
         isGradient: true,
         child: const Icon(Icons.add),
       ),
