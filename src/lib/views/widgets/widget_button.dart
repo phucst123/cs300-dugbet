@@ -18,6 +18,7 @@ class WidgetButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      onTap: callback,
       child: Container(
         width: 40,
         height: 40,
@@ -33,7 +34,6 @@ class WidgetButton extends StatelessWidget {
             gradient: isGradient ? ColorPalette.primaryGradient : null),
         child: Center(child: child),
       ),
-      onTap: callback,
     );
   }
 }
