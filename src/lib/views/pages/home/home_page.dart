@@ -1,5 +1,7 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:dugbet/consts/colors.dart';
+import 'package:dugbet/views/widgets/header_bar.dart';
+import 'package:dugbet/views/widgets/wallet.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -19,61 +21,10 @@ class HomePage extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Padding(
+                const Padding(
                   padding:
-                      const EdgeInsets.fromLTRB(17,17,17,0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        height: 40,
-                        width: 115,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.white,
-                              width: 2.0,
-                              style: BorderStyle.solid,
-                            ),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: const Center(child: Text("Hello, Lune")),
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                              height: 40,
-                              width: 40,
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.white,
-                                    width: 2.0,
-                                    style: BorderStyle.solid,
-                                  ),
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.refresh),
-                              )),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Container(
-                              height: 40,
-                              width: 40,
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.white,
-                                    width: 2.0,
-                                    style: BorderStyle.solid,
-                                  ),
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.refresh),
-                              ))
-                        ],
-                      )
-                    ],
-                  ),
+                      EdgeInsets.fromLTRB(17,17,17,0),
+                  child: HeaderBar(nameUser: "Lune"),
                 ),
                 Center(
                   child: DropdownButtonHideUnderline(
@@ -137,112 +88,10 @@ class HomePage extends StatelessWidget {
                 )
               ],
             ),
-            Positioned(
+            const Positioned(
               bottom: 0,
               left: 0,
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30)),
-                  border: Border.all(
-                    color: ColorPalette.white,
-                    width: 1
-                  )
-
-
-                ),
-
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        const Row(
-                          children: [
-                            Text("Total Balance"),
-                            SizedBox(width: 20,),
-                            Icon(Icons.remove_red_eye_outlined)
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                              height: 40,
-                              width: 40,
-                              margin: EdgeInsets.only(right: 10),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  gradient: const LinearGradient(colors: [
-                                    ColorPalette.primaryColor,
-                                    ColorPalette.tertiaryColor
-                                  ])),
-                            ),
-                            const Text(
-                              "234.000d",
-                              style: TextStyle(fontSize: 24),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text("Your wallet:"),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          height: 80,
-                          child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: 5,
-                              itemBuilder: (context, index) => Container(
-                                    width: 314,
-                                    height: 60,
-                                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                                    decoration: BoxDecoration(
-                                      color: ColorPalette.white,
-                                      borderRadius: BorderRadius.circular(20)
-                                    ),
-
-                                    child: Center(
-                                      child: ListTile(
-                                        leading: Container(
-                                          height: 60,
-                                          width: 60,
-                                          decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              gradient: LinearGradient(colors: [
-                                                ColorPalette.primaryColor,
-                                                ColorPalette.tertiaryColor
-                                              ])),
-                                        ),
-                                        title: const Text("Momo",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
-                                        subtitle: const Text("200.000d"),
-                                        trailing: const Column(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            Icon(Icons.menu),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  )),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              child: Wallet(),
             )
           ],
         ),
