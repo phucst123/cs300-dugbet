@@ -1,5 +1,6 @@
 import 'package:dugbet/routes/app_pages.dart';
 import 'package:dugbet/views/pages/home/home_page.dart';
+import 'package:dugbet/views/pages/home/transaction_page.dart';
 import 'package:dugbet/views/pages/splash_page.dart';
 import 'package:get/get.dart';
 
