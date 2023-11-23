@@ -1,5 +1,6 @@
-import 'package:dugbet/consts/colors.dart';
 import 'package:flutter/material.dart';
+
+import '../../consts/color/colors.dart';
 
 class StringButton extends StatelessWidget {
   const StringButton(

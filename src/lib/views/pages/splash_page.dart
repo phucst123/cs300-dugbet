@@ -1,4 +1,4 @@
-import 'package:dugbet/consts/colors.dart';
+
 import 'package:dugbet/routes/app_pages.dart';
 import 'package:dugbet/views/dialogs/email_dialog.dart';
 import 'package:dugbet/views/dialogs/sign_up_dialog.dart';
@@ -9,6 +9,8 @@ import 'package:dugbet/views/widgets/string_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
+import '../../consts/color/colors.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});

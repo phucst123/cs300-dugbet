@@ -1,6 +1,7 @@
-import 'package:dugbet/consts/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../consts/color/colors.dart';
 
 class SignUpDialog extends StatelessWidget {
   const SignUpDialog({super.key});

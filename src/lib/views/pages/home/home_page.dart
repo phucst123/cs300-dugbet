@@ -1,13 +1,15 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:dugbet/consts/colors.dart';
 import 'package:dugbet/views/widgets/header_bar.dart';
 import 'package:dugbet/views/widgets/wallet.dart';
 import 'package:flutter/material.dart';
+
+import '../../../consts/color/colors.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   String selectMode = "month";
+
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +58,8 @@ class HomePage extends StatelessWidget {
                     itemCount: 5,
                     duration: 1000,
                     loop: true,
-                    itemHeight: 200,
-                    itemWidth: 250,
+                    itemHeight: 250,
+                    itemWidth: 270,
                     layout: SwiperLayout.TINDER,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) => Container(
