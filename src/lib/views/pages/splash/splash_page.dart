@@ -10,11 +10,14 @@ import 'package:dugbet/views/widgets/string_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../consts/color/colors.dart';
 
 class SplashPage extends StatelessWidget {
   final splashScreenController = Get.find<LoadingController>();
+
+  SplashPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,22 +55,13 @@ class SplashPage extends StatelessWidget {
           const SizedBox(
             height: 64,
           ),
+          SizedBox(
+            height: 100,
+            width: 100,
+            child: Lottie.asset("assets/lottie/square.json", fit: BoxFit.cover),
+          ),
         ]),
       ),
-      floatingActionButton: WidgetButton(
-        callback: () {
-          showDialog(
-            context: context,
-            builder: (_) => SignUpDialog(),
-          );
-        },
-        isGradient: true,
-        child: const Icon(Icons.add),
-      ),
-      // floatingActionButton: StringButton(
-      //   title: "Add",
-      //   callback: () => Get.toNamed(AppPage.homePage),
-      // ),
     );
   }
 }

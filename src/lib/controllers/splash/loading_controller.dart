@@ -10,7 +10,7 @@ class LoadingController extends GetxController {
   void onReady() async {
     super.onReady();
     await loadResources();
-    Get.toNamed(AppPage.homePage);
+    //Get.toNamed(AppPage.homePage);
   }
 
   Future loadResources() async {
