@@ -58,7 +58,8 @@ class SplashPage extends StatelessWidget {
           SizedBox(
             height: 100,
             width: 100,
-            child: Lottie.asset("assets/lottie/square.json", fit: BoxFit.cover),
+            child:
+                Lottie.asset("assets/lottie/loading.json", fit: BoxFit.cover),
           ),
         ]),
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../consts/color/colors.dart';
 
@@ -31,12 +32,9 @@ class SignUpDialog extends StatelessWidget {
                   fontFamily: 'Roboto',
                   fontWeight: FontWeight.w400,
                 )),
-            const SizedBox(
-              height: 24,
-            ),
-            SvgPicture.asset(
-              "assets/images/demo.svg",
-              fit: BoxFit.cover,
+            SizedBox(
+              height: 100,
+              child: Lottie.asset("assets/lottie/loading.json"),
             ),
           ]),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),

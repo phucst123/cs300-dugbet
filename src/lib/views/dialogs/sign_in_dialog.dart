@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../consts/color/colors.dart';
 
@@ -34,9 +35,11 @@ class SignInDialog extends StatelessWidget {
             const SizedBox(
               height: 24,
             ),
-            SvgPicture.asset(
-              "assets/images/demo.svg",
-              fit: BoxFit.cover,
+            SizedBox(
+              height: 100,
+              width: 100,
+              child:
+                  Lottie.asset("assets/lottie/loading.json", fit: BoxFit.cover),
             ),
           ]),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
