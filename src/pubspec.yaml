@@ -75,6 +75,8 @@ flutter:
   assets:
     - assets/images/
     - assets/lottie/
+    - assets/user/
+    - assets/icons/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
