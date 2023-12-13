@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../../consts/color/colors.dart';
 
+// ignore: must_be_immutable
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 

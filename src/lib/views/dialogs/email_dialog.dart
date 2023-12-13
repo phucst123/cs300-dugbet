@@ -31,15 +31,14 @@ class EmailDialog extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               StringButton(
-                title: "Back to Sign-in",
-                isGradient: true,
+                text: "Back to Sign-in",
                 callback: () {
                   //Navigator.of(context).pop();
                 },
               ),
               StringButton(
-                title: "Resend the email more",
-                style: const TextStyle(
+                text: "Resend the email more",
+                buttonTextStyle: const TextStyle(
                   color: ColorPalette.defaultText,
                   fontSize: 12,
                   fontFamily: 'Roboto',
