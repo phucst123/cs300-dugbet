@@ -115,8 +115,7 @@ class EditProfilePage extends StatelessWidget {
             ),
             Expanded(
               child: Align(
-                alignment: FractionalOffset.bottomCenter,
-                // child: StringButton(title: "Update", callback: () => {}),
+                alignment: Alignment.bottomCenter,
                 child: GradientButton(
                   title: "Update",
                   callback: () {
@@ -125,6 +124,9 @@ class EditProfilePage extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(
+              height: 10,
+            )
           ],
         ),
       ),
