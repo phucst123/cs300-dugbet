@@ -20,7 +20,7 @@ class SecurityPage extends StatelessWidget {
       appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18.0),
-        child: Column(children: [
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
             "Security",
             style: context.textTheme.titleLarge,

@@ -6,4 +6,5 @@ class AppPage {
   static const editNotificationPage = '/setting/editnotification';
   static const securityPage = '/setting/security';
   static const premiumPage = '/setting/premium';
+  static const purchasePage = '/setting/purchase';
 }

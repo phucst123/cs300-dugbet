@@ -1,10 +1,11 @@
+import 'package:dugbet/routes/app_pages.dart';
 import 'package:dugbet/views/widgets/button/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-class PremiumPage extends StatelessWidget {
-  const PremiumPage({super.key});
+class PurchasePage extends StatelessWidget {
+  const PurchasePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,11 @@ class PremiumPage extends StatelessWidget {
             titleTextStyle: context.textTheme.bodyLarge,
           ),
           Center(
-              child: GradientButton(title: "Buy for 99.000 đ", callback: () {}))
+              child: GradientButton(
+                  title: "Buy for 99.000 đ",
+                  callback: () {
+                    Get.toNamed(AppPage.premiumPage);
+                  }))
         ]),
       ),
     );

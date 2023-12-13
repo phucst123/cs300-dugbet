@@ -1,24 +1,33 @@
+import 'package:dugbet/consts/color/colors.dart';
 import 'package:dugbet/routes/app_pages.dart';
 import 'package:dugbet/views/widgets/button/normal_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class SettingPage extends StatelessWidget {
-  const SettingPage({super.key});
+  SettingPage({super.key});
+
+  bool isPremium = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: false,
-      appBar: AppBar(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
+            color: isPremium ? ColorPalette.expenseText : ColorPalette.white,
+            height: 260,
             width: double.infinity,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
+                if (isPremium) SvgPicture.asset("assets/icons/crown.svg"),
+                const SizedBox(
+                  height: 5,
+                ),
                 Stack(
                   children: [
                     Container(
@@ -27,12 +36,12 @@ class SettingPage extends StatelessWidget {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: Colors.black,
+                          color: ColorPalette.black,
                           width: 1.0,
                         ),
                       ),
                       child: CircleAvatar(
-                        backgroundColor: Colors.white,
+                        backgroundColor: ColorPalette.white,
                         child: Padding(
                           padding: const EdgeInsets.all(25.0),
                           child: SvgPicture.asset("assets/user/user.svg"),
@@ -115,7 +124,7 @@ class SettingPage extends StatelessWidget {
                   "Premium",
                 ),
                 titleTextStyle: context.textTheme.bodyLarge,
-                onTap: () => Get.toNamed(AppPage.premiumPage),
+                onTap: () => Get.toNamed(AppPage.purchasePage),
               ),
             ],
           )),
