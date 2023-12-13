@@ -40,10 +40,6 @@ dependencies:
   card_swiper: ^3.0.1
   flutter_launcher_icons: ^0.13.1
   lottie: ^2.7.0
-  firebase_core: ^2.24.2
-  firebase_auth: ^4.15.3
-  cloud_firestore: ^4.13.6
-  firebase_analytics: ^10.7.4
 
 flutter_launcher_icons:
   android: true
