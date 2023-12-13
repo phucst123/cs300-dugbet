@@ -1,5 +1,6 @@
 import 'package:dugbet/consts/color/colors.dart';
 import 'package:dugbet/routes/app_pages.dart';
+import 'package:dugbet/views/dialogs/logout_dialog.dart';
 import 'package:dugbet/views/widgets/button/normal_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -130,7 +131,14 @@ class SettingPage extends StatelessWidget {
           )),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: NormalButton(title: "Logout", callback: () => {}),
+            child: NormalButton(
+                title: "Logout",
+                callback: () => {
+                      showDialog(
+                        context: context,
+                        builder: (_) => LogoutDialog(),
+                      )
+                    }),
           ),
           const SizedBox(
             height: 98,
