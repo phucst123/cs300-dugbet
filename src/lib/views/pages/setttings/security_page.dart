@@ -1,5 +1,5 @@
 import 'package:dugbet/consts/color/colors.dart';
-import 'package:dugbet/views/widgets/string_button.dart';
+import 'package:dugbet/views/widgets/button/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,36 +18,51 @@ class SecurityPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Column(children: [
-        Text(
-          "Security",
-          style: context.textTheme.titleLarge,
-        ),
-        SizedBox(
-          height: 40,
-        ),
-        SwitchListTile(
-          title: Text(
-            "Enable PIN",
-            style: context.textTheme.bodyLarge,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 18.0),
+        child: Column(children: [
+          Text(
+            "Security",
+            style: context.textTheme.titleLarge,
           ),
-          value: light,
-          onChanged: (bool value) {
-            light = value;
-          },
-          overlayColor: overlayColor,
-          trackColor: trackColor,
-          thumbColor: thumbColor,
-        ),
-        StringButton(
-          title: "Change PIN",
-          callback: () {},
-        ),
-        StringButton(
-          title: "Change Password",
-          callback: () {},
-        )
-      ]),
+          const SizedBox(
+            height: 40,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                "Enable PIN",
+                style: context.textTheme.bodyLarge,
+              ),
+              Switch(
+                value: light,
+                onChanged: (bool value) {
+                  light = value;
+                },
+                overlayColor: overlayColor,
+                trackColor: trackColor,
+                thumbColor: thumbColor,
+              )
+            ],
+          ),
+          const SizedBox(
+            height: 24,
+          ),
+          GradientButton(
+            title: "Change PIN",
+            callback: () {},
+          ),
+          const SizedBox(
+            height: 24,
+          ),
+          GradientButton(
+            title: "Change Password",
+            callback: () {},
+          )
+        ]),
+      ),
     );
   }
 }

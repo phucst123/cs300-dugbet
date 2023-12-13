@@ -1,10 +1,12 @@
-import 'package:dugbet/views/widgets/string_button.dart';
+import 'package:dugbet/views/widgets/button/gradient_button.dart';
+import 'package:dugbet/views/widgets/button/normal_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../consts/color/colors.dart';
 
 class EmailDialog extends StatelessWidget {
-  const EmailDialog({super.key});
+  EmailDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,22 +32,18 @@ class EmailDialog extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              StringButton(
+              GradientButton(
                 title: "Back to Sign-in",
-                isGradient: true,
                 callback: () {
-                  //Navigator.of(context).pop();
+                  //
                 },
               ),
-              StringButton(
-                title: "Resend the email more",
-                style: const TextStyle(
-                  color: ColorPalette.defaultText,
-                  fontSize: 12,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w700,
+              ElevatedButton(
+                child: Text(
+                  "Resend the email more",
+                  style: context.textTheme.bodySmall,
                 ),
-                callback: () {},
+                onPressed: () {},
               ),
             ],
           ),

@@ -1,9 +1,6 @@
 import 'package:dugbet/routes/app_pages.dart';
-import 'package:dugbet/views/widgets/string_button.dart';
-import 'package:dugbet/views/widgets/widget_button.dart';
-import 'package:flutter/foundation.dart';
+import 'package:dugbet/views/widgets/button/normal_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -122,7 +119,10 @@ class SettingPage extends StatelessWidget {
               ),
             ],
           )),
-          StringButton(title: "Logout", callback: () => {}),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: NormalButton(title: "Logout", callback: () => {}),
+          ),
           const SizedBox(
             height: 98,
           ),

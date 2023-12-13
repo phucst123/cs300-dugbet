@@ -1,4 +1,4 @@
-import 'package:dugbet/views/widgets/string_button.dart';
+import 'package:dugbet/views/widgets/button/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -40,7 +40,7 @@ class PremiumPage extends StatelessWidget {
             titleTextStyle: context.textTheme.bodyLarge,
           ),
           Center(
-              child: StringButton(title: "Buy for 99.000 đ", callback: () {}))
+              child: GradientButton(title: "Buy for 99.000 đ", callback: () {}))
         ]),
       ),
     );
