@@ -46,6 +46,7 @@ dependencies:
   firebase_analytics: ^10.7.4
   intl: ^0.19.0
   cached_network_image: ^3.3.0
+  smooth_page_indicator: ^1.1.0
 
 flutter_launcher_icons:
   android: true

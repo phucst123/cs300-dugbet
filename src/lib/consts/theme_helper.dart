@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:dugbet/consts/app_export.dart';
 
 String _appTheme = "primary";

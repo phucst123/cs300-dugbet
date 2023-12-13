@@ -1,8 +1,5 @@
+
 import 'package:dugbet/consts/app_export.dart';
-import 'package:dugbet/routes/app_pages.dart';
-import 'package:dugbet/views/widgets/string_button.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:dugbet/controllers/login/open_controller.dart';
 
 class LoginOpenScreen extends GetWidget<LoginOpenController> {
@@ -73,23 +70,20 @@ class LoginOpenScreen extends GetWidget<LoginOpenController> {
                         text: "Login",
                         callback: onTapLogin,
                         width: 188.h,
-                        buttonTextStyle: CustomTextStyles.titleMediumBluegray900,
+                        buttonTextStyle:
+                            CustomTextStyles.titleMediumBluegray900,
                         buttonStyle: CustomButtonStyles.fillWhiteA,
                       ),
                     ])))));
   }
 
   /// Navigates to the loginSignUpScreen when the action is triggered.
-  onTapCreateAccount() {
-    Get.offAndToNamed(
-      AppPage.loginSignUpScreen,
-    );
-  }
+  onTapCreateAccount() => Get.offAndToNamed(
+        AppPage.loginSignUpScreen,
+      );
 
   /// Navigates to the loginLoginScreen when the action is triggered.
-  onTapLogin() {
-    Get.offAndToNamed(
-      AppPage.loginLoginScreen,
-    );
-  }
+  onTapLogin() => Get.offAndToNamed(
+        AppPage.loginLoginScreen,
+      );
 }

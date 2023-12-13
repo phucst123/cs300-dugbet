@@ -1,5 +1,4 @@
 import 'package:dugbet/views/widgets/base_button.dart';
-import 'package:flutter/material.dart';
 import 'package:dugbet/consts/app_export.dart';
 
 
@@ -9,7 +8,6 @@ class StringButton extends BaseButton {
     this.leftIcon,
     this.rightIcon,
     super.margin,
-    super.onPressed,
     super.buttonStyle,
     super.alignment,
     super.buttonTextStyle,
@@ -45,7 +43,7 @@ class StringButton extends BaseButton {
             decoration ?? CustomButtonStyles.gradientTealToTealDecoration,
         child: ElevatedButton(
           style: buttonStyle,
-          onPressed: isDisabled ?? false ? null : onPressed ?? () {},
+          onPressed: callback,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,

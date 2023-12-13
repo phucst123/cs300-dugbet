@@ -4,7 +4,6 @@ class BaseButton extends StatelessWidget {
   const BaseButton({
     super.key,
     required this.text,
-    this.onPressed,
     this.buttonStyle,
     this.buttonTextStyle,
     this.isDisabled,
@@ -15,8 +14,6 @@ class BaseButton extends StatelessWidget {
   });
 
   final String text;
-
-  final VoidCallback? onPressed;
 
   final ButtonStyle? buttonStyle;
 

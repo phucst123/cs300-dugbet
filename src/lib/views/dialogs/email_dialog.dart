@@ -1,5 +1,4 @@
-import 'package:dugbet/views/widgets/string_button.dart';
-import 'package:flutter/material.dart';
+import 'package:dugbet/consts/app_export.dart';
 
 import '../../consts/color/colors.dart';
 
@@ -16,36 +15,42 @@ class EmailDialog extends StatelessWidget {
         fontFamily: 'Roboto',
         fontWeight: FontWeight.w700,
       ),
-      content:
-          const Text("We’ve sent password reset instructions to your mail."),
+      content: const Text(
+          "We’ve sent password reset instructions to your mail.",
+          textAlign: TextAlign.center),
       contentTextStyle: const TextStyle(
         color: ColorPalette.defaultText,
         fontSize: 16,
         fontFamily: 'Roboto',
         fontWeight: FontWeight.w400,
       ),
+      insetPadding: EdgeInsets.symmetric(horizontal: 16.h,),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30.v),
+      ),
+      actionsPadding: EdgeInsets.only(bottom: 16.v),
       actions: <Widget>[
         Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               StringButton(
                 text: "Back to Sign-in",
-                callback: () {
-                  //Navigator.of(context).pop();
-                },
+                buttonStyle: CustomButtonStyles.none,
+                width: 188.v,
+                callback: () => Get.offAndToNamed(AppPage.loginLoginScreen),
               ),
-              StringButton(
-                text: "Resend the email more",
-                buttonTextStyle: const TextStyle(
-                  color: ColorPalette.defaultText,
-                  fontSize: 12,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w700,
-                ),
-                callback: () {},
-              ),
+              SizedBox(height: 8.v),
+              InkWell(
+                  child: SizedBox(
+                    height: 18.v,
+                    child: Text(
+                      "Already have an Account",
+                      style: theme.textTheme.labelLarge,
+                    ),
+                  ),
+                  onTap: () => Get.offAndToNamed(AppPage.loginLoginScreen)),
             ],
           ),
         ),

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:dugbet/consts/app_export.dart';
 
 class CustomTextFormField extends StatelessWidget {
@@ -92,6 +91,10 @@ class CustomTextFormField extends StatelessWidget {
           maxLines: maxLines ?? 1,
           decoration: decoration,
           validator: validator,
+          // onTapOutside: (event) {
+          //   focusNode?.unfocus();
+          //   print("onTapOutside");
+          // }),
         ),
       );
   InputDecoration get decoration => InputDecoration(

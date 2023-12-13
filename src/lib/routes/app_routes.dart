@@ -1,6 +1,9 @@
 import 'package:dugbet/routes/app_pages.dart';
 import 'package:dugbet/views/pages/home/home_page.dart';
+import 'package:dugbet/views/pages/login/login_page.dart';
 import 'package:dugbet/views/pages/login/open_page.dart';
+import 'package:dugbet/views/pages/login/password.dart';
+import 'package:dugbet/views/pages/login/signup_page.dart';
 import 'package:dugbet/views/pages/splash/splash_page.dart';
 import 'package:get/get.dart';
 
@@ -20,15 +23,15 @@ class AppRoute {
         ),
         GetPage(
           name: AppPage.loginLoginScreen, 
-          page: () => const LoginOpenScreen()
+          page: () => LoginLoginScreen()
         ),
         GetPage(
           name:  AppPage.loginSignUpScreen,
-          page: () => const LoginOpenScreen()
+          page: () => LoginSignUpScreen()
         ),
         GetPage(
           name:  AppPage.loginPasswordScreen,
-          page: () => const LoginOpenScreen()
+          page: () => LoginPasswordScreen()
         ),
       ];
 }
