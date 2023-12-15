@@ -13,7 +13,7 @@ class ImageConstant {
   static String imgClose = '$imagePath/img_close.svg';
 
   // Common images
-  static String logo = '$imagePath/Logo.svg';
+  static String logo = '$imagePath/logo_view.svg';
 
   static String imgFirreyecrossed = '$imagePath/img_firreyecrossed.svg';
 
