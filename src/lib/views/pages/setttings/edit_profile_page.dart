@@ -1,5 +1,6 @@
 import 'package:dugbet/consts/color/colors.dart';
 import 'package:dugbet/routes/app_pages.dart';
+import 'package:dugbet/views/widgets/button/custom_icon_button.dart';
 import 'package:dugbet/views/widgets/button/gradient_button.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -13,15 +14,31 @@ class EditProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Transform.flip(
-            flipX: true,
-            child: SvgPicture.asset("assets/icons/arrow.svg"),
-          ),
-          onPressed: () {
-            Get.back();
-          },
+        automaticallyImplyLeading: false,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: CustomIconButton(
+                child: Transform.flip(
+                  flipX: true,
+                  child: SvgPicture.asset(
+                    "assets/icons/arrow.svg",
+                    colorFilter: const ColorFilter.mode(
+                        ColorPalette.white, BlendMode.srcIn),
+                  ),
+                ),
+                callback: () {
+                  Get.back();
+                },
+              ),
+            ),
+            // Your widgets here
+          ],
         ),
+        titleSpacing: 0,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
