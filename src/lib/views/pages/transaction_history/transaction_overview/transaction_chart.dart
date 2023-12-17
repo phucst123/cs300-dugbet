@@ -13,11 +13,11 @@ class TransactionChart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       //margin: EdgeInsets.all(10.0),
-      padding: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(30.0),
       ),
+      padding: const EdgeInsets.only(left: 12.0, right: 12.0, top: 20.0, bottom: 34.0),
       child: ConstrainedBox(
         constraints: BoxConstraints(
           maxHeight: 300.0
