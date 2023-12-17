@@ -1,5 +1,11 @@
 import 'package:dugbet/routes/app_pages.dart';
 import 'package:dugbet/views/pages/home/home_page.dart';
+import 'package:dugbet/views/pages/setttings/edit_notification_page.dart';
+import 'package:dugbet/views/pages/setttings/edit_profile_page.dart';
+import 'package:dugbet/views/pages/setttings/purchase/premium_page.dart';
+import 'package:dugbet/views/pages/setttings/purchase/purchase_page.dart';
+import 'package:dugbet/views/pages/setttings/security_page.dart';
+import 'package:dugbet/views/pages/setttings/setting_page.dart';
 import 'package:dugbet/views/pages/login/login_page.dart';
 import 'package:dugbet/views/pages/login/open_page.dart';
 import 'package:dugbet/views/pages/login/password.dart';
@@ -23,20 +29,36 @@ class AppRoute {
           page: () => HomePage(),
         ),
         GetPage(
-          name:  AppPage.loginOpenScreen,
-          page: () => const LoginOpenScreen()
+            name: AppPage.loginOpenScreen, page: () => const LoginOpenScreen()),
+        GetPage(name: AppPage.loginLoginScreen, page: () => LoginLoginScreen()),
+        GetPage(
+            name: AppPage.loginSignUpScreen, page: () => LoginSignUpScreen()),
+        GetPage(
+            name: AppPage.loginPasswordScreen,
+            page: () => LoginPasswordScreen()),
+        GetPage(
+          name: AppPage.settingPage,
+          page: () => SettingPage(),
         ),
         GetPage(
-          name: AppPage.loginLoginScreen, 
-          page: () => LoginLoginScreen()
+          name: AppPage.editProfilePage,
+          page: () => EditProfilePage(),
         ),
         GetPage(
-          name:  AppPage.loginSignUpScreen,
-          page: () => LoginSignUpScreen()
+          name: AppPage.editNotificationPage,
+          page: () => EditNotificationPage(),
         ),
         GetPage(
-          name:  AppPage.loginPasswordScreen,
-          page: () => LoginPasswordScreen()
+          name: AppPage.securityPage,
+          page: () => SecurityPage(),
+        ),
+        GetPage(
+          name: AppPage.premiumPage,
+          page: () => PremiumPage(),
+        ),
+        GetPage(
+          name: AppPage.purchasePage,
+          page: () => PurchasePage(),
         ),
       ];
 }

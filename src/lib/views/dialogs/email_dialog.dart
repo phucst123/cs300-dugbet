@@ -1,4 +1,8 @@
 import 'package:dugbet/consts/app_export.dart';
+import 'package:dugbet/views/widgets/button/gradient_button.dart';
+import 'package:dugbet/views/widgets/button/normal_button.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../consts/color/colors.dart';
 
@@ -24,7 +28,9 @@ class EmailDialog extends StatelessWidget {
         fontFamily: 'Roboto',
         fontWeight: FontWeight.w400,
       ),
-      insetPadding: EdgeInsets.symmetric(horizontal: 16.h,),
+      insetPadding: EdgeInsets.symmetric(
+        horizontal: 16.h,
+      ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30.v),
       ),
@@ -51,6 +57,19 @@ class EmailDialog extends StatelessWidget {
                     ),
                   ),
                   onTap: () => Get.offAndToNamed(AppPage.loginLoginScreen)),
+              GradientButton(
+                title: "Back to Sign-in",
+                callback: () {
+                  //
+                },
+              ),
+              ElevatedButton(
+                child: Text(
+                  "Resend the email more",
+                  style: context.textTheme.bodySmall,
+                ),
+                onPressed: () {},
+              ),
             ],
           ),
         ),

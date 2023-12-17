@@ -1,4 +1,9 @@
 import 'package:dugbet/controllers/splash/loading_controller.dart';
+import 'package:dugbet/routes/app_pages.dart';
+import 'package:dugbet/views/dialogs/email_dialog.dart';
+import 'package:dugbet/views/dialogs/sign_up_dialog.dart';
+import 'package:dugbet/views/pages/home/home_page.dart';
+import 'package:dugbet/views/widgets/button/normal_button.dart';
 import 'package:dugbet/views/widgets/gradient_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
