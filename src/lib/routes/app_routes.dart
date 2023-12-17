@@ -1,4 +1,5 @@
 import 'package:dugbet/routes/app_pages.dart';
+import 'package:dugbet/views/pages/notification/notification_page.dart';
 import 'package:dugbet/views/pages/home/home_page.dart';
 import 'package:dugbet/views/pages/setttings/edit_notification_page.dart';
 import 'package:dugbet/views/pages/setttings/edit_profile_page.dart';
@@ -60,5 +61,9 @@ class AppRoute {
           name: AppPage.purchasePage,
           page: () => PurchasePage(),
         ),
+        GetPage(
+          name: AppPage.notificationPage,
+          page: () => NotificationPage(),
+        )
       ];
 }
