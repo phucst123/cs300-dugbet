@@ -7,46 +7,54 @@ class TransactionChart extends StatelessWidget {
   final List<double> incomeData;
   final List<double> expenseData;
 
-  TransactionChart({required this.title, required this.incomeData, required this.expenseData});
+  const TransactionChart({super.key, required this.title, required this.incomeData, required this.expenseData});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       //margin: EdgeInsets.all(10.0),
-      padding: EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10.0),
       ),
-      child: Column(
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxHeight: 300.0
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
+                DropdownButton<String>(
+                  items: <String>['Select an option'].map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (_) {},
+                ),
+              ],
+            ),
+            const SizedBox(height: 10.0),
+            Flexible(
+              child: LineChart(
+                sampleData1,
+                duration: const Duration(milliseconds: 250),
               ),
-              DropdownButton<String>(
-                items: <String>['Select an option'].map((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-                onChanged: (_) {},
-              ),
-            ],
-          ),
-          SizedBox(height: 10.0),
-          LineChart(
-            sampleData1,
-            duration: const Duration(milliseconds: 250),
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

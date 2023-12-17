@@ -12,7 +12,7 @@ class AppRoute {
   static List<GetPage> routes() => [
         GetPage(
           name: AppPage.transactionHistoryPage,
-          page: () => TransactionHistoryPage(),
+          page: () => const TransactionHistoryPage(),
         ),
         GetPage(
           name: AppPage.splashPage,

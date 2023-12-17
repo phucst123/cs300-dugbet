@@ -5,7 +5,7 @@ class BalanceStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         AmountBox(
@@ -28,13 +28,13 @@ class AmountBox extends StatelessWidget {
   final String figure;
   final String label;
 
-  AmountBox({required this.iconData, required this.figure, required this.label});
+  const AmountBox({super.key, required this.iconData, required this.figure, required this.label});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       //margin: EdgeInsets.all(10.0),
-      padding: EdgeInsets.all(24.0),
+      padding: const EdgeInsets.all(24.0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24.0),
@@ -45,20 +45,20 @@ class AmountBox extends StatelessWidget {
             iconData,
             color: Colors.teal,
           ),
-          SizedBox(width: 10.0),
+          const SizedBox(width: 10.0),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
                 figure,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
                 label,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16.0,
                   color: Colors.black,
                 ),
