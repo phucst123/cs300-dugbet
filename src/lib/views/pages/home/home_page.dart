@@ -24,31 +24,36 @@ class HomePage extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const Padding(
-                  padding:
-                      EdgeInsets.fromLTRB(17,17,17,0),
-                  child: HeaderBar(nameUser: "Lune"),
-                ),
                 Center(
                   child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                      value: selectMode,
-                      underline: Container(
-                        color: Colors.white,
-                        width: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: DropdownButton<String>(
+                        value: selectMode,
+                        underline: Container(
+                          color: Colors.grey,
+                          width: 1,
+                        ),
+                        dropdownColor: ColorPalette.white.withOpacity(0.9),
+                        items: const [
+                          DropdownMenuItem(
+                              value: "today", child: Text("Today")),
+                          DropdownMenuItem(
+                              value: "week", child: Text("This week")),
+                          DropdownMenuItem(
+                              value: "month", child: Text("This month")),
+                          DropdownMenuItem(
+                              value: "quarter", child: Text("This quarter")),
+                          DropdownMenuItem(
+                              value: "year", child: Text("This year"))
+                        ],
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
+                        onChanged: (String? value) {
+                        },
                       ),
-                      dropdownColor: ColorPalette.primaryColor.withOpacity(0.6),
-                      items: const [
-                        DropdownMenuItem(
-                            value: "month", child: Text("This month")),
-                        DropdownMenuItem(
-                            value: "year", child: Text("This year")),
-                      ],
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16),
-                      onChanged: (String? value) {},
                     ),
                   ),
                 ),

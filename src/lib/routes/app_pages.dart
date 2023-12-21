@@ -17,4 +17,7 @@ class AppPage {
   static const String loginPasswordScreen = '/login_password_screen';
 
   static const notificationPage = '/notification';
+  static const scanPage = '/scan';
+  static const walletPage = '/wallet';
+
 }

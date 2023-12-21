@@ -14,7 +14,17 @@ import 'package:dugbet/views/pages/login/password.dart';
 import 'package:dugbet/views/pages/login/signup_page.dart';
 import 'package:dugbet/views/pages/splash/splash_page.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_history_page.dart';
+import 'package:dugbet/views/pages/home/home_page.dart';
+import 'package:dugbet/views/pages/transaction/transaction_page.dart';
+import 'package:dugbet/views/pages/wallet/wallet_page.dart';
+import 'package:dugbet/views/widgets/group_balance.dart';
+import 'package:dugbet/views/widgets/stat.dart';
+import 'package:dugbet/views/widgets/stat_one.dart';
+
 import 'package:get/get.dart';
+
+import '../views/pages/input/input.dart';
+import '../views/widgets/group_balance_one.dart';
 
 class AppRoute {
   static List<GetPage> routes() => [
@@ -69,6 +79,14 @@ class AppRoute {
         GetPage(
           name: AppPage.transactionPage,
           page: () => TransactionPage(),
-        )
+        ),
+        GetPage(
+          name: AppPage.scanPage,
+          page: () => const Scanning(),
+        ),
+        GetPage(
+          name: AppPage.walletPage,
+          page: () =>  const WalletPage(),
+        ),
       ];
 }
