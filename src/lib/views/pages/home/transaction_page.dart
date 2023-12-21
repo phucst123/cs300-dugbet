@@ -14,7 +14,7 @@ class TransactionPage extends StatelessWidget {
         padding: const EdgeInsets.only(top: 20),
         child: Center(
           child: Stack(
-            alignment: AlignmentDirectional.topCenter,
+            alignment: AlignmentDirectional.bottomCenter,
             clipBehavior: Clip.none,
             children: [
               Positioned(

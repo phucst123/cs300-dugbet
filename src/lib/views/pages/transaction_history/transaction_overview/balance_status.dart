@@ -1,3 +1,4 @@
+import 'package:dugbet/consts/fonts/base_font.dart';
 import 'package:flutter/material.dart';
 
 class BalanceStatus extends StatelessWidget {
@@ -34,11 +35,13 @@ class AmountBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       //margin: EdgeInsets.all(10.0),
-      padding: const EdgeInsets.all(24.0),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(24.0),
+        borderRadius: BorderRadius.circular(30.0),
       ),
+      width: 160.0,
+      height: 100.0,
+      padding: const EdgeInsets.only(top: 22.0, bottom: 24.0, left: 12.0),
       child: Row(
         children: <Widget>[
           Icon(
@@ -51,17 +54,11 @@ class AmountBox extends StatelessWidget {
             children: <Widget>[
               Text(
                 figure,
-                style: const TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: titleLarge,
               ),
               Text(
                 label,
-                style: const TextStyle(
-                  fontSize: 16.0,
-                  color: Colors.black,
-                ),
+                style: bodySmall,
               ),
             ],
           ),

@@ -32,6 +32,7 @@ class TransactionItem extends StatelessWidget {
             income: calculateIncome(),
             expense: calculateExpense()
           ),
+          SizedBox(height: 8.0),
           Divider(),
           TransactionItemList(transaction_list: transaction_list)
         ],

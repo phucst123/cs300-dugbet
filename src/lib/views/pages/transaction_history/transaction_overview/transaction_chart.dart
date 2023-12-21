@@ -17,12 +17,10 @@ class TransactionChart extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(30.0),
       ),
+      width: 328.0,
+      height: 370.0,
       padding: const EdgeInsets.only(left: 12.0, right: 12.0, top: 20.0, bottom: 34.0),
-      child: ConstrainedBox(
-        constraints: BoxConstraints(
-          maxHeight: 300.0
-        ),
-        child: Column(
+      child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Row(
@@ -55,7 +53,6 @@ class TransactionChart extends StatelessWidget {
             ),
           ],
         ),
-      ),
     );
   }
 
