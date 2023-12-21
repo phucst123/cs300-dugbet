@@ -15,7 +15,6 @@ import 'package:dugbet/views/pages/login/signup_page.dart';
 import 'package:dugbet/views/pages/splash/splash_page.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_history_page.dart';
 import 'package:dugbet/views/pages/home/home_page.dart';
-import 'package:dugbet/views/pages/transaction/transaction_page.dart';
 import 'package:dugbet/views/pages/wallet/wallet_page.dart';
 import 'package:dugbet/views/widgets/group_balance.dart';
 import 'package:dugbet/views/widgets/stat.dart';
