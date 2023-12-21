@@ -1,4 +1,8 @@
 class AppPage {
-  static const splashPage = '/home';
-  static const homePage = '/';
+  static const splashPage = '/';
+  static const homePage = '/home';
+  static const scanPage = '/scan';
+  static const transactionPage = '/transaction';
+  static const walletPage = '/wallet';
+
 }
