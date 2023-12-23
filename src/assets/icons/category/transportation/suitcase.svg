@@ -1,0 +1,10 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Category/Transportation" clip-path="url(#clip0_1655_3792)">
+<path id="Vector" d="M19 4H17.899C17.434 1.721 15.414 0 13 0H11C8.586 0 6.565 1.721 6.101 4H5C2.243 4 0 6.243 0 9V19C0 21.757 2.243 24 5 24H19C21.757 24 24 21.757 24 19V9C24 6.243 21.757 4 19 4ZM11 2H13C14.304 2 15.415 2.836 15.828 4H8.172C8.585 2.836 9.696 2 11 2ZM22 19C22 20.654 20.654 22 19 22H18V9C18 8.447 17.553 8 17 8C16.447 8 16 8.447 16 9V22H8V9C8 8.447 7.552 8 7 8C6.448 8 6 8.447 6 9V22H5C3.346 22 2 20.654 2 19V9C2 7.346 3.346 6 5 6H19C20.654 6 22 7.346 22 9V19Z" fill="#1A1A4D"/>
+</g>
+<defs>
+<clipPath id="clip0_1655_3792">
+<rect width="24" height="24" fill="white"/>
+</clipPath>
+</defs>
+</svg>

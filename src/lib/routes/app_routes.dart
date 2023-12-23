@@ -1,4 +1,5 @@
 import 'package:dugbet/routes/app_pages.dart';
+import 'package:dugbet/views/pages/category/choose_category_page.dart';
 import 'package:dugbet/views/pages/home/transaction_page.dart';
 import 'package:dugbet/views/pages/notification/notification_page.dart';
 import 'package:dugbet/views/pages/home/home_page.dart';
@@ -86,6 +87,10 @@ class AppRoute {
         GetPage(
           name: AppPage.walletPage,
           page: () =>  const WalletPage(),
+        ),
+        GetPage(
+          name: AppPage.chooseCategoryPage,
+          page: () =>  const ChooseCategoryPage(),
         ),
       ];
 }

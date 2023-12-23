@@ -50,6 +50,7 @@ dependencies:
   intl: ^0.19.0
   cached_network_image: ^3.3.0
   smooth_page_indicator: ^1.1.0
+  tuple: ^2.0.2
 
 flutter_launcher_icons:
   android: true
@@ -87,6 +88,11 @@ flutter:
     - assets/lottie/
     - assets/user/
     - assets/icons/
+    - assets/icons/category/
+    - assets/icons/category/fnb/
+    - assets/icons/category/transportation/
+    - assets/icons/category/clothing/
+    - assets/icons/category/others/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
