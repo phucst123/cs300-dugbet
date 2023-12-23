@@ -92,6 +92,6 @@ class StatOne extends StatelessWidget {
             ),
           ),
         ],
-      );
+      ));
   }
 }
