@@ -10,8 +10,10 @@ class CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 328.0,
+      margin: EdgeInsets.only(bottom: 12.0),
       decoration: BoxDecoration(
         color: Colors.white,
+        border: Border.all(color: Colors.black),
         borderRadius: BorderRadius.circular(20.0),
       ),
       child: Padding(
@@ -28,8 +30,10 @@ class CategoryItem extends StatelessWidget {
             ),
             Divider(color: Colors.grey),
             GridView.count(
-              shrinkWrap: true,
               crossAxisCount: 5,
+              mainAxisSpacing: 8.0,
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
               children: category.sub_categories.map((subCategory) => IconItem(subCategory.item1, subCategory.item2)).toList(),
             )
           ],
@@ -39,11 +43,27 @@ class CategoryItem extends StatelessWidget {
   }
 
   Widget IconItem(String title, Widget icon) {
-    return Column(
-      children:[
-        icon,
-        Text(title)
-      ]
+    return InkWell(
+      onTap: () {
+        print("click");
+      },
+      child: Column(
+        //mainAxisSize: MainAxisSize.min,
+        children:[
+          icon,
+          SizedBox(height: 8.0),
+          Expanded(
+            child: Center(
+              child: Text(
+                title,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 13.0),
+              )
+            )
+          )
+          //SizedBox(height: 8.0)
+        ]
+      ),
     );
   }
 }

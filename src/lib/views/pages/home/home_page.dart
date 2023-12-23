@@ -1,5 +1,8 @@
 import 'package:card_swiper/card_swiper.dart';
+import 'package:dugbet/views/widgets/group_balance.dart';
+import 'package:dugbet/views/widgets/group_balance_one.dart';
 import 'package:dugbet/views/widgets/header_bar.dart';
+import 'package:dugbet/views/widgets/stat.dart';
 import 'package:dugbet/views/widgets/stat_one.dart';
 import 'package:dugbet/views/widgets/wallet.dart';
 import 'package:flutter/material.dart';

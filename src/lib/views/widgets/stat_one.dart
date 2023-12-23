@@ -12,10 +12,10 @@ class StatOne extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 80,
-            width: 180,
+
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
                 borderRadius: BorderRadius.circular(24)),
@@ -54,8 +54,7 @@ class StatOne extends StatelessWidget {
           ),
           SizedBox(width: 50,),
           Container(
-            height: 80,
-            width: 180,
+
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
                 borderRadius: BorderRadius.circular(24)),
@@ -93,7 +92,6 @@ class StatOne extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
+      );
   }
 }
