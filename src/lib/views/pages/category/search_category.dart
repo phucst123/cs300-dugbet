@@ -53,6 +53,7 @@ class _SearchCategoryState extends State<SearchCategory> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      //mainAxisSize: MainAxisSize.min,
       children: [
         TextField(
           onChanged: (value) => _runFilter(value),
@@ -62,15 +63,16 @@ class _SearchCategoryState extends State<SearchCategory> {
         const SizedBox(
           height: 20,
         ),
-        ListView.builder(
-          itemCount: _foundCategories.length,
-          shrinkWrap: true,
-          itemBuilder: (context, index) {
-            print("Building item $index");
-            //return Text(_foundCategories[index].title);
-            return CategoryItem(category: _foundCategories[index]);
-          }
-        )
+        Expanded(
+          child: ListView.builder(
+            itemCount: _foundCategories.length,
+            //shrinkWrap: true,
+            itemBuilder: (context, index) {
+              //print("Building item $index");
+              return CategoryItem(category: _foundCategories[index]);
+            }
+          ),
+        ),
       ],
     );
   }
