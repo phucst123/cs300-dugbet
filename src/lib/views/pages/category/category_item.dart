@@ -30,9 +30,9 @@ class CategoryItem extends StatelessWidget {
             ),
             Divider(color: Colors.grey),
             GridView.count(
-              shrinkWrap: true,
               crossAxisCount: 5,
               mainAxisSpacing: 8.0,
+              shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               children: category.sub_categories.map((subCategory) => IconItem(subCategory.item1, subCategory.item2)).toList(),
             )
@@ -54,9 +54,13 @@ class CategoryItem extends StatelessWidget {
           SizedBox(height: 8.0),
           Expanded(
             child: Center(
-              child: Text(title)
+              child: Text(
+                title,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 13.0),
+              )
             )
-          ),
+          )
           //SizedBox(height: 8.0)
         ]
       ),

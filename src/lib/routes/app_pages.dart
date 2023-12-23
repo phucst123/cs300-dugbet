@@ -7,8 +7,8 @@ class AppPage {
   static const securityPage = '/setting/security';
   static const premiumPage = '/setting/premium';
   static const purchasePage = '/setting/purchase';
-  static const transactionHistoryPage = '/transaction_history';
-  static const transactionPage = '/transaction_page';
+  static const transactionHistoryPage = '/transactionHistoryPage';
+  static const transactionPage = '/transactionPage';
   static const chooseCategoryPage = '/';
 
   static const String loginOpenScreen = '/login_open_screen';

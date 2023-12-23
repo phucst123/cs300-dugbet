@@ -8,13 +8,12 @@ class StatOne extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Row(
+      return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 80,
-            width: 180,
+
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
                 borderRadius: BorderRadius.circular(24)),
@@ -52,8 +51,7 @@ class StatOne extends StatelessWidget {
             ),
           ),
           Container(
-            height: 80,
-            width: 180,
+
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
                 borderRadius: BorderRadius.circular(24)),
@@ -91,7 +89,6 @@ class StatOne extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
+      );
   }
 }
