@@ -22,7 +22,7 @@ class Wallet extends StatelessWidget {
 
       child: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             const SizedBox(height: 15),
             const Row(

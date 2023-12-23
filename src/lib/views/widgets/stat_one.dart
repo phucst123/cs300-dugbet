@@ -8,8 +8,9 @@ class StatOne extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Row(
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
@@ -31,7 +32,7 @@ class StatOne extends StatelessWidget {
                     child: IconButton(
                       onPressed: () {},
                       icon:
-                          const Icon(Icons.arrow_upward_outlined, color: Colors.white),
+                      const Icon(Icons.arrow_upward_outlined, color: Colors.white),
                     )),
                 const SizedBox(
                   width: 15,
@@ -51,6 +52,7 @@ class StatOne extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(width: 50,),
           Container(
             height: 80,
             width: 180,
