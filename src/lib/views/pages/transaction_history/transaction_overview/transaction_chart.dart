@@ -48,7 +48,7 @@ class TransactionChart extends StatelessWidget {
             Flexible(
               child: LineChart(
                 sampleData1,
-                duration: const Duration(milliseconds: 250),
+                swapAnimationDuration: const Duration(milliseconds: 250),
               ),
             ),
           ],
@@ -77,10 +77,10 @@ class TransactionChart extends StatelessWidget {
         bottomTitles: AxisTitles(
           sideTitles: bottomTitles,
         ),
-        rightTitles: const AxisTitles(
+        rightTitles:  AxisTitles(
           sideTitles: SideTitles(showTitles: false),
         ),
-        topTitles: const AxisTitles(
+        topTitles:  AxisTitles(
           sideTitles: SideTitles(showTitles: false),
         ),
         leftTitles: AxisTitles(
@@ -160,7 +160,7 @@ class TransactionChart extends StatelessWidget {
         getTitlesWidget: bottomTitleWidgets,
       );
 
-  FlGridData get gridData => const FlGridData(show: false);
+  FlGridData get gridData =>  FlGridData(show: false);
 
   FlBorderData get borderData => FlBorderData(
         show: true,
@@ -178,7 +178,7 @@ class TransactionChart extends StatelessWidget {
         color: ColorPalette.incomeText,
         barWidth: 8,
         isStrokeCapRound: true,
-        dotData: const FlDotData(show: false),
+        dotData:  FlDotData(show: false),
         belowBarData: BarAreaData(show: false),
         spots: const [
           FlSpot(1, 1),
@@ -196,7 +196,7 @@ class TransactionChart extends StatelessWidget {
         color: ColorPalette.expenseText,
         barWidth: 8,
         isStrokeCapRound: true,
-        dotData: const FlDotData(show: false),
+        dotData:  FlDotData(show: false),
         belowBarData: BarAreaData(
           show: false,
           color: ColorPalette.expenseText.withOpacity(0),
@@ -216,7 +216,7 @@ class TransactionChart extends StatelessWidget {
         color: ColorPalette.defaultText,
         barWidth: 8,
         isStrokeCapRound: true,
-        dotData: const FlDotData(show: false),
+        dotData:  FlDotData(show: false),
         belowBarData: BarAreaData(show: false),
         spots: const [
           FlSpot(1, 2.8),
