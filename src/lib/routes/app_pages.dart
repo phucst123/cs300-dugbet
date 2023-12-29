@@ -1,6 +1,6 @@
 class AppPage {
   static const splashPage = '/splash';
-  static const homePage = '/home';
+  static const homePage = '/';
   static const settingPage = '/setting';
   static const editProfilePage = '/setting/editprofile';
   static const editNotificationPage = '/setting/editnotification';
@@ -9,7 +9,7 @@ class AppPage {
   static const purchasePage = '/setting/purchase';
   static const transactionHistoryPage = '/transactionHistoryPage';
   static const transactionPage = '/transactionPage';
-  static const chooseCategoryPage = '/';
+  static const chooseCategoryPage = '/chooseCategoryPage';
   static const String loginOpenScreen = '/login_open_screen';
   static const String loginSignUpScreen = '/login_sign_up_screen';
   static const String loginLoginScreen = '/login_login_screen';
