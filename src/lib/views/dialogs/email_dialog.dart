@@ -57,12 +57,14 @@ class EmailDialog extends StatelessWidget {
                     ),
                   ),
                   onTap: () => Get.offAndToNamed(AppPage.loginLoginScreen)),
-              GradientButton(
-                title: "Back to Sign-in",
-                callback: () {
-                  //
-                },
-              ),
+              StringButton(
+                  text: "Back to Sign-in",
+                  callback: () {
+                    //
+                  },
+                  decoration: CustomButtonStyles.gradientTealToTealDecoration,
+                  buttonTextStyle: context.textTheme.labelLarge!
+                      .merge(const TextStyle(color: ColorPalette.white))),
               ElevatedButton(
                 child: Text(
                   "Resend the email more",

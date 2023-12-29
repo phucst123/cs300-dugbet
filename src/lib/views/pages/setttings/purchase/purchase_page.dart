@@ -1,7 +1,9 @@
 import 'package:dugbet/consts/color/colors.dart';
+import 'package:dugbet/consts/custom_button_style.dart';
 import 'package:dugbet/routes/app_pages.dart';
 import 'package:dugbet/views/widgets/button/custom_icon_button.dart';
 import 'package:dugbet/views/widgets/button/gradient_button.dart';
+import 'package:dugbet/views/widgets/string_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -68,11 +70,15 @@ class PurchasePage extends StatelessWidget {
             titleTextStyle: context.textTheme.bodyLarge,
           ),
           Center(
-              child: GradientButton(
-                  title: "Buy for 99.000 đ",
+              child: StringButton(
+                  text: "Buy for 99.000 đ",
                   callback: () {
                     Get.toNamed(AppPage.premiumPage);
-                  }))
+                  },
+                  decoration: CustomButtonStyles.gradientTealToTealDecoration,
+                  buttonStyle: CustomButtonStyles.none,
+                  buttonTextStyle: context.textTheme.labelLarge!
+                      .merge(const TextStyle(color: ColorPalette.white))))
         ]),
       ),
     );

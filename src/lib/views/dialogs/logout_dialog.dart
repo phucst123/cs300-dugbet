@@ -1,5 +1,7 @@
+import 'package:dugbet/consts/custom_button_style.dart';
 import 'package:dugbet/views/widgets/button/gradient_button.dart';
 import 'package:dugbet/views/widgets/button/normal_button.dart';
+import 'package:dugbet/views/widgets/string_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -33,17 +35,28 @@ class LogoutDialog extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: NormalButton(
-                      title: "Cancel",
-                      callback: () {
-                        Get.back();
-                      }),
+                  child: StringButton(
+                    text: "Cancel",
+                    callback: () {
+                      Get.back();
+                    },
+                    buttonStyle: CustomButtonStyles.fillTear,
+                    buttonTextStyle: context.textTheme.labelLarge!,
+                  ),
                 ),
                 const SizedBox(
                   width: 10,
                 ),
                 Expanded(
-                    child: GradientButton(title: "Logout", callback: () {})),
+                  child: StringButton(
+                    text: "Logout",
+                    callback: () {},
+                    decoration: CustomButtonStyles.gradientTealToTealDecoration,
+                    buttonStyle: CustomButtonStyles.none,
+                    buttonTextStyle: context.textTheme.labelLarge!
+                        .merge(const TextStyle(color: ColorPalette.white)),
+                  ),
+                ),
               ],
             )
           ]),
