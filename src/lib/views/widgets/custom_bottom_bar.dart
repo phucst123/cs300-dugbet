@@ -5,14 +5,14 @@ class CustomBottomAppBar extends StatelessWidget {
   CustomBottomAppBar({
     super.key,
     this.onChanged,
-  });
+  }
+  );
 
   RxList<BottomMenuModel> bottomMenuList = [
     BottomMenuModel(
         icon: ImageConstant.home,
         activeIcon: ImageConstant.home,
-        type: BottomBarEnum.Home,
-        isSelected: true),
+        type: BottomBarEnum.Home,),
     BottomMenuModel(
       icon: ImageConstant.stat,
       activeIcon: ImageConstant.stat,
@@ -34,6 +34,13 @@ class CustomBottomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int indexPage = 0;
+     if (Get.arguments != null) {
+       indexPage = bottomMenuList.indexWhere(
+           (element) => element.type == Get.arguments as BottomBarEnum);
+     }
+
+    bottomMenuList[indexPage].isSelected = true;
     return Obx(
       () => ClipRRect(
         borderRadius: BorderRadius.vertical(
