@@ -1,5 +1,6 @@
+import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/color/colors.dart';
-import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class TransactionItemSummary extends StatelessWidget {
   const TransactionItemSummary({super.key, required this.date, required this.income, required this.expense});
@@ -42,28 +43,22 @@ class TransactionItemSummary extends StatelessWidget {
           children: [
             Text(
               date.day.toString(),
-              style: const TextStyle(
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold,
-              ),
+              style: theme.textTheme.displayMedium,
             ),
             SizedBox(width: 10.0),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   date_text,
-                  style: const TextStyle(
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style:theme.textTheme.headlineMedium
                 ),
                 Text(
                   "${date.month.toString()}/${date.year.toString()}",
-                  style: const TextStyle(
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.normal,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: ColorPalette.grey
                   ),
                 )
               ],

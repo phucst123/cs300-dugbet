@@ -1,3 +1,4 @@
+import 'package:dugbet/consts/color/colors.dart';
 import 'package:dugbet/views/pages/category/category_data.dart';
 import 'package:dugbet/views/pages/category/category_item.dart';
 import 'package:flutter/material.dart';
@@ -56,9 +57,20 @@ class _SearchCategoryState extends State<SearchCategory> {
       //mainAxisSize: MainAxisSize.min,
       children: [
         TextField(
-          onChanged: (value) => _runFilter(value),
-          decoration: const InputDecoration(
-              labelText: 'Search', suffixIcon: Icon(Icons.search)),
+          decoration: InputDecoration(
+            prefixIcon: Icon(Icons.search),
+            hintText: 'Enter the category name',
+            border: OutlineInputBorder(
+                borderSide: BorderSide(color: Color(0xFFA6B9CB)),
+              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+
+            ),
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: ColorPalette.incomeText),
+              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+
+            ),
+          ),
         ),
         const SizedBox(
           height: 20,

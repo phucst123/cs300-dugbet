@@ -1,3 +1,4 @@
+import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/color/theme.dart';
 import 'package:dugbet/consts/fonts/text_theme_builder.dart';
 import 'package:dugbet/views/widgets/double_notch.dart';
@@ -130,26 +131,32 @@ class TransactionPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      height: 44,
-                      width: 140,
-                      decoration: BoxDecoration(
-                        color: LightTheme.buttonColor,
-                        borderRadius: BorderRadius.circular(25)
+                    StringButton(
+                        text: "Cancel".tr,
+                        callback: onTapCancel,
+                        buttonStyle: CustomButtonStyles.none,
+                        decoration:
+                            CustomButtonStyles.gradientTealToTealDecoration,
+                        width: 140.h,
                       ),
-      
-                      child: Center(child: Text("Cancel",style: TextThemeBuilder.robotoTextTheme.headlineLarge,)),
-                    ),
-                    Container(
-                      height: 44,
-                      width: 140,
-                      decoration: BoxDecoration(
-                          color: LightTheme.primaryColor,
-                          borderRadius: BorderRadius.circular(25)
+                    StringButton(
+                        text: "Save".tr,
+                        callback: onTapSave,
+                        buttonStyle: CustomButtonStyles.none,
+                        decoration:
+                            CustomButtonStyles.gradientTealToTealDecoration,
+                        width: 140.h,
                       ),
+                    // Container(
+                    //   height: 44,
+                    //   width: 140,
+                    //   decoration: BoxDecoration(
+                    //       color: LightTheme.primaryColor,
+                    //       borderRadius: BorderRadius.circular(25)
+                    //   ),
       
-                      child: Center(child: Text("Save",style: TextThemeBuilder.robotoTextTheme.headlineLarge,)),
-                    )
+                    //   child: Center(child: Text("Save",style: TextThemeBuilder.robotoTextTheme.headlineLarge,)),
+                    // )
                   ],
                 )
               ],
@@ -193,4 +200,8 @@ class TransactionPage extends StatelessWidget {
         return "/";
     }
   }
+
+  onTapCancel() => Get.back();
+
+  onTapSave() => Get.back();
 }

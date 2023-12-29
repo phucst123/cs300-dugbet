@@ -9,6 +9,7 @@ class ColorPalette {
   static const Color primaryColor = Color(0xFF15A69D);
   static const Color secondaryColor = Color(0xFF24C8BE);
   static const Color tertiaryColor = Color(0xFF2184A5);
+  static const Color grey = Color(0xFF8999A8);
 
   // Gradient
   static const Color gradientAlphaStart = primaryColor;
@@ -20,6 +21,9 @@ class ColorPalette {
   static const Color defaultText = Color(0xFF1A1A4D);
   static const Color incomeText = Color(0xFF17978F);
   static const Color expenseText = Color(0xFFF6BB54);
+
+  // Button
+  static const Color tearButton = Color(0xFFB6DDD5);
 
   static const primaryGradient = LinearGradient(
       begin: Alignment.topCenter,

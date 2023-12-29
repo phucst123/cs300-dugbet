@@ -1,4 +1,5 @@
 import 'package:card_swiper/card_swiper.dart';
+import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/views/widgets/group_balance.dart';
 import 'package:dugbet/views/widgets/group_balance_one.dart';
 import 'package:dugbet/views/widgets/header_bar.dart';
@@ -17,7 +18,6 @@ class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   String selectMode = "month";
-
 
   @override
   Widget build(BuildContext context) {
@@ -41,23 +41,19 @@ class HomePage extends StatelessWidget {
                     ),
                     dropdownColor: ColorPalette.white.withOpacity(0.9),
                     items: const [
-                      DropdownMenuItem(
-                          value: "today", child: Text("Today")),
-                      DropdownMenuItem(
-                          value: "week", child: Text("This week")),
+                      DropdownMenuItem(value: "today", child: Text("Today")),
+                      DropdownMenuItem(value: "week", child: Text("This week")),
                       DropdownMenuItem(
                           value: "month", child: Text("This month")),
                       DropdownMenuItem(
                           value: "quarter", child: Text("This quarter")),
-                      DropdownMenuItem(
-                          value: "year", child: Text("This year"))
+                      DropdownMenuItem(value: "year", child: Text("This year"))
                     ],
                     style: const TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                         fontSize: 16),
-                    onChanged: (String? value) {
-                    },
+                    onChanged: (String? value) {},
                   ),
                 ),
               ),
@@ -91,11 +87,13 @@ class HomePage extends StatelessWidget {
                         ColorPalette.tertiaryColor
                       ]),
                       borderRadius: BorderRadius.circular(25)),
-                  child: const Center(
-                      child: Text(
-                    "Analyze",
-                    style: TextStyle(color: ColorPalette.white),
-                  )),
+                  child: StringButton(
+                    text: "Analyze".tr,
+                    callback: onTapAnalyze,
+                    buttonStyle: CustomButtonStyles.none,
+                    decoration: CustomButtonStyles.gradientTealToTealDecoration,
+                    width: 188.h,
+                  ),
                 ),
               ),
             ),
@@ -141,4 +139,8 @@ class HomePage extends StatelessWidget {
         return "/";
     }
   }
+
+  onTapAnalyze() => Get.offAndToNamed(
+        AppPage.transactionHistoryPage,
+      );
 }

@@ -21,11 +21,11 @@ class WalletPage extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-            left: 0,
-            top: 0,
+            left: 15,
+            top: 15,
             child: Text(
               "Wallets",
-              style: TextThemeBuilder.robotoTextTheme.displaySmall,
+              style: TextThemeBuilder.robotoTextTheme.titleLarge,
             ),
           ),
           Positioned(
