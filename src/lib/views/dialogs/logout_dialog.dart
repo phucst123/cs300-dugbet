@@ -1,6 +1,4 @@
 import 'package:dugbet/consts/custom_button_style.dart';
-import 'package:dugbet/views/widgets/button/gradient_button.dart';
-import 'package:dugbet/views/widgets/button/normal_button.dart';
 import 'package:dugbet/views/widgets/string_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
