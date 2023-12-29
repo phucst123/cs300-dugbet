@@ -72,11 +72,23 @@ class TextThemes {
           fontFamily: 'Roboto',
           fontWeight: FontWeight.w400,
         ),
+        bodyMedium: TextStyle(
+          color: appTheme.blueGray900,
+          fontSize: 16.fSize,
+          fontFamily: 'Roboto',
+          fontWeight: FontWeight.w400,
+        ),
         bodySmall: TextStyle(
           color: appTheme.blueGray900,
           fontSize: 12.fSize,
           fontFamily: 'Roboto',
           fontWeight: FontWeight.w400,
+        ),
+        displayMedium: TextStyle(
+          color: appTheme.blueGray900,
+          fontSize: 40.fSize,
+          fontFamily: 'Roboto',
+          fontWeight: FontWeight.w700,
         ),
         displaySmall: TextStyle(
           color: appTheme.blueGray900,
