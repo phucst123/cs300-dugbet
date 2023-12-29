@@ -27,7 +27,7 @@ class DoubleNotch extends StatelessWidget {
                   ),
                 )),
             Positioned(
-                top: MediaQuery.of(context).size.width/2 - 40,
+                top: MediaQuery.of(context).size.width / 2 - 40,
                 child: Container(
                     height: 56,
                     width: 56,
@@ -41,24 +41,30 @@ class DoubleNotch extends StatelessWidget {
                       ),
                     ))),
             Positioned(
-                top: MediaQuery.of(context).size.width-65,
+                top: MediaQuery.of(context).size.width - 65,
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: ColorPalette.incomeText,
                   ),
                   child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                     child: Text("Edit"),
                   ),
                 )),
             Column(
               children: [
-                SvgPicture.asset("assets/images/top_notch.svg",width: MediaQuery.of(context).size.width,),
+                SvgPicture.asset(
+                  "assets/images/top_notch.svg",
+                  width: MediaQuery.of(context).size.width,
+                ),
                 const SizedBox(
                   height: 10,
                 ),
-                SvgPicture.asset("assets/images/bot_notch.svg",width: MediaQuery.of(context).size.width,)
+                SvgPicture.asset(
+                  "assets/images/bot_notch.svg",
+                  width: MediaQuery.of(context).size.width,
+                )
               ],
             ),
           ],
