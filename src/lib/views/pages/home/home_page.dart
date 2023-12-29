@@ -8,7 +8,7 @@ import 'package:dugbet/views/widgets/stat_one.dart';
 import 'package:dugbet/views/widgets/wallet.dart';
 import 'package:dugbet/views/widgets/button/scan_button.dart';
 import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
-
+import 'package:dugbet/views/widgets/category_quickview.dart';
 import 'package:flutter/material.dart';
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/color/colors.dart';
@@ -73,9 +73,38 @@ class HomePage extends StatelessWidget {
                   itemWidth: 270,
                   layout: SwiperLayout.TINDER,
                   scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => Container(
-                    color: Colors.black,
-                  ),
+                  itemBuilder: (context, index) => 
+                    index == 0
+                      ? Container(
+                        //color: Colors.white, 
+                        // add border radius
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(color: Colors.black, width: 1),
+                          color: Colors.white,
+                          // add box border black corner
+                          
+                          
+                        ),
+                        child: PieQuickView(), 
+                      )
+                    : index == 1 
+                      ? Container(
+                        //child: PieQuickView(), 
+                        //color: Colors.white, 
+                        // add border radius
+                        //decoration: BoxDecoration(
+                        //  borderRadius: BorderRadius.circular(20),
+                        //),
+                      )
+                    : Container(
+                        //child: PieQuickView(), 
+                        //color: Colors.white, 
+                        // add border radius
+                        //decoration: BoxDecoration(
+                        //  borderRadius: BorderRadius.circular(20),
+                        //),
+                      )
                 ),
               ),
               Padding(
