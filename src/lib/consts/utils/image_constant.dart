@@ -25,5 +25,5 @@ class ImageConstant {
   static String wallet = '$imagePath/nav_wallet.svg';
   static String stat = '$imagePath/nav_stat.svg';
   static String navOnSelect = '$imagePath/nav_onselect.svg';
-  static String floatScan = '$imagePath/float_scan.svg';
+  static String floatScan = '$imagePath/nav_scan_button_2.svg';
 }
