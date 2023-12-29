@@ -1,3 +1,4 @@
+import 'package:dugbet/views/widgets/icon_display_circle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -11,6 +12,7 @@ class Wallet extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
+        color: ColorPalette.white.withOpacity(0.3),
           borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(30), topRight: Radius.circular(30)),
           border: Border.all(color: ColorPalette.white, width: 1)),
@@ -52,9 +54,10 @@ class Wallet extends StatelessWidget {
                   ),
                 ),
                 const Text(
-                  "234.000d",
+                  "234.000",
                   style: TextStyle(fontSize: 24),
                 ),
+                SvgPicture.asset("assets/images/dIcon.svg")
               ],
             ),
             const SizedBox(
@@ -65,6 +68,9 @@ class Wallet extends StatelessWidget {
               children: [
                 SizedBox(width: 15),
                 Text("Your wallet:"),
+                Spacer(),
+                Icon(Icons.more_horiz),
+                SizedBox(width: 15),
               ],
             ),
             const SizedBox(
@@ -82,7 +88,7 @@ class Wallet extends StatelessWidget {
                           Container(
                             width: 314,
                             height: 200,
-                            margin: const EdgeInsets.only(right: 20),
+                            margin: const EdgeInsets.only(right: 10),
                             decoration: BoxDecoration(
                                 color: ColorPalette.white,
                                 borderRadius: BorderRadius.circular(20),
@@ -90,29 +96,26 @@ class Wallet extends StatelessWidget {
                                     color: ColorPalette.black, width: 1)),
                             child: Center(
                               child: ListTile(
-                                leading: Container(
-                                    height: 60,
-                                    width: 60,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                        border: Border.all(
-                                            color: ColorPalette.black,
-                                            width: 1)),
-                                    child:
-                                        Image.asset("assets/images/agri.png",scale: 0.75,)),
+                                leading: IconDisplayCircle(pathImage: "assets/images/agri.png"),
                                 title: const Text(
                                   "Momo",
                                   style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                subtitle: const Text("200.000d"),
+                                subtitle: Row(
+                                  children: [
+                                    Text("200.000"),
+                                    SvgPicture.asset("assets/images/dIcon.svg",height: 14,color: Colors.grey,)
+                                  ],
+                                ),
                                 trailing: const Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Icon(
                                       Icons.menu,
                                       color: ColorPalette.black,
+
                                     ),
                                   ],
                                 ),
