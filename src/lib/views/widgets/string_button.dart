@@ -36,7 +36,7 @@ class StringButton extends BaseButton {
   }
 
   Widget get buildElevatedButtonWidget => Container(
-        height: height ?? 44.v,
+        height: height ?? 46.v,
         width: width ?? double.infinity,
         margin: margin,
         decoration:

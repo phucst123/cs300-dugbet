@@ -96,6 +96,12 @@ class TextThemes {
           fontFamily: 'Roboto',
           fontWeight: FontWeight.w700,
         ),
+        headlineMedium: TextStyle(
+          color: appTheme.blueGray900,
+          fontSize: 16.fSize,
+          fontFamily: 'Roboto',
+          fontWeight: FontWeight.w700,
+        ),
         headlineSmall: TextStyle(
           color: appTheme.blueGray900,
           fontSize: 24.fSize,
@@ -112,7 +118,7 @@ class TextThemes {
           color: appTheme.blueGray900,
           fontSize: 20.fSize,
           fontFamily: 'Roboto',
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w500,
         ),
         titleMedium: TextStyle(
           color: appTheme.whiteA700,
