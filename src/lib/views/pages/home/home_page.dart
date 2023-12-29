@@ -124,7 +124,7 @@ class HomePage extends StatelessWidget {
   }
   Widget _buildBottomAppBar() {
     return CustomBottomAppBar(onChanged: (BottomBarEnum type) {
-       Get.toNamed(getCurrentRoute(type), id: 1);
+       Get.toNamed(getCurrentRoute(type), arguments: type);
     });
   }
   String getCurrentRoute(BottomBarEnum type) {
@@ -136,7 +136,7 @@ class HomePage extends StatelessWidget {
       case BottomBarEnum.Stat:
         return AppPage.transactionHistoryPage;
       case BottomBarEnum.Wallet:
-        return AppPage.homePage;
+        return AppPage.walletPage;
       default:
         return "/";
     }
