@@ -15,7 +15,7 @@ class WalletList extends StatelessWidget {
     final keyboardSpace = MediaQuery.of(context).viewInsets.bottom;
     return Container(
       constraints:
-          BoxConstraints(maxHeight: MediaQuery.of(context).size.height - 100),
+          BoxConstraints(maxHeight: MediaQuery.of(context).size.height - 150),
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         color: ColorPalette.white.withOpacity(0.3),

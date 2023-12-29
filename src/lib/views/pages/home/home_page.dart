@@ -122,6 +122,7 @@ class HomePage extends StatelessWidget {
   }
   Widget _buildBottomAppBar() {
     return CustomBottomAppBar(onChanged: (BottomBarEnum type) {
+
        Get.toNamed(getCurrentRoute(type), arguments: type);
     });
   }

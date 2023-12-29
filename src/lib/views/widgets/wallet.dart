@@ -1,5 +1,6 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/fonts/text_theme_builder.dart';
+import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
 import 'package:dugbet/views/widgets/icon_display_circle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -74,7 +75,7 @@ class Wallet extends StatelessWidget {
                 const Spacer(),
                 IconButton(
                   icon: const Icon(Icons.more_horiz),
-                  onPressed: () => Get.toNamed(AppPage.walletPage),
+                  onPressed: () => Get.toNamed(AppPage.walletPage,arguments: BottomBarEnum.Wallet),
                 ),
                 const SizedBox(width: 15),
               ],
