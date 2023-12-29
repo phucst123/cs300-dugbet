@@ -23,14 +23,15 @@ class TransactionItem extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20.0),
+        border: Border.all(color: ColorPalette.black, width: 1)
       ),
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 24.0),
       child: Column(
         children: [
           TransactionItemSummary(
             date: transaction_list[0].date,
-            income: calculateIncome(),
-            expense: calculateExpense()
+            income: "100.000",
+            expense: "200.000"
           ),
           SizedBox(height: 8.0),
           Divider(),
@@ -45,7 +46,7 @@ class TransactionItem extends StatelessWidget {
 
     for (var transaction in transaction_list) {
       if (transaction.type == 1) {
-        incomeSum += transaction.amount;
+        incomeSum = 200;
       }
     }
 
@@ -57,7 +58,7 @@ class TransactionItem extends StatelessWidget {
 
     for (var transaction in transaction_list) {
       if (transaction.type == 0) {
-        expenseSum += transaction.amount;
+        expenseSum += 200;
       }
     }
 

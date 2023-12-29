@@ -1,6 +1,6 @@
 import 'package:dugbet/consts/app_export.dart';
-import 'package:dugbet/consts/color/colors.dart';
 
+// ignore: must_be_immutable
 class CustomBottomAppBar extends StatelessWidget {
   CustomBottomAppBar({
     super.key,

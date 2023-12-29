@@ -1,12 +1,13 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/color/colors.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class TransactionItemSummary extends StatelessWidget {
   const TransactionItemSummary({super.key, required this.date, required this.income, required this.expense});
   final DateTime date;
-  final double income;
-  final double expense;
+  final String income;
+  final String expense;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +46,7 @@ class TransactionItemSummary extends StatelessWidget {
               date.day.toString(),
               style: theme.textTheme.displayMedium,
             ),
-            SizedBox(width: 10.0),
+            const SizedBox(width: 16.0),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               mainAxisSize: MainAxisSize.min,
@@ -59,7 +60,7 @@ class TransactionItemSummary extends StatelessWidget {
                   "${date.month.toString()}/${date.year.toString()}",
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: ColorPalette.grey
-                  ),
+                  )
                 )
               ],
             )
@@ -69,21 +70,43 @@ class TransactionItemSummary extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              income.toString(),
-              style: const TextStyle(
-                fontSize: 12.0,
-                fontWeight: FontWeight.bold,
-                color: ColorPalette.incomeText
-              ),
+            Row(
+              children: [
+                Text(
+                  income.toString(),
+                  style: theme.textTheme.headlineLarge?.copyWith(
+                    color: ColorPalette.incomeText
+                  )
+                ),
+                SizedBox(width: 2.0.v),
+                SvgPicture.asset(
+                  "assets/images/dIcon.svg",
+                  colorFilter: const ColorFilter.mode(
+                    ColorPalette.incomeText,
+                    BlendMode.srcIn
+                  ),
+                  height: 16.v,
+                )
+              ],
             ),
-            Text(
-              expense.toString(),
-              style: const TextStyle(
-                fontSize: 12.0,
-                fontWeight: FontWeight.bold,
-                color: ColorPalette.expenseText
-              ),
+            Row(
+              children: [
+                Text(
+                  expense.toString(),
+                  style: theme.textTheme.headlineLarge?.copyWith(
+                    color: ColorPalette.expenseText
+                  )
+                ),
+                SizedBox(width: 2.0.v),
+                SvgPicture.asset(
+                  "assets/images/dIcon.svg",
+                  colorFilter: const ColorFilter.mode(
+                    ColorPalette.expenseText,
+                    BlendMode.srcIn
+                  ),
+                  height: 16.0.v,
+                )
+              ],
             )
           ]
         )

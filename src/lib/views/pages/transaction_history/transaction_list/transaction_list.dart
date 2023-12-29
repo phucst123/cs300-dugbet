@@ -16,7 +16,7 @@ class TransactionList extends StatelessWidget {
       children: [
         for (var transaction in groupedTransactions)...[
           TransactionItem(transaction_list: transaction),
-          SizedBox(height: 10.0)
+          SizedBox(height: 20.0)
         ]
       ]
     );

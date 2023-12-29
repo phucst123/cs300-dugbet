@@ -163,43 +163,11 @@ class TransactionPage extends StatelessWidget {
             ),
           ),
         ),
-      bottomNavigationBar: _buildBottomAppBar(),
-      floatingActionButton: ScanButton(
-                height: 60,
-                width: 57,
-                onTap: () {},
-                // color of the floating button
-                
-                child: CustomImageView(
-                    imagePath: ImageConstant.floatScan,
-                    height: 30.0.v,
-                    width: 28.5.h)),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerDocked,
-            // add color 0xFF15A69D to the floating action button
-            floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+
       ),
     );
   }
-  Widget _buildBottomAppBar() {
-    return CustomBottomAppBar(onChanged: (BottomBarEnum type) {
-       Get.toNamed(getCurrentRoute(type), arguments: type);
-    });
-  }
-  String getCurrentRoute(BottomBarEnum type) {
-    switch (type) {
-      case BottomBarEnum.Home:
-        return AppPage.homePage;
-      case BottomBarEnum.Settings:
-        return AppPage.settingPage;
-      case BottomBarEnum.Stat:
-        return AppPage.transactionHistoryPage;
-      case BottomBarEnum.Wallet:
-        return AppPage.walletPage;
-      default:
-        return "/";
-    }
-  }
+
 
   onTapCancel() => Get.back();
 
