@@ -9,6 +9,7 @@ class ColorPalette {
   static const Color primaryColor = Color(0xFF15A69D);
   static const Color secondaryColor = Color(0xFF24C8BE);
   static const Color tertiaryColor = Color(0xFF2184A5);
+  static const Color grey = Color(0xFF8999A8);
 
   // Gradient
   static const Color gradientAlphaStart = primaryColor;

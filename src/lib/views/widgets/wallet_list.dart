@@ -1,9 +1,11 @@
 import 'package:dugbet/consts/color/theme.dart';
+import 'package:dugbet/views/widgets/ListTitleWallet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../consts/color/colors.dart';
 import '../../consts/fonts/text_theme_builder.dart';
+import 'icon_display_circle.dart';
 
 class WalletList extends StatelessWidget {
   const WalletList({super.key});
@@ -13,16 +15,17 @@ class WalletList extends StatelessWidget {
     final keyboardSpace = MediaQuery.of(context).viewInsets.bottom;
     return Container(
       constraints:
-          BoxConstraints(maxHeight: MediaQuery.of(context).size.height - 100),
+          BoxConstraints(maxHeight: MediaQuery.of(context).size.height - 150),
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
+        color: ColorPalette.white.withOpacity(0.3),
           borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(30), topRight: Radius.circular(30)),
           border: Border.all(color: ColorPalette.white, width: 2)),
       child: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Padding(
-          padding:  EdgeInsets.only(bottom: keyboardSpace+50),
+          padding:  EdgeInsets.only(bottom: keyboardSpace+80),
           child: Column(
             children: [
               Padding(
@@ -66,7 +69,10 @@ class WalletList extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8),
                           borderSide: BorderSide.none),
                       hintText: "Search your wallet...",
+                      hintStyle: TextStyle(color: ColorPalette.grey.withOpacity(0.7),fontWeight: FontWeight.normal),
                       prefixIcon: const Icon(Icons.search)),
+
+
                 ),
               ),
               SizedBox(
@@ -86,36 +92,8 @@ class WalletList extends StatelessWidget {
                                     border: Border.all(color: Colors.black),
                                     color: ColorPalette.white,
                                     borderRadius: BorderRadius.circular(20)),
-                                child: Center(
-                                  child: ListTile(
-                                    leading: Container(
-                                      height: 60,
-                                      width: 60,
-                                      decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: SvgPicture.asset(
-                                        "assets/images/momo.svg",
-                                        width: MediaQuery.of(context).size.width,
-                                      ),
-                                    ),
-                                    title: const Text(
-                                      "Momo",
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    subtitle: const Text("200.000d"),
-                                    trailing: const Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        Icon(
-                                          Icons.menu,
-                                          color: Colors.black,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                                child: const Center(
+                                  child: ListTitleWallet(pathImage: "assets/images/defaultPlush.png",moneyValue: "200.000", nameWallet: "Momo"),
                                 ),
                               ),
                             ],

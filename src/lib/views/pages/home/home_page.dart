@@ -6,9 +6,12 @@ import 'package:dugbet/views/widgets/header_bar.dart';
 import 'package:dugbet/views/widgets/stat.dart';
 import 'package:dugbet/views/widgets/stat_one.dart';
 import 'package:dugbet/views/widgets/wallet.dart';
-import 'package:flutter/material.dart';
+import 'package:dugbet/views/widgets/button/scan_button.dart';
+import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
 
-import '../../../consts/color/colors.dart';
+import 'package:flutter/material.dart';
+import 'package:dugbet/consts/app_export.dart';
+import 'package:dugbet/consts/color/colors.dart';
 
 // ignore: must_be_immutable
 class HomePage extends StatelessWidget {
@@ -103,4 +106,29 @@ class HomePage extends StatelessWidget {
           )),
     );
   }
+
+  Widget _buildBottomAppBar() {
+    return CustomBottomAppBar(onChanged: (BottomBarEnum type) {
+      Get.toNamed(getCurrentRoute(type), arguments: type);
+    });
+  }
+
+  String getCurrentRoute(BottomBarEnum type) {
+    switch (type) {
+      case BottomBarEnum.Home:
+        return AppPage.homePage;
+      case BottomBarEnum.Settings:
+        return AppPage.settingPage;
+      case BottomBarEnum.Stat:
+        return AppPage.transactionHistoryPage;
+      case BottomBarEnum.Wallet:
+        return AppPage.walletPage;
+      default:
+        return "/";
+    }
+  }
+
+  onTapAnalyze() => Get.offAndToNamed(
+        AppPage.transactionHistoryPage,
+      );
 }
