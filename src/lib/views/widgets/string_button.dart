@@ -1,9 +1,9 @@
 import 'package:dugbet/views/widgets/base_button.dart';
 import 'package:dugbet/consts/app_export.dart';
 
-
 class StringButton extends BaseButton {
-  const StringButton({super.key, 
+  const StringButton({
+    super.key,
     this.decoration,
     this.leftIcon,
     this.rightIcon,
@@ -37,7 +37,7 @@ class StringButton extends BaseButton {
 
   Widget get buildElevatedButtonWidget => Container(
         height: height ?? 44.v,
-        width: width ?? double.maxFinite,
+        width: width ?? double.infinity,
         margin: margin,
         decoration:
             decoration ?? CustomButtonStyles.gradientTealToTealDecoration,

@@ -21,6 +21,9 @@ class ColorPalette {
   static const Color incomeText = Color(0xFF17978F);
   static const Color expenseText = Color(0xFFF6BB54);
 
+  // Button
+  static const Color tearButton = Color(0xFFB6DDD5);
+
   static const primaryGradient = LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomRight,

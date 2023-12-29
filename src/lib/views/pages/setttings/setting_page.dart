@@ -1,7 +1,9 @@
 import 'package:dugbet/consts/color/colors.dart';
+import 'package:dugbet/consts/custom_button_style.dart';
+import 'package:dugbet/consts/custom_text_style.dart';
 import 'package:dugbet/routes/app_pages.dart';
 import 'package:dugbet/views/dialogs/logout_dialog.dart';
-import 'package:dugbet/views/widgets/button/normal_button.dart';
+import 'package:dugbet/views/widgets/string_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -130,16 +132,26 @@ class SettingPage extends StatelessWidget {
             ],
           )),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: NormalButton(
-                title: "Logout",
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              // child: NormalButton(
+              //     title: "Logout",
+              //     callback: () => {
+              //           showDialog(
+              //             context: context,
+              //             builder: (_) => LogoutDialog(),
+              //           )
+              //         }),
+              child: StringButton(
+                text: "Login",
                 callback: () => {
-                      showDialog(
-                        context: context,
-                        builder: (_) => LogoutDialog(),
-                      )
-                    }),
-          ),
+                  showDialog(
+                    context: context,
+                    builder: (_) => LogoutDialog(),
+                  )
+                },
+                buttonTextStyle: CustomTextStyles.titleMediumBluegray900,
+                buttonStyle: CustomButtonStyles.fillTear,
+              )),
           const SizedBox(
             height: 98,
           ),
