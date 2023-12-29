@@ -1,14 +1,7 @@
 import 'package:dugbet/consts/color/colors.dart';
-import 'package:dugbet/consts/custom_button_style.dart';
-import 'package:dugbet/consts/custom_text_style.dart';
-import 'package:dugbet/routes/app_pages.dart';
 import 'package:dugbet/views/dialogs/logout_dialog.dart';
-import 'package:dugbet/views/widgets/string_button.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:dugbet/consts/app_export.dart';
-import 'package:dugbet/consts/color/colors.dart';
 import 'package:dugbet/views/widgets/button/scan_button.dart';
 import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
 
@@ -151,7 +144,7 @@ class SettingPage extends StatelessWidget {
                 callback: () => {
                   showDialog(
                     context: context,
-                    builder: (_) => LogoutDialog(),
+                    builder: (_) => const LogoutDialog(),
                   )
                 },
                 buttonTextStyle: CustomTextStyles.titleMediumBluegray900,

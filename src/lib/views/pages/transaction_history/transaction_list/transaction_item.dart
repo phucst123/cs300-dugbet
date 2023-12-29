@@ -33,8 +33,8 @@ class TransactionItem extends StatelessWidget {
             income: "100.000",
             expense: "200.000"
           ),
-          SizedBox(height: 8.0),
-          Divider(),
+          const SizedBox(height: 8.0),
+          const Divider(),
           TransactionItemList(transaction_list: transaction_list)
         ],
       )

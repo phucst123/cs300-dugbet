@@ -1,9 +1,7 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/color/colors.dart';
 import 'package:dugbet/consts/fonts/base_font.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 
 class BalanceStatus extends StatelessWidget {
   const BalanceStatus({super.key});

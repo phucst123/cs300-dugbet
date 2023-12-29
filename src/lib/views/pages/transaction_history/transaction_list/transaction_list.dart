@@ -1,7 +1,6 @@
 import 'package:dugbet/views/pages/transaction_history/transaction_list/transaction_item.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_template.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class TransactionList extends StatelessWidget {
   TransactionList({super.key, required this.transaction_list});
@@ -16,7 +15,7 @@ class TransactionList extends StatelessWidget {
       children: [
         for (var transaction in groupedTransactions)...[
           TransactionItem(transaction_list: transaction),
-          SizedBox(height: 20.0)
+          const SizedBox(height: 20.0)
         ]
       ]
     );
@@ -35,20 +34,21 @@ class TransactionList extends StatelessWidget {
     transaction_list.sort((a, b) => a.date.compareTo(b.date));
     List<List<TransactionTemplate>> groupedTransactions = [];
     List<TransactionTemplate> temp = [];
-    int current_day = transaction_list[0].date.day;
+    int currentDay = transaction_list[0].date.day;
     
     for (var transaction in transaction_list) {
-      if (transaction.date.day == current_day) {
+      if (transaction.date.day == currentDay) {
         temp.add(transaction);
       } else {
         groupedTransactions.add(temp);
         temp = [];
         temp.add(transaction);
-        current_day = transaction.date.day;
+        currentDay = transaction.date.day;
       }
     }
-    if (temp.isNotEmpty)
+    if (temp.isNotEmpty) {
       groupedTransactions.add(temp);
+    }
     return groupedTransactions;
   }
 

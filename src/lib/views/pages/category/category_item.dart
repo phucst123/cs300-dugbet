@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 class CategoryItem extends StatelessWidget {
   final Category category;
 
-  CategoryItem({required this.category});
+  const CategoryItem({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 328.0,
-      margin: EdgeInsets.only(bottom: 12.0),
+      margin: const EdgeInsets.only(bottom: 12.0),
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: Colors.black),
@@ -24,16 +24,16 @@ class CategoryItem extends StatelessWidget {
             Row(
               children: [
                 category.icon,
-                SizedBox(width: 8.0), // You can adjust the space between the icon and the title
-                Text(category.title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                const SizedBox(width: 8.0), // You can adjust the space between the icon and the title
+                Text(category.title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               ],
             ),
-            Divider(color: Colors.grey),
+            const Divider(color: Colors.grey),
             GridView.count(
               crossAxisCount: 5,
               mainAxisSpacing: 8.0,
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               children: category.sub_categories.map((subCategory) => IconItem(subCategory.item1, subCategory.item2)).toList(),
             )
           ],
@@ -51,13 +51,13 @@ class CategoryItem extends StatelessWidget {
         //mainAxisSize: MainAxisSize.min,
         children:[
           icon,
-          SizedBox(height: 8.0),
+          const SizedBox(height: 8.0),
           Expanded(
             child: Center(
               child: Text(
                 title,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 13.0),
+                style: const TextStyle(fontSize: 13.0),
               )
             )
           )

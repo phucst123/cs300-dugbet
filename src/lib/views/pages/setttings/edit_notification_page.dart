@@ -3,7 +3,6 @@ import 'package:dugbet/views/widgets/button/custom_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-
 class EditNotificationPage extends StatelessWidget {
   bool light = true;
 

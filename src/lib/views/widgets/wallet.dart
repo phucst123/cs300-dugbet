@@ -1,8 +1,6 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/fonts/text_theme_builder.dart';
 import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
-import 'package:dugbet/views/widgets/icon_display_circle.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../consts/color/colors.dart';

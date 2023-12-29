@@ -119,7 +119,7 @@ class TransactionHistoryPage extends StatelessWidget {
   const TransactionHistoryPage({super.key});
   @override
   Widget build(BuildContext context) {
-    List<Widget> page_widgets = [
+    List<Widget> pageWidgets = [
       Container(
         padding:
             const EdgeInsets.only(left: 16.0, right: 16.0, top: 30.0, bottom: 0.0),
@@ -145,10 +145,10 @@ class TransactionHistoryPage extends StatelessWidget {
       body: Container(
         color: const Color(0xFFB6DDD5),
         child: ListView.builder(
-            itemCount: page_widgets.length,
+            itemCount: pageWidgets.length,
             shrinkWrap: true,
             itemBuilder: (BuildContext context, int index) {
-              return page_widgets[index];
+              return pageWidgets[index];
             }),
       ),
       bottomNavigationBar: _buildBottomAppBar(),

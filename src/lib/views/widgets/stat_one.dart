@@ -52,7 +52,7 @@ class StatOne extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(width: 50,),
+          const SizedBox(width: 50,),
           Container(
 
             decoration: BoxDecoration(

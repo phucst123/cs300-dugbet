@@ -1,11 +1,8 @@
-import 'package:flutter/material.dart';
 
 import '../../../consts/color/colors.dart';
 import '../../../consts/fonts/text_theme_builder.dart';
-import '../../widgets/wallet.dart';
 import '../../widgets/wallet_list.dart';
 import 'package:dugbet/consts/app_export.dart';
-import 'package:dugbet/consts/color/colors.dart';
 import 'package:dugbet/views/widgets/button/scan_button.dart';
 import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
 
@@ -28,7 +25,7 @@ class WalletPage extends StatelessWidget {
               style: TextThemeBuilder.robotoTextTheme.titleLarge,
             ),
           ),
-          Positioned(
+          const Positioned(
             bottom: 0,
             left: 0,
 

@@ -1,7 +1,6 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/color/colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 
 class TransactionItemSummary extends StatelessWidget {
   const TransactionItemSummary({super.key, required this.date, required this.income, required this.expense});
@@ -11,31 +10,31 @@ class TransactionItemSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late final String date_text;
+    late final String dateText;
     switch (date.weekday) {
       case 1:
-        date_text = "Monday";
+        dateText = "Monday";
         break;
       case 2:
-        date_text = "Tuesday";
+        dateText = "Tuesday";
         break;
       case 3:
-        date_text = "Wednesday";
+        dateText = "Wednesday";
         break;
       case 4:
-        date_text = "Thursday";
+        dateText = "Thursday";
         break;
       case 5:
-        date_text = "Friday";
+        dateText = "Friday";
         break;
       case 6:
-        date_text = "Saturday";
+        dateText = "Saturday";
         break;
       case 7:
-        date_text = "Sunday";
+        dateText = "Sunday";
         break;
       default:
-        date_text = "Unknown";
+        dateText = "Unknown";
     }
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -53,7 +52,7 @@ class TransactionItemSummary extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  date_text,
+                  dateText,
                   style:theme.textTheme.headlineMedium
                 ),
                 Text(

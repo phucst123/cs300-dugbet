@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:math';
-import 'dart:math' as math;
 class PieQuickView extends StatefulWidget {
+  const PieQuickView({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _PieQuickViewState createState() => _PieQuickViewState();
 }
 
 class _PieQuickViewState extends State<PieQuickView> {
   @override
   void initState() {
-    Timer.periodic(Duration(seconds: 1), (timer) {
+    Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {});
     });
     super.initState();
@@ -19,7 +21,7 @@ class _PieQuickViewState extends State<PieQuickView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 250,
       height: 250,
       child: Transform.rotate(
@@ -36,14 +38,14 @@ class SchedulePainter extends CustomPainter {
   //var schedule = ScheduleData();
   //60 sec - 360, 1 sec - 6degree
   //12 hours  - 360, 1 hour - 30degrees, 1 min - 0.5degrees
-  List<Color> categoryColors = [Color(0xFFFF6633), Color(0xFF33FFCC), Color(0xFFFF33FF),
-  Color(0xFFFFFF99), Color(0xFF00B3E6), Color(0xFFE6B333),
-  Color(0xFF3366E6), Color(0xFF999966), Color(0xFF99FF99),
-  Color(0xFFB34D4D), Color(0xFF80B300), Color(0xFF809900),
-  Color(0xFFE6B3B3), Color(0xFF6680B3), Color(0xFF66991A),
-  Color(0xFFFF99E6), Color(0xFFCCFF1A), Color(0xFFFF1A66),
-  Color(0xFFE6331A), Color(0xFF33FFCC), Color(0xFF66994D),
-  Color(0xFFB366CC), Color(0xFF4D8000), Color(0xFFB33300),];
+  List<Color> categoryColors = [const Color(0xFFFF6633), const Color(0xFF33FFCC), const Color(0xFFFF33FF),
+  const Color(0xFFFFFF99), const Color(0xFF00B3E6), const Color(0xFFE6B333),
+  const Color(0xFF3366E6), const Color(0xFF999966), const Color(0xFF99FF99),
+  const Color(0xFFB34D4D), const Color(0xFF80B300), const Color(0xFF809900),
+  const Color(0xFFE6B3B3), const Color(0xFF6680B3), const Color(0xFF66991A),
+  const Color(0xFFFF99E6), const Color(0xFFCCFF1A), const Color(0xFFFF1A66),
+  const Color(0xFFE6331A), const Color(0xFF33FFCC), const Color(0xFF66994D),
+  const Color(0xFFB366CC), const Color(0xFF4D8000), const Color(0xFFB33300),];
   @override
   void paint(Canvas canvas, Size size) {
     var centerX = size.width / 2;
@@ -56,14 +58,14 @@ class SchedulePainter extends CustomPainter {
     
     Rect myRect = Rect.fromCircle(center: Offset(size.width / 2, size.height / 2), radius: radius - 14);
 
-    var fillBrush = Paint()..color = Color(0xFFFFFFFF);
-    var backgroudBrush = Paint()..color = Color(0xFF77DDFF);
+    var fillBrush = Paint()..color = const Color(0xFFFFFFFF);
+    var backgroudBrush = Paint()..color = const Color(0xFF77DDFF);
     var outlineBrush = Paint()
-      ..color = Color(0xFFEAECFF)
+      ..color = const Color(0xFFEAECFF)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 16;
 
-    var centerFillBrush = Paint()..color = Color(0xFFEAECFF);
+    var centerFillBrush = Paint()..color = const Color(0xFFEAECFF);
 
     var secHandBrush = Paint()
       ..color = Colors.blue[300]!
@@ -72,21 +74,21 @@ class SchedulePainter extends CustomPainter {
       ..strokeWidth = 3;
 
     var minHandBrush = Paint()
-      ..shader = RadialGradient(colors: [Color(0xFF748EF6), Color(0xFF77DDFF)])
+      ..shader = const RadialGradient(colors: [Color(0xFF748EF6), Color(0xFF77DDFF)])
           .createShader(Rect.fromCircle(center: center, radius: radius))
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 8;
 
     var hourHandBrush = Paint()
-      ..shader = RadialGradient(colors: [Color(0xFFEA74AB), Color(0xFFC279FB)])
+      ..shader = const RadialGradient(colors: [Color(0xFFEA74AB), Color(0xFFC279FB)])
           .createShader(Rect.fromCircle(center: center, radius: radius))
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 12;
 
     var dashBrush = Paint()
-      ..color = Color(0xFFEAECFF)
+      ..color = const Color(0xFFEAECFF)
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 2;
@@ -131,7 +133,7 @@ class SchedulePainter extends CustomPainter {
 
     
     final textPainter = TextPainter(
-      text: TextSpan(
+      text: const TextSpan(
         text: 'Expense',
         style: TextStyle(
           color: Colors.black,
@@ -146,7 +148,7 @@ class SchedulePainter extends CustomPainter {
     final offset = Offset(centerX - 25, centerY - 30);
     textPainter.paint(canvas, offset);
     final textPainterbalance = TextPainter(
-      text: TextSpan(
+      text: const TextSpan(
         text: '100.000\$',
         style: TextStyle(
           color: Colors.black,

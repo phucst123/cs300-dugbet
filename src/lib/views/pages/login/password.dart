@@ -3,6 +3,7 @@ import 'package:dugbet/views/widgets/custom_text_form_field.dart';
 import 'package:dugbet/consts/app_export.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+// ignore: must_be_immutable
 class LoginPasswordScreen extends StatelessWidget {
   LoginPasswordScreen({super.key});
 

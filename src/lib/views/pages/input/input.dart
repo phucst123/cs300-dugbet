@@ -78,7 +78,7 @@ class Scanning extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12)),
                       child: IconButton(
                         onPressed: () {},
-                        icon: Icon(Icons.photo, color: Colors.white),
+                        icon: const Icon(Icons.photo, color: Colors.white),
                       )),
                   CircleAvatar(
                     backgroundColor: LightTheme.primaryColor,
@@ -87,7 +87,7 @@ class Scanning extends StatelessWidget {
                       child: IconButton(
                           onPressed: () {},
                           iconSize: 40,
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.document_scanner,
                             color: Colors.white,
                           )),
@@ -101,7 +101,7 @@ class Scanning extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12)),
                       child: IconButton(
                         onPressed: () {},
-                        icon: Icon(Icons.file_present, color: Colors.white),
+                        icon: const Icon(Icons.file_present, color: Colors.white),
                       ))
                 ],
               ),

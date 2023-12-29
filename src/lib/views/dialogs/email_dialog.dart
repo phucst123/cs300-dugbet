@@ -1,6 +1,4 @@
 import 'package:dugbet/consts/app_export.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../consts/color/colors.dart';
 
