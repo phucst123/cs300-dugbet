@@ -107,18 +107,24 @@ class HomePage extends StatelessWidget {
       floatingActionButton: ScanButton(
                 height: 60,
                 width: 57,
+                onTap: () {},
+                // color of the floating button
+                
                 child: CustomImageView(
                     imagePath: ImageConstant.floatScan,
                     height: 30.0.v,
                     width: 28.5.h)),
             floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerDocked
+                FloatingActionButtonLocation.centerDocked,
+            // add color 0xFF15A69D to the floating action button
+            floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+
       ),
     );
   }
   Widget _buildBottomAppBar() {
     return CustomBottomAppBar(onChanged: (BottomBarEnum type) {
-      // Get.toNamed(getCurrentRoute(type), id: 1);
+       Get.toNamed(getCurrentRoute(type), id: 1);
     });
   }
   String getCurrentRoute(BottomBarEnum type) {

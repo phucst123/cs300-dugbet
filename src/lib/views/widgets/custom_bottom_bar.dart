@@ -43,7 +43,8 @@ class CustomBottomAppBar extends StatelessWidget {
           // add stroke color
           // clipBehavior: Clip.antiAliasWithSaveLayer,
           shape: const CircularNotchedRectangle(),
-          color: ColorPalette.white,
+          // use color #ff15A69D
+          color: Colors.white,
           
           child: SizedBox(
             height: 78.v,

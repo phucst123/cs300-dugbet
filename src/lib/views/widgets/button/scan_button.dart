@@ -34,6 +34,13 @@ class ScanButton extends StatelessWidget {
 
   Widget get fabWidget => FloatingActionButton(
         onPressed: onTap,
+        // add color 0xff15A69D to background
+        backgroundColor: appTheme.teal400,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(28.h),
+        ),
+        
         child: Container(
           alignment: Alignment.center,
           width: width ?? 0,
