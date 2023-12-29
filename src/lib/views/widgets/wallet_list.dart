@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../consts/color/colors.dart';
 import '../../consts/fonts/text_theme_builder.dart';
+import 'icon_display_circle.dart';
 
 class WalletList extends StatelessWidget {
   const WalletList({super.key});
@@ -16,13 +17,14 @@ class WalletList extends StatelessWidget {
           BoxConstraints(maxHeight: MediaQuery.of(context).size.height - 100),
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
+        color: ColorPalette.white.withOpacity(0.3),
           borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(30), topRight: Radius.circular(30)),
           border: Border.all(color: ColorPalette.white, width: 2)),
       child: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Padding(
-          padding:  EdgeInsets.only(bottom: keyboardSpace+50),
+          padding:  EdgeInsets.only(bottom: keyboardSpace+80),
           child: Column(
             children: [
               Padding(
@@ -66,7 +68,10 @@ class WalletList extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8),
                           borderSide: BorderSide.none),
                       hintText: "Search your wallet...",
+                      hintStyle: TextStyle(color: ColorPalette.grey.withOpacity(0.7),fontWeight: FontWeight.normal),
                       prefixIcon: const Icon(Icons.search)),
+
+
                 ),
               ),
               SizedBox(
@@ -88,30 +93,39 @@ class WalletList extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(20)),
                                 child: Center(
                                   child: ListTile(
-                                    leading: Container(
-                                      height: 60,
-                                      width: 60,
-                                      decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: SvgPicture.asset(
-                                        "assets/images/momo.svg",
-                                        width: MediaQuery.of(context).size.width,
+                                    leading: IconDisplayCircle(
+                                        pathImage: "assets/images/agri.png"),
+                                    title: const Padding(
+                                      padding: EdgeInsets.only(bottom: 10),
+                                      child: Text(
+                                        "Momo",
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
                                       ),
                                     ),
-                                    title: const Text(
-                                      "Momo",
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold),
+                                    subtitle: Row(
+                                      children: [
+                                        const Text(
+                                          "200.000 ",
+                                          style: TextStyle(
+                                              color: ColorPalette.grey,
+                                              fontWeight: FontWeight.bold,
+                                          fontSize: 14),
+                                        ),
+                                        SvgPicture.asset(
+                                          "assets/images/dIcon.svg",
+                                          height: 14,
+                                          color: ColorPalette.grey,
+                                        )
+                                      ],
                                     ),
-                                    subtitle: const Text("200.000d"),
                                     trailing: const Column(
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
                                         Icon(
                                           Icons.menu,
-                                          color: Colors.black,
+                                          color: ColorPalette.black,
                                         ),
                                       ],
                                     ),
