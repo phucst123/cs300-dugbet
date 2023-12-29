@@ -23,13 +23,13 @@ class CustomIconButton extends StatelessWidget {
     return GestureDetector(
       onTap: callback,
       child: Container(
-        height: 40,
-        width: 40,
         decoration: BoxDecoration(
+          border: Border.all(color: ColorPalette.white),
           borderRadius: BorderRadius.circular(10),
           gradient: ColorPalette.primaryGradient,
         ),
-        child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: child,
         ),
       ),
