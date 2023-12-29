@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../consts/color/colors.dart';
+import 'ListTitleWallet.dart';
 
 class Wallet extends StatelessWidget {
   const Wallet({super.key});
@@ -99,44 +100,8 @@ class Wallet extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20),
                                 border: Border.all(
                                     color: ColorPalette.black, width: 1)),
-                            child: Center(
-                              child: ListTile(
-                                leading: IconDisplayCircle(
-                                    pathImage: "assets/images/agri.png"),
-                                title: const Padding(
-                                  padding: EdgeInsets.only(bottom: 10),
-                                  child: Text(
-                                    "Momo",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                subtitle: Row(
-                                  children: [
-                                    const Text(
-                                      "200.000 ",
-                                      style: TextStyle(
-                                          color: ColorPalette.grey,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    SvgPicture.asset(
-                                      "assets/images/dIcon.svg",
-                                      height: 14,
-                                      color: ColorPalette.grey,
-                                    )
-                                  ],
-                                ),
-                                trailing: const Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Icon(
-                                      Icons.menu,
-                                      color: ColorPalette.black,
-                                    ),
-                                  ],
-                                ),
-                              ),
+                            child: const Center(
+                              child: ListTitleWallet(pathImage: "assets/images/defaultPlush.png",moneyValue: "200.000", nameWallet: "Momo"),
                             ),
                           ),
                         ],
