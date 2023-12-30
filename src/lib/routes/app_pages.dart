@@ -1,6 +1,6 @@
 class AppPage {
   static const splashPage = '/splash';
-  static const homePage = '/';
+  static const homePage = '/homePage';
   static const settingPage = '/setting';
   static const editProfilePage = '/setting/editprofile';
   static const editNotificationPage = '/setting/editnotification';
@@ -18,6 +18,13 @@ class AppPage {
 
   static const notificationPage = '/notification';
   static const scanPage = '/scan';
-  static const walletPage = '/wallet';
+  static const walletPage = '/';
+
+  static const walletEvent = "/walletEvent";
+  static const walletPersonal = "/walletPersonal";
+  static const walletDetail = "/walletDetail";
+  static const walletEventDetail = "/walletEventDetail";
+  static const walletNewEvent = "/walletNewEvent";
+  static const walletNewWallet = "/walletNewWallet";
 
 }

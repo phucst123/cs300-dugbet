@@ -15,7 +15,13 @@ import 'package:dugbet/views/pages/login/password.dart';
 import 'package:dugbet/views/pages/login/signup_page.dart';
 import 'package:dugbet/views/pages/splash/splash_page.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_history_page.dart';
+import 'package:dugbet/views/pages/wallet/wallet_detail.dart';
+import 'package:dugbet/views/pages/wallet/wallet_event.dart';
+import 'package:dugbet/views/pages/wallet/wallet_event_detail.dart';
+import 'package:dugbet/views/pages/wallet/wallet_new_event.dart';
+import 'package:dugbet/views/pages/wallet/wallet_new_wallet.dart';
 import 'package:dugbet/views/pages/wallet/wallet_page.dart';
+import 'package:dugbet/views/pages/wallet/wallet_personal.dart';
 
 import 'package:get/get.dart';
 
@@ -87,5 +93,29 @@ class AppRoute {
           name: AppPage.chooseCategoryPage,
           page: () => const ChooseCategoryPage(),
         ),
+        GetPage(
+          name: AppPage.walletEvent,
+          page: () => WalletEvent(),
+        ),
+        GetPage(
+          name: AppPage.walletPersonal,
+          page: () => WalletPersonal(),
+        ),
+        GetPage(
+          name: AppPage.walletDetail,
+          page: () => WalletDetail(),
+        ),
+        GetPage(
+          name: AppPage.walletEventDetail,
+          page: () => WalletEventDetail(),
+        ),
+        GetPage(
+          name: AppPage.walletNewEvent,
+          page: () => WalletNewEvent(),
+        ),
+        GetPage(
+          name: AppPage.walletNewWallet,
+          page: () => WalletNewWallet(),
+        )
       ];
 }

@@ -1,4 +1,4 @@
-import 'package:dugbet/views/widgets/ListTitleWallet.dart';
+import 'package:dugbet/views/widgets/list_title_wallet.dart';
 import 'package:flutter/material.dart';
 
 import '../../consts/color/colors.dart';

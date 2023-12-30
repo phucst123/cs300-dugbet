@@ -4,7 +4,7 @@ import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../consts/color/colors.dart';
-import 'ListTitleWallet.dart';
+import 'list_title_wallet.dart';
 
 class Wallet extends StatelessWidget {
   const Wallet({super.key});
