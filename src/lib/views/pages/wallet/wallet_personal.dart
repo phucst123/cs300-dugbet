@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../../consts/color/colors.dart';
 import '../../../consts/fonts/text_theme_builder.dart';
+import '../../widgets/bottom_sheet_transaction.dart';
 import '../../widgets/stat.dart';
 
 class WalletPersonal extends StatelessWidget {
@@ -17,26 +18,29 @@ class WalletPersonal extends StatelessWidget {
         decoration: const BoxDecoration(
             gradient: ColorPalette.secondaryGradient
         ),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Text(
-                  "Momo",
-                  style: TextThemeBuilder.robotoTextTheme.titleLarge,
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                const Icon(Icons.draw_outlined)
-              ],
-            ),
-            GroupBalance(),
-            SizedBox(
-              height: 30,
-            ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Text(
+                    "Momo",
+                    style: TextThemeBuilder.robotoTextTheme.titleLarge,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  const Icon(Icons.draw_outlined)
+                ],
+              ),
+              GroupBalance(),
+              SizedBox(
+                height: 30,
+              ),
+              BottomSheetTransaction()
 
-          ],
+            ],
+          ),
         ),
       ),
     );

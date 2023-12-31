@@ -51,6 +51,7 @@ dependencies:
   cached_network_image: ^3.3.0
   smooth_page_indicator: ^1.1.0
   tuple: ^2.0.2
+  image_picker: ^1.0.5
 
 flutter_launcher_icons:
   android: true

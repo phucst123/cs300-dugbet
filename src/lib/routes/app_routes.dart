@@ -25,7 +25,7 @@ import 'package:dugbet/views/pages/wallet/wallet_personal.dart';
 
 import 'package:get/get.dart';
 
-import '../views/pages/input/input.dart';
+import '../views/pages/input/scanPage.dart';
 
 class AppRoute {
   static List<GetPage> routes() => [
@@ -83,7 +83,7 @@ class AppRoute {
         ),
         GetPage(
           name: AppPage.scanPage,
-          page: () => const Scanning(),
+          page: () => Scanning(),
         ),
         GetPage(
           name: AppPage.walletPage,

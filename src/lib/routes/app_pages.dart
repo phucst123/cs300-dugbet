@@ -17,10 +17,10 @@ class AppPage {
   static const String loginPasswordScreen = '/login_password_screen';
 
   static const notificationPage = '/notification';
-  static const scanPage = '/scan';
-  static const walletPage = '/';
+  static const scanPage = '/scanPage';
+  static const walletPage = '/walletPage';
 
-  static const walletEvent = "/walletEvent";
+  static const walletEvent = "/";
   static const walletPersonal = "/walletPersonal";
   static const walletDetail = "/walletDetail";
   static const walletEventDetail = "/walletEventDetail";
