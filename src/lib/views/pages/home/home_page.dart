@@ -23,11 +23,10 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // backgroundColor: ColorPalette.expenseText,
         appBar: HeaderBar(),
         body: Container(
           decoration:
-              const BoxDecoration(gradient: ColorPalette.secondaryGradient),
+              const BoxDecoration(color: ColorPalette.tearButton),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -141,8 +140,8 @@ class HomePage extends StatelessWidget {
 
             child: CustomImageView(
                 imagePath: ImageConstant.floatScan,
-                height: 30.0.v,
-                width: 28.5.h)),
+                height: 50.0.v,
+                width: 22.5.h)),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         // add color 0xFF15A69D to the floating action button
         floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,

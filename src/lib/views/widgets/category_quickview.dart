@@ -1,3 +1,4 @@
+import 'package:dugbet/consts/color/colors.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:math';
@@ -10,9 +11,9 @@ class PieQuickView extends StatefulWidget {
 class _PieQuickViewState extends State<PieQuickView> {
   @override
   void initState() {
-    Timer.periodic(Duration(seconds: 1), (timer) {
-      setState(() {});
-    });
+    // Timer.periodic(Duration(seconds: 1), (timer) {
+    //   setState(() {});
+    // });
     super.initState();
   }
   
@@ -20,8 +21,8 @@ class _PieQuickViewState extends State<PieQuickView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 250,
-      height: 250,
+      width: 10,
+      height: 10,
       child: Transform.rotate(
         angle: 0,
         child: CustomPaint(
@@ -36,14 +37,7 @@ class SchedulePainter extends CustomPainter {
   //var schedule = ScheduleData();
   //60 sec - 360, 1 sec - 6degree
   //12 hours  - 360, 1 hour - 30degrees, 1 min - 0.5degrees
-  List<Color> categoryColors = [Color(0xFFFF6633), Color(0xFF33FFCC), Color(0xFFFF33FF),
-  Color(0xFFFFFF99), Color(0xFF00B3E6), Color(0xFFE6B333),
-  Color(0xFF3366E6), Color(0xFF999966), Color(0xFF99FF99),
-  Color(0xFFB34D4D), Color(0xFF80B300), Color(0xFF809900),
-  Color(0xFFE6B3B3), Color(0xFF6680B3), Color(0xFF66991A),
-  Color(0xFFFF99E6), Color(0xFFCCFF1A), Color(0xFFFF1A66),
-  Color(0xFFE6331A), Color(0xFF33FFCC), Color(0xFF66994D),
-  Color(0xFFB366CC), Color(0xFF4D8000), Color(0xFFB33300),];
+  List<Color> categoryColors = [ColorPalette.primaryColor, ColorPalette.secondaryColor, ColorPalette.defaultText];
   @override
   void paint(Canvas canvas, Size size) {
     var centerX = size.width / 2;
@@ -96,7 +90,7 @@ class SchedulePainter extends CustomPainter {
     canvas.drawCircle(center, radius - 10, backgroudBrush);
     for (double i = 0; i < 12; i += 1) {
       var paintcolor = Paint()
-        ..color = categoryColors[i.toInt()]
+        ..color = categoryColors[((i/4).toInt())]
         ..strokeWidth = 4
         ..style = PaintingStyle.fill
         ..strokeCap = StrokeCap.round;
