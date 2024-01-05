@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -49,6 +43,16 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyDeraiUs58xEdGb807up8it3QUXuyvAYz8',
+    appId: '1:667767903044:web:4630e547b86612a4ff3d11',
+    messagingSenderId: '667767903044',
+    projectId: 'dugbet-5416d',
+    authDomain: 'dugbet-5416d.firebaseapp.com',
+    storageBucket: 'dugbet-5416d.appspot.com',
+    measurementId: 'G-XZ8S65T5R1',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyB7qbSL3SLBiqIflHpJKbUYVKVsZkeZaB4',
     appId: '1:667767903044:android:4642eee9c4efa1f2ff3d11',
@@ -64,5 +68,14 @@ class DefaultFirebaseOptions {
     projectId: 'dugbet-5416d',
     storageBucket: 'dugbet-5416d.appspot.com',
     iosBundleId: 'com.example.dugbet',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyCr14ffHBcLOiE17RdRhfd2NW0urO7cbGc',
+    appId: '1:667767903044:ios:929aaea26b3bb450ff3d11',
+    messagingSenderId: '667767903044',
+    projectId: 'dugbet-5416d',
+    storageBucket: 'dugbet-5416d.appspot.com',
+    iosBundleId: 'com.example.dugbet.RunnerTests',
   );
 }
