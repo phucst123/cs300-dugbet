@@ -29,7 +29,7 @@ class WalletNewEvent extends StatelessWidget {
                   const SizedBox(
                     width: 10,
                   ),
-                  const DoubleNotch(),
+                  DoubleNotch(),
                   const SizedBox(
                     height: 30,
                   ),
