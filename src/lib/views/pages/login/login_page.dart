@@ -1,7 +1,7 @@
 import 'package:dugbet/views/widgets/custom_text_form_field.dart';
 import 'package:dugbet/consts/app_export.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 // ignore: must_be_immutable
 class LoginLoginScreen extends StatelessWidget {
   LoginLoginScreen({super.key});
@@ -11,7 +11,30 @@ class LoginLoginScreen extends StatelessWidget {
   TextEditingController passwordController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+  signIn(String email, String password) async{
+    if (email != null && password != null) {
+      UserCredential? usercredential;
+      try {
+        usercredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+            email: email, password: password).then((value){
+              Get.snackbar("Success", "Login Successfully", snackPosition: SnackPosition.BOTTOM);
+              Get.offAndToNamed(AppPage.homePage);
+            });
+      }
+      on FirebaseAuthException catch (e) {
+        if (e.code == 'user-not-found') {
+          Get.snackbar("User Not Found", "No user found for that email.", snackPosition: SnackPosition.BOTTOM);
+        } else if (e.code == 'wrong-password') {
+          Get.snackbar("Wrong Password", "Wrong password provided for that user.", snackPosition: SnackPosition.BOTTOM);
+        }
+        else{
+          Get.snackbar("Error", "Your email or password went wrong", snackPosition: SnackPosition.BOTTOM);
+        }
+      } catch (e) {
+        print(e);
+      }
+    }
+  }
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
@@ -205,5 +228,10 @@ class LoginLoginScreen extends StatelessWidget {
     );
   }
 
-  void onTapGetStarted() => Get.offAndToNamed(AppPage.homePage);
+  void onTapGetStarted(){
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      signIn(emailController.text, passwordController.text);
+    }
+  }
 }
