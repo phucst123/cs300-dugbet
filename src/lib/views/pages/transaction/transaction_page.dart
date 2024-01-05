@@ -18,7 +18,7 @@ class TransactionPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const DoubleNotch(),
+                DoubleNotch(),
                 const SizedBox(
                   height: 20,
                 ),

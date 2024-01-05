@@ -8,7 +8,7 @@ class AppPage {
   static const premiumPage = '/setting/premium';
   static const purchasePage = '/setting/purchase';
   static const transactionHistoryPage = '/transactionHistoryPage';
-  static const transactionPage = '/transactionPage';
+  static const transactionPage = '/';
   static const chooseCategoryPage = '/choose_category';
   static const String loginOpenScreen = '/loginOpenScreen';
   static const String loginSignUpScreen = '/login_sign_up_screen';
@@ -20,11 +20,12 @@ class AppPage {
   static const scanPage = '/scanPage';
   static const walletPage = '/walletPage';
 
-  static const walletEvent = "/";
+  static const walletEvent = "/walletEvent";
   static const walletPersonal = "/walletPersonal";
   static const walletDetail = "/walletDetail";
   static const walletEventDetail = "/walletEventDetail";
   static const walletNewEvent = "/walletNewEvent";
   static const walletNewWallet = "/walletNewWallet";
+
 
 }
