@@ -2,7 +2,7 @@ import 'package:dugbet/views/dialogs/email_dialog.dart';
 import 'package:dugbet/views/widgets/custom_text_form_field.dart';
 import 'package:dugbet/consts/app_export.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 // ignore: must_be_immutable
 class LoginPasswordScreen extends StatelessWidget {
   LoginPasswordScreen({super.key});
@@ -10,7 +10,26 @@ class LoginPasswordScreen extends StatelessWidget {
   TextEditingController emailController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+  forgotPassword(String email) async{
+    if (email != null) {
+      try {
+        await FirebaseAuth.instance.sendPasswordResetEmail(email: email).then((value){
+          Get.snackbar("Success", "Email Sent Successfully", snackPosition: SnackPosition.BOTTOM);
+          Get.offAndToNamed(AppPage.loginLoginScreen);
+        });
+      }
+      on FirebaseAuthException catch (e) {
+        if (e.code == 'user-not-found') {
+          Get.snackbar("User Not Found", "No user found for that email.", snackPosition: SnackPosition.BOTTOM);
+        }
+        else{
+          Get.snackbar("Error", "Your email went wrong", snackPosition: SnackPosition.BOTTOM);
+        }
+      } catch (e) {
+        print(e);
+      }
+    }
+  }
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
@@ -150,9 +169,10 @@ class LoginPasswordScreen extends StatelessWidget {
 
   void onTapSendEmail(context) {
     // show EmailDialog
-    showDialog(
-      context: context,
-      builder: (context) => const EmailDialog(),
-    );
+    // showDialog(
+    //   context: context,
+    //   builder: (context) => const EmailDialog(),
+    // );
+    forgotPassword(emailController.text);
   }
 }
