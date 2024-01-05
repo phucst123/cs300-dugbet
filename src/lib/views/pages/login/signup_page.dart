@@ -18,25 +18,25 @@ class LoginSignUpScreen extends GetWidget<SignupController> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   
   signUp(String email, String password) async{
-    // if (email != null && password != null) {
-    //   UserCredential? usercredential;
-    //   try {
-    //     usercredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-    //         email: email, password: password).then((value){
-    //           Get.snackbar("Success", "Account Created Successfully", snackPosition: SnackPosition.BOTTOM);
-    //           Get.offAndToNamed(AppPage.loginLoginScreen);
-    //         });
-    //   }
-    //   on FirebaseAuthException catch (e) {
-    //     if (e.code == 'weak-password') {
-    //       Get.snackbar("Weak Password", "The password provided is too weak.", snackPosition: SnackPosition.BOTTOM);
-    //     } else if (e.code == 'email-already-in-use') {
-    //       Get.snackbar("Email Already in Use", "The account already exists for that email.", snackPosition: SnackPosition.BOTTOM);
-    //     }
-    //   } catch (e) {
-    //     print(e);
-    //   }
-    // }
+    if (email != null && password != null) {
+      UserCredential? usercredential;
+      try {
+        usercredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: email, password: password).then((value){
+              Get.snackbar("Success", "Account Created Successfully", snackPosition: SnackPosition.BOTTOM);
+              Get.offAndToNamed(AppPage.loginLoginScreen);
+            });
+      }
+      on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          Get.snackbar("Weak Password", "The password provided is too weak.", snackPosition: SnackPosition.BOTTOM);
+        } else if (e.code == 'email-already-in-use') {
+          Get.snackbar("Email Already in Use", "The account already exists for that email.", snackPosition: SnackPosition.BOTTOM);
+        }
+      } catch (e) {
+        print(e);
+      }
+    }
   }
 
   @override
