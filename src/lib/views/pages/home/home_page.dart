@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
         appBar: const HeaderBar(),
         body: Container(
           decoration:
-              const BoxDecoration(gradient: ColorPalette.secondaryGradient),
+              const BoxDecoration(color: ColorPalette.tearButton),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -135,8 +135,8 @@ class HomePage extends StatelessWidget {
 
             child: CustomImageView(
                 imagePath: ImageConstant.floatScan,
-                height: 30.0.v,
-                width: 28.5.h)),
+                height: 50.0.v,
+                width: 22.5.h)),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         // add color 0xFF15A69D to the floating action button
         floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,

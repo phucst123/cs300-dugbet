@@ -42,19 +42,24 @@ class CustomBottomAppBar extends StatelessWidget {
 
     bottomMenuList[indexPage].isSelected = true;
     return Obx(
-      () => ClipRRect(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(30.h),
-        ),
-        child: BottomAppBar(
-          // add stroke color
-          // clipBehavior: Clip.antiAliasWithSaveLayer,
-          shape: const CircularNotchedRectangle(),
-          // use color #ff15A69D
-          color: Colors.white,
+      () => BottomAppBar(
+        // add stroke color
+        
+        // clipBehavior: Clip.antiAliasWithSaveLayer,
+        shape: const CircularNotchedRectangle(
+          // add color #ff15A69D
           
+        ),
+        // use color #ff15A69D
+        // color: ColorPalette.white,
+        
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
           child: SizedBox(
-            height: 78.v,
+            height: 70.v,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: List.generate(
@@ -135,7 +140,6 @@ class DefaultWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
       padding: const EdgeInsets.all(10),
       child: const Center(
         child: Column(

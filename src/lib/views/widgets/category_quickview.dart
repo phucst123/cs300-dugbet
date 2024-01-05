@@ -1,3 +1,4 @@
+import 'package:dugbet/consts/color/colors.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:math';
@@ -12,18 +13,18 @@ class PieQuickView extends StatefulWidget {
 class _PieQuickViewState extends State<PieQuickView> {
   @override
   void initState() {
-    Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {});
-    });
+    // Timer.periodic(Duration(seconds: 1), (timer) {
+    //   setState(() {});
+    // });
     super.initState();
   }
   
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 250,
-      height: 250,
+    return Container(
+      width: 10,
+      height: 10,
       child: Transform.rotate(
         angle: 0,
         child: CustomPaint(
@@ -38,14 +39,7 @@ class SchedulePainter extends CustomPainter {
   //var schedule = ScheduleData();
   //60 sec - 360, 1 sec - 6degree
   //12 hours  - 360, 1 hour - 30degrees, 1 min - 0.5degrees
-  List<Color> categoryColors = [const Color(0xFFFF6633), const Color(0xFF33FFCC), const Color(0xFFFF33FF),
-  const Color(0xFFFFFF99), const Color(0xFF00B3E6), const Color(0xFFE6B333),
-  const Color(0xFF3366E6), const Color(0xFF999966), const Color(0xFF99FF99),
-  const Color(0xFFB34D4D), const Color(0xFF80B300), const Color(0xFF809900),
-  const Color(0xFFE6B3B3), const Color(0xFF6680B3), const Color(0xFF66991A),
-  const Color(0xFFFF99E6), const Color(0xFFCCFF1A), const Color(0xFFFF1A66),
-  const Color(0xFFE6331A), const Color(0xFF33FFCC), const Color(0xFF66994D),
-  const Color(0xFFB366CC), const Color(0xFF4D8000), const Color(0xFFB33300),];
+  List<Color> categoryColors = [ColorPalette.primaryColor, ColorPalette.secondaryColor, ColorPalette.defaultText];
   @override
   void paint(Canvas canvas, Size size) {
     var centerX = size.width / 2;
@@ -98,7 +92,7 @@ class SchedulePainter extends CustomPainter {
     canvas.drawCircle(center, radius - 10, backgroudBrush);
     for (double i = 0; i < 12; i += 1) {
       var paintcolor = Paint()
-        ..color = categoryColors[i.toInt()]
+        ..color = categoryColors[((i/4).toInt())]
         ..strokeWidth = 4
         ..style = PaintingStyle.fill
         ..strokeCap = StrokeCap.round;
