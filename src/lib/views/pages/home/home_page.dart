@@ -1,15 +1,9 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:dugbet/views/widgets/gradient_background.dart';
-import 'package:dugbet/views/widgets/group_balance.dart';
-import 'package:dugbet/views/widgets/group_balance_one.dart';
 import 'package:dugbet/views/widgets/header_bar.dart';
-import 'package:dugbet/views/widgets/stat.dart';
-import 'package:dugbet/views/widgets/stat_one.dart';
 import 'package:dugbet/views/widgets/wallet.dart';
 import 'package:dugbet/views/widgets/button/scan_button.dart';
 import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
 import 'package:dugbet/views/widgets/category_quickview.dart';
-import 'package:flutter/material.dart';
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/color/colors.dart';
 
@@ -23,7 +17,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: HeaderBar(),
+        // backgroundColor: ColorPalette.expenseText,
+        appBar: const HeaderBar(),
         body: Container(
           decoration:
               const BoxDecoration(color: ColorPalette.tearButton),
@@ -85,7 +80,7 @@ class HomePage extends StatelessWidget {
                           
                           
                         ),
-                        child: PieQuickView(), 
+                        child: const PieQuickView(), 
                       )
                     : index == 1 
                       ? Container(

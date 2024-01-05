@@ -1,14 +1,12 @@
 import 'package:dugbet/consts/custom_button_style.dart';
 import 'package:dugbet/views/widgets/string_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 
 import '../../consts/color/colors.dart';
 
 class LogoutDialog extends StatelessWidget {
-  LogoutDialog({super.key});
+  const LogoutDialog({super.key});
 
   @override
   Widget build(BuildContext context) {

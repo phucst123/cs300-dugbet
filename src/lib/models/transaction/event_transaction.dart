@@ -5,22 +5,15 @@ class EventTransaction extends Transaction {
   int payer;
 
   EventTransaction({
-    required int transactionId,
-    required double amount,
-    required String category,
-    required String description,
-    required DateTime date,
-    required bool isIncome,
+    required super.transactionId,
+    required super.amount,
+    required super.category,
+    required super.description,
+    required super.date,
+    required super.isIncome,
     required this.member,
     required this.payer,
-  }) : super(
-          transactionId: transactionId,
-          amount: amount,
-          category: category,
-          description: description,
-          date: date,
-          isIncome: isIncome,
-        );
+  });
 
   factory EventTransaction.fromJson(Map<String, dynamic> json) =>
       EventTransaction(
@@ -34,6 +27,7 @@ class EventTransaction extends Transaction {
         payer: json["payer"],
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         ...super.toJson(),
         "member": member,

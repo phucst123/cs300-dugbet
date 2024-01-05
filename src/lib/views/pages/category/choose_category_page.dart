@@ -13,14 +13,14 @@ class ChooseCategoryPage extends StatelessWidget {
       ),
       body: Container(
         color: ColorPalette.white,
-        padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 12.0, bottom: 0.0),
+        padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 12.0, bottom: 0.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   "Choose a category",
                   style: TextStyle(
                     fontSize: 24.0,
@@ -30,13 +30,13 @@ class ChooseCategoryPage extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.add),
+                  icon: const Icon(Icons.add),
                   onPressed: () {},
                 )
               ],
             ),
-            SizedBox(height: 6.0),
-            Expanded(child: SearchCategory())
+            const SizedBox(height: 6.0),
+            const Expanded(child: SearchCategory())
           ],
         )
       )

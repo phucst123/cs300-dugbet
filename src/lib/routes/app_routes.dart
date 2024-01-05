@@ -15,16 +15,17 @@ import 'package:dugbet/views/pages/login/password.dart';
 import 'package:dugbet/views/pages/login/signup_page.dart';
 import 'package:dugbet/views/pages/splash/splash_page.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_history_page.dart';
-import 'package:dugbet/views/pages/home/home_page.dart';
+import 'package:dugbet/views/pages/wallet/wallet_detail.dart';
+import 'package:dugbet/views/pages/wallet/wallet_event.dart';
+import 'package:dugbet/views/pages/wallet/wallet_event_detail.dart';
+import 'package:dugbet/views/pages/wallet/wallet_new_event.dart';
+import 'package:dugbet/views/pages/wallet/wallet_new_wallet.dart';
 import 'package:dugbet/views/pages/wallet/wallet_page.dart';
-import 'package:dugbet/views/widgets/group_balance.dart';
-import 'package:dugbet/views/widgets/stat.dart';
-import 'package:dugbet/views/widgets/stat_one.dart';
+import 'package:dugbet/views/pages/wallet/wallet_personal.dart';
 
 import 'package:get/get.dart';
 
-import '../views/pages/input/input.dart';
-import '../views/widgets/group_balance_one.dart';
+import '../views/pages/input/scanPage.dart';
 
 class AppRoute {
   static List<GetPage> routes() => [
@@ -54,7 +55,7 @@ class AppRoute {
         ),
         GetPage(
           name: AppPage.editProfilePage,
-          page: () => EditProfilePage(),
+          page: () => const EditProfilePage(),
         ),
         GetPage(
           name: AppPage.editNotificationPage,
@@ -66,23 +67,23 @@ class AppRoute {
         ),
         GetPage(
           name: AppPage.premiumPage,
-          page: () => PremiumPage(),
+          page: () => const PremiumPage(),
         ),
         GetPage(
           name: AppPage.purchasePage,
-          page: () => PurchasePage(),
+          page: () => const PurchasePage(),
         ),
         GetPage(
           name: AppPage.notificationPage,
-          page: () => NotificationPage(),
+          page: () => const NotificationPage(),
         ),
         GetPage(
           name: AppPage.transactionPage,
-          page: () => TransactionPage(),
+          page: () => const TransactionPage(),
         ),
         GetPage(
           name: AppPage.scanPage,
-          page: () => const Scanning(),
+          page: () => Scanning(),
         ),
         GetPage(
           name: AppPage.walletPage,
@@ -92,5 +93,29 @@ class AppRoute {
           name: AppPage.chooseCategoryPage,
           page: () => const ChooseCategoryPage(),
         ),
+        GetPage(
+          name: AppPage.walletEvent,
+          page: () => WalletEvent(),
+        ),
+        GetPage(
+          name: AppPage.walletPersonal,
+          page: () => WalletPersonal(),
+        ),
+        GetPage(
+          name: AppPage.walletDetail,
+          page: () => WalletDetail(),
+        ),
+        GetPage(
+          name: AppPage.walletEventDetail,
+          page: () => WalletEventDetail(),
+        ),
+        GetPage(
+          name: AppPage.walletNewEvent,
+          page: () => WalletNewEvent(),
+        ),
+        GetPage(
+          name: AppPage.walletNewWallet,
+          page: () => WalletNewWallet(),
+        )
       ];
 }

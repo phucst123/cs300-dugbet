@@ -1,11 +1,8 @@
-import 'package:dugbet/consts/color/theme.dart';
-import 'package:dugbet/views/widgets/ListTitleWallet.dart';
+import 'package:dugbet/views/widgets/list_title_wallet.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../consts/color/colors.dart';
 import '../../consts/fonts/text_theme_builder.dart';
-import 'icon_display_circle.dart';
 
 class WalletList extends StatelessWidget {
   const WalletList({super.key});

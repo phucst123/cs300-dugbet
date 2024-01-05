@@ -56,8 +56,8 @@ const TextStyle bodySmall = TextStyle(
 );
 
 const TextStyle labelLarge = TextStyle(
-  fontSize: 12,
-  fontWeight: FontWeight.w400,
+  fontSize: 16,
+  fontWeight: FontWeight.w500,
   letterSpacing: 0.4,
 );
 const TextStyle labelMedium = TextStyle(

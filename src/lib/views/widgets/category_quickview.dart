@@ -2,9 +2,11 @@ import 'package:dugbet/consts/color/colors.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:math';
-import 'dart:math' as math;
 class PieQuickView extends StatefulWidget {
+  const PieQuickView({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _PieQuickViewState createState() => _PieQuickViewState();
 }
 
@@ -50,14 +52,14 @@ class SchedulePainter extends CustomPainter {
     
     Rect myRect = Rect.fromCircle(center: Offset(size.width / 2, size.height / 2), radius: radius - 14);
 
-    var fillBrush = Paint()..color = Color(0xFFFFFFFF);
-    var backgroudBrush = Paint()..color = Color(0xFF77DDFF);
+    var fillBrush = Paint()..color = const Color(0xFFFFFFFF);
+    var backgroudBrush = Paint()..color = const Color(0xFF77DDFF);
     var outlineBrush = Paint()
-      ..color = Color(0xFFEAECFF)
+      ..color = const Color(0xFFEAECFF)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 16;
 
-    var centerFillBrush = Paint()..color = Color(0xFFEAECFF);
+    var centerFillBrush = Paint()..color = const Color(0xFFEAECFF);
 
     var secHandBrush = Paint()
       ..color = Colors.blue[300]!
@@ -66,21 +68,21 @@ class SchedulePainter extends CustomPainter {
       ..strokeWidth = 3;
 
     var minHandBrush = Paint()
-      ..shader = RadialGradient(colors: [Color(0xFF748EF6), Color(0xFF77DDFF)])
+      ..shader = const RadialGradient(colors: [Color(0xFF748EF6), Color(0xFF77DDFF)])
           .createShader(Rect.fromCircle(center: center, radius: radius))
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 8;
 
     var hourHandBrush = Paint()
-      ..shader = RadialGradient(colors: [Color(0xFFEA74AB), Color(0xFFC279FB)])
+      ..shader = const RadialGradient(colors: [Color(0xFFEA74AB), Color(0xFFC279FB)])
           .createShader(Rect.fromCircle(center: center, radius: radius))
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 12;
 
     var dashBrush = Paint()
-      ..color = Color(0xFFEAECFF)
+      ..color = const Color(0xFFEAECFF)
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 2;
@@ -125,7 +127,7 @@ class SchedulePainter extends CustomPainter {
 
     
     final textPainter = TextPainter(
-      text: TextSpan(
+      text: const TextSpan(
         text: 'Expense',
         style: TextStyle(
           color: Colors.black,
@@ -140,7 +142,7 @@ class SchedulePainter extends CustomPainter {
     final offset = Offset(centerX - 25, centerY - 30);
     textPainter.paint(canvas, offset);
     final textPainterbalance = TextPainter(
-      text: TextSpan(
+      text: const TextSpan(
         text: '100.000\$',
         style: TextStyle(
           color: Colors.black,

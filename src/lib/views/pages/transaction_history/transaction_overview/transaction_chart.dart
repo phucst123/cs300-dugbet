@@ -16,8 +16,9 @@ class TransactionChart extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(30.0),
+        border: Border.all(color: ColorPalette.black, width: 1)
       ),
-      width: 328.0,
+      width: double.infinity,
       height: 370.0,
       padding: const EdgeInsets.only(left: 12.0, right: 12.0, top: 20.0, bottom: 34.0),
       child: Column(

@@ -18,7 +18,7 @@ class ImageConstant {
   static String imgFirreyecrossed = '$imagePath/img_firreyecrossed.svg';
 
   static String imageNotFound = 'assets/images/image_not_found.png';
-  
+
   // Navigation images
   static String home = '$imagePath/nav_home.svg';
   static String setting = '$imagePath/nav_setting.svg';
@@ -26,4 +26,6 @@ class ImageConstant {
   static String stat = '$imagePath/nav_stat.svg';
   static String navOnSelect = '$imagePath/nav_onselect.svg';
   static String floatScan = '$imagePath/nav_scan_button_2.svg';
+
+  static String VND = "$imagePath/dIcon.svg";
 }
