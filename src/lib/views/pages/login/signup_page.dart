@@ -16,22 +16,26 @@ class LoginSignUpScreen extends GetWidget<SignupController> {
   TextEditingController passwordController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  
-  signUp(String email, String password) async{
+
+  signUp(String email, String password) async {
     if (email != null && password != null) {
       UserCredential? usercredential;
       try {
-        usercredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-            email: email, password: password).then((value){
-              Get.snackbar("Success", "Account Created Successfully", snackPosition: SnackPosition.BOTTOM);
-              Get.offAndToNamed(AppPage.loginLoginScreen);
-            });
-      }
-      on FirebaseAuthException catch (e) {
+        usercredential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(email: email, password: password)
+            .then((value) {
+          Get.snackbar("Success", "Account Created Successfully",
+              snackPosition: SnackPosition.BOTTOM);
+          Get.offAndToNamed(AppPage.loginScreen);
+        });
+      } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
-          Get.snackbar("Weak Password", "The password provided is too weak.", snackPosition: SnackPosition.BOTTOM);
+          Get.snackbar("Weak Password", "The password provided is too weak.",
+              snackPosition: SnackPosition.BOTTOM);
         } else if (e.code == 'email-already-in-use') {
-          Get.snackbar("Email Already in Use", "The account already exists for that email.", snackPosition: SnackPosition.BOTTOM);
+          Get.snackbar("Email Already in Use",
+              "The account already exists for that email.",
+              snackPosition: SnackPosition.BOTTOM);
         }
       } catch (e) {
         print(e);
@@ -123,15 +127,15 @@ class LoginSignUpScreen extends GetWidget<SignupController> {
                           _buildLoginPassword(context),
                           SizedBox(height: 21.v),
                           InkWell(
-                            child: SizedBox(
-                              height: 18.v,
-                              child: Text(
-                                "Already have an Account",
-                                style: theme.textTheme.labelLarge,
+                              child: SizedBox(
+                                height: 18.v,
+                                child: Text(
+                                  "Already have an Account",
+                                  style: theme.textTheme.labelLarge,
+                                ),
                               ),
-                            ),
-                            onTap: () => Get.offAndToNamed(AppPage.loginLoginScreen)
-                          ),
+                              onTap: () =>
+                                  Get.offAndToNamed(AppPage.loginScreen)),
                           SizedBox(height: 2.v),
                           StringButton(
                             width: 188.h,

@@ -41,7 +41,7 @@ class EmailDialog extends StatelessWidget {
                 text: "Back to Sign-in",
                 buttonStyle: CustomButtonStyles.none,
                 width: 188.v,
-                callback: () => Get.offAndToNamed(AppPage.loginLoginScreen),
+                callback: () => Get.offAndToNamed(AppPage.loginScreen),
               ),
               SizedBox(height: 8.v),
               InkWell(
@@ -52,7 +52,7 @@ class EmailDialog extends StatelessWidget {
                       style: theme.textTheme.labelLarge,
                     ),
                   ),
-                  onTap: () => Get.offAndToNamed(AppPage.loginLoginScreen)),
+                  onTap: () => Get.offAndToNamed(AppPage.loginScreen)),
               StringButton(
                   text: "Back to Sign-in",
                   callback: () {
