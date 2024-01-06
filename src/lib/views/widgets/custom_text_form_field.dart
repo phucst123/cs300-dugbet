@@ -6,8 +6,9 @@ class CustomTextFormField extends StatelessWidget {
     this.alignment,
     this.width,
     this.controller,
+    this.onSaved,
     this.focusNode,
-    this.autofocus = true,
+    this.autofocus = false,
     this.textStyle,
     this.obscureText = false,
     this.textInputAction = TextInputAction.next,
@@ -31,6 +32,8 @@ class CustomTextFormField extends StatelessWidget {
   final double? width;
 
   final TextEditingController? controller;
+
+  final Function(String?)? onSaved;
 
   final FocusNode? focusNode;
 
@@ -91,6 +94,7 @@ class CustomTextFormField extends StatelessWidget {
           maxLines: maxLines ?? 1,
           decoration: decoration,
           validator: validator,
+          onSaved: onSaved,
           // onTapOutside: (event) {
           //   focusNode?.unfocus();
           //   print("onTapOutside");
