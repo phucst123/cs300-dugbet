@@ -80,7 +80,7 @@ class AppRoute {
         ),
         GetPage(
           name: AppPage.transactionPage,
-          page: () => const TransactionPage(),
+          page: () => TransactionPage(),
         ),
         GetPage(
           name: AppPage.scanPage,

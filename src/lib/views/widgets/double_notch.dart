@@ -10,7 +10,7 @@ import '../../consts/fonts/text_theme_builder.dart';
 class DoubleNotch extends StatelessWidget {
   DoubleNotch({super.key});
 
-  final controller = Get.put<TransactionController>(TransactionController());
+  final controller = Get.find<TransactionController>(tag: "new_transaction");
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,10 @@ class DoubleNotch extends StatelessWidget {
             Positioned(
                 top: -20,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    print("Hello");
+                    print(MediaQuery.of(context).size.width);
+                  },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: ColorPalette.incomeText),
                   child: const Padding(
@@ -35,8 +38,8 @@ class DoubleNotch extends StatelessWidget {
             Positioned(
                 top: 119,
                 child: Container(
-                    height: MediaQuery.of(context).size.width / 5,
-                    width: MediaQuery.of(context).size.width / 5,
+                    height: 72,
+                    width: 72,
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(color: ColorPalette.black)),
@@ -47,7 +50,7 @@ class DoubleNotch extends StatelessWidget {
                       ),
                     ))),
             Positioned(
-                top: 285,
+                top: 290,
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
@@ -64,7 +67,7 @@ class DoubleNotch extends StatelessWidget {
                   children: [
                     SvgPicture.asset(
                       "assets/images/top_notch.svg",
-                      width: MediaQuery.of(context).size.width,
+                      width: 360,
                       height: 150,
                     ),
                     Positioned(
@@ -85,7 +88,7 @@ class DoubleNotch extends StatelessWidget {
                   children: [
                     SvgPicture.asset(
                       "assets/images/bot_notch.svg",
-                      width: MediaQuery.of(context).size.width,
+                      width: 360,
                       height: 150,
                     ),
                     Positioned(
@@ -102,7 +105,7 @@ class DoubleNotch extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(
-                  top: 55, left: MediaQuery.of(context).size.width / 2),
+                  top: 55, left: MediaQuery.of(context).size.width - 360 + 180),
               child: Row(
                 children: [
                   Expanded(
@@ -131,7 +134,7 @@ class DoubleNotch extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(
-                  top: 190, left: MediaQuery.of(context).size.width / 2,right: 20),
+                  top: 190, left: MediaQuery.of(context).size.width - 360 + 180,right: MediaQuery.of(context).size.width - 360 + 20),
               child: TextField(
                 textAlign: TextAlign.right,
                 decoration: InputDecoration(
