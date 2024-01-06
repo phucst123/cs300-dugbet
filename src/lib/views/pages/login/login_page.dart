@@ -1,144 +1,106 @@
+import 'package:dugbet/controllers/login/login_controller.dart';
 import 'package:dugbet/views/widgets/custom_text_form_field.dart';
 import 'package:dugbet/consts/app_export.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-// ignore: must_be_immutable
-class LoginLoginScreen extends StatelessWidget {
-  LoginLoginScreen({super.key});
 
-  TextEditingController emailController = TextEditingController();
-
-  TextEditingController passwordController = TextEditingController();
-
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  signIn(String email, String password) async{
-    if (email != null && password != null) {
-      UserCredential? usercredential;
-      try {
-        usercredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-            email: email, password: password).then((value){
-              Get.snackbar("Success", "Login Successfully", snackPosition: SnackPosition.BOTTOM);
-              Get.offAndToNamed(AppPage.homePage);
-            });
-      }
-      on FirebaseAuthException catch (e) {
-        if (e.code == 'user-not-found') {
-          Get.snackbar("User Not Found", "No user found for that email.", snackPosition: SnackPosition.BOTTOM);
-        } else if (e.code == 'wrong-password') {
-          Get.snackbar("Wrong Password", "Wrong password provided for that user.", snackPosition: SnackPosition.BOTTOM);
-        }
-        else{
-          Get.snackbar("Error", "Your email or password went wrong", snackPosition: SnackPosition.BOTTOM);
-        }
-      } catch (e) {
-        print(e);
-      }
-    }
-  }
+class LoginScreen extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
 
-    return SafeArea(
-      child: Scaffold(
-        extendBody: true,
-        extendBodyBehindAppBar: true,
-        body: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                width: mediaQueryData.size.width,
-                height: mediaQueryData.size.height,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: const Alignment(0.5, 0),
-                    end: const Alignment(0.5, 1),
-                    colors: [
-                      appTheme.green200,
-                      appTheme.blue100,
-                    ],
-                  ),
-                ),
-                child: Form(
-                  key: _formKey,
-                  child: SizedBox(
-                    width: double.maxFinite,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(height: 74.v),
-                        Container(
-                          height: 220.adaptSize,
-                          width: 220.adaptSize,
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 42.h,
-                            vertical: 52.v,
-                          ),
-                          decoration: AppDecoration.fillWhiteA.copyWith(
-                            borderRadius: BorderRadiusStyle.circleBorder110,
-                          ),
-                          child: CustomImageView(
-                            imagePath: ImageConstant.logo,
-                            height: 114.v,
-                            width: 130.h,
-                            alignment: Alignment.centerLeft,
-                          ),
-                        ),
-                        SizedBox(height: 26.v),
-                        SizedBox(
-                          height: 8.v,
-                          child: AnimatedSmoothIndicator(
-                            activeIndex: 0,
-                            count: 2,
-                            effect: ScrollingDotsEffect(
-                              activeDotColor: const Color(0X1212121D),
-                              dotHeight: 8.v,
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 20.v),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 14.h,
-                            vertical: 27.v,
-                          ),
-                          decoration: AppDecoration.outlineWhiteA.copyWith(
-                            borderRadius: BorderRadiusStyle.customBorderTL30,
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Login",
-                                style: theme.textTheme.headlineSmall,
-                              ),
-                              SizedBox(height: 43.v),
-                              _buildLoginTextboxEmail(context),
-                              SizedBox(height: 23.v),
-                              _buildLoginTextboxPassword(context),
-                              SizedBox(height: 8.v),
-                              _buildFrame(context),
-                              SizedBox(height: 57.v),
-                              StringButton(
-                                width: 188.h,
-                                text: "Get Started",
-                                buttonStyle: CustomButtonStyles.none,
-                                decoration: CustomButtonStyles
-                                    .gradientTealToTealDecoration,
-                                callback: onTapGetStarted,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          width: mediaQueryData.size.width,
+          height: mediaQueryData.size.height,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: const Alignment(0.5, 0),
+              end: const Alignment(0.5, 1),
+              colors: [
+                appTheme.green200,
+                appTheme.blue100,
+              ],
+            ),
+          ),
+          child: SingleChildScrollView(
+            child: Form(
+              key: controller.loginFormKey,
+              child: SizedBox(
+                width: double.infinity,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(height: 74.v),
+                    Container(
+                      height: 220.adaptSize,
+                      width: 220.adaptSize,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 42.h,
+                        vertical: 52.v,
+                      ),
+                      decoration: AppDecoration.fillWhiteA.copyWith(
+                        borderRadius: BorderRadiusStyle.circleBorder110,
+                      ),
+                      child: CustomImageView(
+                        imagePath: ImageConstant.logo,
+                        height: 114.v,
+                        width: 130.h,
+                        alignment: Alignment.centerLeft,
+                      ),
                     ),
-                  ),
+                    SizedBox(height: 26.v),
+                    SizedBox(
+                      height: 8.v,
+                      child: AnimatedSmoothIndicator(
+                        activeIndex: 0,
+                        count: 2,
+                        effect: ScrollingDotsEffect(
+                          activeDotColor: const Color(0X1212121D),
+                          dotHeight: 8.v,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20.v),
+                    Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 14.h,
+                        vertical: 27.v,
+                      ),
+                      decoration: AppDecoration.outlineWhiteA.copyWith(
+                        borderRadius: BorderRadiusStyle.customBorderTL30,
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Sign in",
+                            style: theme.textTheme.headlineSmall,
+                          ),
+                          SizedBox(height: 43.v),
+                          _buildLoginTextboxEmail(context),
+                          SizedBox(height: 23.v),
+                          // _buildLoginTextboxPassword(context),
+                          SizedBox(height: 8.v),
+                          // _buildFrame(context),
+                          SizedBox(height: 57.v),
+                          StringButton(
+                            width: 188.h,
+                            text: "Get Started",
+                            buttonStyle: CustomButtonStyles.none,
+                            decoration:
+                                CustomButtonStyles.gradientTealToTealDecoration,
+                            callback: onTapGetStarted,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
+            ),
           ),
         ),
       ),
@@ -156,7 +118,10 @@ class LoginLoginScreen extends StatelessWidget {
         ),
         SizedBox(height: 3.v),
         CustomTextFormField(
-          controller: emailController,
+          controller: controller.emailController,
+          onSaved: (value) {
+            controller.email = value!;
+          },
           hintText: "loremipsum@abc.com",
           textInputType: TextInputType.emailAddress,
         ),
@@ -175,7 +140,10 @@ class LoginLoginScreen extends StatelessWidget {
         ),
         SizedBox(height: 3.v),
         CustomTextFormField(
-          controller: passwordController,
+          controller: controller.passwordController,
+          onSaved: (value) {
+            controller.password = value!;
+          },
           hintText: "*********",
           textInputAction: TextInputAction.done,
           textInputType: TextInputType.visiblePassword,
@@ -228,10 +196,7 @@ class LoginLoginScreen extends StatelessWidget {
     );
   }
 
-  void onTapGetStarted(){
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
-      signIn(emailController.text, passwordController.text);
-    }
+  void onTapGetStarted() {
+    controller.signIn();
   }
 }

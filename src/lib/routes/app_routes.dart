@@ -44,7 +44,10 @@ class AppRoute {
         ),
         GetPage(
             name: AppPage.loginOpenScreen, page: () => const LoginOpenScreen()),
-        GetPage(name: AppPage.loginLoginScreen, page: () => LoginLoginScreen()),
+        GetPage(
+          name: AppPage.loginScreen,
+          page: () => LoginScreen(),
+        ),
         GetPage(
             name: AppPage.loginSignUpScreen, page: () => LoginSignUpScreen()),
         GetPage(
@@ -114,6 +117,5 @@ class AppRoute {
           name: AppPage.walletNewEvent,
           page: () => WalletNewEvent(),
         ),
-
       ];
 }
