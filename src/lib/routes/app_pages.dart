@@ -7,16 +7,13 @@ class AppPage {
   static const securityPage = '/setting/security';
   static const premiumPage = '/setting/premium';
   static const purchasePage = '/setting/purchase';
-  static const transactionHistoryPage = '/';
-  static const transactionPage = '/transactionPage';
-  static const chooseCategoryPage = '/chooseCategoryPage';
-  static const String loginOpenScreen = '/login_open_screen';
-  //static const transactionPage = '/afdasdf';
-  //static const chooseCategoryPage = '/choose_category';
-  //static const String loginOpenScreen = '/loginOpenScreen';
+  static const transactionHistoryPage = '/transactionHistoryPage';
+  static const transactionPage = '/';
+  static const chooseCategoryPage = '/choose_category';
+  static const String loginOpenScreen = '/loginOpenScreen';
   static const String loginSignUpScreen = '/login_sign_up_screen';
-  static const String loginScreen = '/login/loginScreen';
-  //static const String loginScreen = '/';
+  // static const String loginScreen = '/login/loginScreen';
+  static const String loginScreen = '/loginScreen';
 
   static const String loginPasswordScreen = '/login_password_screen';
 

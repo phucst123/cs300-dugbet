@@ -11,6 +11,7 @@ class TransactionController extends GetxController {
   var selectedTime = TimeOfDay.now().obs;
   var selectedDate = DateTime.now().obs;
   var selectedWallet = "Momo".obs;
+  var isIncome = true.obs;
 
   @override
   void onInit() {
@@ -62,4 +63,7 @@ class TransactionController extends GetxController {
       ),
     ));
   }
+
+
+
 }

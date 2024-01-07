@@ -126,28 +126,28 @@ class TransactionPage extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Container(
-                  height: 40,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey, width: 1),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      children: [
-                        Text(
-                          "Show more details",
-                          style: TextThemeBuilder.robotoTextTheme.labelLarge,
-                        ),
-                        const Spacer(),
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.keyboard_arrow_down))
-                      ],
-                    ),
-                  ),
-                ),
+                // Container(
+                //   height: 40,
+                //   width: MediaQuery.of(context).size.width,
+                //   decoration: BoxDecoration(
+                //       border: Border.all(color: Colors.grey, width: 1),
+                //       borderRadius: BorderRadius.circular(10)),
+                //   child: Padding(
+                //     padding: const EdgeInsets.symmetric(horizontal: 20),
+                //     child: Row(
+                //       children: [
+                //         Text(
+                //           "Show more details",
+                //           style: TextThemeBuilder.robotoTextTheme.labelLarge,
+                //         ),
+                //         const Spacer(),
+                //         IconButton(
+                //             onPressed: () {},
+                //             icon: const Icon(Icons.keyboard_arrow_down))
+                //       ],
+                //     ),
+                //   ),
+                // ),
                 const SizedBox(
                   height: 50,
                 ),
