@@ -5,7 +5,6 @@ import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/views/widgets/button/scan_button.dart';
 import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
 
-
 // ignore: must_be_immutable
 class SettingPage extends StatelessWidget {
   SettingPage({super.key});
@@ -140,11 +139,11 @@ class SettingPage extends StatelessWidget {
               //           )
               //         }),
               child: StringButton(
-                text: "Login",
+                text: "Logout",
                 callback: () => {
                   showDialog(
                     context: context,
-                    builder: (_) => const LogoutDialog(),
+                    builder: (_) => LogoutDialog(),
                   )
                 },
                 buttonTextStyle: CustomTextStyles.titleMediumBluegray900,
@@ -157,27 +156,27 @@ class SettingPage extends StatelessWidget {
       ),
       bottomNavigationBar: _buildBottomAppBar(),
       floatingActionButton: ScanButton(
-                height: 60,
-                width: 57,
-                onTap: () {},
-                // color of the floating button
-                
-                child: CustomImageView(
-                    imagePath: ImageConstant.floatScan,
-                    height: 30.0.v,
-                    width: 28.5.h)),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerDocked,
-            // add color 0xFF15A69D to the floating action button
-            floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+          height: 60,
+          width: 57,
+          onTap: () {},
+          // color of the floating button
 
+          child: CustomImageView(
+              imagePath: ImageConstant.floatScan,
+              height: 30.0.v,
+              width: 28.5.h)),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // add color 0xFF15A69D to the floating action button
+      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
     );
   }
+
   Widget _buildBottomAppBar() {
     return CustomBottomAppBar(onChanged: (BottomBarEnum type) {
-       Get.toNamed(getCurrentRoute(type), arguments: type);
+      Get.toNamed(getCurrentRoute(type), arguments: type);
     });
   }
+
   String getCurrentRoute(BottomBarEnum type) {
     switch (type) {
       case BottomBarEnum.Home:
