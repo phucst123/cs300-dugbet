@@ -1,12 +1,12 @@
 {
     "id": "400001",
-    "user_id": "tcm",
+    "userId": "tcm",
     "categories": [
         {
             "id": "food_beverages",
             "title": "Food and Beverages",
             "icon": "",
-            "sub_categories": [
+            "subCategories": [
                 {
                     "id": "fine_dining",
                     "title": "Fine dining",
@@ -23,7 +23,7 @@
             "id": "transportation",
             "title": "Transportation",
             "icon": "",
-            "sub_categories": [
+            "subCategories": [
                 {
                     "id": "flight_ticket",
                     "title": "Flight ticket",

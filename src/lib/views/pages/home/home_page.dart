@@ -80,7 +80,7 @@ class HomePage extends StatelessWidget {
                           
                           
                         ),
-                        child: const PieQuickView(), 
+                        child:  PieQuickView(), 
                       )
                     : index == 1 
                       ? Container(
@@ -94,15 +94,20 @@ class HomePage extends StatelessWidget {
                           
                           
                         ),
-                        child: const TransactionQuickView(), 
+                        child:   StatQuickView(), 
                       )
                     : Container(
-                        //child: PieQuickView(), 
                         //color: Colors.white, 
                         // add border radius
-                        //decoration: BoxDecoration(
-                        //  borderRadius: BorderRadius.circular(20),
-                        //),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(color: Colors.black, width: 1),
+                          color: Colors.white,
+                          // add box border black corner
+                          
+                          
+                        ),
+                        child:  TransactionQuickView(), 
                       )
                 ),
               ),
@@ -131,20 +136,20 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: _buildBottomAppBar(),
-        floatingActionButton: ScanButton(
-            height: 60,
-            width: 57,
-            onTap: () {},
-            // color of the floating button
+        // bottomNavigationBar: _buildBottomAppBar(),
+        // floatingActionButton: ScanButton(
+        //     height: 60,
+        //     width: 57,
+        //     onTap: () {},
+        //     // color of the floating button
 
-            child: CustomImageView(
-                imagePath: ImageConstant.floatScan,
-                height: 50.0.v,
-                width: 22.5.h)),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        // add color 0xFF15A69D to the floating action button
-        floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+        //     child: CustomImageView(
+        //         imagePath: ImageConstant.floatScan,
+        //         height: 50.0.v,
+        //         width: 22.5.h)),
+        // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        // // add color 0xFF15A69D to the floating action button
+        // floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
       ),
     );
   }
