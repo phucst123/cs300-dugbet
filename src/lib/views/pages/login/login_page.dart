@@ -82,9 +82,9 @@ class LoginScreen extends GetView<LoginController> {
                           SizedBox(height: 43.v),
                           _buildLoginTextboxEmail(context),
                           SizedBox(height: 23.v),
-                          // _buildLoginTextboxPassword(context),
+                           _buildLoginTextboxPassword(context),
                           SizedBox(height: 8.v),
-                          // _buildFrame(context),
+                           _buildFrame(context),
                           SizedBox(height: 57.v),
                           StringButton(
                             width: 188.h,

@@ -1,6 +1,6 @@
 class AppPage {
   static const splashPage = '/splashPage';
-  static const homePage = '/homePage';
+  static const homePage = '/';
   static const settingPage = '/setting';
   static const editProfilePage = '/setting/editprofile';
   static const editNotificationPage = '/setting/editnotification';
@@ -13,7 +13,7 @@ class AppPage {
   static const String loginOpenScreen = '/loginOpenScreen';
   static const String loginSignUpScreen = '/login_sign_up_screen';
   // static const String loginScreen = '/login/loginScreen';
-  static const String loginScreen = '/';
+  static const String loginScreen = '/loginScreen';
 
   static const String loginPasswordScreen = '/login_password_screen';
 
