@@ -80,7 +80,7 @@ class HomePage extends StatelessWidget {
                           
                           
                         ),
-                        child: const PieQuickView(), 
+                        child: const StatQuickView(), 
                       )
                     : index == 1 
                       ? Container(
@@ -94,15 +94,20 @@ class HomePage extends StatelessWidget {
                           
                           
                         ),
-                        child: const TransactionQuickView(), 
+                        child:  Container(), 
                       )
                     : Container(
-                        //child: PieQuickView(), 
                         //color: Colors.white, 
                         // add border radius
-                        //decoration: BoxDecoration(
-                        //  borderRadius: BorderRadius.circular(20),
-                        //),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(color: Colors.black, width: 1),
+                          color: Colors.white,
+                          // add box border black corner
+                          
+                          
+                        ),
+                        child:  Container(), 
                       )
                 ),
               ),
