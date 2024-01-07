@@ -4,15 +4,21 @@ import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
 import 'package:dugbet/views/widgets/double_notch.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:get/get.dart';
 
 class TransactionPage extends StatelessWidget {
   TransactionPage({super.key});
-
-  final controller = Get.put<TransactionController>(TransactionController(),
-      tag: "new_transaction");
+  late final controller;
 
   @override
   Widget build(BuildContext context) {
+
+    if(Get.isRegistered<TransactionController>()){
+      controller = Get.find<TransactionController>();
+    }
+    else{
+      controller = Get.put<TransactionController>(TransactionController());
+    }
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -190,7 +196,10 @@ class TransactionPage extends StatelessWidget {
     );
   }
 
-  onTapCancel() => Get.back();
+  onTapCancel() {
+    Get.back();
+    Get.
+  }
 
   onTapSave() => Get.back();
 }
