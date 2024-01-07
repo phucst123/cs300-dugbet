@@ -212,7 +212,7 @@ class _TransactionQuickViewState extends State<TransactionQuickView> {
   Widget build(BuildContext context) {
     final List<TransactionTemplate> transaction_list = groupTransactions()[0];
     // get top 3 transaction
-    while (transaction_list.length > 3) {
+    while (transaction_list.length > 5) {
       transaction_list.removeLast();
     }
     return Container(
@@ -225,10 +225,10 @@ class _TransactionQuickViewState extends State<TransactionQuickView> {
           border: Border.all(color: ColorPalette.white, width: 1)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        // crossAxisAlignment: CrossAxisAlignment.start,
+         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           QVTransactionItemList(transaction_list: transaction_list),
-          //const SizedBox(height: 8.0),
+          
         ],
       ),
     );
@@ -268,6 +268,8 @@ class QVTransactionItemList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         for (var transaction in transaction_list) ...[
           InkWell(
@@ -285,8 +287,8 @@ class QVTransactionItemList extends StatelessWidget {
                           border: Border.all(
                               color: ColorPalette.black, width: 1.0.v),
                         ),
-                        height: 36.v,
-                        width: 36.v,
+                        height: 15.v,
+                        width: 15.v,
                         child: Icon(transaction.icon)),
                     const SizedBox(width: 10.0),
                     Column(
@@ -296,7 +298,7 @@ class QVTransactionItemList extends StatelessWidget {
                             transaction.title.length > maxTitle
                                 ? '${transaction.title.substring(0, maxTitle)}...'
                                 : transaction.title,
-                            style: theme.textTheme.bodyMedium),
+                            style: theme.textTheme.bodySmall),
                         Text(
                             transaction.description.length > maxDescription
                                 ? '${transaction.description.substring(0, maxDescription)}...'
@@ -311,7 +313,7 @@ class QVTransactionItemList extends StatelessWidget {
                   children: [
                     Text(
                       transaction.amount.toString(),
-                      style: theme.textTheme.headlineLarge?.copyWith(
+                      style: theme.textTheme.bodySmall ?.copyWith(
                           color: transaction.type == 1
                               ? ColorPalette.incomeText
                               : ColorPalette.expenseText),
