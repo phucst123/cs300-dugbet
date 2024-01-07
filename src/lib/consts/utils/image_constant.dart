@@ -2,6 +2,8 @@ class ImageConstant {
   // Image folder path
   static String imagePath = 'assets/images';
 
+  static String iconPath = 'assets/icons';
+
   // On boarding/ Loading images
   static String imgManageMoneyCuate = '$imagePath/img_manage_money_cuate.svg';
 
@@ -15,7 +17,7 @@ class ImageConstant {
   // Common images
   static String logo = '$imagePath/logo_view.svg';
 
-  static String imgFirreyecrossed = '$imagePath/img_firreyecrossed.svg';
+  static String imgFirreyecrossed = '$iconPath/firreyecrossed.svg';
 
   static String imageNotFound = 'assets/images/image_not_found.png';
 
