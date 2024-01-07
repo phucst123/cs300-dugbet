@@ -369,34 +369,118 @@ class _StatQuickViewState extends State<StatQuickView> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Container(
+                width: 30,
+                height: 130,
+                // add border bounds
+
+                decoration: BoxDecoration(
+                    color: ColorPalette.incomeText,
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        topRight: Radius.circular(12)),
+                    border: Border.all(color: ColorPalette.black, width: 1)),
+              ),
+              SizedBox(width: 10.0.v),
+              Container(
+                width: 30,
+                height: 160,
+                decoration: BoxDecoration(
+                    color: ColorPalette.expenseText,
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        topRight: Radius.circular(12)),
+                    border: Border.all(color: ColorPalette.black, width: 1)),
+              ),
+            ],
+          ),
           Column(
             children: [
               Text(
                 "Income",
                 style: theme.textTheme.bodyMedium
-                    ?.copyWith(color: ColorPalette.incomeText),
+                    ?.copyWith(color: ColorPalette.defaultText),
               ),
-              Text(
-                "100.000\$",
-                style: theme.textTheme.bodyMedium
-                    ?.copyWith(color: ColorPalette.incomeText),
+              Row(
+                children: [
+                  SizedBox(width: 25.0.v),
+                  Container(
+                    width: 10,
+                    height: 10,
+                    decoration: BoxDecoration(
+                        color: ColorPalette.incomeText,
+                        borderRadius: const BorderRadius.all(Radius.circular(12)),
+                        border: Border.all(color: ColorPalette.incomeText, width: 1)),
+                  ),
+                  SizedBox(width: 10.0.v),
+                  Text(
+                    "100.000\$",
+                    style: theme.textTheme.bodyMedium
+                        ?.copyWith(color: ColorPalette.defaultText),
+                  ),
+                ],
               ),
+              SizedBox(height: 10.0.v),
               Text(
                 "Expense",
                 style: theme.textTheme.bodyMedium
-                    ?.copyWith(color: ColorPalette.expenseText),
+                    ?.copyWith(color: ColorPalette.defaultText),
               ),
+              Row(
+                children: [
+                  SizedBox(width: 25.0.v),
+                  Container(
+                    width: 10,
+                    height: 10,
+                    decoration: BoxDecoration(
+                        color: ColorPalette.expenseText,
+                        borderRadius: const BorderRadius.all(Radius.circular(12)),
+                        border: Border.all(color: ColorPalette.expenseText, width: 1)),
+                  ),
+                  SizedBox(width: 10.0.v),
+                  Text(
+                    "200.000\$",
+                    style: theme.textTheme.bodyMedium
+                        ?.copyWith(color: ColorPalette.defaultText),
+                  ),
+                ],
+              ),
+              // add line ----- between income and expense
+              SizedBox(height: 10.0.v),
+              Container(
+                width: 100,
+                height: 1,
+                color: ColorPalette.defaultText,
+              ),
+              SizedBox(height: 10.0.v),
               Text(
-                "200.000\$",
+                "Total",
                 style: theme.textTheme.bodyMedium
-                    ?.copyWith(color: ColorPalette.expenseText),
+                    ?.copyWith(color: ColorPalette.defaultText),
+              ),
+              Row(
+                children: [
+                  SizedBox(width: 10.0.v),
+                  Container(
+                    width: 10,
+                    height: 10,
+                    decoration: BoxDecoration(
+                        color: ColorPalette.white,
+                        borderRadius: const BorderRadius.all(Radius.circular(12)),
+                        border: Border.all(color: ColorPalette.white, width: 1)),
+                  ),
+                  SizedBox(width: 10.0.v),
+                  Text(
+                    "-100.000\$",
+                    style: theme.textTheme.bodyMedium
+                        ?.copyWith(color: ColorPalette.defaultText),
+                  ),
+                ],
               ),
             ],
-          ),
-          Container(
-            width: 100,
-            height: 200,
-            child: BarChartSample5(),
           ),
         ],
       ),
