@@ -6,12 +6,12 @@ class CategoryModel {
   });
   late final String id;
   late final String userId;
-  late final List<Categories> categories;
+  late final List<Category> categories;
   
   CategoryModel.fromJson(Map<String, dynamic> json){
     id = json['id'];
     userId = json['userId'];
-    categories = List.from(json['categories']).map((e)=>Categories.fromJson(e)).toList();
+    categories = List.from(json['categories']).map((e)=>Category.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
@@ -23,8 +23,8 @@ class CategoryModel {
   }
 }
 
-class Categories {
-  Categories({
+class Category {
+  Category({
     required this.id,
     required this.title,
     required this.icon,
@@ -33,13 +33,13 @@ class Categories {
   late final String id;
   late final String title;
   late final String icon;
-  late final List<SubCategories> subCategories;
+  late final List<SubCategory> subCategories;
   
-  Categories.fromJson(Map<String, dynamic> json){
+  Category.fromJson(Map<String, dynamic> json){
     id = json['id'];
     title = json['title'];
     icon = json['icon'];
-    subCategories = List.from(json['subCategories']).map((e)=>SubCategories.fromJson(e)).toList();
+    subCategories = List.from(json['subCategories']).map((e)=>SubCategory.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
@@ -52,8 +52,8 @@ class Categories {
   }
 }
 
-class SubCategories {
-  SubCategories({
+class SubCategory {
+  SubCategory({
     required this.id,
     required this.title,
     required this.icon,
@@ -62,7 +62,7 @@ class SubCategories {
   late final String title;
   late final String icon;
   
-  SubCategories.fromJson(Map<String, dynamic> json){
+  SubCategory.fromJson(Map<String, dynamic> json){
     id = json['id'];
     title = json['title'];
     icon = json['icon'];
