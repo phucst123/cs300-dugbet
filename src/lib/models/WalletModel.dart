@@ -1,3 +1,5 @@
+import 'package:dugbet/models/UtilityModel.dart';
+
 class WalletModel {
   WalletModel({
     required this.id,
@@ -18,7 +20,7 @@ class WalletModel {
   late final int income;
   late final String name;
   late final String type;
-  late final List<Transactions> transactions;
+  late final List<TransactionInfo> transactions;
   
   WalletModel.fromJson(Map<String, dynamic> json){
     id = json['id'];
@@ -29,7 +31,7 @@ class WalletModel {
     income = json['income'];
     name = json['name'];
     type = json['type'];
-    transactions = List.from(json['transactions']).map((e)=>Transactions.fromJson(e)).toList();
+    transactions = List.from(json['transactions']).map((e)=>TransactionInfo.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
@@ -43,23 +45,6 @@ class WalletModel {
     _data['name'] = name;
     _data['type'] = type;
     _data['transactions'] = transactions.map((e)=>e.toJson()).toList();
-    return _data;
-  }
-}
-
-class Transactions {
-  Transactions({
-    required this.id,
-  });
-  late final String id;
-  
-  Transactions.fromJson(Map<String, dynamic> json){
-    id = json['id'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
     return _data;
   }
 }

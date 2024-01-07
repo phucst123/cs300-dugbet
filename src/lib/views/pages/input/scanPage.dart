@@ -72,7 +72,7 @@ class Scanning extends StatelessWidget {
                   children: [
                     TextButton(
                         onPressed: () {
-                          Get.toNamed()
+                          //Get.toNamed()
                         },
                         child: Text(
                           "Input",

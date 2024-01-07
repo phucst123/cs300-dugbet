@@ -2,6 +2,7 @@
     "transactionId": "100002",
     "amount": 195,
     "category": "food_beverages",
+    "subCategory": "fine_dining",
     "date": "2023-12-13",
     "description": "This is eating expense of an event",
     "title": "Event Eating",
