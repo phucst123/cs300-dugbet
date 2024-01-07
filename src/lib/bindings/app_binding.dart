@@ -1,3 +1,4 @@
+import 'package:dugbet/controllers/home/home_controller.dart';
 import 'package:dugbet/controllers/login/auth_controller.dart';
 import 'package:dugbet/controllers/login/login_controller.dart';
 import 'package:dugbet/controllers/login/password_controller.dart';
@@ -15,5 +16,6 @@ class AppBinding extends Bindings {
     Get.lazyPut<PasswordController>(() => PasswordController(), fenix: true);
     Get.lazyPut<SignupController>(() => SignupController(), fenix: true);
     Get.lazyPut(() => TransactionHistoryController());
+    Get.lazyPut<HomeController>(() => HomeController());
   }
 }

@@ -39,6 +39,6 @@ class SignupController extends GetxController {
 
     signUpFormKey.currentState!.save();
 
-    authController.signUp(email, password);
+    authController.signUp(username, email, password);
   }
 }

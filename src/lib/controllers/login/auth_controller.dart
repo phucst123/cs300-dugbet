@@ -1,3 +1,4 @@
+import 'package:dugbet/firebase_ref/references.dart';
 import 'package:dugbet/routes/app_pages.dart';
 import 'package:dugbet/views/dialogs/sign_in_dialog.dart';
 import 'package:dugbet/views/dialogs/sign_up_dialog.dart';
@@ -80,17 +81,29 @@ class AuthController extends GetxController {
     }
   }
 
-  void signUp(email, password) async {
+  void signUp(username, email, password) async {
     if (email != null && password != null) {
       try {
-        await _auth
-            .createUserWithEmailAndPassword(email: email, password: password)
-            .then((value) {
+        await _auth.createUserWithEmailAndPassword(
+            email: email, password: password);
+
+        final user = _auth.currentUser;
+
+        if (user != null) {
           // Get.snackbar("Success", "Account Created Successfully",
           //     snackPosition: SnackPosition.BOTTOM);
+          await user.updateDisplayName(username);
+
+          final documentSnapshot = await userRF.doc(user.displayName).get();
+
+          if (!documentSnapshot.exists) {
+            await saveUser(user);
+          }
+
           Get.dialog(SignUpDialog());
           Get.offAndToNamed(AppPage.loginScreen);
-        });
+        }
+        ;
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           Get.snackbar("Weak Password", "The password provided is too weak.",
@@ -111,17 +124,20 @@ class AuthController extends GetxController {
     return _user.value;
   }
 
-  // saveUser(GoogleSignInAccount account) {
-  //   userRF.doc(account.email).set({
-  //     "email": account.email,
-  //     "name": account.displayName,
-  //     "profilepic": account.photoUrl
-  //   });
-
-  //   activityRF.doc(account.email).set({
-  //     'startDate': todaysDateFormatted(),
-  //   });
-  // }
+  Future<void> saveUser(User? user) async {
+    try {
+      if (user != null) {
+        await userRF.doc(user.email).set({
+          "email": user.email,
+          "name": user.displayName,
+        });
+      }
+    } catch (error) {
+      if (kDebugMode) {
+        print("Error saving user: $error");
+      }
+    }
+  }
 
   signOut() async {
     try {
