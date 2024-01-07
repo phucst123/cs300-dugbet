@@ -1,4 +1,5 @@
 import 'package:dugbet/views/dialogs/email_dialog.dart';
+import 'package:dugbet/views/widgets/choose_list_wallet.dart';
 import 'package:dugbet/views/widgets/notification_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,6 +18,7 @@ class TransactionController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
+
   }
 
   @override
@@ -57,13 +59,16 @@ class TransactionController extends GetxController {
 
   chooseWallet() {
     Get.dialog(SafeArea(
-      minimum: EdgeInsets.symmetric(horizontal: 40, vertical: 100),
+      minimum: EdgeInsets.symmetric(horizontal: 15, vertical: 100),
       child: Scaffold(
-        body: Center(child: Text("Hello")),
+        backgroundColor: Colors.transparent,
+        body: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.white
+          ),
+            child: ChooseListWallet()),
       ),
     ));
   }
-
-
-
 }

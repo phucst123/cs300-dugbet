@@ -1,4 +1,5 @@
 import 'package:dugbet/consts/app_export.dart';
+import 'package:dugbet/views/pages/category/choose_category_page.dart';
 import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
 import 'package:dugbet/views/widgets/stat.dart';
 import 'package:dugbet/views/widgets/stat_one.dart';
@@ -166,31 +167,22 @@ class DoubleNotch extends StatelessWidget {
                 )),
             Positioned(
                 top: 119,
-                child: Container(
-                    height: 72,
-                    width: 72,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: ColorPalette.black)),
-                    child: const Center(
-                      child: Text(
-                        "+",
-                        style: TextStyle(fontSize: 30),
-                      ),
-                    ))),
-            Positioned(
-                top: 290,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Get.toNamed(AppPage.scanPage);
+                child: InkWell(
+                  onTap: () {
+                    Get.dialog(ChooseCategoryPage());
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: ColorPalette.incomeText,
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                    child: Text(" Scan "),
-                  ),
+                  child: Container(
+                      height: 72,
+                      width: 72,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: ColorPalette.black)),
+                      child: const Center(
+                        child: Text(
+                          "+",
+                          style: TextStyle(fontSize: 30),
+                        ),
+                      )),
                 )),
             Padding(
               padding: EdgeInsets.only(
@@ -199,6 +191,9 @@ class DoubleNotch extends StatelessWidget {
                 children: [
                   Expanded(
                     child: TextField(
+                      onTapOutside: (event) {
+                        FocusManager.instance.primaryFocus?.unfocus();
+                      },
                       textAlign: TextAlign.right,
                       decoration: InputDecoration(
                         hintText: "0",
@@ -227,6 +222,9 @@ class DoubleNotch extends StatelessWidget {
                   left: MediaQuery.of(context).size.width - 360 + 180,
                   right: MediaQuery.of(context).size.width - 360 + 20),
               child: TextField(
+                onTapOutside: (event) {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
                 textAlign: TextAlign.right,
                 decoration: InputDecoration(
                   hintText: "...",
@@ -242,6 +240,20 @@ class DoubleNotch extends StatelessWidget {
                 ],
               ),
             ),
+            Positioned(
+                top: 280,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Get.toNamed(AppPage.scanPage);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: ColorPalette.incomeText,
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    child: Text(" Scan "),
+                  ),
+                )),
           ],
         ),
       ),
