@@ -32,4 +32,5 @@ class AppPage {
   static const walletEventDetail = "/walletEventDetail";
   static const walletNewEvent = "/walletNewEvent";
   static const walletNewWallet = "/walletNewWallet";
+  static const eventTransaction = "/eventTransaction";
 }

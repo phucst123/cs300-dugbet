@@ -1,23 +1,26 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/fonts/text_theme_builder.dart';
+import 'package:dugbet/views/pages/transaction/event_transaction_controller.dart';
 import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
 import 'package:dugbet/views/widgets/double_notch.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 
-class TransactionPage extends StatelessWidget {
-  TransactionPage({super.key});
-  TransactionController? controller;
+import '../../widgets/event_double_notch.dart';
+
+class EventTransactionPage extends StatelessWidget {
+  EventTransactionPage({super.key});
+  EventTransactionController? controller;
 
   @override
   Widget build(BuildContext context) {
 
-    if(Get.isRegistered<TransactionController>()){
-      controller = Get.find<TransactionController>();
+    if(Get.isRegistered<EventTransactionController>()){
+      controller = Get.find<EventTransactionController>();
     }
     else{
-      controller = Get.put<TransactionController>(TransactionController());
+      controller = Get.put<EventTransactionController>(EventTransactionController());
     }
     return SafeArea(
       child: Scaffold(
@@ -28,7 +31,7 @@ class TransactionPage extends StatelessWidget {
             child: Obx(() => Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                DoubleNotch(),
+                EventDoubleNotch(),
                 const SizedBox(
                   height: 20,
                 ),
@@ -101,7 +104,7 @@ class TransactionPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Wallet",
+                              "Members",
                               style: TextThemeBuilder
                                   .robotoTextTheme.headlineLarge,
                             ),
@@ -109,7 +112,7 @@ class TransactionPage extends StatelessWidget {
                               height: 15,
                             ),
                             Text(
-                              controller!.selectedWallet.value,
+                              "3/Member list",
                               style:
                               TextThemeBuilder.robotoTextTheme.titleMedium,
                             ),
@@ -117,7 +120,7 @@ class TransactionPage extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            controller!.chooseWallet();
+                            controller!.chooseMembers();
                           },
                           child: ClipOval(
                             child: Center(

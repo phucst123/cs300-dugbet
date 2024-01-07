@@ -29,6 +29,7 @@ import 'package:dugbet/views/pages/wallet/wallet_personal.dart';
 import 'package:get/get.dart';
 
 import '../views/pages/input/scanPage.dart';
+import '../views/pages/transaction/event_transaction_page.dart';
 
 class AppRoute {
   static List<GetPage> routes() => [
@@ -121,5 +122,9 @@ class AppRoute {
           name: AppPage.walletNewEvent,
           page: () => WalletNewEvent(),
         ),
+    GetPage(
+      name: AppPage.eventTransaction,
+      page: () => EventTransactionPage(),
+    ),
       ];
 }
