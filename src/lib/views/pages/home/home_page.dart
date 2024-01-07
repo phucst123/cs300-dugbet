@@ -80,7 +80,7 @@ class HomePage extends StatelessWidget {
                           
                           
                         ),
-                        child: const StatQuickView(), 
+                        child:  PieQuickView(), 
                       )
                     : index == 1 
                       ? Container(
@@ -94,7 +94,7 @@ class HomePage extends StatelessWidget {
                           
                           
                         ),
-                        child:  Container(), 
+                        child:   StatQuickView(), 
                       )
                     : Container(
                         //color: Colors.white, 
@@ -107,7 +107,7 @@ class HomePage extends StatelessWidget {
                           
                           
                         ),
-                        child:  Container(), 
+                        child:  TransactionQuickView(), 
                       )
                 ),
               ),
