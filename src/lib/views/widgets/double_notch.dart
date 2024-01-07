@@ -162,7 +162,7 @@ class DoubleNotch extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 2),
                     child: Obx(() =>
-                        Text(controller.isIncome.value ? 'Income' : 'Expense')),
+                        Text(controller.isIncome.value ? 'Income' : 'Expense',style: TextStyle(color: ColorPalette.white),)),
                   ),
                 )),
             Positioned(
@@ -251,7 +251,7 @@ class DoubleNotch extends StatelessWidget {
                   ),
                   child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    child: Text(" Scan "),
+                    child: Text(" Scan ",style: TextStyle(color: ColorPalette.white),),
                   ),
                 )),
           ],
