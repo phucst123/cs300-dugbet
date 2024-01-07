@@ -1,5 +1,6 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:dugbet/views/widgets/header_bar.dart';
+import 'package:dugbet/controllers/home/home_controller.dart';
+import 'package:dugbet/views/widgets/home_header_bar.dart';
 import 'package:dugbet/views/widgets/wallet.dart';
 import 'package:dugbet/views/widgets/button/scan_button.dart';
 import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
@@ -8,7 +9,7 @@ import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/color/colors.dart';
 
 // ignore: must_be_immutable
-class HomePage extends StatelessWidget {
+class HomePage extends GetView<HomeController> {
   HomePage({super.key});
 
   String selectMode = "month";
@@ -18,10 +19,9 @@ class HomePage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         // backgroundColor: ColorPalette.expenseText,
-        appBar: const HeaderBar(),
+        appBar: HomeHeaderBar(username: controller.user.value!.displayName),
         body: Container(
-          decoration:
-              const BoxDecoration(color: ColorPalette.tearButton),
+          decoration: const BoxDecoration(color: ColorPalette.tearButton),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -58,58 +58,52 @@ class HomePage extends StatelessWidget {
               ),
               Center(
                 child: Swiper(
-                  viewportFraction: 0.9,
-                  scale: 0.75,
-                  itemCount: 5,
-                  duration: 1000,
-                  loop: true,
-                  itemHeight: 250,
-                  itemWidth: 270,
-                  layout: SwiperLayout.TINDER,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => 
-                    index == 0
-                      ? Container(
-                        //color: Colors.white, 
-                        // add border radius
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: Colors.black, width: 1),
-                          color: Colors.white,
-                          // add box border black corner
-                          
-                          
-                        ),
-                        child:  PieQuickView(), 
-                      )
-                    : index == 1 
-                      ? Container(
-                        //color: Colors.white, 
-                        // add border radius
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: Colors.black, width: 1),
-                          color: Colors.white,
-                          // add box border black corner
-                          
-                          
-                        ),
-                        child:   StatQuickView(), 
-                      )
-                    : Container(
-                        //color: Colors.white, 
-                        // add border radius
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: Colors.black, width: 1),
-                          color: Colors.white,
-                          // add box border black corner
-                          
-                          
-                        ),
-                        child:  TransactionQuickView(), 
-                      )
-                ),
+                    viewportFraction: 0.9,
+                    scale: 0.75,
+                    itemCount: 5,
+                    duration: 1000,
+                    loop: true,
+                    itemHeight: 250,
+                    itemWidth: 270,
+                    layout: SwiperLayout.TINDER,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => index == 0
+                        ? Container(
+                            //color: Colors.white,
+                            // add border radius
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(color: Colors.black, width: 1),
+                              color: Colors.white,
+                              // add box border black corner
+                            ),
+                            child: PieQuickView(),
+                          )
+                        : index == 1
+                            ? Container(
+                                //color: Colors.white,
+                                // add border radius
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  border:
+                                      Border.all(color: Colors.black, width: 1),
+                                  color: Colors.white,
+                                  // add box border black corner
+                                ),
+                                child: StatQuickView(),
+                              )
+                            : Container(
+                                //color: Colors.white,
+                                // add border radius
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  border:
+                                      Border.all(color: Colors.black, width: 1),
+                                  color: Colors.white,
+                                  // add box border black corner
+                                ),
+                                child: TransactionQuickView(),
+                              )),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(78, 12, 78, 12),

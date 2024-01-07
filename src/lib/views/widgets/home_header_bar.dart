@@ -3,10 +3,10 @@ import 'package:dugbet/consts/color/colors.dart';
 import 'package:dugbet/views/widgets/button/custom_icon_button.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
-  const HeaderBar({super.key});
+class HomeHeaderBar extends StatelessWidget implements PreferredSizeWidget {
+  HomeHeaderBar({super.key, this.username});
 
-  final String nameUser = "Lune";
+  final String? username;
 
   @override
   Size get preferredSize => const Size.fromHeight(100);
@@ -30,7 +30,7 @@ class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
           children: [
             CustomIconButton(
               child: Text(
-                'Hello, Lune',
+                'Hello, ${username ?? "friend"}',
                 style: context.textTheme.bodyLarge!
                     .merge(const TextStyle(color: ColorPalette.white)),
               ),
@@ -41,8 +41,8 @@ class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
                 CustomIconButton(
                     child: SvgPicture.asset(
                       "assets/icons/refresh.svg",
-                      colorFilter:
-                          const ColorFilter.mode(ColorPalette.white, BlendMode.srcIn),
+                      colorFilter: const ColorFilter.mode(
+                          ColorPalette.white, BlendMode.srcIn),
                     ),
                     callback: () {}),
                 const SizedBox(
@@ -51,8 +51,8 @@ class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
                 CustomIconButton(
                     child: SvgPicture.asset(
                       "assets/icons/notification.svg",
-                      colorFilter:
-                          const ColorFilter.mode(ColorPalette.white, BlendMode.srcIn),
+                      colorFilter: const ColorFilter.mode(
+                          ColorPalette.white, BlendMode.srcIn),
                     ),
                     callback: () {}),
               ],
