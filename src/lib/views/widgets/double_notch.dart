@@ -1,10 +1,14 @@
+import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
+import 'package:dugbet/views/widgets/stat.dart';
+import 'package:dugbet/views/widgets/stat_one.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../consts/color/colors.dart';
+import '../../consts/color/theme.dart';
 import '../../consts/fonts/text_theme_builder.dart';
 
 class DoubleNotch extends StatelessWidget {
@@ -15,24 +19,149 @@ class DoubleNotch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 20,bottom: 20),
+      padding: const EdgeInsets.only(top: 20, bottom: 20),
       child: Center(
         child: Stack(
           alignment: AlignmentDirectional.topCenter,
           clipBehavior: Clip.none,
           children: [
+            Column(
+              children: [
+                Stack(
+                  children: [
+                    SvgPicture.asset(
+                      "assets/images/top_notch.svg",
+                      width: 360,
+                      height: 150,
+                    ),
+                    Positioned(
+                        top: 35,
+                        right: 20,
+                        child: Text(
+                          "Amount",
+                          style: TextThemeBuilder.robotoTextTheme.headlineLarge,
+                        )),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Stack(
+                  children: [
+                    SvgPicture.asset(
+                      "assets/images/bot_notch.svg",
+                      width: 360,
+                      height: 150,
+                    ),
+                    Positioned(
+                        top: 33,
+                        right: 20,
+                        child: Text(
+                          "Description",
+                          style: TextThemeBuilder.robotoTextTheme.headlineLarge,
+                        )),
+                  ],
+                )
+              ],
+            ),
             Positioned(
                 top: -20,
                 child: ElevatedButton(
                   onPressed: () {
-                    print("Hello");
-                    print(MediaQuery.of(context).size.width);
+                    Get.dialog(SafeArea(
+                      minimum: EdgeInsets.all(40),
+                      child: Scaffold(
+                        backgroundColor: Colors.transparent,
+                        body: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: InkWell(
+                                onTap: () {
+                                  controller.isIncome.value = true;
+                                  Get.back();
+                                },
+                                child: Container(
+                                  width: 80,
+                                  height: 80,
+                                  decoration: BoxDecoration(
+                                      color: ColorPalette.white,
+                                      border:
+                                          Border.all(color: ColorPalette.black),
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: Center(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Container(
+                                            width: 40,
+                                            height: 40,
+                                            decoration: BoxDecoration(
+                                                color: LightTheme.primaryColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(12)),
+                                            child: const Icon(
+                                                Icons.arrow_upward_outlined,
+                                                color: Colors.white)),
+                                        Text("Income",
+                                            style: TextThemeBuilder
+                                                .robotoTextTheme.headlineLarge)
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: InkWell(
+                                onTap: () {
+                                  controller.isIncome.value = false;
+                                  Get.back();
+                                },
+                                child: Container(
+                                  width: 80,
+                                  height: 80,
+                                  decoration: BoxDecoration(
+                                      color: Colors.yellow.withOpacity(0.7),
+                                      border:
+                                          Border.all(color: ColorPalette.black),
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: Center(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Container(
+                                            width: 40,
+                                            height: 40,
+                                            decoration: BoxDecoration(
+                                                color: LightTheme.primaryColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(12)),
+                                            child: Icon(
+                                                Icons.arrow_downward_outlined,
+                                                color: Colors.white)),
+                                        Text("Expense",
+                                            style: TextThemeBuilder
+                                                .robotoTextTheme.headlineLarge)
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ));
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: ColorPalette.incomeText),
-                  child: const Padding(
+                  child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 2),
-                    child: Text("Expense"),
+                    child: Obx(() =>
+                        Text(controller.isIncome.value ? 'Income' : 'Expense')),
                   ),
                 )),
             Positioned(
@@ -52,57 +181,17 @@ class DoubleNotch extends StatelessWidget {
             Positioned(
                 top: 290,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed(AppPage.scanPage);
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: ColorPalette.incomeText,
                   ),
                   child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                    child: Text(" Edit "),
+                    child: Text(" Scan "),
                   ),
                 )),
-            Column(
-              children: [
-                Stack(
-                  children: [
-                    SvgPicture.asset(
-                      "assets/images/top_notch.svg",
-                      width: 360,
-                      height: 150,
-                    ),
-                    Positioned(
-                        top: 35,
-                        right: 20,
-                        child: Text(
-                          "Amount",
-                          style: TextThemeBuilder
-                              .robotoTextTheme.headlineLarge,
-                        )),
-
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Stack(
-                  children: [
-                    SvgPicture.asset(
-                      "assets/images/bot_notch.svg",
-                      width: 360,
-                      height: 150,
-                    ),
-                    Positioned(
-                        top: 35,
-                        right: 20,
-                        child: Text(
-                          "Description",
-                          style: TextThemeBuilder
-                              .robotoTextTheme.headlineLarge,
-                        )),
-                  ],
-                )
-              ],
-            ),
             Padding(
               padding: EdgeInsets.only(
                   top: 55, left: MediaQuery.of(context).size.width - 360 + 180),
@@ -126,7 +215,7 @@ class DoubleNotch extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 20,right: 20),
+                    padding: const EdgeInsets.only(bottom: 20, right: 20),
                     child: SvgPicture.asset("assets/images/dIcon.svg"),
                   )
                 ],
@@ -134,7 +223,9 @@ class DoubleNotch extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(
-                  top: 190, left: MediaQuery.of(context).size.width - 360 + 180,right: MediaQuery.of(context).size.width - 360 + 20),
+                  top: 184,
+                  left: MediaQuery.of(context).size.width - 360 + 180,
+                  right: MediaQuery.of(context).size.width - 360 + 20),
               child: TextField(
                 textAlign: TextAlign.right,
                 decoration: InputDecoration(

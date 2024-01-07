@@ -136,20 +136,20 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: _buildBottomAppBar(),
-        floatingActionButton: ScanButton(
-            height: 60,
-            width: 57,
-            onTap: () {},
-            // color of the floating button
+        // bottomNavigationBar: _buildBottomAppBar(),
+        // floatingActionButton: ScanButton(
+        //     height: 60,
+        //     width: 57,
+        //     onTap: () {},
+        //     // color of the floating button
 
-            child: CustomImageView(
-                imagePath: ImageConstant.floatScan,
-                height: 50.0.v,
-                width: 22.5.h)),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        // add color 0xFF15A69D to the floating action button
-        floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+        //     child: CustomImageView(
+        //         imagePath: ImageConstant.floatScan,
+        //         height: 50.0.v,
+        //         width: 22.5.h)),
+        // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        // // add color 0xFF15A69D to the floating action button
+        // floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
       ),
     );
   }

@@ -1,4 +1,6 @@
+import 'package:dugbet/bindings/wrapper/wrapper_bining.dart';
 import 'package:dugbet/routes/app_pages.dart';
+import 'package:dugbet/views/pages/wrapper/wrapper_page.dart';
 import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
 import 'package:dugbet/views/pages/transaction/transaction_page.dart';
 import 'package:dugbet/views/pages/category/choose_category_page.dart';
@@ -40,7 +42,9 @@ class AppRoute {
         ),
         GetPage(
           name: AppPage.homePage,
-          page: () => HomePage(),
+          page: () => const MainWrapper(),
+          // transition: Transition.leftToRight
+          binding: WrapperBinding()
         ),
         GetPage(
             name: AppPage.loginOpenScreen, page: () => const LoginOpenScreen()),

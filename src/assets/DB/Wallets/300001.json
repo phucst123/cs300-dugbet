@@ -1,0 +1,15 @@
+{
+    "id": "300001",
+    "walletPicture": "",
+    "description": "This is my MoMo wallet.",
+    "initialAmount": 0,
+    "expense": 50,
+    "income": 200,
+    "name": "MoMo",
+    "type": "digital",
+    "transactions": [
+        {
+            "id": "100001"
+        }
+    ]
+}

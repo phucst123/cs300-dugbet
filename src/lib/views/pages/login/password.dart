@@ -1,3 +1,4 @@
+import 'package:dugbet/controllers/login/password_controller.dart';
 import 'package:dugbet/views/dialogs/email_dialog.dart';
 import 'package:dugbet/views/widgets/custom_text_form_field.dart';
 import 'package:dugbet/consts/app_export.dart';
@@ -5,35 +6,8 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 // ignore: must_be_immutable
-class LoginPasswordScreen extends StatelessWidget {
+class LoginPasswordScreen extends GetView<PasswordController> {
   LoginPasswordScreen({super.key});
-
-  TextEditingController emailController = TextEditingController();
-
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  forgotPassword(String email) async {
-    if (email != null) {
-      try {
-        await FirebaseAuth.instance
-            .sendPasswordResetEmail(email: email)
-            .then((value) {
-          Get.snackbar("Success", "Email Sent Successfully",
-              snackPosition: SnackPosition.BOTTOM);
-          Get.offAndToNamed(AppPage.loginScreen);
-        });
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'user-not-found') {
-          Get.snackbar("User Not Found", "No user found for that email.",
-              snackPosition: SnackPosition.BOTTOM);
-        } else {
-          Get.snackbar("Error", "Your email went wrong",
-              snackPosition: SnackPosition.BOTTOM);
-        }
-      } catch (e) {
-        print(e);
-      }
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +33,7 @@ class LoginPasswordScreen extends StatelessWidget {
               ),
             ),
             child: Form(
-              key: _formKey,
+              key: controller.passwordFormKey,
               child: SizedBox(
                 width: double.maxFinite,
                 child: Column(
@@ -163,7 +137,10 @@ class LoginPasswordScreen extends StatelessWidget {
         ),
         SizedBox(height: 3.v),
         CustomTextFormField(
-          controller: emailController,
+          controller: controller.emailController,
+          onSaved: (value) {
+            controller.email = value!;
+          },
           hintText: "loremipsum@abc.com",
           textInputAction: TextInputAction.done,
           textInputType: TextInputType.emailAddress,
@@ -172,12 +149,12 @@ class LoginPasswordScreen extends StatelessWidget {
     );
   }
 
-  void onTapSendEmail(context) {
+  void onTapSendEmail(context) async {
     // show EmailDialog
     // showDialog(
     //   context: context,
     //   builder: (context) => const EmailDialog(),
     // );
-    forgotPassword(emailController.text);
+    controller.forgotPassword();
   }
 }
