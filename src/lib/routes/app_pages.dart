@@ -1,6 +1,6 @@
 class AppPage {
-  static const splashPage = '/splashPage';
-  static const homePage = '/';
+  static const splashPage = '/';
+  static const homePage = '/homePage';
   static const settingPage = '/setting';
   static const editProfilePage = '/setting/editprofile';
   static const editNotificationPage = '/setting/editnotification';
@@ -32,4 +32,5 @@ class AppPage {
   static const walletEventDetail = "/walletEventDetail";
   static const walletNewEvent = "/walletNewEvent";
   static const walletNewWallet = "/walletNewWallet";
+  static const eventTransaction = "/eventTransaction";
 }
