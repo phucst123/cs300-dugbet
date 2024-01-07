@@ -5,7 +5,6 @@ import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/views/widgets/button/scan_button.dart';
 import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
 
-
 // ignore: must_be_immutable
 class SettingPage extends StatelessWidget {
   SettingPage({super.key});
@@ -144,7 +143,7 @@ class SettingPage extends StatelessWidget {
                 callback: () => {
                   showDialog(
                     context: context,
-                    builder: (_) => const LogoutDialog(),
+                    builder: (_) => LogoutDialog(),
                   )
                 },
                 buttonTextStyle: CustomTextStyles.titleMediumBluegray900,
@@ -155,9 +154,6 @@ class SettingPage extends StatelessWidget {
           ),
         ],
       ),
-
-
     );
   }
-
 }

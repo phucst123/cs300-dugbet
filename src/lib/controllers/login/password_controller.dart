@@ -1,4 +1,5 @@
 import 'package:dugbet/consts/app_export.dart';
+import 'package:dugbet/controllers/login/auth_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
@@ -9,10 +10,14 @@ class PasswordController extends GetxController {
 
   var email = "";
 
+  late AuthController authController;
+
   @override
   void onInit() async {
     super.onInit();
     emailController = TextEditingController();
+
+    authController = Get.find<AuthController>();
   }
 
   @override
@@ -21,26 +26,12 @@ class PasswordController extends GetxController {
   }
 
   void forgotPassword() async {
-    if (email != null) {
-      try {
-        await FirebaseAuth.instance
-            .sendPasswordResetEmail(email: email)
-            .then((value) {
-          Get.snackbar("Success", "Email Sent Successfully",
-              snackPosition: SnackPosition.BOTTOM);
-          Get.offAndToNamed(AppPage.loginScreen);
-        });
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'user-not-found') {
-          Get.snackbar("User Not Found", "No user found for that email.",
-              snackPosition: SnackPosition.BOTTOM);
-        } else {
-          Get.snackbar("Error", "Your email went wrong",
-              snackPosition: SnackPosition.BOTTOM);
-        }
-      } catch (e) {
-        print(e);
-      }
+    if (!passwordFormKey.currentState!.validate()) {
+      return;
     }
+
+    passwordFormKey.currentState!.save();
+
+    authController.forgotPassword(email);
   }
 }
