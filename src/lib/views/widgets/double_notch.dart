@@ -32,7 +32,7 @@ class DoubleNotch extends StatelessWidget {
                   children: [
                     SvgPicture.asset(
                       "assets/images/top_notch.svg",
-                      width: 360,
+                      width: MediaQuery.of(context).size.width,
                       height: 150,
                     ),
                     Positioned(
@@ -51,7 +51,7 @@ class DoubleNotch extends StatelessWidget {
                   children: [
                     SvgPicture.asset(
                       "assets/images/bot_notch.svg",
-                      width: 360,
+                      width: MediaQuery.of(context).size.width,
                       height: 150,
                     ),
                     Positioned(
@@ -186,7 +186,7 @@ class DoubleNotch extends StatelessWidget {
                 )),
             Padding(
               padding: EdgeInsets.only(
-                  top: 55, left: MediaQuery.of(context).size.width - 360 + 180),
+                  top: 55, left: MediaQuery.of(context).size.width/2),
               child: Row(
                 children: [
                   Expanded(
@@ -219,7 +219,7 @@ class DoubleNotch extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(
                   top: 184,
-                  left: MediaQuery.of(context).size.width - 360 + 180,
+                  left: MediaQuery.of(context).size.width/2,
                   right: MediaQuery.of(context).size.width - 360 + 20),
               child: TextField(
                 onTapOutside: (event) {
