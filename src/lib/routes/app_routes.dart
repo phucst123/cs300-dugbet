@@ -1,4 +1,6 @@
+import 'package:dugbet/bindings/wrapper/wrapper_bining.dart';
 import 'package:dugbet/routes/app_pages.dart';
+import 'package:dugbet/views/pages/wrapper/wrapper_page.dart';
 import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
 import 'package:dugbet/views/pages/transaction/transaction_page.dart';
 import 'package:dugbet/views/pages/category/choose_category_page.dart';
@@ -27,6 +29,7 @@ import 'package:dugbet/views/pages/wallet/wallet_personal.dart';
 import 'package:get/get.dart';
 
 import '../views/pages/input/scanPage.dart';
+import '../views/pages/transaction/event_transaction_page.dart';
 
 class AppRoute {
   static List<GetPage> routes() => [
@@ -40,7 +43,9 @@ class AppRoute {
         ),
         GetPage(
           name: AppPage.homePage,
-          page: () => HomePage(),
+          page: () => const MainWrapper(),
+          // transition: Transition.leftToRight
+          binding: WrapperBinding()
         ),
         GetPage(
             name: AppPage.loginOpenScreen, page: () => const LoginOpenScreen()),
@@ -117,5 +122,9 @@ class AppRoute {
           name: AppPage.walletNewEvent,
           page: () => WalletNewEvent(),
         ),
+    GetPage(
+      name: AppPage.eventTransaction,
+      page: () => EventTransactionPage(),
+    ),
       ];
 }

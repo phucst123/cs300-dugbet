@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/color/colors.dart';
 import 'package:dugbet/consts/color/theme.dart';
 import 'package:dugbet/views/pages/input/scanController.dart';
@@ -72,7 +73,7 @@ class Scanning extends StatelessWidget {
                   children: [
                     TextButton(
                         onPressed: () {
-                          //Get.toNamed()
+                          Get.offAndToNamed(AppPage.transactionPage);
                         },
                         child: Text(
                           "Input",

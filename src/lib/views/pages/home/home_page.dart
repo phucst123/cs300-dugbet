@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
               Center(
                 child: DropdownButtonHideUnderline(
                   child: Padding(
-                    padding: const EdgeInsets.all(12.0),
+                    padding: const EdgeInsets.all(0.0),
                     child: DropdownButton<String>(
                       value: selectMode,
                       underline: Container(
@@ -57,57 +57,64 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               Center(
-                child: Swiper(
-                  viewportFraction: 0.9,
-                  scale: 0.75,
-                  itemCount: 5,
-                  duration: 1000,
-                  loop: true,
-                  itemHeight: 250,
-                  itemWidth: 270,
-                  layout: SwiperLayout.TINDER,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => 
-                    index == 0
-                      ? Container(
-                        //color: Colors.white, 
-                        // add border radius
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: Colors.black, width: 1),
-                          color: Colors.white,
-                          // add box border black corner
-                          
-                          
-                        ),
-                        child: const PieQuickView(), 
-                      )
-                    : index == 1 
-                      ? Container(
-                        //color: Colors.white, 
-                        // add border radius
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: Colors.black, width: 1),
-                          color: Colors.white,
-                          // add box border black corner
-                          
-                          
-                        ),
-                        child: const TransactionQuickView(), 
-                      )
-                    : Container(
-                        //child: PieQuickView(), 
-                        //color: Colors.white, 
-                        // add border radius
-                        //decoration: BoxDecoration(
-                        //  borderRadius: BorderRadius.circular(20),
-                        //),
-                      )
+                child: Expanded(
+                  child: Swiper(
+                    viewportFraction: 0.9,
+                    scale: 0.75,
+                    itemCount: 5,
+                    duration: 1000,
+                    loop: true,
+                    itemHeight: 250,
+                    itemWidth: 270,
+                    layout: SwiperLayout.TINDER,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => 
+                      index == 0
+                        ? Container(
+                          //color: Colors.white, 
+                          // add border radius
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: Colors.black, width: 1),
+                            color: Colors.white,
+                            // add box border black corner
+                            
+                            
+                          ),
+                          child:  PieQuickView(), 
+                        )
+                      : index == 1 
+                        ? Container(
+                          //color: Colors.white, 
+                          // add border radius
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: Colors.black, width: 1),
+                            color: Colors.white,
+                            // add box border black corner
+                            
+                            
+                          ),
+                          child:   StatQuickView(), 
+                        )
+                      : Container(
+                          //color: Colors.white, 
+                          // add border radius
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: Colors.black, width: 1),
+                            color: Colors.white,
+                            // add box border black corner
+                            
+                            
+                          ),
+                          child:  TransactionQuickView(), 
+                        )
+                  ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(78, 12, 78, 12),
+                padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
                 child: InkWell(
                   onTap: () {},
                   child: Container(
@@ -131,20 +138,20 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: _buildBottomAppBar(),
-        floatingActionButton: ScanButton(
-            height: 60,
-            width: 57,
-            onTap: () {},
-            // color of the floating button
+        // bottomNavigationBar: _buildBottomAppBar(),
+        // floatingActionButton: ScanButton(
+        //     height: 60,
+        //     width: 57,
+        //     onTap: () {},
+        //     // color of the floating button
 
-            child: CustomImageView(
-                imagePath: ImageConstant.floatScan,
-                height: 50.0.v,
-                width: 22.5.h)),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        // add color 0xFF15A69D to the floating action button
-        floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+        //     child: CustomImageView(
+        //         imagePath: ImageConstant.floatScan,
+        //         height: 50.0.v,
+        //         width: 22.5.h)),
+        // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        // // add color 0xFF15A69D to the floating action button
+        // floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
       ),
     );
   }

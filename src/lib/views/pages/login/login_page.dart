@@ -197,6 +197,7 @@ class LoginScreen extends GetView<LoginController> {
   }
 
   void onTapGetStarted() async {
+    // Get.offAndToNamed(AppPage.homePage);
     controller.signIn();
   }
 }

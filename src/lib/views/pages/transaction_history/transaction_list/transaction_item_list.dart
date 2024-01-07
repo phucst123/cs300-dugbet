@@ -1,7 +1,9 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/color/colors.dart';
+import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_template.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 const maxDescription = 16;
 const maxTitle = 14;
@@ -17,7 +19,9 @@ class TransactionItemList extends StatelessWidget {
       children: [
         for (var transaction in transaction_list) ...[
           InkWell(
-            onTap: onTapTransaction,
+            onTap: () {
+              onTapTransaction(transaction);
+            },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -91,5 +95,31 @@ class TransactionItemList extends StatelessWidget {
     );
   }
 
-  onTapTransaction() => Get.toNamed(AppPage.transactionPage);
+  onTapTransaction(TransactionTemplate transaction) {
+    if(Get.isRegistered<TransactionController>()){
+      final controller = Get.find<TransactionController>();
+      controller.title.value = transaction.title;
+      controller.icon.value = transaction.icon;
+      controller.type.value = transaction.type;
+      controller.isEdit.value = true;
+      controller.incomeTextEdit.text = transaction.amount;
+      controller.descriptionTextEdit.text = transaction.description;
+      controller.selectedDate.value = transaction.date;
+      controller.selectedTime.value = TimeOfDay.fromDateTime(transaction.date);
+    }
+    else{
+      final controller = Get.put<TransactionController>(TransactionController());
+      controller.title.value = transaction.title;
+      controller.icon.value = transaction.icon;
+      controller.type.value = transaction.type;
+      controller.isEdit.value = true;
+      controller.incomeTextEdit.text = transaction.amount;
+      controller.descriptionTextEdit.text = transaction.description;
+      controller.selectedDate.value = transaction.date;
+      controller.selectedTime.value = TimeOfDay.fromDateTime(transaction.date);
+    }
+    print(transaction.date);
+
+    Get.toNamed(AppPage.transactionPage);
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:dugbet/consts/custom_button_style.dart';
+import 'package:dugbet/controllers/login/auth_controller.dart';
 import 'package:dugbet/views/widgets/string_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,7 +7,7 @@ import 'package:get/get.dart';
 import '../../consts/color/colors.dart';
 
 class LogoutDialog extends StatelessWidget {
-  const LogoutDialog({super.key});
+  LogoutDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,10 @@ class LogoutDialog extends StatelessWidget {
                 Expanded(
                   child: StringButton(
                     text: "Logout",
-                    callback: () {},
+                    callback: () {
+                      final authController = Get.find<AuthController>();
+                      authController.signOut();
+                    },
                     decoration: CustomButtonStyles.gradientTealToTealDecoration,
                     buttonStyle: CustomButtonStyles.none,
                     buttonTextStyle: context.textTheme.labelLarge!

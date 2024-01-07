@@ -1,12 +1,13 @@
 import 'package:dugbet/views/dialogs/email_dialog.dart';
 import 'package:dugbet/views/widgets/choose_list_wallet.dart';
+import 'package:dugbet/views/widgets/member_list.dart';
 import 'package:dugbet/views/widgets/notification_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../consts/fonts/text_theme_builder.dart';
 
-class TransactionController extends GetxController {
+class EventTransactionController extends GetxController {
   final TextEditingController incomeTextEdit = TextEditingController();
   final TextEditingController descriptionTextEdit = TextEditingController();
   var selectedTime = TimeOfDay.now().obs;
@@ -67,14 +68,17 @@ class TransactionController extends GetxController {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Colors.white
-          ),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white
+            ),
             child: ChooseListWallet()),
       ),
     ));
   }
 
+  chooseMembers(){
+    Get.dialog(MemberList());
+  }
 
 }
