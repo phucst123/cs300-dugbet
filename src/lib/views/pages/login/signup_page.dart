@@ -9,40 +9,6 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class LoginSignUpScreen extends GetWidget<SignupController> {
   LoginSignUpScreen({super.key});
 
-  TextEditingController emailController = TextEditingController();
-
-  TextEditingController userNameController = TextEditingController();
-
-  TextEditingController passwordController = TextEditingController();
-
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  signUp(String email, String password) async {
-    if (email != null && password != null) {
-      UserCredential? usercredential;
-      try {
-        usercredential = await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(email: email, password: password)
-            .then((value) {
-          Get.snackbar("Success", "Account Created Successfully",
-              snackPosition: SnackPosition.BOTTOM);
-          Get.offAndToNamed(AppPage.loginScreen);
-        });
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'weak-password') {
-          Get.snackbar("Weak Password", "The password provided is too weak.",
-              snackPosition: SnackPosition.BOTTOM);
-        } else if (e.code == 'email-already-in-use') {
-          Get.snackbar("Email Already in Use",
-              "The account already exists for that email.",
-              snackPosition: SnackPosition.BOTTOM);
-        }
-      } catch (e) {
-        print(e);
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
@@ -67,7 +33,7 @@ class LoginSignUpScreen extends GetWidget<SignupController> {
               ),
             ),
             child: Form(
-              key: _formKey,
+              key: controller.signUpFormKey,
               child: SizedBox(
                 width: double.maxFinite,
                 child: Column(
@@ -169,7 +135,10 @@ class LoginSignUpScreen extends GetWidget<SignupController> {
         ),
         SizedBox(height: 3.v),
         CustomTextFormField(
-          controller: emailController,
+          controller: controller.emailController,
+          onSaved: (value) {
+            controller.email = value!;
+          },
           hintText: "loremipsum@abc.com",
           textInputType: TextInputType.emailAddress,
         ),
@@ -188,7 +157,10 @@ class LoginSignUpScreen extends GetWidget<SignupController> {
         ),
         SizedBox(height: 3.v),
         CustomTextFormField(
-          controller: userNameController,
+          controller: controller.userNameController,
+          onSaved: (value) {
+            controller.username = value!;
+          },
           hintText: "anomyous",
         ),
       ],
@@ -207,7 +179,10 @@ class LoginSignUpScreen extends GetWidget<SignupController> {
         ),
         SizedBox(height: 3.v),
         CustomTextFormField(
-          controller: passwordController,
+          controller: controller.passwordController,
+          onSaved: (value) {
+            controller.password = value!;
+          },
           hintText: "*********",
           textInputAction: TextInputAction.done,
           textInputType: TextInputType.visiblePassword,
@@ -233,10 +208,7 @@ class LoginSignUpScreen extends GetWidget<SignupController> {
     );
   }
 
-  void onTapSignUp() {
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
-      signUp(emailController.text, passwordController.text);
-    }
+  void onTapSignUp() async {
+    controller.signUp();
   }
 }
