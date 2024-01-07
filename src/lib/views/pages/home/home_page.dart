@@ -3,7 +3,7 @@ import 'package:dugbet/views/widgets/header_bar.dart';
 import 'package:dugbet/views/widgets/wallet.dart';
 import 'package:dugbet/views/widgets/button/scan_button.dart';
 import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
-import 'package:dugbet/views/widgets/category_quickview.dart';
+import 'package:dugbet/views/widgets/home_category_quickview.dart';
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/color/colors.dart';
 
@@ -84,12 +84,17 @@ class HomePage extends StatelessWidget {
                       )
                     : index == 1 
                       ? Container(
-                        //child: PieQuickView(), 
                         //color: Colors.white, 
                         // add border radius
-                        //decoration: BoxDecoration(
-                        //  borderRadius: BorderRadius.circular(20),
-                        //),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(color: Colors.black, width: 1),
+                          color: Colors.white,
+                          // add box border black corner
+                          
+                          
+                        ),
+                        child: const TransactionQuickView(), 
                       )
                     : Container(
                         //child: PieQuickView(), 

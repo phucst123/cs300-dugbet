@@ -196,7 +196,7 @@ class LoginScreen extends GetView<LoginController> {
     );
   }
 
-  void onTapGetStarted() {
+  void onTapGetStarted() async {
     controller.signIn();
   }
 }

@@ -1,0 +1,15 @@
+{
+    "id": "100001",
+    "amount": 95,
+    "category": "food_beverages",
+    "date": "2023-12-12",
+    "description": "This is eating expense",
+    "title": "Eating",
+    "type": "Personal",
+    "wallet_id": "300001",
+    "members": [
+        {
+            "id": "tcm"
+        }
+    ]
+}
