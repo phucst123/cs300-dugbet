@@ -4,13 +4,15 @@ import 'package:dugbet/consts/app_export.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class LoginScreen extends GetView<LoginController> {
+  const LoginScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
 
-    return Scaffold(
-      body: SafeArea(
-        child: Container(
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
           width: mediaQueryData.size.width,
           height: mediaQueryData.size.height,
           decoration: BoxDecoration(

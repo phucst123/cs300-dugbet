@@ -44,6 +44,7 @@ class TransactionModel {
   }
 
   Map<String, dynamic> toJson() {
+<<<<<<< Updated upstream
     final _data = <String, dynamic>{};
     _data['transactionId'] = transactionId;
     _data['amount'] = amount;
@@ -61,3 +62,37 @@ class TransactionModel {
   }
 }
 
+=======
+    final data = <String, dynamic>{};
+    data['transactionId'] = transactionId;
+    data['amount'] = amount;
+    data['category'] = category;
+    data['date'] = date;
+    data['description'] = description;
+    data['title'] = title;
+    data['type'] = type;
+    data['isIncome'] = isIncome;
+    data['payerId'] = payerId;
+    data['walletId'] = walletId;
+    data['members'] = members.map((e)=>e.toJson()).toList();
+    return data;
+  }
+}
+
+class Members {
+  Members({
+    required this.id,
+  });
+  late final String id;
+  
+  Members.fromJson(Map<String, dynamic> json){
+    id = json['id'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    return data;
+  }
+}
+>>>>>>> Stashed changes

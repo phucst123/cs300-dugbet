@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import '../../consts/color/colors.dart';
 
 class LogoutDialog extends StatelessWidget {
-  LogoutDialog({super.key});
+  const LogoutDialog({super.key});
 
   @override
   Widget build(BuildContext context) {

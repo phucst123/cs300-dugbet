@@ -23,6 +23,7 @@ class UserModel {
   }
 
   Map<String, dynamic> toJson() {
+<<<<<<< Updated upstream
     final _data = <String, dynamic>{};
     _data['userId'] = userId;
     _data['username'] = username;
@@ -30,6 +31,16 @@ class UserModel {
     _data['transactions'] = transactions.map((e)=>e.toJson()).toList();
     _data['wallets'] = wallets.map((e)=>e.toJson()).toList();
     return _data;
+=======
+    final data = <String, dynamic>{};
+    data['userId'] = userId;
+    data['username'] = username;
+    data['password'] = password;
+    data['settings'] = settings.map((e)=>e.toJson()).toList();
+    data['transactions'] = transactions.map((e)=>e.toJson()).toList();
+    data['wallets'] = wallets.map((e)=>e.toJson()).toList();
+    return data;
+>>>>>>> Stashed changes
   }
 }
 
@@ -77,19 +88,56 @@ class Settings {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['section'] = section;
-    _data['email'] = email;
-    _data['name'] = name;
-    _data['dob'] = dob;
-    _data['gender'] = gender;
-    _data['pushNotification'] = pushNotification;
-    _data['inAppNotification'] = inAppNotification;
-    _data['sound'] = sound;
-    _data['vibrate'] = vibrate;
-    _data['eventReminder'] = eventReminder;
-    _data['targetReminder'] = targetReminder;
-    _data['enablePin'] = enablePin;
-    return _data;
+    final data = <String, dynamic>{};
+    data['section'] = section;
+    data['email'] = email;
+    data['name'] = name;
+    data['dob'] = dob;
+    data['gender'] = gender;
+    data['pushNotification'] = pushNotification;
+    data['inAppNotification'] = inAppNotification;
+    data['sound'] = sound;
+    data['vibrate'] = vibrate;
+    data['eventReminder'] = eventReminder;
+    data['targetReminder'] = targetReminder;
+    data['enablePin'] = enablePin;
+    return data;
   }
 }
+<<<<<<< Updated upstream
+=======
+
+class Transactions {
+  Transactions({
+    required this.id,
+  });
+  late final String id;
+  
+  Transactions.fromJson(Map<String, dynamic> json){
+    id = json['id'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    return data;
+  }
+}
+
+class Wallets {
+  Wallets({
+    required this.id,
+  });
+  late final String id;
+  
+  Wallets.fromJson(Map<String, dynamic> json){
+    id = json['id'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    return data;
+  }
+}
+>>>>>>> Stashed changes

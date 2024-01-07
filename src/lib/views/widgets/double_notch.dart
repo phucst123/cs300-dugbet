@@ -1,12 +1,8 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/views/pages/category/choose_category_page.dart';
 import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
-import 'package:dugbet/views/widgets/stat.dart';
-import 'package:dugbet/views/widgets/stat_one.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 
 import '../../consts/color/colors.dart';
 import '../../consts/color/theme.dart';
@@ -149,7 +145,7 @@ class DoubleNotch extends StatelessWidget {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             12)),
-                                                child: Icon(
+                                                child: const Icon(
                                                     Icons
                                                         .arrow_downward_outlined,
                                                     color: Colors.white)),
@@ -171,17 +167,17 @@ class DoubleNotch extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                           backgroundColor: ColorPalette.incomeText),
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 2),
+                        padding: const EdgeInsets.symmetric(horizontal: 2),
                         child: Text(
                             controller.isIncome.value ? 'Income' : 'Expense',
-                            style: TextStyle(color: ColorPalette.white)),
+                            style: const TextStyle(color: ColorPalette.white)),
                       ),
                     )),
                 Positioned(
                     top: 119,
                     child: InkWell(
                       onTap: () {
-                        Get.dialog(ChooseCategoryPage());
+                        Get.dialog(const ChooseCategoryPage());
                       },
                       child: Container(
                           height: 72,
@@ -263,10 +259,10 @@ class DoubleNotch extends StatelessWidget {
                       ),
                       child: Padding(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                            const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                         child: Text(
                           controller.isEdit.value ? " Edit " : " Scan ",
-                          style: TextStyle(color: ColorPalette.white),
+                          style: const TextStyle(color: ColorPalette.white),
                         ),
                       ),
                     )),

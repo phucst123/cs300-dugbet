@@ -10,7 +10,7 @@ class MemberList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      minimum: EdgeInsets.symmetric(horizontal: 20,vertical: 50),
+      minimum: const EdgeInsets.symmetric(horizontal: 20,vertical: 50),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Center(

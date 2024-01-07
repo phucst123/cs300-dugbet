@@ -3,7 +3,6 @@ import 'package:dugbet/consts/color/colors.dart';
 import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_template.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 
 const maxDescription = 16;
 const maxTitle = 14;

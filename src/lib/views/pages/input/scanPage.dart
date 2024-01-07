@@ -4,9 +4,7 @@ import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/color/colors.dart';
 import 'package:dugbet/consts/color/theme.dart';
 import 'package:dugbet/views/pages/input/scanController.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../consts/fonts/text_theme_builder.dart';
@@ -30,7 +28,7 @@ class Scanning extends StatelessWidget {
                 color: ColorPalette.black.withOpacity(0.4),
                 spreadRadius: 5,
                 blurRadius: 7,
-                offset: Offset(0, 3), // changes position of shadow
+                offset: const Offset(0, 3), // changes position of shadow
               ),
             ],
             borderRadius: BorderRadius.circular(24),

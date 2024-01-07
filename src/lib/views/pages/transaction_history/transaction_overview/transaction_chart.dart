@@ -1,8 +1,11 @@
+import 'package:dugbet/consts/app_export.dart';
+import 'package:dugbet/consts/fonts/text_theme_builder.dart';
+import 'package:dugbet/controllers/transaction/transaction_chart_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:dugbet/consts/color/colors.dart';
 
-class TransactionChart extends StatelessWidget {
+class TransactionChart extends GetView<TransactionChartController> {
   final String title;
   final List<double> incomeData;
   final List<double> expenseData;
@@ -29,19 +32,37 @@ class TransactionChart extends StatelessWidget {
               children: <Widget>[
                 Text(
                   title,
-                  style: const TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextThemeBuilder.robotoTextTheme.titleLarge
                 ),
-                DropdownButton<String>(
-                  items: <String>['Select an option'].map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  onChanged: (_) {},
+                Obx(
+                  () {
+                    return DropdownButton<String>(
+                            value: controller.selectMode.value,
+                            underline: Container(
+                              color: Colors.grey,
+                              width: 1,
+                            ),
+                            dropdownColor: ColorPalette.white.withOpacity(0.9),
+                            items: const [
+                              DropdownMenuItem(
+                                  value: "today", child: Text("Today")),
+                              DropdownMenuItem(
+                                  value: "week", child: Text("This week")),
+                              DropdownMenuItem(
+                                  value: "month", child: Text("This month")),
+                              DropdownMenuItem(
+                                  value: "quarter", child: Text("This quarter")),
+                              DropdownMenuItem(
+                                  value: "year", child: Text("This year"))
+                            ],
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                            onChanged: (String? value) =>
+                                controller.onModeClick(value!),
+                          );
+                  }
                 ),
               ],
             ),

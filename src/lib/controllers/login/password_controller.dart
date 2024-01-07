@@ -1,7 +1,5 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/controllers/login/auth_controller.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:get/get.dart';
 
 class PasswordController extends GetxController {
   final GlobalKey<FormState> passwordFormKey = GlobalKey<FormState>();

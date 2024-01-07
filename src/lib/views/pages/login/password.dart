@@ -1,13 +1,11 @@
 import 'package:dugbet/controllers/login/password_controller.dart';
-import 'package:dugbet/views/dialogs/email_dialog.dart';
 import 'package:dugbet/views/widgets/custom_text_form_field.dart';
 import 'package:dugbet/consts/app_export.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 // ignore: must_be_immutable
 class LoginPasswordScreen extends GetView<PasswordController> {
-  LoginPasswordScreen({super.key});
+  const LoginPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

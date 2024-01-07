@@ -4,9 +4,12 @@ import 'package:dugbet/views/widgets/button/custom_icon_button.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeHeaderBar extends StatelessWidget implements PreferredSizeWidget {
-  HomeHeaderBar({super.key, this.username});
+  HomeHeaderBar({super.key, this.onTap, required this.leftWidget});
 
-  final String? username;
+  Function()? onTap;
+
+  // final String nameUser = "Lune";
+  final Widget leftWidget;
 
   @override
   Size get preferredSize => const Size.fromHeight(100);
@@ -15,7 +18,7 @@ class HomeHeaderBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: ColorPalette.tearButton,
+        color: ColorPalette.header,
         border: Border.all(
           color: appTheme.whiteA700,
           width: 1.h,
@@ -29,12 +32,8 @@ class HomeHeaderBar extends StatelessWidget implements PreferredSizeWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CustomIconButton(
-              child: Text(
-                'Hello, ${username ?? "friend"}',
-                style: context.textTheme.bodyLarge!
-                    .merge(const TextStyle(color: ColorPalette.white)),
-              ),
-              callback: () {},
+              callback: onTap?.call() ?? () {},
+              child: leftWidget,
             ),
             Row(
               children: [
@@ -54,7 +53,7 @@ class HomeHeaderBar extends StatelessWidget implements PreferredSizeWidget {
                       colorFilter: const ColorFilter.mode(
                           ColorPalette.white, BlendMode.srcIn),
                     ),
-                    callback: () {}),
+                    callback: () => Get.toNamed(AppPage.notificationPage)),
               ],
             )
           ]),

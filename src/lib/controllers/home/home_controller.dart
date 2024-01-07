@@ -10,4 +10,14 @@ class HomeController extends GetxController {
     super.onInit();
     user.value = Get.find<AuthController>().getUser();
   }
+
+  RxString selectMode = "month".obs;
+
+  void onModeClick(String newMode) {
+    selectMode(newMode);
+    update();
+  }
+
+  @override
+  void onClose() {}
 }

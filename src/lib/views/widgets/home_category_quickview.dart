@@ -1,15 +1,9 @@
 import 'package:dugbet/consts/color/colors.dart';
-import 'package:flutter/material.dart';
-import 'dart:async';
+import 'package:dugbet/consts/fonts/text_theme_builder.dart';
 import 'dart:math';
 
-import 'package:dugbet/consts/color/colors.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_history_page.dart';
-import 'package:dugbet/views/pages/transaction_history/transaction_list/transaction_list.dart';
-import 'package:dugbet/views/pages/transaction_history/transaction_list/transaction_item.dart';
 
-import 'package:dugbet/views/pages/transaction_history/transaction_list/transaction_item_list.dart';
-import 'package:dugbet/views/pages/transaction_history/transaction_list/transaction_item_summary.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_template.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:dugbet/consts/app_export.dart';
@@ -36,13 +30,16 @@ class _PieQuickViewState extends State<PieQuickView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 10,
-      height: 10,
-      child: Transform.rotate(
-        angle: 0,
-        child: CustomPaint(
-          painter: SchedulePainter(),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: SizedBox(
+        width: 10,
+        height: 10,
+        child: Transform.rotate(
+          angle: 0,
+          child: CustomPaint(
+            painter: SchedulePainter(),
+          ),
         ),
       ),
     );
@@ -114,7 +111,7 @@ class SchedulePainter extends CustomPainter {
     canvas.drawCircle(center, radius - 10, backgroudBrush);
     for (double i = 0; i < 12; i += 1) {
       var paintcolor = Paint()
-        ..color = categoryColors[((i / 4).toInt())]
+        ..color = categoryColors[(i ~/ 4)]
         ..strokeWidth = 4
         ..style = PaintingStyle.fill
         ..strokeCap = StrokeCap.round;
@@ -168,21 +165,20 @@ class SchedulePainter extends CustomPainter {
         textAlign: TextAlign.center);
     textPainter.layout();
     // Draw the text centered around the point (50, 100) for instance
-    final offset = Offset(centerX - 25, centerY - 30);
+    final offset = Offset(centerX - 25, centerY - 20);
     textPainter.paint(canvas, offset);
     final textPainterbalance = TextPainter(
-        text: const TextSpan(
-          text: '100.000\$',
-          style: TextStyle(
+        text: TextSpan(
+          text: '100.000',
+          style: TextThemeBuilder.robotoTextTheme.titleLarge!.copyWith(
             color: Colors.black,
-            fontSize: 23,
           ),
         ),
         textDirection: TextDirection.ltr,
         textAlign: TextAlign.center);
     textPainterbalance.layout();
     // Draw the text centered around the point (50, 100) for instance
-    textPainterbalance.paint(canvas, Offset(centerX - 50, centerY - 12));
+    textPainterbalance.paint(canvas, Offset(centerX - 50, centerY - 3));
   }
 
   @override
@@ -210,27 +206,20 @@ class _TransactionQuickViewState extends State<TransactionQuickView> {
 
   @override
   Widget build(BuildContext context) {
-    final List<TransactionTemplate> transaction_list = groupTransactions()[0];
+    final List<TransactionTemplate> transactionList = groupTransactions()[0];
     // get top 3 transaction
-    while (transaction_list.length > 5) {
-      transaction_list.removeLast();
+    while (transactionList.length > 4) {
+      transactionList.removeLast();
     }
     return Container(
       padding: const EdgeInsets.only(
-          left: 16.0, right: 16.0, top: 20.0, bottom: 0.0),
-      decoration: BoxDecoration(
-          color: ColorPalette.white.withOpacity(0.3),
-          borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-          border: Border.all(color: ColorPalette.white, width: 1)),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-         crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          QVTransactionItemList(transaction_list: transaction_list),
-          
-        ],
-      ),
+          left: 16.0, right: 16.0, top: 20.0, bottom: 16.0),
+      child: QVTransactionItemList(transaction_list: transactionList)
+      //   ],
+      // child: ListView(
+        
+      // )
+      // ),
     );
   }
 
@@ -257,8 +246,8 @@ class _TransactionQuickViewState extends State<TransactionQuickView> {
   }
 }
 
-const maxDescription = 16;
-const maxTitle = 14;
+const maxDescription = 8;
+const maxTitle = 8;
 
 class QVTransactionItemList extends StatelessWidget {
   const QVTransactionItemList({super.key, required this.transaction_list});
@@ -287,9 +276,9 @@ class QVTransactionItemList extends StatelessWidget {
                           border: Border.all(
                               color: ColorPalette.black, width: 1.0.v),
                         ),
-                        height: 15.v,
-                        width: 15.v,
-                        child: Icon(transaction.icon)),
+                        height: 36.v,
+                        width: 36.v,
+                        child: Icon(transaction.icon, size: 20.v)),
                     const SizedBox(width: 10.0),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -298,7 +287,7 @@ class QVTransactionItemList extends StatelessWidget {
                             transaction.title.length > maxTitle
                                 ? '${transaction.title.substring(0, maxTitle)}...'
                                 : transaction.title,
-                            style: theme.textTheme.bodySmall),
+                            style: theme.textTheme.labelMedium),
                         Text(
                             transaction.description.length > maxDescription
                                 ? '${transaction.description.substring(0, maxDescription)}...'
@@ -313,10 +302,11 @@ class QVTransactionItemList extends StatelessWidget {
                   children: [
                     Text(
                       transaction.amount.toString(),
-                      style: theme.textTheme.bodySmall ?.copyWith(
+                      style: theme.textTheme.bodyMedium ?.copyWith(
                           color: transaction.type == 1
                               ? ColorPalette.incomeText
-                              : ColorPalette.expenseText),
+                              : ColorPalette.expenseText,
+                              fontWeight: FontWeight.w700),
                     ),
                     SizedBox(width: 2.0.v),
                     SvgPicture.asset(
@@ -326,6 +316,7 @@ class QVTransactionItemList extends StatelessWidget {
                               ? ColorPalette.incomeText
                               : ColorPalette.expenseText,
                           BlendMode.srcIn),
+                          
                     )
                   ],
                 ),
@@ -362,11 +353,6 @@ class _StatQuickViewState extends State<StatQuickView> {
     return Container(
       padding: const EdgeInsets.only(
           left: 16.0, right: 16.0, top: 20.0, bottom: 0.0),
-      decoration: BoxDecoration(
-          color: ColorPalette.white.withOpacity(0.3),
-          borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-          border: Border.all(color: ColorPalette.white, width: 1)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         // crossAxisAlignment: CrossAxisAlignment.start,
@@ -400,10 +386,11 @@ class _StatQuickViewState extends State<StatQuickView> {
             ],
           ),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 "Income",
-                style: theme.textTheme.bodyMedium
+                style: TextThemeBuilder.robotoTextTheme.titleMedium
                     ?.copyWith(color: ColorPalette.defaultText),
               ),
               Row(
@@ -420,7 +407,7 @@ class _StatQuickViewState extends State<StatQuickView> {
                   SizedBox(width: 10.0.v),
                   Text(
                     "100.000\$",
-                    style: theme.textTheme.bodyMedium
+                    style: TextThemeBuilder.robotoTextTheme.titleMedium
                         ?.copyWith(color: ColorPalette.defaultText),
                   ),
                 ],
@@ -428,7 +415,7 @@ class _StatQuickViewState extends State<StatQuickView> {
               SizedBox(height: 10.0.v),
               Text(
                 "Expense",
-                style: theme.textTheme.bodyMedium
+                style: TextThemeBuilder.robotoTextTheme.labelLarge
                     ?.copyWith(color: ColorPalette.defaultText),
               ),
               Row(
@@ -445,7 +432,7 @@ class _StatQuickViewState extends State<StatQuickView> {
                   SizedBox(width: 10.0.v),
                   Text(
                     "200.000\$",
-                    style: theme.textTheme.bodyMedium
+                    style: TextThemeBuilder.robotoTextTheme.titleMedium
                         ?.copyWith(color: ColorPalette.defaultText),
                   ),
                 ],
@@ -460,7 +447,7 @@ class _StatQuickViewState extends State<StatQuickView> {
               SizedBox(height: 10.0.v),
               Text(
                 "Total",
-                style: theme.textTheme.bodyMedium
+                style: TextThemeBuilder.robotoTextTheme.titleMedium
                     ?.copyWith(color: ColorPalette.defaultText),
               ),
               Row(
@@ -477,7 +464,7 @@ class _StatQuickViewState extends State<StatQuickView> {
                   SizedBox(width: 10.0.v),
                   Text(
                     "-100.000\$",
-                    style: theme.textTheme.bodyMedium
+                    style: TextThemeBuilder.robotoTextTheme.titleMedium
                         ?.copyWith(color: ColorPalette.defaultText),
                   ),
                 ],

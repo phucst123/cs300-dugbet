@@ -15,11 +15,11 @@ class CategoryModel {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['userId'] = userId;
-    _data['categories'] = categories.map((e)=>e.toJson()).toList();
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['userId'] = userId;
+    data['categories'] = categories.map((e)=>e.toJson()).toList();
+    return data;
   }
 }
 
@@ -43,12 +43,12 @@ class Category {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['title'] = title;
-    _data['icon'] = icon;
-    _data['subCategories'] = subCategories.map((e)=>e.toJson()).toList();
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['icon'] = icon;
+    data['subCategories'] = subCategories.map((e)=>e.toJson()).toList();
+    return data;
   }
 }
 
@@ -69,10 +69,10 @@ class SubCategory {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['title'] = title;
-    _data['icon'] = icon;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['icon'] = icon;
+    return data;
   }
 }
