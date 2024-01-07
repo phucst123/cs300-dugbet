@@ -2,11 +2,13 @@
     "id": "200001",
     "name": "Design ITUS",
     "description": "This is an event about Design ITUS",
-    "start_date": "2023-12-12",
-    "end_date": "2023-12-15",
-    "initial_amount": 0,
+    "startDate": "2023-12-12",
+    "endDate": "2023-12-15",
+    "initialAmount": 0,
     "transactions": [
-
+        {
+            "id": "100002"
+        }
     ],
     "members": [
         {

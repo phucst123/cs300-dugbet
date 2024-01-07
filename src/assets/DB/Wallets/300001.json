@@ -1,8 +1,8 @@
 {
     "id": "300001",
-    "wallet_picture": "",
+    "walletPicture": "",
     "description": "This is my MoMo wallet.",
-    "initial_amount": 0,
+    "initialAmount": 0,
     "expense": 50,
     "income": 200,
     "name": "MoMo",
