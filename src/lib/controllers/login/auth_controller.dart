@@ -82,23 +82,20 @@ class AuthController extends GetxController {
   }
 
   void signUp(username, email, password) async {
-    if (email != null && password != null) {
+    if (email != null && password != null && username != null) {
       try {
         await _auth.createUserWithEmailAndPassword(
-            email: email, password: password);
+          email: email,
+          password: password,
+        );
 
         final user = _auth.currentUser;
 
         if (user != null) {
           // Get.snackbar("Success", "Account Created Successfully",
           //     snackPosition: SnackPosition.BOTTOM);
-          await user.updateDisplayName(username);
 
-          final documentSnapshot = await userRF.doc(user.displayName).get();
-
-          if (!documentSnapshot.exists) {
-            await saveUser(user);
-          }
+          saveUser(user, username);
 
           Get.dialog(SignUpDialog());
           Get.offAndToNamed(AppPage.loginScreen);
@@ -124,12 +121,12 @@ class AuthController extends GetxController {
     return _user.value;
   }
 
-  Future<void> saveUser(User? user) async {
+  Future<void> saveUser(User? user, String username) async {
     try {
       if (user != null) {
         await userRF.doc(user.email).set({
           "email": user.email,
-          "name": user.displayName,
+          "name": username,
         });
       }
     } catch (error) {
