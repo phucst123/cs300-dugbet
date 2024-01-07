@@ -1,0 +1,49 @@
+{
+    "id": "tcm",
+    "username": "tcm",
+    "password": "123456",
+    "settings": [
+        {
+            "id": "profile",
+            "email": "tcm@gmail.com",
+            "name": "Tu Canh Minh",
+            "dob": "2003-04-20",
+            "gender": "Male"
+        },
+        {
+            "id": "notification",
+            "push_notification": false,
+            "in_app_notification": false,
+            "sound": false,
+            "vibrate": false,
+            "event_reminder": false,
+            "target_reminder": false
+        },
+        {
+            "id": "appearance"
+        },
+        {
+            "id": "security",
+            "enable_pin": false
+        },
+        {
+            "id": "Privacy policy"
+        },
+        {
+            "id": "contact_us"
+        },
+        {
+            "id": "purchase"
+        }
+    ],
+    "transactions": [
+        {
+            "id": "100001"
+        }
+    ],
+    "wallets": [
+        {
+            "id": "300001"
+        }
+    ]
+}

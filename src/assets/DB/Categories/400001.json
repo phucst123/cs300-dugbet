@@ -1,0 +1,40 @@
+{
+    "id": "400001",
+    "user_id": "tcm",
+    "categories": [
+        {
+            "id": "food_beverages",
+            "title": "Food and Beverages",
+            "icon": "",
+            "sub_categories": [
+                {
+                    "id": "fine_dining",
+                    "title": "Fine dining",
+                    "icon": ""
+                },
+                {
+                    "id": "noodles",
+                    "title": "Noodles",
+                    "icon": ""
+                }
+            ]
+        },
+        {
+            "id": "transportation",
+            "title": "Transportation",
+            "icon": "",
+            "sub_categories": [
+                {
+                    "id": "flight_ticket",
+                    "title": "Flight ticket",
+                    "icon": ""
+                },
+                {
+                    "id": "suitcase",
+                    "title": "Suitcase",
+                    "icon": ""
+                }
+            ]
+        }
+    ]
+}
