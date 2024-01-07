@@ -56,5 +56,6 @@ class LoginController extends GetxController {
         print(e);
       }
     }
+
   }
 }
