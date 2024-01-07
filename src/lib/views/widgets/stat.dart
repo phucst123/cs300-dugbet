@@ -69,7 +69,7 @@ class Stat extends StatelessWidget {
                   child: IconButton(
                     onPressed: () {},
                     icon:
-                        Icon(Icons.arrow_upward_outlined, color: Colors.white),
+                        const Icon(Icons.arrow_upward_outlined, color: Colors.white),
                   )),
             ),
             Positioned(
@@ -96,7 +96,7 @@ class Stat extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12)),
                   child: IconButton(
                     onPressed: () {},
-                    icon: Icon(Icons.arrow_downward_outlined,
+                    icon: const Icon(Icons.arrow_downward_outlined,
                         color: Colors.white),
                   )),
             ),

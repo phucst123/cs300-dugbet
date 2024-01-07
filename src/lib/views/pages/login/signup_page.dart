@@ -1,8 +1,11 @@
 import 'package:dugbet/controllers/login/signup_controller.dart';
 import 'package:dugbet/views/widgets/custom_text_form_field.dart';
 import 'package:dugbet/consts/app_export.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+// ignore: must_be_immutable
 class LoginSignUpScreen extends GetWidget<SignupController> {
   LoginSignUpScreen({super.key});
 
@@ -13,6 +16,32 @@ class LoginSignUpScreen extends GetWidget<SignupController> {
   TextEditingController passwordController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  signUp(String email, String password) async {
+    if (email != null && password != null) {
+      UserCredential? usercredential;
+      try {
+        usercredential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(email: email, password: password)
+            .then((value) {
+          Get.snackbar("Success", "Account Created Successfully",
+              snackPosition: SnackPosition.BOTTOM);
+          Get.offAndToNamed(AppPage.loginScreen);
+        });
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          Get.snackbar("Weak Password", "The password provided is too weak.",
+              snackPosition: SnackPosition.BOTTOM);
+        } else if (e.code == 'email-already-in-use') {
+          Get.snackbar("Email Already in Use",
+              "The account already exists for that email.",
+              snackPosition: SnackPosition.BOTTOM);
+        }
+      } catch (e) {
+        print(e);
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,15 +127,15 @@ class LoginSignUpScreen extends GetWidget<SignupController> {
                           _buildLoginPassword(context),
                           SizedBox(height: 21.v),
                           InkWell(
-                            child: SizedBox(
-                              height: 18.v,
-                              child: Text(
-                                "Already have an Account",
-                                style: theme.textTheme.labelLarge,
+                              child: SizedBox(
+                                height: 18.v,
+                                child: Text(
+                                  "Already have an Account",
+                                  style: theme.textTheme.labelLarge,
+                                ),
                               ),
-                            ),
-                            onTap: () => Get.offAndToNamed(AppPage.loginLoginScreen)
-                          ),
+                              onTap: () =>
+                                  Get.offAndToNamed(AppPage.loginScreen)),
                           SizedBox(height: 2.v),
                           StringButton(
                             width: 188.h,
@@ -204,5 +233,10 @@ class LoginSignUpScreen extends GetWidget<SignupController> {
     );
   }
 
-  void onTapSignUp() {}
+  void onTapSignUp() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      signUp(emailController.text, passwordController.text);
+    }
+  }
 }

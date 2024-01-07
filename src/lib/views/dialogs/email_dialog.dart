@@ -1,8 +1,4 @@
 import 'package:dugbet/consts/app_export.dart';
-import 'package:dugbet/views/widgets/button/gradient_button.dart';
-import 'package:dugbet/views/widgets/button/normal_button.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../consts/color/colors.dart';
 
@@ -45,7 +41,7 @@ class EmailDialog extends StatelessWidget {
                 text: "Back to Sign-in",
                 buttonStyle: CustomButtonStyles.none,
                 width: 188.v,
-                callback: () => Get.offAndToNamed(AppPage.loginLoginScreen),
+                callback: () => Get.offAndToNamed(AppPage.loginScreen),
               ),
               SizedBox(height: 8.v),
               InkWell(
@@ -56,13 +52,15 @@ class EmailDialog extends StatelessWidget {
                       style: theme.textTheme.labelLarge,
                     ),
                   ),
-                  onTap: () => Get.offAndToNamed(AppPage.loginLoginScreen)),
-              GradientButton(
-                title: "Back to Sign-in",
-                callback: () {
-                  //
-                },
-              ),
+                  onTap: () => Get.offAndToNamed(AppPage.loginScreen)),
+              StringButton(
+                  text: "Back to Sign-in",
+                  callback: () {
+                    //
+                  },
+                  decoration: CustomButtonStyles.gradientTealToTealDecoration,
+                  buttonTextStyle: context.textTheme.labelLarge!
+                      .merge(const TextStyle(color: ColorPalette.white))),
               ElevatedButton(
                 child: Text(
                   "Resend the email more",

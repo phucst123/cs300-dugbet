@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class TransactionTemplate {
   final String title;
   final String description;
-  final double amount;
+  final String amount;
   final DateTime date;
   final IconData icon;
   final int type; // 0 for expense, 1 for income

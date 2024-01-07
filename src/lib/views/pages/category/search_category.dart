@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 
 class SearchCategory extends StatefulWidget {
-  const SearchCategory({Key? key}) : super(key: key);
+  const SearchCategory({super.key});
 
   @override
   _SearchCategoryState createState() => _SearchCategoryState();
@@ -33,8 +33,9 @@ class _SearchCategoryState extends State<SearchCategory> {
     } else {
       results = _allCategories
           .where((category) {
-            if (category.title.toLowerCase().contains(enteredKeyword.toLowerCase()))
+            if (category.title.toLowerCase().contains(enteredKeyword.toLowerCase())) {
               return true;
+            }
             for (var i = 0; i < category.sub_categories.length; i++) {
               if (category.sub_categories[i].item1.toLowerCase().contains(enteredKeyword.toLowerCase())) {
                 return true;
@@ -56,7 +57,7 @@ class _SearchCategoryState extends State<SearchCategory> {
     return Column(
       //mainAxisSize: MainAxisSize.min,
       children: [
-        TextField(
+        const TextField(
           decoration: InputDecoration(
             prefixIcon: Icon(Icons.search),
             hintText: 'Enter the category name',

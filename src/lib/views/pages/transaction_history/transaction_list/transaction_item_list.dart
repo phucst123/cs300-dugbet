@@ -1,6 +1,10 @@
+import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/color/colors.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_template.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+const maxDescription = 16;
+const maxTitle = 14;
 
 class TransactionItemList extends StatelessWidget {
   const TransactionItemList({super.key, required this.transaction_list});
@@ -11,36 +15,81 @@ class TransactionItemList extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        for (var transaction in transaction_list)...[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(transaction.icon),
-                  SizedBox(width: 10.0),
-                  Text(
-                    transaction.title,
-                    style: const TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.normal,
+        for (var transaction in transaction_list) ...[
+          InkWell(
+            onTap: onTapTransaction,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SvgPicture.asset(
+                      // check if the transaction is the final transaction of the day
+                      transaction_list.indexOf(transaction) ==
+                              transaction_list.length - 1
+                          ? "assets/images/dash_end.svg"
+                          : "assets/images/dash.svg",
+                      height: 48.v,
+                      colorFilter: const ColorFilter.mode(
+                          ColorPalette.grey, BlendMode.srcIn),
                     ),
-                  ),
-                ],
-              ),
-              Text(
-                transaction.amount.toString(),
-                style: TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.normal,
-                  color: transaction.type == 1 ? ColorPalette.incomeText : ColorPalette.expenseText
+                    Container(
+                        decoration: BoxDecoration(
+                          color: ColorPalette.white,
+                          borderRadius: BorderRadius.circular(18.v),
+                          border: Border.all(
+                              color: ColorPalette.black, width: 1.0.v),
+                        ),
+                        height: 36.v,
+                        width: 36.v,
+                        child: Icon(transaction.icon)),
+                    const SizedBox(width: 10.0),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                            transaction.title.length > maxTitle
+                                ? '${transaction.title.substring(0, maxTitle)}...'
+                                : transaction.title,
+                            style: theme.textTheme.bodyMedium),
+                        Text(
+                            transaction.description.length > maxDescription
+                                ? '${transaction.description.substring(0, maxDescription)}...'
+                                : transaction.description,
+                            style: theme.textTheme.bodySmall
+                                ?.copyWith(color: ColorPalette.grey)),
+                      ],
+                    ),
+                  ],
                 ),
-              ),
-            ],
+                Row(
+                  children: [
+                    Text(
+                      transaction.amount.toString(),
+                      style: theme.textTheme.headlineLarge?.copyWith(
+                          color: transaction.type == 1
+                              ? ColorPalette.incomeText
+                              : ColorPalette.expenseText),
+                    ),
+                    SizedBox(width: 2.0.v),
+                    SvgPicture.asset(
+                      "assets/images/dIcon.svg",
+                      colorFilter: ColorFilter.mode(
+                          transaction.type == 1
+                              ? ColorPalette.incomeText
+                              : ColorPalette.expenseText,
+                          BlendMode.srcIn),
+                    )
+                  ],
+                ),
+              ],
+            ),
           )
         ]
       ],
     );
   }
+
+  onTapTransaction() => Get.toNamed(AppPage.transactionPage);
 }

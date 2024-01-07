@@ -1,12 +1,15 @@
-import 'package:dugbet/consts/color/theme.dart';
+import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/fonts/text_theme_builder.dart';
+import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
 import 'package:dugbet/views/widgets/double_notch.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:intl/intl.dart';
 
 class TransactionPage extends StatelessWidget {
-  const TransactionPage({super.key});
+  TransactionPage({super.key});
+
+  final controller = Get.put<TransactionController>(TransactionController(),
+      tag: "new_transaction");
 
   @override
   Widget build(BuildContext context) {
@@ -16,22 +19,22 @@ class TransactionPage extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(
-            child: Column(
+            child: Obx(() => Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const DoubleNotch(),
+                DoubleNotch(),
                 const SizedBox(
                   height: 20,
                 ),
                 Container(
                   height: 80,
-                  width: MediaQuery.of(context).size.width,
+                  width: 360,
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey, width: 1),
                       borderRadius: BorderRadius.circular(20)),
                   child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 8.0, horizontal: 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -44,14 +47,29 @@ class TransactionPage extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Text("20:30",
-                                style:
-                                    TextThemeBuilder.robotoTextTheme.titleMedium),
+                            InkWell(
+                              child: Text(
+                                  "${controller.selectedTime.value.hour}:${controller.selectedTime.value.minute}",
+                                  style: TextThemeBuilder
+                                      .robotoTextTheme.titleMedium),
+                              onTap: () {
+                                controller.chooseTime();
+                              },
+                            ),
                             const SizedBox(
                               width: 20,
                             ),
-                            Text("09:Oct:2023",
-                                style: TextThemeBuilder.robotoTextTheme.titleMedium)
+                            InkWell(
+                              child: Text(
+                                  DateFormat("dd:MMM:yyyy")
+                                      .format(controller.selectedDate.value)
+                                      .toString(),
+                                  style: TextThemeBuilder
+                                      .robotoTextTheme.titleMedium),
+                              onTap: () {
+                                controller.chooseDate();
+                              },
+                            )
                           ],
                         )
                       ],
@@ -63,13 +81,13 @@ class TransactionPage extends StatelessWidget {
                 ),
                 Container(
                   height: 80,
-                  width: MediaQuery.of(context).size.width,
+                  width: 360,
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey, width: 1),
                       borderRadius: BorderRadius.circular(20)),
                   child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 8.0, horizontal: 20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -78,19 +96,23 @@ class TransactionPage extends StatelessWidget {
                           children: [
                             Text(
                               "Wallet",
-                              style: TextThemeBuilder.robotoTextTheme.headlineLarge,
+                              style: TextThemeBuilder
+                                  .robotoTextTheme.headlineLarge,
                             ),
                             const SizedBox(
                               height: 15,
                             ),
                             Text(
-                              "Momo",
-                              style: TextThemeBuilder.robotoTextTheme.titleMedium,
+                              controller.selectedWallet.value,
+                              style:
+                              TextThemeBuilder.robotoTextTheme.titleMedium,
                             ),
                           ],
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            controller.chooseWallet();
+                          },
                           child: ClipOval(
                             child: Center(
                               child: SvgPicture.asset("assets/images/momo.svg"),
@@ -111,48 +133,64 @@ class TransactionPage extends StatelessWidget {
                       border: Border.all(color: Colors.grey, width: 1),
                       borderRadius: BorderRadius.circular(10)),
                   child: Padding(
-                    padding:
-                    const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(
                       children: [
-                        Text("Show more details",style: TextThemeBuilder.robotoTextTheme.labelLarge,),
+                        Text(
+                          "Show more details",
+                          style: TextThemeBuilder.robotoTextTheme.labelLarge,
+                        ),
                         const Spacer(),
-                        IconButton(onPressed: (){}, icon: const Icon(Icons.keyboard_arrow_down))
+                        IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.keyboard_arrow_down))
                       ],
                     ),
                   ),
                 ),
-                const SizedBox(height: 50,),
+                const SizedBox(
+                  height: 50,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      height: 44,
-                      width: 140,
-                      decoration: BoxDecoration(
-                        color: LightTheme.buttonColor,
-                        borderRadius: BorderRadius.circular(25)
-                      ),
-      
-                      child: Center(child: Text("Cancel",style: TextThemeBuilder.robotoTextTheme.headlineLarge,)),
+                    StringButton(
+                      text: "Cancel".tr,
+                      callback: onTapCancel,
+                      buttonStyle: CustomButtonStyles.none,
+                      decoration:
+                      CustomButtonStyles.gradientTealToTealDecoration,
+                      width: 140.h,
                     ),
-                    Container(
-                      height: 44,
-                      width: 140,
-                      decoration: BoxDecoration(
-                          color: LightTheme.primaryColor,
-                          borderRadius: BorderRadius.circular(25)
-                      ),
-      
-                      child: Center(child: Text("Save",style: TextThemeBuilder.robotoTextTheme.headlineLarge,)),
-                    )
+                    StringButton(
+                      text: "Save".tr,
+                      callback: onTapSave,
+                      buttonStyle: CustomButtonStyles.none,
+                      decoration:
+                      CustomButtonStyles.gradientTealToTealDecoration,
+                      width: 140.h,
+                    ),
+                    // Container(
+                    //   height: 44,
+                    //   width: 140,
+                    //   decoration: BoxDecoration(
+                    //       color: LightTheme.primaryColor,
+                    //       borderRadius: BorderRadius.circular(25)
+                    //   ),
+
+                    //   child: Center(child: Text("Save",style: TextThemeBuilder.robotoTextTheme.headlineLarge,)),
+                    // )
                   ],
                 )
               ],
-            ),
+            )),
           ),
         ),
       ),
     );
   }
+
+  onTapCancel() => Get.back();
+
+  onTapSave() => Get.back();
 }

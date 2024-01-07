@@ -40,7 +40,7 @@ class NotificationPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: SingleChildScrollView(
-          physics: ScrollPhysics(),
+          physics: const ScrollPhysics(),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,12 +54,12 @@ class NotificationPage extends StatelessWidget {
                   height: 40,
                 ),
                 ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: 20,
                     itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
+                      return const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 16),
                         child: NotificationCard(
                             title: "Budget Target",
                             description: "You reached your target"),

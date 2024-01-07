@@ -72,15 +72,39 @@ class TextThemes {
           fontFamily: 'Roboto',
           fontWeight: FontWeight.w400,
         ),
+        bodyMedium: TextStyle(
+          color: appTheme.blueGray900,
+          fontSize: 16.fSize,
+          fontFamily: 'Roboto',
+          fontWeight: FontWeight.w400,
+        ),
         bodySmall: TextStyle(
           color: appTheme.blueGray900,
           fontSize: 12.fSize,
           fontFamily: 'Roboto',
           fontWeight: FontWeight.w400,
         ),
+        displayMedium: TextStyle(
+          color: appTheme.blueGray900,
+          fontSize: 40.fSize,
+          fontFamily: 'Roboto',
+          fontWeight: FontWeight.w700,
+        ),
         displaySmall: TextStyle(
           color: appTheme.blueGray900,
           fontSize: 36.fSize,
+          fontFamily: 'Roboto',
+          fontWeight: FontWeight.w700,
+        ),
+        headlineLarge: TextStyle(
+          color: appTheme.blueGray900,
+          fontSize: 20.fSize,
+          fontFamily: 'Roboto',
+          fontWeight: FontWeight.w700,
+        ),
+        headlineMedium: TextStyle(
+          color: appTheme.blueGray900,
+          fontSize: 16.fSize,
           fontFamily: 'Roboto',
           fontWeight: FontWeight.w700,
         ),
@@ -100,7 +124,7 @@ class TextThemes {
           color: appTheme.blueGray900,
           fontSize: 20.fSize,
           fontFamily: 'Roboto',
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w500,
         ),
         titleMedium: TextStyle(
           color: appTheme.whiteA700,

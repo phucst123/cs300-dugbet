@@ -1,4 +1,3 @@
-
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/controllers/login/open_controller.dart';
 
@@ -84,6 +83,6 @@ class LoginOpenScreen extends GetWidget<LoginOpenController> {
 
   /// Navigates to the loginLoginScreen when the action is triggered.
   onTapLogin() => Get.offAndToNamed(
-        AppPage.loginLoginScreen,
+        AppPage.loginScreen,
       );
 }

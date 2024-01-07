@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NotificationCard extends StatelessWidget {
-  NotificationCard({
+  const NotificationCard({
     super.key,
     required this.title,
     required this.description,
