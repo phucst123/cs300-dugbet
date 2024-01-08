@@ -3,6 +3,7 @@ import 'package:dugbet/controllers/login/auth_controller.dart';
 import 'package:dugbet/models/WalletModel.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_template.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomeController extends GetxController {
   Rxn<User?> user = Rxn();
@@ -20,6 +21,9 @@ class HomeController extends GetxController {
   }
 
   List<WalletModel> getWalletList() {
+    print("Hello how are you");
+    
+
     return [
       // WalletModel(id: '01', walletPicture: walletPicture, description: description, initialAmount: initialAmount, expense: expense, income: income, name: name, type: type, transactions: transactions)
     ];

@@ -8,11 +8,13 @@ import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/views/widgets/button/scan_button.dart';
 import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
 
+import '../../../controllers/wallet/wallet_controller.dart';
 class WalletPage extends StatelessWidget {
   const WalletPage({super.key, this.showNav = false});
   final bool showNav;
   @override
   Widget build(BuildContext context) {
+
     List<Widget> pageWidgets = [
       Padding(
         padding: const EdgeInsets.only(top: 12.0, bottom: 20.0, left: 16.0),
@@ -21,7 +23,7 @@ class WalletPage extends StatelessWidget {
           style: TextThemeBuilder.robotoTextTheme.titleLarge,
         ),
       ),
-      const WalletList(),
+      WalletList(),
       InkWell(
         onTap: () {},
         child: Container(

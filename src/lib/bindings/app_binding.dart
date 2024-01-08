@@ -5,6 +5,7 @@ import 'package:dugbet/controllers/login/password_controller.dart';
 import 'package:dugbet/controllers/login/signup_controller.dart';
 import 'package:dugbet/controllers/splash/loading_controller.dart';
 import 'package:dugbet/controllers/transaction/transaction_chart_controller.dart';
+import 'package:dugbet/controllers/wallet/wallet_controller.dart';
 import 'package:dugbet/controllers/wrapper/wrapper_controller.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_history_controller.dart';
 import 'package:get/get.dart';
@@ -13,6 +14,9 @@ class AppBinding extends Bindings {
   @override
   void dependencies() {
     Get.put(AuthController(), permanent: true);
+    Get.lazyPut(() => WalletController());
+    //Get.put<WalletController>(WalletController());
+    Get.lazyPut(() => HomeController());
     Get.lazyPut(() => LoadingController());
     Get.lazyPut<TransactionHistoryController>(
         () => TransactionHistoryController(),
