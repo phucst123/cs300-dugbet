@@ -18,47 +18,49 @@ class WalletPersonal extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: ColorPalette.secondaryGradient
           ),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: ColorPalette.white, width: 2),
-                          color: ColorPalette.primaryColor),
-                      child: Center(
-                        child: IconButton(
-                            onPressed: () {
-                              Get.back();
-                            },
-                            icon: const Icon(Icons.arrow_back,
-                                color: ColorPalette.white)),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: ColorPalette.white, width: 2),
+                            color: ColorPalette.primaryColor),
+                        child: Center(
+                          child: IconButton(
+                              onPressed: () {
+                                Get.back();
+                              },
+                              icon: const Icon(Icons.arrow_back,
+                                  color: ColorPalette.white)),
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 10,),
-                    Text(
-                      "Momo",
-                      style: TextThemeBuilder.robotoTextTheme.titleLarge,
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Icon(Icons.draw_outlined)
-                  ],
+                      SizedBox(width: 10,),
+                      Text(
+                        "Momo",
+                        style: TextThemeBuilder.robotoTextTheme.titleLarge,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const Icon(Icons.draw_outlined)
+                    ],
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: const GroupBalance(),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Expanded(child: const BottomSheetTransaction())
-            ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: const GroupBalance(),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                const BottomSheetTransaction()
+              ],
+            ),
           ),
         ),
       ),

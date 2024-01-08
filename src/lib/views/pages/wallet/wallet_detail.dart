@@ -1,5 +1,6 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/views/widgets/double_notch.dart';
+import 'package:dugbet/views/widgets/double_notch_custom.dart';
 import '../../../consts/fonts/text_theme_builder.dart';
 import '../../widgets/wallet_header.dart';
 
@@ -9,6 +10,7 @@ class WalletDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
@@ -25,7 +27,7 @@ class WalletDetail extends StatelessWidget {
                 const SizedBox(
                   width: 10,
                 ),
-                DoubleNotch(),
+                DoubleNotchCustom(),
                 const SizedBox(
                   height: 30,
                 ),

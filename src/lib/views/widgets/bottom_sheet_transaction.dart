@@ -32,6 +32,7 @@ class BottomSheetTransaction extends StatelessWidget {
             ),
             const SizedBox(height: 14.0),
             TransactionList(transaction_list: transaction_list),
+            const SizedBox(height: 200.0),
           ],
         ));
   }
