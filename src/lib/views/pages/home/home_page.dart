@@ -1,27 +1,41 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:dugbet/views/widgets/header_bar.dart';
-import 'package:dugbet/views/widgets/wallet.dart';
-import 'package:dugbet/views/widgets/button/scan_button.dart';
+import 'package:dugbet/consts/color/colors.dart';
+import 'package:dugbet/controllers/home/home_controller.dart';
+import 'package:dugbet/views/widgets/home_header_bar.dart';
 import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
 import 'package:dugbet/views/widgets/home_category_quickview.dart';
 import 'package:dugbet/consts/app_export.dart';
-import 'package:dugbet/consts/color/colors.dart';
+import 'package:dugbet/views/widgets/wallet.dart';
 
 // ignore: must_be_immutable
-class HomePage extends StatelessWidget {
-  HomePage({super.key});
-
-  String selectMode = "month";
+class HomePage extends GetView<HomeController> {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> quickViewList = [
+      // const PieQuickView(),
+      Obx(() => StatQuickView(
+            incomeData: controller.income.value,
+            expenseData: controller.expense.value,
+          )),
+      TransactionQuickView(
+        transactionList: controller.transactionlist,
+      ),
+    ];
+
     return SafeArea(
       child: Scaffold(
         // backgroundColor: ColorPalette.expenseText,
-        appBar: const HeaderBar(),
+        appBar: HomeHeaderBar(
+          leftWidget: Text(
+            'Hello ${controller.user.value!.displayName}',
+            style: context.textTheme.bodyLarge!
+                .merge(const TextStyle(color: ColorPalette.white)),
+          ),
+        ),
         body: Container(
-          decoration:
-              const BoxDecoration(color: ColorPalette.tearButton),
+          decoration: const BoxDecoration(color: ColorPalette.tearButton),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -29,92 +43,68 @@ class HomePage extends StatelessWidget {
                 child: DropdownButtonHideUnderline(
                   child: Padding(
                     padding: const EdgeInsets.all(0.0),
-                    child: DropdownButton<String>(
-                      value: selectMode,
-                      underline: Container(
-                        color: Colors.grey,
-                        width: 1,
+                    child: Obx(
+                      () => DropdownButton<String>(
+                        value: controller.selectMode.value,
+                        underline: Container(
+                          color: Colors.grey,
+                          width: 1,
+                        ),
+                        dropdownColor: ColorPalette.white.withOpacity(0.9),
+                        items: const [
+                          DropdownMenuItem(
+                              value: "today", child: Text("Today")),
+                          DropdownMenuItem(
+                              value: "week", child: Text("This week")),
+                          DropdownMenuItem(
+                              value: "month", child: Text("This month")),
+                          DropdownMenuItem(
+                              value: "quarter", child: Text("This quarter")),
+                          DropdownMenuItem(
+                              value: "year", child: Text("This year"))
+                        ],
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
+                        onChanged: (String? value) =>
+                            controller.onModeClick(value!),
                       ),
-                      dropdownColor: ColorPalette.white.withOpacity(0.9),
-                      items: const [
-                        DropdownMenuItem(value: "today", child: Text("Today")),
-                        DropdownMenuItem(
-                            value: "week", child: Text("This week")),
-                        DropdownMenuItem(
-                            value: "month", child: Text("This month")),
-                        DropdownMenuItem(
-                            value: "quarter", child: Text("This quarter")),
-                        DropdownMenuItem(
-                            value: "year", child: Text("This year"))
-                      ],
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16),
-                      onChanged: (String? value) {},
                     ),
                   ),
                 ),
               ),
               Center(
-                child: Swiper(
-                  viewportFraction: 0.9,
-                  scale: 0.75,
-                  itemCount: 5,
-                  duration: 1000,
-                  loop: true,
-                  itemHeight: 250,
-                  itemWidth: 270,
-                  layout: SwiperLayout.TINDER,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) =>
-                    index == 0
-                      ? Container(
-                        //color: Colors.white,
-                        // add border radius
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: Colors.black, width: 1),
-                          color: Colors.white,
-                          // add box border black corner
-
-
-                        ),
-                        child:  PieQuickView(),
-                      )
-                    : index == 1
-                      ? Container(
-                        //color: Colors.white,
-                        // add border radius
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: Colors.black, width: 1),
-                          color: Colors.white,
-                          // add box border black corner
-
-
-                        ),
-                        child:   StatQuickView(),
-                      )
-                    : Container(
-                        //color: Colors.white,
-                        // add border radius
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: Colors.black, width: 1),
-                          color: Colors.white,
-                          // add box border black corner
-
-
-                        ),
-                        child:  TransactionQuickView(),
-                      )
+                child: Expanded(
+                  child: Swiper(
+                    viewportFraction: 0.9,
+                    scale: 0.75,
+                    itemCount: quickViewList.length,
+                    duration: 1000,
+                    loop: true,
+                    itemHeight: 250,
+                    itemWidth: 270,
+                    layout: SwiperLayout.TINDER,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => Container(
+                      //color: Colors.white,
+                      // add border radius
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: Colors.black, width: 1),
+                        color: Colors.white,
+                        // add box border black corner
+                      ),
+                      child: quickViewList[index],
+                    ),
+                  ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () => Get.toNamed(AppPage.transactionHistoryPage,
+                      arguments: BottomBarEnum.Stat),
                   child: Container(
                     height: 44,
                     width: 130,
@@ -132,7 +122,10 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              const Expanded(child: Wallet())
+              Expanded(
+                  child: Wallet(
+                walletList: controller.wallet,
+              ))
             ],
           ),
         ),

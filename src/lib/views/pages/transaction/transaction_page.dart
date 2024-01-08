@@ -4,7 +4,6 @@ import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
 import 'package:dugbet/views/widgets/double_notch.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
-import 'package:get/get.dart';
 
 class TransactionPage extends StatelessWidget {
   TransactionPage({super.key});

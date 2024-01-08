@@ -1,11 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dugbet/bindings/transaction/transaction_binding.dart';
 import 'package:dugbet/bindings/wrapper/wrapper_bining.dart';
+import 'package:dugbet/controllers/login/login_controller.dart';
+import 'package:dugbet/controllers/login/password_controller.dart';
+import 'package:dugbet/controllers/login/signup_controller.dart';
 import 'package:dugbet/routes/app_pages.dart';
 import 'package:dugbet/views/pages/wrapper/wrapper_page.dart';
-import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
 import 'package:dugbet/views/pages/transaction/transaction_page.dart';
 import 'package:dugbet/views/pages/category/choose_category_page.dart';
 import 'package:dugbet/views/pages/notification/notification_page.dart';
-import 'package:dugbet/views/pages/home/home_page.dart';
+// import 'package:dugbet/views/pages/home/home_page.dart';
 import 'package:dugbet/views/pages/setttings/edit_notification_page.dart';
 import 'package:dugbet/views/pages/setttings/edit_profile_page.dart';
 import 'package:dugbet/views/pages/setttings/purchase/premium_page.dart';
@@ -22,7 +26,7 @@ import 'package:dugbet/views/pages/wallet/wallet_detail.dart';
 import 'package:dugbet/views/pages/wallet/wallet_event.dart';
 import 'package:dugbet/views/pages/wallet/wallet_event_detail.dart';
 import 'package:dugbet/views/pages/wallet/wallet_new_event.dart';
-import 'package:dugbet/views/pages/wallet/wallet_new_wallet.dart';
+// import 'package:dugbet/views/pages/wallet/wallet_new_wallet.dart';
 import 'package:dugbet/views/pages/wallet/wallet_page.dart';
 import 'package:dugbet/views/pages/wallet/wallet_personal.dart';
 
@@ -35,32 +39,45 @@ class AppRoute {
   static List<GetPage> routes() => [
         GetPage(
           name: AppPage.transactionHistoryPage,
-          page: () => const TransactionHistoryPage(),
+          page: () => const TransactionHistoryPage(
+            showNav: true,
+          ),
+          binding: TransactionBinding(),
         ),
         GetPage(
           name: AppPage.splashPage,
           page: () => SplashPage(),
         ),
         GetPage(
-          name: AppPage.homePage,
-          page: () => const MainWrapper(),
-          // transition: Transition.leftToRight
-          binding: WrapperBinding()
+            name: AppPage.homePage,
+            page: () => const MainWrapper(),
+            // transition: Transition.leftToRight
+            binding: WrapperBinding()),
+        GetPage(
+          name: AppPage.loginOpenScreen,
+          page: () => const LoginOpenScreen(),
         ),
         GetPage(
-            name: AppPage.loginOpenScreen, page: () => const LoginOpenScreen()),
+            name: AppPage.loginScreen,
+            page: () => const LoginScreen(),
+            binding: BindingsBuilder(() {
+              Get.lazyPut<LoginController>(() => LoginController());
+            })),
         GetPage(
-          name: AppPage.loginScreen,
-          page: () => LoginScreen(),
-        ),
-        GetPage(
-            name: AppPage.loginSignUpScreen, page: () => LoginSignUpScreen()),
+            name: AppPage.loginSignUpScreen,
+            page: () => const LoginSignUpScreen(),
+            binding: BindingsBuilder(() {
+              Get.lazyPut<SignupController>(() => SignupController());
+            })),
         GetPage(
             name: AppPage.loginPasswordScreen,
-            page: () => LoginPasswordScreen()),
+            page: () => const LoginPasswordScreen(),
+            binding: BindingsBuilder(() {
+              Get.lazyPut<PasswordController>(() => PasswordController());
+            })),
         GetPage(
           name: AppPage.settingPage,
-          page: () => SettingPage(),
+          page: () => const SettingPage(showNav: true),
         ),
         GetPage(
           name: AppPage.editProfilePage,
@@ -96,7 +113,7 @@ class AppRoute {
         ),
         GetPage(
           name: AppPage.walletPage,
-          page: () => const WalletPage(),
+          page: () => const WalletPage(showNav: true),
         ),
         GetPage(
           name: AppPage.chooseCategoryPage,
@@ -104,27 +121,27 @@ class AppRoute {
         ),
         GetPage(
           name: AppPage.walletEvent,
-          page: () => WalletEvent(),
+          page: () => const WalletEvent(),
         ),
         GetPage(
           name: AppPage.walletPersonal,
-          page: () => WalletPersonal(),
+          page: () => const WalletPersonal(),
         ),
         GetPage(
           name: AppPage.walletDetail,
-          page: () => WalletDetail(),
+          page: () => const WalletDetail(),
         ),
         GetPage(
           name: AppPage.walletEventDetail,
-          page: () => WalletEventDetail(),
+          page: () => const WalletEventDetail(),
         ),
         GetPage(
           name: AppPage.walletNewEvent,
-          page: () => WalletNewEvent(),
+          page: () => const WalletNewEvent(),
         ),
-    GetPage(
-      name: AppPage.eventTransaction,
-      page: () => EventTransactionPage(),
-    ),
+        GetPage(
+          name: AppPage.eventTransaction,
+          page: () => EventTransactionPage(),
+        ),
       ];
 }

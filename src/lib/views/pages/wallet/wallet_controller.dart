@@ -1,6 +1,5 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/models/WalletModel.dart';
-import 'package:dugbet/views/widgets/wallet.dart';
 
 import '../../../models/EventModel.dart';
 

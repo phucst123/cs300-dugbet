@@ -1,33 +1,31 @@
+import 'package:dugbet/models/UtilityModel.dart';
+
 class UserModel {
   UserModel({
     required this.userId,
     required this.username,
-    required this.password,
     required this.settings,
     required this.transactions,
     required this.wallets,
   });
   late final String userId;
   late final String username;
-  late final String password;
   late final List<Settings> settings;
-  late final List<Transactions> transactions;
-  late final List<Wallets> wallets;
+  late final List<TransactionInfo> transactions;
+  late final List<Wallet> wallets;
 
-  UserModel.fromJson(Map<String, dynamic> json){
+  UserModel.fromJson(Map<String, dynamic> json) {
     userId = json['userId'];
     username = json['username'];
-    password = json['password'];
     settings = List.from(json['settings']).map((e)=>Settings.fromJson(e)).toList();
-    transactions = List.from(json['transactions']).map((e)=>Transactions.fromJson(e)).toList();
-    wallets = List.from(json['wallets']).map((e)=>Wallets.fromJson(e)).toList();
+    transactions = List.from(json['transactions']).map((e)=>TransactionInfo.fromJson(e)).toList();
+    wallets = List.from(json['wallets']).map((e)=>Wallet.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['userId'] = userId;
     _data['username'] = username;
-    _data['password'] = password;
     _data['settings'] = settings.map((e)=>e.toJson()).toList();
     _data['transactions'] = transactions.map((e)=>e.toJson()).toList();
     _data['wallets'] = wallets.map((e)=>e.toJson()).toList();
@@ -79,53 +77,19 @@ class Settings {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['section'] = section;
-    _data['email'] = email;
-    _data['name'] = name;
-    _data['dob'] = dob;
-    _data['gender'] = gender;
-    _data['pushNotification'] = pushNotification;
-    _data['inAppNotification'] = inAppNotification;
-    _data['sound'] = sound;
-    _data['vibrate'] = vibrate;
-    _data['eventReminder'] = eventReminder;
-    _data['targetReminder'] = targetReminder;
-    _data['enablePin'] = enablePin;
-    return _data;
-  }
-}
-
-class Transactions {
-  Transactions({
-    required this.id,
-  });
-  late final String id;
-  
-  Transactions.fromJson(Map<String, dynamic> json){
-    id = json['id'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    return _data;
-  }
-}
-
-class Wallets {
-  Wallets({
-    required this.id,
-  });
-  late final String id;
-  
-  Wallets.fromJson(Map<String, dynamic> json){
-    id = json['id'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    return _data;
+    final data = <String, dynamic>{};
+    data['section'] = section;
+    data['email'] = email;
+    data['name'] = name;
+    data['dob'] = dob;
+    data['gender'] = gender;
+    data['pushNotification'] = pushNotification;
+    data['inAppNotification'] = inAppNotification;
+    data['sound'] = sound;
+    data['vibrate'] = vibrate;
+    data['eventReminder'] = eventReminder;
+    data['targetReminder'] = targetReminder;
+    data['enablePin'] = enablePin;
+    return data;
   }
 }

@@ -1,15 +1,10 @@
 import 'package:dugbet/consts/color/colors.dart';
-import 'package:flutter/material.dart';
-import 'dart:async';
+import 'package:dugbet/consts/fonts/text_theme_builder.dart';
+import 'package:dugbet/consts/utils/function_utils.dart';
 import 'dart:math';
 
-import 'package:dugbet/consts/color/colors.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_history_page.dart';
-import 'package:dugbet/views/pages/transaction_history/transaction_list/transaction_list.dart';
-import 'package:dugbet/views/pages/transaction_history/transaction_list/transaction_item.dart';
 
-import 'package:dugbet/views/pages/transaction_history/transaction_list/transaction_item_list.dart';
-import 'package:dugbet/views/pages/transaction_history/transaction_list/transaction_item_summary.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_template.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:dugbet/consts/app_export.dart';
@@ -36,13 +31,16 @@ class _PieQuickViewState extends State<PieQuickView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 10,
-      height: 10,
-      child: Transform.rotate(
-        angle: 0,
-        child: CustomPaint(
-          painter: SchedulePainter(),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: SizedBox(
+        width: 10,
+        height: 10,
+        child: Transform.rotate(
+          angle: 0,
+          child: CustomPaint(
+            painter: SchedulePainter(),
+          ),
         ),
       ),
     );
@@ -114,7 +112,7 @@ class SchedulePainter extends CustomPainter {
     canvas.drawCircle(center, radius - 10, backgroudBrush);
     for (double i = 0; i < 12; i += 1) {
       var paintcolor = Paint()
-        ..color = categoryColors[((i / 4).toInt())]
+        ..color = categoryColors[(i ~/ 4)]
         ..strokeWidth = 4
         ..style = PaintingStyle.fill
         ..strokeCap = StrokeCap.round;
@@ -168,21 +166,20 @@ class SchedulePainter extends CustomPainter {
         textAlign: TextAlign.center);
     textPainter.layout();
     // Draw the text centered around the point (50, 100) for instance
-    final offset = Offset(centerX - 25, centerY - 30);
+    final offset = Offset(centerX - 25, centerY - 20);
     textPainter.paint(canvas, offset);
     final textPainterbalance = TextPainter(
-        text: const TextSpan(
-          text: '100.000\$',
-          style: TextStyle(
+        text: TextSpan(
+          text: '100.000',
+          style: TextThemeBuilder.robotoTextTheme.titleLarge!.copyWith(
             color: Colors.black,
-            fontSize: 23,
           ),
         ),
         textDirection: TextDirection.ltr,
         textAlign: TextAlign.center);
     textPainterbalance.layout();
     // Draw the text centered around the point (50, 100) for instance
-    textPainterbalance.paint(canvas, Offset(centerX - 50, centerY - 12));
+    textPainterbalance.paint(canvas, Offset(centerX - 50, centerY - 3));
   }
 
   @override
@@ -191,56 +188,37 @@ class SchedulePainter extends CustomPainter {
   }
 }
 
-class TransactionQuickView extends StatefulWidget {
-  const TransactionQuickView({super.key});
+class TransactionQuickView extends StatelessWidget {
+  const TransactionQuickView({super.key, required this.transactionList});
 
-  @override
-  // ignore: library_private_types_in_public_api
-  _TransactionQuickViewState createState() => _TransactionQuickViewState();
-}
-
-class _TransactionQuickViewState extends State<TransactionQuickView> {
-  @override
-  void initState() {
-    // Timer.periodic(Duration(seconds: 1), (timer) {
-    //   setState(() {});
-    // });
-    super.initState();
-  }
-
+  final List<TransactionTemplate> transactionList;
   @override
   Widget build(BuildContext context) {
-    final List<TransactionTemplate> transaction_list = groupTransactions()[0];
+    final List<TransactionTemplate> transactionList = groupTransactions()[0];
     // get top 3 transaction
-    while (transaction_list.length > 5) {
-      transaction_list.removeLast();
+    while (transactionList.length > 4) {
+      transactionList.removeLast();
     }
     return Container(
-      padding: const EdgeInsets.only(
-          left: 16.0, right: 16.0, top: 20.0, bottom: 0.0),
-      decoration: BoxDecoration(
-          color: ColorPalette.white.withOpacity(0.3),
-          borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-          border: Border.all(color: ColorPalette.white, width: 1)),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-         crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          QVTransactionItemList(transaction_list: transaction_list),
-          
-        ],
-      ),
-    );
+        padding: const EdgeInsets.only(
+            left: 16.0, right: 16.0, top: 20.0, bottom: 16.0),
+        child: QVTransactionItemList(transaction_list: transactionList)
+        //   ],
+        // child: ListView(
+
+        // )
+        // ),
+        );
   }
 
   List<List<TransactionTemplate>> groupTransactions() {
-    transaction_list.sort((a, b) => a.date.compareTo(b.date));
+    transactionList.sort((a, b) => a.date.compareTo(b.date));
+    // copy transactionList to transaction_list
     List<List<TransactionTemplate>> groupedTransactions = [];
     List<TransactionTemplate> temp = [];
-    int currentDay = transaction_list[0].date.day;
+    int currentDay = transactionList[0].date.day;
 
-    for (var transaction in transaction_list) {
+    for (var transaction in transactionList) {
       if (transaction.date.day == currentDay) {
         temp.add(transaction);
       } else {
@@ -257,8 +235,8 @@ class _TransactionQuickViewState extends State<TransactionQuickView> {
   }
 }
 
-const maxDescription = 16;
-const maxTitle = 14;
+const maxDescription = 8;
+const maxTitle = 8;
 
 class QVTransactionItemList extends StatelessWidget {
   const QVTransactionItemList({super.key, required this.transaction_list});
@@ -298,7 +276,7 @@ class QVTransactionItemList extends StatelessWidget {
                             transaction.title.length > maxTitle
                                 ? '${transaction.title.substring(0, maxTitle)}...'
                                 : transaction.title,
-                            style: theme.textTheme.bodySmall),
+                            style: theme.textTheme.labelMedium),
                         Text(
                             transaction.description.length > maxDescription
                                 ? '${transaction.description.substring(0, maxDescription)}...'
@@ -313,10 +291,11 @@ class QVTransactionItemList extends StatelessWidget {
                   children: [
                     Text(
                       transaction.amount.toString(),
-                      style: theme.textTheme.bodySmall ?.copyWith(
+                      style: theme.textTheme.bodyMedium?.copyWith(
                           color: transaction.type == 1
                               ? ColorPalette.incomeText
-                              : ColorPalette.expenseText),
+                              : ColorPalette.expenseText,
+                          fontWeight: FontWeight.w700),
                     ),
                     SizedBox(width: 2.0.v),
                     SvgPicture.asset(
@@ -340,33 +319,24 @@ class QVTransactionItemList extends StatelessWidget {
   onTapTransaction() => Get.toNamed(AppPage.transactionPage);
 }
 
-class StatQuickView extends StatefulWidget {
-  const StatQuickView({super.key});
+class StatQuickView extends StatelessWidget {
+  const StatQuickView(
+      {super.key, required this.incomeData, required this.expenseData});
 
-  @override
-  // ignore: library_private_types_in_public_api
-  _StatQuickViewState createState() => _StatQuickViewState();
-}
-
-class _StatQuickViewState extends State<StatQuickView> {
-  @override
-  void initState() {
-    // Timer.periodic(Duration(seconds: 1), (timer) {
-    //   setState(() {});
-    // });
-    super.initState();
-  }
-
+  final int incomeData;
+  final int expenseData;
   @override
   Widget build(BuildContext context) {
+    int maxData = max(incomeData, expenseData);
+    double incomeHeight = incomeData * 100 / maxData;
+    incomeHeight = incomeHeight == 0 ? 1 : incomeHeight;
+    double expenseHeight = expenseData * 100 / maxData;
+    expenseHeight = expenseHeight == 0 ? 1 : expenseHeight;
+
+
     return Container(
       padding: const EdgeInsets.only(
           left: 16.0, right: 16.0, top: 20.0, bottom: 0.0),
-      decoration: BoxDecoration(
-          color: ColorPalette.white.withOpacity(0.3),
-          borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-          border: Border.all(color: ColorPalette.white, width: 1)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         // crossAxisAlignment: CrossAxisAlignment.start,
@@ -376,7 +346,7 @@ class _StatQuickViewState extends State<StatQuickView> {
             children: [
               Container(
                 width: 30,
-                height: 130,
+                height: incomeHeight,
                 // add border bounds
 
                 decoration: BoxDecoration(
@@ -389,7 +359,7 @@ class _StatQuickViewState extends State<StatQuickView> {
               SizedBox(width: 10.0.v),
               Container(
                 width: 30,
-                height: 160,
+                height: expenseHeight,
                 decoration: BoxDecoration(
                     color: ColorPalette.expenseText,
                     borderRadius: const BorderRadius.only(
@@ -400,10 +370,11 @@ class _StatQuickViewState extends State<StatQuickView> {
             ],
           ),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 "Income",
-                style: theme.textTheme.bodyMedium
+                style: TextThemeBuilder.robotoTextTheme.titleMedium
                     ?.copyWith(color: ColorPalette.defaultText),
               ),
               Row(
@@ -414,21 +385,27 @@ class _StatQuickViewState extends State<StatQuickView> {
                     height: 10,
                     decoration: BoxDecoration(
                         color: ColorPalette.incomeText,
-                        borderRadius: const BorderRadius.all(Radius.circular(12)),
-                        border: Border.all(color: ColorPalette.incomeText, width: 1)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(12)),
+                        border: Border.all(
+                            color: ColorPalette.incomeText, width: 1)),
                   ),
                   SizedBox(width: 10.0.v),
                   Text(
-                    "100.000\$",
-                    style: theme.textTheme.bodyMedium
+                    convertToCurrency(incomeData),
+                    style: TextThemeBuilder.robotoTextTheme.titleMedium
                         ?.copyWith(color: ColorPalette.defaultText),
                   ),
+                  SvgPicture.asset("assets/images/dIcon.svg",
+                      height: 14,
+                      colorFilter: const ColorFilter.mode(
+                          ColorPalette.defaultText, BlendMode.srcIn))
                 ],
               ),
               SizedBox(height: 10.0.v),
               Text(
                 "Expense",
-                style: theme.textTheme.bodyMedium
+                style: TextThemeBuilder.robotoTextTheme.labelLarge
                     ?.copyWith(color: ColorPalette.defaultText),
               ),
               Row(
@@ -439,15 +416,21 @@ class _StatQuickViewState extends State<StatQuickView> {
                     height: 10,
                     decoration: BoxDecoration(
                         color: ColorPalette.expenseText,
-                        borderRadius: const BorderRadius.all(Radius.circular(12)),
-                        border: Border.all(color: ColorPalette.expenseText, width: 1)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(12)),
+                        border: Border.all(
+                            color: ColorPalette.expenseText, width: 1)),
                   ),
                   SizedBox(width: 10.0.v),
                   Text(
-                    "200.000\$",
-                    style: theme.textTheme.bodyMedium
+                    convertToCurrency(expenseData),
+                    style: TextThemeBuilder.robotoTextTheme.titleMedium
                         ?.copyWith(color: ColorPalette.defaultText),
                   ),
+                  SvgPicture.asset("assets/images/dIcon.svg",
+                      height: 14,
+                      colorFilter: const ColorFilter.mode(
+                          ColorPalette.defaultText, BlendMode.srcIn))
                 ],
               ),
               // add line ----- between income and expense
@@ -460,7 +443,7 @@ class _StatQuickViewState extends State<StatQuickView> {
               SizedBox(height: 10.0.v),
               Text(
                 "Total",
-                style: theme.textTheme.bodyMedium
+                style: TextThemeBuilder.robotoTextTheme.titleMedium
                     ?.copyWith(color: ColorPalette.defaultText),
               ),
               Row(
@@ -471,15 +454,21 @@ class _StatQuickViewState extends State<StatQuickView> {
                     height: 10,
                     decoration: BoxDecoration(
                         color: ColorPalette.white,
-                        borderRadius: const BorderRadius.all(Radius.circular(12)),
-                        border: Border.all(color: ColorPalette.white, width: 1)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(12)),
+                        border:
+                            Border.all(color: ColorPalette.white, width: 1)),
                   ),
                   SizedBox(width: 10.0.v),
                   Text(
-                    "-100.000\$",
-                    style: theme.textTheme.bodyMedium
+                    convertToCurrency(incomeData - expenseData),
+                    style: TextThemeBuilder.robotoTextTheme.titleMedium
                         ?.copyWith(color: ColorPalette.defaultText),
                   ),
+                  SvgPicture.asset("assets/images/dIcon.svg",
+                      height: 14,
+                      colorFilter: const ColorFilter.mode(
+                          ColorPalette.defaultText, BlendMode.srcIn))
                 ],
               ),
             ],
@@ -496,6 +485,7 @@ class BarChartSample5 extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => BarChartSample5State();
 }
+
 class BarChartSample5State extends State<BarChartSample5> {
   static const double barWidth = 22;
   static const shadowOpacity = 0.2;
@@ -562,13 +552,7 @@ class BarChartSample5State extends State<BarChartSample5> {
     );
   }
 
-
-
-  BarChartGroupData generateGroup(
-    int x,
-    double value1,
-    double value2
-  ) {
+  BarChartGroupData generateGroup(int x, double value1, double value2) {
     final isTop = value1 >= 0;
     final sum = value1 + value2;
     final isTouched = touchedIndex == x;
@@ -593,15 +577,13 @@ class BarChartSample5State extends State<BarChartSample5> {
             BarChartRodStackItem(
               0,
               value1,
-              ColorPalette.incomeText
-                  ,
+              ColorPalette.incomeText,
               const BorderSide(color: Colors.transparent),
             ),
             BarChartRodStackItem(
               value1,
               (value1 + value2),
-              ColorPalette.expenseText
-                  ,
+              ColorPalette.expenseText,
               const BorderSide(color: Colors.transparent),
             ),
           ],
@@ -626,9 +608,9 @@ class BarChartSample5State extends State<BarChartSample5> {
             minY: 0,
             groupsSpace: 12,
             // backgroundColor: ColorP,
-           
+
             // do not show tilesdata
-            
+
             titlesData: FlTitlesData(
               show: false,
               topTitles: AxisTitles(
@@ -654,30 +636,24 @@ class BarChartSample5State extends State<BarChartSample5> {
                 ),
               ),
               rightTitles: AxisTitles(
-                sideTitles: SideTitles(
-                  showTitles: false,
-                  //getTitlesWidget: rightTitles,
-                  interval: 2,
-                  reservedSize: 1,
-                ),
-                drawBehindEverything: true
-              ),
+                  sideTitles: SideTitles(
+                    showTitles: false,
+                    //getTitlesWidget: rightTitles,
+                    interval: 2,
+                    reservedSize: 1,
+                  ),
+                  drawBehindEverything: true),
             ),
             gridData: FlGridData(
               show: false,
               checkToShowHorizontalLine: (value) => value % 5 == 0,
-             
             ),
             borderData: FlBorderData(
               show: false,
             ),
             barGroups: mainItems.entries
                 .map(
-                  (e) => generateGroup(
-                    e.key,
-                    e.value[0],
-                    e.value[1]
-                  ),
+                  (e) => generateGroup(e.key, e.value[0], e.value[1]),
                 )
                 .toList(),
           ),
@@ -686,7 +662,6 @@ class BarChartSample5State extends State<BarChartSample5> {
     );
   }
 }
-
 
 class AppUtils {
   factory AppUtils() {

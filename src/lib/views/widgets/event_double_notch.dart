@@ -8,7 +8,6 @@ import 'package:dugbet/views/widgets/stat_one.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 
 import '../../consts/color/colors.dart';
 import '../../consts/color/theme.dart';
@@ -151,7 +150,7 @@ class EventDoubleNotch extends StatelessWidget {
                                                 borderRadius:
                                                 BorderRadius.circular(
                                                     12)),
-                                            child: Icon(
+                                            child: const Icon(
                                                 Icons
                                                     .arrow_downward_outlined,
                                                 color: Colors.white)),
@@ -173,10 +172,10 @@ class EventDoubleNotch extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                       backgroundColor: ColorPalette.incomeText),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 2),
+                    padding: const EdgeInsets.symmetric(horizontal: 2),
                     child: Text(
                         controller.isIncome.value ? 'Income' : 'Expense',
-                        style: TextStyle(color: ColorPalette.white)),
+                        style: const TextStyle(color: ColorPalette.white)),
                   ),
                 )),
             Positioned(
@@ -265,10 +264,10 @@ class EventDoubleNotch extends StatelessWidget {
                   ),
                   child: Padding(
                     padding:
-                    EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     child: Text(
                       controller.isEdit.value ? " Edit " : " Scan ",
-                      style: TextStyle(color: ColorPalette.white),
+                      style: const TextStyle(color: ColorPalette.white),
                     ),
                   ),
                 )),

@@ -2,10 +2,8 @@ import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/fonts/text_theme_builder.dart';
 import 'package:dugbet/views/pages/transaction/event_transaction_controller.dart';
 import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
-import 'package:dugbet/views/widgets/double_notch.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
-import 'package:get/get.dart';
 
 import '../../widgets/event_double_notch.dart';
 

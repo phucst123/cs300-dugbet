@@ -1,9 +1,6 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/views/widgets/double_notch.dart';
-import 'package:flutter/material.dart';
-import '../../../consts/custom_button_style.dart';
 import '../../../consts/fonts/text_theme_builder.dart';
-import '../../widgets/string_button.dart';
 import '../../widgets/wallet_header.dart';
 
 class WalletDetail extends StatelessWidget {

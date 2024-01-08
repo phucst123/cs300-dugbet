@@ -1,13 +1,11 @@
 import 'package:dugbet/controllers/login/signup_controller.dart';
 import 'package:dugbet/views/widgets/custom_text_form_field.dart';
 import 'package:dugbet/consts/app_export.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 // ignore: must_be_immutable
 class LoginSignUpScreen extends GetWidget<SignupController> {
-  LoginSignUpScreen({super.key});
+  const LoginSignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

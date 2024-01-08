@@ -3,7 +3,12 @@ import 'package:dugbet/consts/app_export.dart';
 import '../../consts/color/colors.dart';
 
 class EmailDialog extends StatelessWidget {
-  const EmailDialog({super.key});
+  EmailDialog({
+    super.key,
+    required this.resend,
+  });
+
+  VoidCallback resend;
 
   @override
   Widget build(BuildContext context) {
@@ -38,36 +43,35 @@ class EmailDialog extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               StringButton(
-                text: "Back to Sign-in",
-                buttonStyle: CustomButtonStyles.none,
-                width: 188.v,
-                callback: () => Get.offAndToNamed(AppPage.loginScreen),
-              ),
+                  text: "Back to Sign-in",
+                  buttonStyle: CustomButtonStyles.none,
+                  width: 188.v,
+                  callback: () {
+                    Get.back();
+                    Get.offAndToNamed(AppPage.loginScreen);
+                  }),
               SizedBox(height: 8.v),
               InkWell(
                   child: SizedBox(
                     height: 18.v,
                     child: Text(
-                      "Already have an Account",
+                      "Resend the email more",
                       style: theme.textTheme.labelLarge,
                     ),
                   ),
-                  onTap: () => Get.offAndToNamed(AppPage.loginScreen)),
-              StringButton(
-                  text: "Back to Sign-in",
-                  callback: () {
-                    //
-                  },
-                  decoration: CustomButtonStyles.gradientTealToTealDecoration,
-                  buttonTextStyle: context.textTheme.labelLarge!
-                      .merge(const TextStyle(color: ColorPalette.white))),
-              ElevatedButton(
-                child: Text(
-                  "Resend the email more",
-                  style: context.textTheme.bodySmall,
-                ),
-                onPressed: () {},
-              ),
+                  onTap: () {
+                    Get.back();
+                    resend;
+                  }),
+              // ElevatedButton(
+              //   child: Text(
+              //     "Resend the email more",
+              //     style: context.textTheme.bodySmall,
+              //   ),
+              //   onPressed: () {
+
+              //   },
+              // ),
             ],
           ),
         ),

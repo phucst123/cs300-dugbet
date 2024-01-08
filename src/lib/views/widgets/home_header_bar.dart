@@ -3,10 +3,13 @@ import 'package:dugbet/consts/color/colors.dart';
 import 'package:dugbet/views/widgets/button/custom_icon_button.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
-  const HeaderBar({super.key});
+class HomeHeaderBar extends StatelessWidget implements PreferredSizeWidget {
+  HomeHeaderBar({super.key, this.onTap, required this.leftWidget});
 
-  final String nameUser = "Lune";
+  Function()? onTap;
+
+  // final String nameUser = "Lune";
+  final Widget leftWidget;
 
   @override
   Size get preferredSize => const Size.fromHeight(100);
@@ -15,7 +18,7 @@ class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: ColorPalette.tearButton,
+        color: ColorPalette.header,
         border: Border.all(
           color: appTheme.whiteA700,
           width: 1.h,
@@ -29,20 +32,16 @@ class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CustomIconButton(
-              child: Text(
-                'Hello, Lune',
-                style: context.textTheme.bodyLarge!
-                    .merge(const TextStyle(color: ColorPalette.white)),
-              ),
-              callback: () {},
+              callback: onTap?.call() ?? () {},
+              child: leftWidget,
             ),
             Row(
               children: [
                 CustomIconButton(
                     child: SvgPicture.asset(
                       "assets/icons/refresh.svg",
-                      colorFilter:
-                          const ColorFilter.mode(ColorPalette.white, BlendMode.srcIn),
+                      colorFilter: const ColorFilter.mode(
+                          ColorPalette.white, BlendMode.srcIn),
                     ),
                     callback: () {}),
                 const SizedBox(
@@ -51,10 +50,10 @@ class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
                 CustomIconButton(
                     child: SvgPicture.asset(
                       "assets/icons/notification.svg",
-                      colorFilter:
-                          const ColorFilter.mode(ColorPalette.white, BlendMode.srcIn),
+                      colorFilter: const ColorFilter.mode(
+                          ColorPalette.white, BlendMode.srcIn),
                     ),
-                    callback: () {}),
+                    callback: () => Get.toNamed(AppPage.notificationPage)),
               ],
             )
           ]),

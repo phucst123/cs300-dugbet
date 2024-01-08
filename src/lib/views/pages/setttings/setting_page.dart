@@ -7,153 +7,353 @@ import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
 
 // ignore: must_be_immutable
 class SettingPage extends StatelessWidget {
-  SettingPage({super.key});
+  const SettingPage({super.key, this.showNav = false, this.isPremium = false});
 
-  bool isPremium = false;
+  final bool showNav;
+
+  final bool isPremium;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Container(
-            color: isPremium ? ColorPalette.expenseText : ColorPalette.white,
-            height: 260,
-            width: double.infinity,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+    if (showNav) {
+      return Scaffold(
+        // appBar: HeaderBar(
+        //   leftWidget: SvgPicture.asset(
+        //     "assets/nav_stat.svg",
+        //     colorFilter:
+        //         const ColorFilter.mode(ColorPalette.white, BlendMode.srcIn),
+        //   ),
+        // ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Container(
+              color: isPremium ? ColorPalette.expenseText : ColorPalette.white,
+              height: 260,
+              width: double.infinity,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  if (isPremium) SvgPicture.asset("assets/icons/crown.svg"),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Stack(
+                    children: [
+                      Container(
+                        width: 150,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: ColorPalette.black,
+                            width: 1.0,
+                          ),
+                        ),
+                        child: CircleAvatar(
+                          backgroundColor: ColorPalette.white,
+                          child: Padding(
+                            padding: const EdgeInsets.all(25.0),
+                            child: SvgPicture.asset("assets/user/user.svg"),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Text(
+                    "Anomyous",
+                    style: context.textTheme.titleLarge,
+                  ),
+                  Text(
+                    "youremail@email.com",
+                    style: context.textTheme.labelLarge,
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+                child: ListView(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               children: [
-                if (isPremium) SvgPicture.asset("assets/icons/crown.svg"),
-                const SizedBox(
-                  height: 5,
+                ListTile(
+                  leading: SvgPicture.asset("assets/icons/profile.svg"),
+                  trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                  title: const Text(
+                    "Edit Profile",
+                  ),
+                  titleTextStyle: context.textTheme.bodyLarge,
+                  onTap: () => Get.toNamed(AppPage.editProfilePage),
                 ),
-                Stack(
-                  children: [
-                    Container(
-                      width: 150,
-                      height: 150,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: ColorPalette.black,
-                          width: 1.0,
-                        ),
-                      ),
-                      child: CircleAvatar(
-                        backgroundColor: ColorPalette.white,
-                        child: Padding(
-                          padding: const EdgeInsets.all(25.0),
-                          child: SvgPicture.asset("assets/user/user.svg"),
-                        ),
-                      ),
-                    ),
-                  ],
+                ListTile(
+                  leading: SvgPicture.asset("assets/icons/notification.svg"),
+                  trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                  title: const Text(
+                    "Notifications",
+                  ),
+                  titleTextStyle: context.textTheme.bodyLarge,
+                  onTap: () => Get.toNamed(AppPage.editNotificationPage),
                 ),
-                Text(
-                  "Anomyous",
-                  style: context.textTheme.titleLarge,
+                ListTile(
+                  leading: SvgPicture.asset("assets/icons/appearance.svg"),
+                  trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                  title: const Text(
+                    "Appearance",
+                  ),
+                  titleTextStyle: context.textTheme.bodyLarge,
                 ),
-                Text(
-                  "youremail@email.com",
-                  style: context.textTheme.labelLarge,
+                ListTile(
+                  leading: SvgPicture.asset("assets/icons/security.svg"),
+                  trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                  title: const Text(
+                    "Security",
+                  ),
+                  titleTextStyle: context.textTheme.bodyLarge,
+                  onTap: () => Get.toNamed(AppPage.securityPage),
+                ),
+                ListTile(
+                  leading: SvgPicture.asset("assets/icons/policy.svg"),
+                  trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                  title: const Text(
+                    "Privacy Policy",
+                  ),
+                  titleTextStyle: context.textTheme.bodyLarge,
+                ),
+                ListTile(
+                  leading: SvgPicture.asset("assets/icons/help.svg"),
+                  trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                  title: const Text(
+                    "Contact Us",
+                  ),
+                  titleTextStyle: context.textTheme.bodyLarge,
+                ),
+                ListTile(
+                  leading: SvgPicture.asset("assets/icons/crown.svg"),
+                  trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                  title: const Text(
+                    "Premium",
+                  ),
+                  titleTextStyle: context.textTheme.bodyLarge,
+                  onTap: () => Get.toNamed(AppPage.purchasePage),
                 ),
               ],
+            )),
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                // child: NormalButton(
+                //     title: "Logout",
+                //     callback: () => {
+                //           showDialog(
+                //             context: context,
+                //             builder: (_) => LogoutDialog(),
+                //           )
+                //         }),
+                child: StringButton(
+                  text: "Logout",
+                  callback: () => {
+                    showDialog(
+                      context: context,
+                      builder: (_) => const LogoutDialog(),
+                    )
+                  },
+                  buttonTextStyle: CustomTextStyles.titleMediumBluegray900,
+                  buttonStyle: CustomButtonStyles.fillTear,
+                )),
+            const SizedBox(
+              height: 98,
             ),
-          ),
-          Expanded(
-              child: ListView(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            children: [
-              ListTile(
-                leading: SvgPicture.asset("assets/icons/profile.svg"),
-                trailing: SvgPicture.asset("assets/icons/arrow.svg"),
-                title: const Text(
-                  "Edit Profile",
-                ),
-                titleTextStyle: context.textTheme.bodyLarge,
-                onTap: () => Get.toNamed(AppPage.editProfilePage),
+          ],
+        ),
+        bottomNavigationBar: _buildBottomAppBar(),
+        floatingActionButton: ScanButton(
+            height: 60,
+            width: 57,
+            onTap: () => Get.toNamed(AppPage.transactionPage),
+            // color of the floating button
+
+            child: CustomImageView(
+                imagePath: ImageConstant.floatScan,
+                height: 50.0.v,
+                width: 22.5.h)),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        // add color 0xFF15A69D to the floating action button
+        floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+      );
+    } else {
+      return Scaffold(
+        // appBar: HeaderBar(
+        //   leftWidget: SvgPicture.asset(
+        //     "assets/icons/nav_stat.svg",
+        //     colorFilter:
+        //         const ColorFilter.mode(ColorPalette.white, BlendMode.srcIn),
+        //   ),
+        // ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Container(
+              color: isPremium ? ColorPalette.expenseText : ColorPalette.white,
+              height: 260,
+              width: double.infinity,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  if (isPremium) SvgPicture.asset("assets/icons/crown.svg"),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Stack(
+                    children: [
+                      Container(
+                        width: 150,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: ColorPalette.black,
+                            width: 1.0,
+                          ),
+                        ),
+                        child: CircleAvatar(
+                          backgroundColor: ColorPalette.white,
+                          child: Padding(
+                            padding: const EdgeInsets.all(25.0),
+                            child: SvgPicture.asset("assets/user/user.svg"),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Text(
+                    "Anomyous",
+                    style: context.textTheme.titleLarge,
+                  ),
+                  Text(
+                    "youremail@email.com",
+                    style: context.textTheme.labelLarge,
+                  ),
+                ],
               ),
-              ListTile(
-                leading: SvgPicture.asset("assets/icons/notification.svg"),
-                trailing: SvgPicture.asset("assets/icons/arrow.svg"),
-                title: const Text(
-                  "Notifications",
+            ),
+            Expanded(
+                child: ListView(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              children: [
+                ListTile(
+                  leading: SvgPicture.asset("assets/icons/profile.svg"),
+                  trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                  title: const Text(
+                    "Edit Profile",
+                  ),
+                  titleTextStyle: context.textTheme.bodyLarge,
+                  onTap: () => Get.toNamed(AppPage.editProfilePage),
                 ),
-                titleTextStyle: context.textTheme.bodyLarge,
-                onTap: () => Get.toNamed(AppPage.editNotificationPage),
-              ),
-              ListTile(
-                leading: SvgPicture.asset("assets/icons/appearance.svg"),
-                trailing: SvgPicture.asset("assets/icons/arrow.svg"),
-                title: const Text(
-                  "Appearance",
+                ListTile(
+                  leading: SvgPicture.asset("assets/icons/notification.svg"),
+                  trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                  title: const Text(
+                    "Notifications",
+                  ),
+                  titleTextStyle: context.textTheme.bodyLarge,
+                  onTap: () => Get.toNamed(AppPage.editNotificationPage),
                 ),
-                titleTextStyle: context.textTheme.bodyLarge,
-              ),
-              ListTile(
-                leading: SvgPicture.asset("assets/icons/security.svg"),
-                trailing: SvgPicture.asset("assets/icons/arrow.svg"),
-                title: const Text(
-                  "Security",
+                ListTile(
+                  leading: SvgPicture.asset("assets/icons/appearance.svg"),
+                  trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                  title: const Text(
+                    "Appearance",
+                  ),
+                  titleTextStyle: context.textTheme.bodyLarge,
                 ),
-                titleTextStyle: context.textTheme.bodyLarge,
-                onTap: () => Get.toNamed(AppPage.securityPage),
-              ),
-              ListTile(
-                leading: SvgPicture.asset("assets/icons/policy.svg"),
-                trailing: SvgPicture.asset("assets/icons/arrow.svg"),
-                title: const Text(
-                  "Privacy Policy",
+                ListTile(
+                  leading: SvgPicture.asset("assets/icons/security.svg"),
+                  trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                  title: const Text(
+                    "Security",
+                  ),
+                  titleTextStyle: context.textTheme.bodyLarge,
+                  onTap: () => Get.toNamed(AppPage.securityPage),
                 ),
-                titleTextStyle: context.textTheme.bodyLarge,
-              ),
-              ListTile(
-                leading: SvgPicture.asset("assets/icons/help.svg"),
-                trailing: SvgPicture.asset("assets/icons/arrow.svg"),
-                title: const Text(
-                  "Contact Us",
+                ListTile(
+                  leading: SvgPicture.asset("assets/icons/policy.svg"),
+                  trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                  title: const Text(
+                    "Privacy Policy",
+                  ),
+                  titleTextStyle: context.textTheme.bodyLarge,
                 ),
-                titleTextStyle: context.textTheme.bodyLarge,
-              ),
-              ListTile(
-                leading: SvgPicture.asset("assets/icons/crown.svg"),
-                trailing: SvgPicture.asset("assets/icons/arrow.svg"),
-                title: const Text(
-                  "Premium",
+                ListTile(
+                  leading: SvgPicture.asset("assets/icons/help.svg"),
+                  trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                  title: const Text(
+                    "Contact Us",
+                  ),
+                  titleTextStyle: context.textTheme.bodyLarge,
                 ),
-                titleTextStyle: context.textTheme.bodyLarge,
-                onTap: () => Get.toNamed(AppPage.purchasePage),
-              ),
-            ],
-          )),
-          Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              // child: NormalButton(
-              //     title: "Logout",
-              //     callback: () => {
-              //           showDialog(
-              //             context: context,
-              //             builder: (_) => LogoutDialog(),
-              //           )
-              //         }),
-              child: StringButton(
-                text: "Logout",
-                callback: () => {
-                  showDialog(
-                    context: context,
-                    builder: (_) => LogoutDialog(),
-                  )
-                },
-                buttonTextStyle: CustomTextStyles.titleMediumBluegray900,
-                buttonStyle: CustomButtonStyles.fillTear,
-              )),
-          const SizedBox(
-            height: 98,
-          ),
-        ],
-      ),
-    );
+                ListTile(
+                  leading: SvgPicture.asset("assets/icons/crown.svg"),
+                  trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                  title: const Text(
+                    "Premium",
+                  ),
+                  titleTextStyle: context.textTheme.bodyLarge,
+                  onTap: () => Get.toNamed(AppPage.purchasePage),
+                ),
+              ],
+            )),
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                // child: NormalButton(
+                //     title: "Logout",
+                //     callback: () => {
+                //           showDialog(
+                //             context: context,
+                //             builder: (_) => LogoutDialog(),
+                //           )
+                //         }),
+                child: StringButton(
+                  text: "Logout",
+                  callback: () => {
+                    showDialog(
+                      context: context,
+                      builder: (_) => const LogoutDialog(),
+                    )
+                  },
+                  buttonTextStyle: CustomTextStyles.titleMediumBluegray900,
+                  buttonStyle: CustomButtonStyles.fillTear,
+                )),
+            const SizedBox(
+              height: 98,
+            ),
+          ],
+        ),
+      );
+    }
   }
+
+  Widget _buildBottomAppBar() {
+    return CustomBottomAppBar(onChanged: (BottomBarEnum type) {
+      Get.toNamed(getCurrentRoute(type), arguments: type);
+    });
+  }
+
+  String getCurrentRoute(BottomBarEnum type) {
+    switch (type) {
+      case BottomBarEnum.Home:
+        return AppPage.homePage;
+      case BottomBarEnum.Settings:
+        return AppPage.settingPage;
+      case BottomBarEnum.Stat:
+        return AppPage.transactionHistoryPage;
+      case BottomBarEnum.Wallet:
+        return AppPage.walletPage;
+      default:
+        return "/";
+    }
+  }
+
+  onTapAnalyze() => Get.offAndToNamed(
+        AppPage.transactionHistoryPage,
+      );
 }

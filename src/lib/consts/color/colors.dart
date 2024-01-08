@@ -25,6 +25,8 @@ class ColorPalette {
   // Button
   static const Color tearButton = Color(0xFFB6DDD5);
 
+  // Header
+  static const Color header = Color(0xFFCCE7E2);
   static const primaryGradient = LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomRight,

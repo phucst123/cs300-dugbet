@@ -2,7 +2,7 @@ import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/controllers/wrapper/wrapper_controller.dart';
 import 'package:dugbet/views/pages/home/home_page.dart';
 import 'package:dugbet/views/pages/setttings/setting_page.dart';
-import 'package:dugbet/views/pages/transaction/transaction_page.dart';
+// import 'package:dugbet/views/pages/transaction/transaction_page.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_history_page.dart';
 import 'package:dugbet/views/pages/wallet/wallet_page.dart';
 import 'package:dugbet/views/widgets/button/scan_button.dart';
@@ -17,11 +17,11 @@ class MainWrapper extends GetView<WrapperController> {
       body: Obx(
         () => IndexedStack(
           index: controller.tabIndex.value,
-          children: [
+          children: const [
             HomePage(),
-            const WalletPage(),
-            const TransactionHistoryPage(),
             SettingPage(),
+            TransactionHistoryPage(),
+            WalletPage(),
           ],
         ),
       ),
@@ -31,7 +31,7 @@ class MainWrapper extends GetView<WrapperController> {
       floatingActionButton: ScanButton(
           height: 60,
           width: 57,
-          onTap: () {},
+          onTap: () => Get.toNamed(AppPage.transactionPage),
           // color of the floating button
 
           child: CustomImageView(

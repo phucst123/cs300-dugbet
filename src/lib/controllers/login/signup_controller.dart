@@ -1,6 +1,5 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/controllers/login/auth_controller.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class SignupController extends GetxController {
   final GlobalKey<FormState> signUpFormKey = GlobalKey<FormState>();
@@ -39,6 +38,6 @@ class SignupController extends GetxController {
 
     signUpFormKey.currentState!.save();
 
-    authController.signUp(email, password);
+    authController.signUp(username, email, password);
   }
 }

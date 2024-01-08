@@ -49,7 +49,7 @@ class WalletEvent extends StatelessWidget {
                     child: Center(
                       child: IconButton(
                           onPressed: () {},
-                          icon: Icon(Icons.note_alt_outlined,
+                          icon: const Icon(Icons.note_alt_outlined,
                               color: ColorPalette.white)),
                     ),
                   ),
@@ -61,7 +61,7 @@ class WalletEvent extends StatelessWidget {
                     child: Center(
                       child: IconButton(
                           onPressed: () {},
-                          icon: Icon(Icons.exit_to_app_outlined,
+                          icon: const Icon(Icons.exit_to_app_outlined,
                               color: ColorPalette.white)),
                     ),
                   ),
@@ -73,7 +73,7 @@ class WalletEvent extends StatelessWidget {
                     child: Center(
                       child: IconButton(
                           onPressed: () {},
-                          icon: Icon(Icons.people_alt_sharp,
+                          icon: const Icon(Icons.people_alt_sharp,
                               color: ColorPalette.white)),
                     ),
                   ),
@@ -85,16 +85,16 @@ class WalletEvent extends StatelessWidget {
                     child: Center(
                       child: IconButton(
                           onPressed: () {},
-                          icon: Icon(Icons.notifications_active_outlined,
+                          icon: const Icon(Icons.notifications_active_outlined,
                               color: ColorPalette.white)),
                     ),
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              BottomSheetTransaction()
+              const BottomSheetTransaction()
             ],
           ),
         ),

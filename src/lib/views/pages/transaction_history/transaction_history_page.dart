@@ -1,3 +1,5 @@
+import 'package:dugbet/consts/color/colors.dart';
+import 'package:dugbet/consts/fonts/text_theme_builder.dart';
 import 'package:dugbet/views/widgets/bottom_sheet_transaction.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_overview/balance_status.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_overview/transaction_chart.dart';
@@ -5,6 +7,8 @@ import 'package:dugbet/views/pages/transaction_history/transaction_template.dart
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/views/widgets/button/scan_button.dart';
 import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
+import 'package:dugbet/views/widgets/home_header_bar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 List<TransactionTemplate> transaction_list = [
   TransactionTemplate(
@@ -118,8 +122,8 @@ List<TransactionTemplate> transaction_list = [
 
 class TransactionHistoryPage extends StatelessWidget {
   //const TransactionHistoryPage({required Key key}) : super(key: key);
-  const TransactionHistoryPage({super.key});
-
+  const TransactionHistoryPage({super.key, this.showNav = false});
+  final bool showNav;
   @override
   Widget build(BuildContext context) {
     List<Widget> pageWidgets = [
@@ -127,6 +131,7 @@ class TransactionHistoryPage extends StatelessWidget {
         padding: const EdgeInsets.only(
             left: 16.0, right: 16.0, top: 30.0, bottom: 0.0),
         child: const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TransactionChart(
               title: 'Statistics',
@@ -141,19 +146,88 @@ class TransactionHistoryPage extends StatelessWidget {
       ),
       const BottomSheetTransaction()
     ];
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Transaction History'),
-      ),
-      body: Container(
-        color: const Color(0xFFB6DDD5),
-        child: ListView.builder(
-            itemCount: pageWidgets.length,
-            shrinkWrap: true,
-            itemBuilder: (BuildContext context, int index) {
-              return pageWidgets[index];
-            }),
-      ),
-    );
+    if (showNav) {
+      return SafeArea(
+        child: Scaffold(
+          appBar: HomeHeaderBar(
+            leftWidget: SvgPicture.asset(
+              "assets/icons/nav_stat.svg",
+              colorFilter:
+                  const ColorFilter.mode(ColorPalette.white, BlendMode.srcIn),
+            ),
+          ),
+          body: Container(
+            color: const Color(0xFFB6DDD5),
+            child: ListView.builder(
+                itemCount: pageWidgets.length,
+                shrinkWrap: true,
+                itemBuilder: (BuildContext context, int index) {
+                  return pageWidgets[index];
+                }),
+          ),
+          bottomNavigationBar: _buildBottomAppBar(),
+          floatingActionButton: ScanButton(
+              height: 60,
+              width: 57,
+              onTap: () => Get.toNamed(AppPage.transactionPage),
+              // color of the floating button
+
+              child: CustomImageView(
+                  imagePath: ImageConstant.floatScan,
+                  height: 50.0.v,
+                  width: 22.5.h)),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          // add color 0xFF15A69D to the floating action button
+          floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+        ),
+      );
+    } else {
+      return SafeArea(
+        child: Scaffold(
+          appBar: HomeHeaderBar(
+            leftWidget: SvgPicture.asset(
+              "assets/icons/nav_stat.svg",
+              colorFilter:
+                  const ColorFilter.mode(ColorPalette.white, BlendMode.srcIn),
+            ),
+          ),
+          body: Container(
+            color: const Color(0xFFB6DDD5),
+            child: ListView.builder(
+                itemCount: pageWidgets.length,
+                shrinkWrap: true,
+                itemBuilder: (BuildContext context, int index) {
+                  return pageWidgets[index];
+                }),
+          ),
+        ),
+      );
+    }
   }
+
+  Widget _buildBottomAppBar() {
+    return CustomBottomAppBar(onChanged: (BottomBarEnum type) {
+      Get.toNamed(getCurrentRoute(type), arguments: type);
+    });
+  }
+
+  String getCurrentRoute(BottomBarEnum type) {
+    switch (type) {
+      case BottomBarEnum.Home:
+        return AppPage.homePage;
+      case BottomBarEnum.Settings:
+        return AppPage.settingPage;
+      case BottomBarEnum.Stat:
+        return AppPage.transactionHistoryPage;
+      case BottomBarEnum.Wallet:
+        return AppPage.walletPage;
+      default:
+        return "/";
+    }
+  }
+
+  onTapAnalyze() => Get.offAndToNamed(
+        AppPage.transactionHistoryPage,
+      );
 }

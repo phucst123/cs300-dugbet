@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../consts/color/colors.dart';
-import 'icon_display_circle.dart';
 
 class ListTitleMember extends StatelessWidget {
   const ListTitleMember({super.key, required this.username, required this.email});
