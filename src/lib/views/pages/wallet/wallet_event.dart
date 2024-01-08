@@ -14,9 +14,8 @@ class WalletEvent extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        decoration: const BoxDecoration(
-            gradient: ColorPalette.secondaryGradient
-        ),
+        decoration:
+            const BoxDecoration(gradient: ColorPalette.secondaryGradient),
         child: Scaffold(
           backgroundColor: ColorPalette.white.withOpacity(0.3),
           floatingActionButton: FloatingActionButton(
@@ -29,102 +28,108 @@ class WalletEvent extends StatelessWidget {
           body: Container(
             decoration:
                 const BoxDecoration(gradient: ColorPalette.secondaryGradient),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: ColorPalette.white, width: 2),
-                              color: ColorPalette.primaryColor),
-                          child: Center(
-                            child: IconButton(
-                                onPressed: () {
-                                  Get.back();
-                                },
-                                icon: const Icon(Icons.arrow_back,
-                                    color: ColorPalette.white)),
-                          ),
-                        ),
-                        SizedBox(width: 10,),
-                        Text(
-                          "Event",
-                          style: TextThemeBuilder.robotoTextTheme.titleLarge,
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        const Icon(Icons.draw_outlined)
-                      ],
-                    ),
-                  ),
-                  const GroupBalanceOne(),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
                     children: [
                       Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: ColorPalette.white, width: 2),
+                            border:
+                                Border.all(color: ColorPalette.white, width: 2),
                             color: ColorPalette.primaryColor),
                         child: Center(
                           child: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.note_alt_outlined,
+                              onPressed: () {
+                                Get.back();
+                              },
+                              icon: const Icon(Icons.arrow_back,
                                   color: ColorPalette.white)),
                         ),
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: ColorPalette.white, width: 2),
-                            color: ColorPalette.primaryColor),
-                        child: Center(
-                          child: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.exit_to_app_outlined,
-                                  color: ColorPalette.white)),
-                        ),
+                      SizedBox(
+                        width: 10,
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: ColorPalette.white, width: 2),
-                            color: ColorPalette.primaryColor),
-                        child: Center(
-                          child: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.people_alt_sharp,
-                                  color: ColorPalette.white)),
-                        ),
+                      Text(
+                        "Event",
+                        style: TextThemeBuilder.robotoTextTheme.titleLarge,
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: ColorPalette.white, width: 2),
-                            color: ColorPalette.grey.withOpacity(0.3)),
-                        child: Center(
-                          child: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.notifications_active_outlined,
-                                  color: ColorPalette.white)),
-                        ),
-                      )
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const Icon(Icons.draw_outlined)
                     ],
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  const BottomSheetTransaction()
-                ],
-              ),
+                ),
+                const GroupBalanceOne(),
+                const SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border:
+                              Border.all(color: ColorPalette.white, width: 2),
+                          color: ColorPalette.primaryColor),
+                      child: Center(
+                        child: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.note_alt_outlined,
+                                color: ColorPalette.white)),
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border:
+                              Border.all(color: ColorPalette.white, width: 2),
+                          color: ColorPalette.primaryColor),
+                      child: Center(
+                        child: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.exit_to_app_outlined,
+                                color: ColorPalette.white)),
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border:
+                              Border.all(color: ColorPalette.white, width: 2),
+                          color: ColorPalette.primaryColor),
+                      child: Center(
+                        child: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.people_alt_sharp,
+                                color: ColorPalette.white)),
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border:
+                              Border.all(color: ColorPalette.white, width: 2),
+                          color: ColorPalette.grey.withOpacity(0.3)),
+                      child: Center(
+                        child: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                                Icons.notifications_active_outlined,
+                                color: ColorPalette.white)),
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Expanded(child: const BottomSheetTransaction())
+              ],
             ),
           ),
         ),
