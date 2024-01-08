@@ -28,6 +28,7 @@ class HomePage extends GetView<HomeController> {
               transactionList: controller.transactionlist,
             ),
           ];
+          print('current list ${controller.transactionlist.length}');
           return SafeArea(
             child: Scaffold(
               // backgroundColor: ColorPalette.expenseText,

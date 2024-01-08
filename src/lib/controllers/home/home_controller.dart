@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:dugbet/models/TransactionModel.dart';
+import 'package:dugbet/consts/utils/function_utils.dart';
 class HomeController extends GetxController {
   Rxn<User?> user = Rxn();
   RxInt income = 2500000.obs;
@@ -29,19 +30,37 @@ class HomeController extends GetxController {
       transactionlist.clear();
       income.value = 0;
       expense.value = 0;
+      transactionlist.add(TransactionTemplate(
+        category: "Fnb",
+          title: "Snack",
+          description: "Income from design project",
+          amount: "85.000",
+          date: DateTime.now(),
+          icon: "snack.svg",
+          type: 1));
+      income.value += 85000;
+      transactionlist.add(TransactionTemplate(
+        category: "Clothing",
+          title: "Rent payment",
+          description: "Monthly rent payment",
+          amount: "123.000",
+          date: DateTime.now(),
+          icon: "socks.svg",
+          type: 0));
+      expense.value += 123000;
       for (var transaction in transactions.docs) {
         print("im here to read ${transaction.data()}");
         transactionListModel.add(TransactionModel.fromDocumentSnapshot(documentSnapshot: transaction));
-        // transactionlist.add(TransactionTemplate(
-        //   category: transaction['category'],
-        //   title: transaction['title'],
-        //   description: transaction['description'],
-        //   amount: transaction['amount'],
-        //   // convert to DateTime from Timestamp
-        //   date: DateTime.now(), ///transaction['date'].toDate(),
-        //   icon: 'snack.svg',
-        //   type: transaction['isIncome'] ? 1 : 0,
-        // ));
+        transactionlist.add(TransactionTemplate(
+          category: transaction['category'],
+          title: transaction['title'],
+          description: transaction['description'],
+          amount: convertToCurrency(transaction['amount']),
+          // convert to DateTime from Timestamp
+          date: DateTime.now(), ///transaction['date'].toDate(),
+          icon: 'snack.svg',
+          type: transaction['isIncome'] ? 1 : 0,
+        ));
         // convert to int amount from number to int
         if (transaction['isIncome']) {
           income.value += double.parse(transaction['amount'].toString()).toInt();
