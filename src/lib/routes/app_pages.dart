@@ -24,7 +24,7 @@ class AppPage {
 
   static const notificationPage = '/notification';
   //static const scanPage = '/scan';
-  //static const walletPage = '/';
+  // static const walletPage = '/';
   static const scanPage = '/scanPage';
   static const walletPage = '/walletPage';
 
@@ -32,7 +32,7 @@ class AppPage {
   static const walletPersonal = "/walletPersonal";
   static const walletDetail = "/walletDetail";
   static const walletEventDetail = "/walletEventDetail";
-  static const walletNewEvent = "/walletNewEvent";
+  // static const walletNewEvent = "/walletNewEvent";
   static const walletNewWallet = "/walletNewWallet";
   static const eventTransaction = "/eventTransaction";
 }

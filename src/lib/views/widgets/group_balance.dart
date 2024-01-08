@@ -17,7 +17,7 @@ class GroupBalance extends StatelessWidget {
             clipBehavior: Clip.none,
             children: [
               Positioned(
-                  top: MediaQuery.of(context).size.width / 2 - 45,
+                  top: MediaQuery.of(context).size.width / 2 - 55,
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
@@ -25,7 +25,7 @@ class GroupBalance extends StatelessWidget {
                     ),
                     child: const Padding(
                       padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                          EdgeInsets.symmetric(horizontal: 5, vertical: 10),
                       child: Text("Details"),
                     ),
                   )),
