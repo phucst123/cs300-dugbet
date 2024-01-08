@@ -14,17 +14,9 @@ class AppBinding extends Bindings {
   void dependencies() {
     Get.put(AuthController(), permanent: true);
     Get.lazyPut(() => LoadingController());
-    Get.lazyPut<LoginController>(() => LoginController(), fenix: true);
-    Get.lazyPut<PasswordController>(() => PasswordController(), fenix: true);
-    Get.lazyPut<SignupController>(() => SignupController(), fenix: true);
     Get.lazyPut<TransactionHistoryController>(
         () => TransactionHistoryController(),
         fenix: true);
-    // conflict here
-    // 1
-    Get.lazyPut<WrapperController>(() => WrapperController(), fenix: true);
-    Get.lazyPut<HomeController>(() => HomeController(), fenix: true);
-    // 2
     Get.lazyPut<TransactionChartController>(() => TransactionChartController(),
         fenix: true);
   }

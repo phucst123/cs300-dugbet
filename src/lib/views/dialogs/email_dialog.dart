@@ -43,12 +43,13 @@ class EmailDialog extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               StringButton(
-                text: "Back to Sign-in",
-                buttonStyle: CustomButtonStyles.none,
-                width: 188.v,
-                callback: () =>
-                    Get.offNamedUntil(AppPage.loginScreen, (route) => false),
-              ),
+                  text: "Back to Sign-in",
+                  buttonStyle: CustomButtonStyles.none,
+                  width: 188.v,
+                  callback: () {
+                    Get.back();
+                    Get.offAndToNamed(AppPage.loginScreen);
+                  }),
               SizedBox(height: 8.v),
               InkWell(
                   child: SizedBox(
@@ -58,7 +59,10 @@ class EmailDialog extends StatelessWidget {
                       style: theme.textTheme.labelLarge,
                     ),
                   ),
-                  onTap: () => resend),
+                  onTap: () {
+                    Get.back();
+                    resend;
+                  }),
               // ElevatedButton(
               //   child: Text(
               //     "Resend the email more",

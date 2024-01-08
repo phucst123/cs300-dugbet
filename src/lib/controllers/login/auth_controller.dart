@@ -173,6 +173,7 @@ class AuthController extends GetxController {
     );
 
     Future.delayed(const Duration(seconds: 2), () async {
+      Get.back();
       await Get.offAndToNamed(AppPage.homePage);
     });
   }
@@ -185,6 +186,7 @@ class AuthController extends GetxController {
     );
 
     Future.delayed(const Duration(seconds: 2), () async {
+      Get.back();
       await Get.offAndToNamed(AppPage.loginScreen);
     });
   }

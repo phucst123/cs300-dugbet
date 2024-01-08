@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dugbet/bindings/transaction/transaction_binding.dart';
 import 'package:dugbet/bindings/wrapper/wrapper_bining.dart';
+import 'package:dugbet/controllers/login/login_controller.dart';
+import 'package:dugbet/controllers/login/password_controller.dart';
+import 'package:dugbet/controllers/login/signup_controller.dart';
 import 'package:dugbet/routes/app_pages.dart';
 import 'package:dugbet/views/pages/wrapper/wrapper_page.dart';
 import 'package:dugbet/views/pages/transaction/transaction_page.dart';
@@ -46,23 +49,32 @@ class AppRoute {
           page: () => SplashPage(),
         ),
         GetPage(
-          name: AppPage.homePage,
-          page: () => const MainWrapper(),
-          // transition: Transition.leftToRight
-          // binding: WrapperBinding()
+            name: AppPage.homePage,
+            page: () => const MainWrapper(),
+            // transition: Transition.leftToRight
+            binding: WrapperBinding()),
+        GetPage(
+          name: AppPage.loginOpenScreen,
+          page: () => const LoginOpenScreen(),
         ),
         GetPage(
-            name: AppPage.loginOpenScreen, page: () => const LoginOpenScreen()),
-        GetPage(
-          name: AppPage.loginScreen,
-          page: () => const LoginScreen(),
-        ),
+            name: AppPage.loginScreen,
+            page: () => const LoginScreen(),
+            binding: BindingsBuilder(() {
+              Get.lazyPut<LoginController>(() => LoginController());
+            })),
         GetPage(
             name: AppPage.loginSignUpScreen,
-            page: () => const LoginSignUpScreen()),
+            page: () => const LoginSignUpScreen(),
+            binding: BindingsBuilder(() {
+              Get.lazyPut<SignupController>(() => SignupController());
+            })),
         GetPage(
             name: AppPage.loginPasswordScreen,
-            page: () => const LoginPasswordScreen()),
+            page: () => const LoginPasswordScreen(),
+            binding: BindingsBuilder(() {
+              Get.lazyPut<PasswordController>(() => PasswordController());
+            })),
         GetPage(
           name: AppPage.settingPage,
           page: () => const SettingPage(showNav: true),
