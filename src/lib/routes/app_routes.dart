@@ -34,7 +34,9 @@ class AppRoute {
   static List<GetPage> routes() => [
         GetPage(
           name: AppPage.transactionHistoryPage,
-          page: () => const TransactionHistoryPage(showNav: true,),
+          page: () => const TransactionHistoryPage(
+            showNav: true,
+          ),
         ),
         GetPage(
           name: AppPage.splashPage,
@@ -44,7 +46,7 @@ class AppRoute {
           name: AppPage.homePage,
           page: () => const MainWrapper(),
           // transition: Transition.leftToRight
-          binding: WrapperBinding()
+          // binding: WrapperBinding()
         ),
         GetPage(
             name: AppPage.loginOpenScreen, page: () => const LoginOpenScreen()),
@@ -53,7 +55,8 @@ class AppRoute {
           page: () => const LoginScreen(),
         ),
         GetPage(
-            name: AppPage.loginSignUpScreen, page: () => const LoginSignUpScreen()),
+            name: AppPage.loginSignUpScreen,
+            page: () => const LoginSignUpScreen()),
         GetPage(
             name: AppPage.loginPasswordScreen,
             page: () => const LoginPasswordScreen()),
@@ -121,9 +124,9 @@ class AppRoute {
           name: AppPage.walletNewEvent,
           page: () => const WalletNewEvent(),
         ),
-    GetPage(
-      name: AppPage.eventTransaction,
-      page: () => EventTransactionPage(),
-    ),
+        GetPage(
+          name: AppPage.eventTransaction,
+          page: () => EventTransactionPage(),
+        ),
       ];
 }

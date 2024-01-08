@@ -32,7 +32,9 @@ class AuthController extends GetxController {
     if (email != null && password != null) {
       try {
         await _auth.signInWithEmailAndPassword(
-            email: email, password: password);
+          email: email,
+          password: password,
+        );
         if (getUser() != null) {
           Get.dialog(const SignInDialog(), barrierDismissible: false);
           // Get.snackbar("Success", "Login Successfully",
@@ -84,22 +86,23 @@ class AuthController extends GetxController {
   void signUp(username, email, password) async {
     if (email != null && password != null && username != null) {
       try {
-        await _auth.createUserWithEmailAndPassword(
-          email: email,
-          password: password,
-        );
+        await _auth
+            .createUserWithEmailAndPassword(
+              email: email,
+              password: password,
+            )
+            .then(
+              (value) => value.user!.updateDisplayName(username),
+            );
 
         final user = _auth.currentUser;
 
         if (user != null) {
-          // Get.snackbar("Success", "Account Created Successfully",
-          //     snackPosition: SnackPosition.BOTTOM);
+          Get.snackbar("Success", "Account Created Successfully",
+              snackPosition: SnackPosition.BOTTOM);
 
-          // conflict here
-          // 1
-          //saveUser(user, username);
-          // 2
-          Get.dialog(SignUpDialog());
+          saveUser(user, username);
+
           Get.dialog(const SignUpDialog());
           Get.offAndToNamed(AppPage.loginScreen);
         }
