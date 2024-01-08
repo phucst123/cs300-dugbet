@@ -15,8 +15,13 @@ class HomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     List<Widget> quickViewList = [
       // const PieQuickView(),
-      const StatQuickView(),
-      const TransactionQuickView(),
+      Obx(() => StatQuickView(
+            incomeData: controller.income.value,
+            expenseData: controller.expense.value,
+          )),
+      TransactionQuickView(
+        transactionList: controller.transactionlist,
+      ),
     ];
 
     return SafeArea(
@@ -71,28 +76,29 @@ class HomePage extends GetView<HomeController> {
               ),
               Center(
                 child: Expanded(
-                    child: Swiper(
-                        viewportFraction: 0.9,
-                        scale: 0.75,
-                        itemCount: quickViewList.length,
-                        duration: 1000,
-                        loop: true,
-                        itemHeight: 250,
-                        itemWidth: 270,
-                        layout: SwiperLayout.TINDER,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) => Container(
-                              //color: Colors.white,
-                              // add border radius
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                border:
-                                    Border.all(color: Colors.black, width: 1),
-                                color: Colors.white,
-                                // add box border black corner
-                              ),
-                              child: quickViewList[index],
-                            ))),
+                  child: Swiper(
+                    viewportFraction: 0.9,
+                    scale: 0.75,
+                    itemCount: quickViewList.length,
+                    duration: 1000,
+                    loop: true,
+                    itemHeight: 250,
+                    itemWidth: 270,
+                    layout: SwiperLayout.TINDER,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => Container(
+                      //color: Colors.white,
+                      // add border radius
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: Colors.black, width: 1),
+                        color: Colors.white,
+                        // add box border black corner
+                      ),
+                      child: quickViewList[index],
+                    ),
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
@@ -116,7 +122,10 @@ class HomePage extends GetView<HomeController> {
                   ),
                 ),
               ),
-              const Expanded(child: Wallet())
+              Expanded(
+                  child: Wallet(
+                walletList: controller.wallet,
+              ))
             ],
           ),
         ),

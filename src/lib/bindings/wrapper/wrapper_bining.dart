@@ -9,8 +9,10 @@ class WrapperBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<WrapperController>(() => WrapperController());
+
     Get.lazyPut<HomeController>(() => HomeController());
     Get.lazyPut<HomeWalletController>(() => HomeWalletController());
+    
     Get.lazyPut<TransactionChartController>(() => TransactionChartController());
     Get.lazyPut<TransactionController>(() => TransactionController());
   }
