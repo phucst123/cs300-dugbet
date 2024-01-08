@@ -31,7 +31,7 @@ class MainWrapper extends GetView<WrapperController> {
       floatingActionButton: ScanButton(
           height: 60,
           width: 57,
-          onTap: () {},
+          onTap: () => Get.toNamed(AppPage.transactionPage),
           // color of the floating button
 
           child: CustomImageView(

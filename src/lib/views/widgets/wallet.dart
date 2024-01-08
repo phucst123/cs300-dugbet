@@ -1,12 +1,13 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/fonts/text_theme_builder.dart';
+import 'package:dugbet/controllers/home/wallet_controller.dart';
 import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../consts/color/colors.dart';
 import 'list_title_wallet.dart';
 
-class Wallet extends StatelessWidget {
+class Wallet extends GetView<HomeWalletController> {
   const Wallet({super.key});
 
   @override
@@ -23,14 +24,17 @@ class Wallet extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             const SizedBox(height: 15),
-            const Row(
+            Row(
               children: [
-                SizedBox(width: 15),
-                Text("Total Balance"),
-                SizedBox(
+                const SizedBox(width: 15),
+                const Text("Total Balance"),
+                const SizedBox(
                   width: 20,
                 ),
-                Icon(Icons.remove_red_eye_outlined)
+                InkWell(
+                    onTap: controller.onChangeValue,
+                    child:
+                        Obx(() => controller.showEyeIcon())),
               ],
             ),
             const SizedBox(
@@ -55,9 +59,11 @@ class Wallet extends StatelessWidget {
                     color: ColorPalette.white,
                   ),
                 ),
-                Text(
-                  "234.000 ",
-                  style: TextThemeBuilder.robotoTextTheme.titleLarge,
+                Obx(
+                  () => Text(
+                    controller.showMoney(),
+                    style: TextThemeBuilder.robotoTextTheme.titleLarge,
+                  ),
                 ),
                 SvgPicture.asset("assets/images/dIcon.svg")
               ],
@@ -73,7 +79,8 @@ class Wallet extends StatelessWidget {
                 const Spacer(),
                 IconButton(
                   icon: const Icon(Icons.more_horiz),
-                  onPressed: () => Get.toNamed(AppPage.walletPage,arguments: BottomBarEnum.Wallet),
+                  onPressed: () => Get.toNamed(AppPage.walletPage,
+                      arguments: BottomBarEnum.Wallet),
                 ),
                 const SizedBox(width: 15),
               ],
@@ -100,7 +107,10 @@ class Wallet extends StatelessWidget {
                                 border: Border.all(
                                     color: ColorPalette.black, width: 1)),
                             child: const Center(
-                              child: ListTitleWallet(pathImage: "assets/images/defaultPlush.png",moneyValue: "200.000", nameWallet: "Momo"),
+                              child: ListTitleWallet(
+                                  pathImage: "assets/images/defaultPlush.png",
+                                  moneyValue: "200.000",
+                                  nameWallet: "Momo"),
                             ),
                           ),
                         ],

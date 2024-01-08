@@ -14,7 +14,7 @@ class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     List<Widget> quickViewList = [
-      const PieQuickView(),
+      // const PieQuickView(),
       const StatQuickView(),
       const TransactionQuickView(),
     ];
