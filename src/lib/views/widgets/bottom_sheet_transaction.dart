@@ -12,12 +12,17 @@ class BottomSheetTransaction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 20.0, bottom: 0.0),
-      decoration: BoxDecoration(
-        color: ColorPalette.white.withOpacity(0.3),
-        borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-        border: Border.all(color: ColorPalette.white, width: 1)),
+        padding: const EdgeInsets.only(
+            left: 16.0, right: 16.0, top: 20.0, bottom: 0.0),
+        decoration: BoxDecoration(
+            color: ColorPalette.white.withOpacity(0.3),
+            borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+            border: Border(
+                top: BorderSide(color: ColorPalette.white, width: 1),
+                left: BorderSide(color: ColorPalette.white, width: 1),
+                right: BorderSide(color: ColorPalette.white, width: 1),
+                bottom: BorderSide(color: Colors.white, width: 0))),
         child: Column(
           children: [
             SvgPicture.asset(

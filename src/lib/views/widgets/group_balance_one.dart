@@ -10,14 +10,14 @@ class GroupBalanceOne extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.only(top: 20),
+        padding: const EdgeInsets.only(top: 20,left: 15,right: 15),
         child: Center(
           child: Stack(
             alignment: AlignmentDirectional.topCenter,
             clipBehavior: Clip.none,
             children: [
               Positioned(
-                  top: MediaQuery.of(context).size.width / 2 - 45,
+                  top: MediaQuery.of(context).size.width / 2 - 50,
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
@@ -25,8 +25,8 @@ class GroupBalanceOne extends StatelessWidget {
                     ),
                     child: const Padding(
                       padding:
-                      EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                      child: Text("Details"),
+                      EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                      child: Text("Details",style: TextStyle(color: ColorPalette.white),),
                     ),
                   )),
               Column(

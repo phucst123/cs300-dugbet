@@ -191,7 +191,7 @@ class EventDoubleNotch extends StatelessWidget {
                           shape: BoxShape.circle,
                           border: Border.all(color: ColorPalette.black)),
                       child: Center(
-                        child: SvgPicture.asset("assets/icons/category/${controller.title.value.toLowerCase()}/${controller.icon.value.toLowerCase()}"),
+                        child: SvgPicture.asset("assets/icons/category/${controller.category.value.toLowerCase()}/${controller.icon.value.toLowerCase()}"),
                       )),
                 )),
             Padding(

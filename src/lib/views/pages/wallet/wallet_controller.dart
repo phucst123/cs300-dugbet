@@ -9,4 +9,6 @@ class WalletController extends GetxController {
  var eventList = <EventModel>[].obs;
 
 
+
+
 }
