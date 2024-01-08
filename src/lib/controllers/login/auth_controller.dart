@@ -1,5 +1,6 @@
 import 'package:dugbet/firebase_ref/references.dart';
 import 'package:dugbet/routes/app_pages.dart';
+import 'package:dugbet/views/dialogs/email_dialog.dart';
 import 'package:dugbet/views/dialogs/sign_in_dialog.dart';
 import 'package:dugbet/views/dialogs/sign_up_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -36,10 +37,10 @@ class AuthController extends GetxController {
           password: password,
         );
         if (getUser() != null) {
-          Get.dialog(const SignInDialog(), barrierDismissible: false);
+          // Get.dialog(const SignInDialog(), barrierDismissible: false);
           // Get.snackbar("Success", "Login Successfully",
           //     snackPosition: SnackPosition.BOTTOM);
-          Get.offAndToNamed(AppPage.homePage);
+          showSignInDialog();
         }
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
@@ -65,9 +66,10 @@ class AuthController extends GetxController {
     if (email != null) {
       try {
         await _auth.sendPasswordResetEmail(email: email).then((value) {
-          Get.snackbar("Success", "Email Sent Successfully",
-              snackPosition: SnackPosition.BOTTOM);
-          Get.offAndToNamed(AppPage.loginScreen);
+          // Get.snackbar("Success", "Email Sent Successfully",
+          //     snackPosition: SnackPosition.BOTTOM);
+
+          showEmailDialog(() => forgotPassword(email));
         });
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
@@ -98,13 +100,11 @@ class AuthController extends GetxController {
         final user = _auth.currentUser;
 
         if (user != null) {
-          Get.snackbar("Success", "Account Created Successfully",
-              snackPosition: SnackPosition.BOTTOM);
+          // Get.snackbar("Success", "Account Created Successfully",
+          //     snackPosition: SnackPosition.BOTTOM);
 
           saveUser(user, username);
-
-          Get.dialog(const SignUpDialog());
-          Get.offAndToNamed(AppPage.loginScreen);
+          showSignUpDialog();
         }
         ;
       } on FirebaseAuthException catch (e) {
@@ -163,5 +163,37 @@ class AuthController extends GetxController {
 
   void navigateToHomePage() {
     Get.offAllNamed(AppPage.homePage);
+  }
+
+  void showSignInDialog() {
+    Get.dialog(
+      const SignInDialog(),
+      barrierDismissible:
+          false, // Prevent dialog from being dismissed by tapping outside
+    );
+
+    Future.delayed(const Duration(seconds: 2), () async {
+      await Get.offAndToNamed(AppPage.homePage);
+    });
+  }
+
+  void showSignUpDialog() {
+    Get.dialog(
+      const SignUpDialog(),
+      barrierDismissible:
+          false, // Prevent dialog from being dismissed by tapping outside
+    );
+
+    Future.delayed(const Duration(seconds: 2), () async {
+      await Get.offAndToNamed(AppPage.loginScreen);
+    });
+  }
+
+  void showEmailDialog(resend) {
+    Get.dialog(
+      EmailDialog(resend: resend),
+      barrierDismissible:
+          false, // Prevent dialog from being dismissed by tapping outside
+    );
   }
 }

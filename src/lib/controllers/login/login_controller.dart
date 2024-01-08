@@ -25,7 +25,6 @@ class LoginController extends GetxController {
     super.onClose();
     emailController.dispose();
     passwordController.dispose();
-    print("onCLose");
   }
 
   void signIn() async {

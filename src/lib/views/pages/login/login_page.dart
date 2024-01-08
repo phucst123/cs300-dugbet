@@ -184,7 +184,8 @@ class LoginScreen extends GetView<LoginController> {
                 style: theme.textTheme.labelLarge,
               ),
             ),
-            onTap: () => Get.offAndToNamed(AppPage.loginPasswordScreen)),
+            onTap: () => Get.offNamedUntil(
+                AppPage.loginPasswordScreen, (route) => false)),
         InkWell(
             child: SizedBox(
               height: 18.v,
@@ -193,7 +194,8 @@ class LoginScreen extends GetView<LoginController> {
                 style: theme.textTheme.labelLarge,
               ),
             ),
-            onTap: () => Get.offAndToNamed(AppPage.loginSignUpScreen)),
+            onTap: () =>
+                Get.offNamedUntil(AppPage.loginSignUpScreen, (route) => false)),
       ],
     );
   }
