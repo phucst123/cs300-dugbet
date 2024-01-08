@@ -1,15 +1,11 @@
 import 'package:dugbet/consts/app_export.dart';
-import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
-import 'package:dugbet/views/pages/wallet/wallet_controller.dart';
 import 'package:dugbet/views/widgets/list_title_wallet.dart';
-import 'package:flutter/material.dart';
 
 import '../../consts/color/colors.dart';
 import '../../consts/fonts/text_theme_builder.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../controllers/wallet/wallet_controller.dart';
-import 'package:dugbet/consts/app_export.dart';
 
+// ignore: must_be_immutable
 class WalletList extends StatelessWidget {
   WalletList({super.key});
   WalletController controller = Get.put(WalletController());
