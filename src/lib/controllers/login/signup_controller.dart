@@ -14,6 +14,36 @@ class SignupController extends GetxController {
   var username = "";
   var password = "";
 
+  RxBool isPasswordVisible = false.obs;
+
+  String showPassword() {
+    if (isPasswordVisible.value) {
+      return password;
+    } else {
+      return "********";
+    }
+  }
+
+  Widget eyeIcon() {
+    if (isPasswordVisible.value) {
+      return CustomImageView(
+        imagePath: ImageConstant.imgFirreyecrossed,
+        height: 16.adaptSize,
+        width: 16.adaptSize,
+      );
+    } else {
+      return CustomImageView(
+        imagePath: "assets/icons/fi-rr-eye.svg",
+        height: 16.adaptSize,
+        width: 16.adaptSize,
+      );
+    }
+  }
+
+  void changeEye() {
+    isPasswordVisible.value = !isPasswordVisible.value;
+  }
+
   @override
   void onInit() async {
     super.onInit();

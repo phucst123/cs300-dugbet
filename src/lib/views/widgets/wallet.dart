@@ -95,24 +95,30 @@ class Wallet extends GetView<HomeWalletController> {
               height: 80,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 5,
+                  // itemCount: walletList.length,
+                  itemCount: 4,
                   itemBuilder: (context, index) => Row(
                         children: [
                           const SizedBox(width: 15),
-                          Container(
-                            width: 314,
-                            height: 200,
-                            margin: const EdgeInsets.only(right: 10),
-                            decoration: BoxDecoration(
-                                color: ColorPalette.white,
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(
-                                    color: ColorPalette.black, width: 1)),
-                            child: const Center(
-                              child: ListTitleWallet(
-                                  pathImage: "assets/images/defaultPlush.png",
-                                  moneyValue: "200.000",
-                                  nameWallet: "Momo"),
+                          InkWell(
+                            onTap: (){
+                              Get.toNamed(AppPage.walletPersonal);
+                            },
+                            child: Container(
+                              width: 320.v,
+                              height: 350.h,
+                              margin: const EdgeInsets.only(right: 10),
+                              decoration: BoxDecoration(
+                                  color: ColorPalette.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                      color: ColorPalette.black, width: 1)),
+                              child: const Center(
+                                child: ListTitleWallet(
+                                    pathImage: "assets/images/defaultPlush.png",
+                                    moneyValue: "200.000",
+                                    nameWallet: "Momo"),
+                              ),
                             ),
                           ),
                         ],

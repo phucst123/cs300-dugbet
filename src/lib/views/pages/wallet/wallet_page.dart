@@ -25,7 +25,9 @@ class WalletPage extends StatelessWidget {
       ),
       WalletList(),
       InkWell(
-        onTap: () {},
+        onTap: () {
+          Get.toNamed(AppPage.walletNewWallet);
+        },
         child: Container(
           height: 60,
           width: 60,

@@ -1,8 +1,6 @@
+import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/controllers/splash/loading_controller.dart';
-import 'package:dugbet/views/widgets/gradient_background.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../consts/color/colors.dart';
@@ -15,7 +13,14 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GradientBackground(
+      body: Container(
+        width: mediaQueryData.size.width,
+        height: mediaQueryData.size.height,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: const Alignment(0.5, 0),
+                end: const Alignment(0.5, 1),
+                colors: [appTheme.green200, appTheme.blue100])),
         child: SingleChildScrollView(
           child: Column(children: [
             const SizedBox(

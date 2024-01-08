@@ -1,5 +1,7 @@
 import 'package:dugbet/views/widgets/group_balance.dart';
+import 'package:dugbet/views/widgets/home_header_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../consts/color/colors.dart';
@@ -13,33 +15,31 @@ class WalletPersonal extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: HomeHeaderBar(
+          leftWidget: Transform.flip(
+            flipX: true,
+            child: SvgPicture.asset(
+              "assets/icons/arrow.svg",
+              colorFilter:
+                  const ColorFilter.mode(ColorPalette.white, BlendMode.srcIn),
+            ),
+          ),
+          onTap: () {
+            Get.back();
+          },
+        ),
         body: Container(
           height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-            gradient: ColorPalette.secondaryGradient
-          ),
+          decoration: const BoxDecoration(color: ColorPalette.tearButton),
           child: SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(
+                      top: 12.0, bottom: 20.0, left: 16.0),
                   child: Row(
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: ColorPalette.white, width: 2),
-                            color: ColorPalette.primaryColor),
-                        child: Center(
-                          child: IconButton(
-                              onPressed: () {
-                                Get.back();
-                              },
-                              icon: const Icon(Icons.arrow_back,
-                                  color: ColorPalette.white)),
-                        ),
-                      ),
-                      SizedBox(width: 10,),
                       Text(
                         "Momo",
                         style: TextThemeBuilder.robotoTextTheme.titleLarge,
@@ -47,13 +47,15 @@ class WalletPersonal extends StatelessWidget {
                       const SizedBox(
                         width: 10,
                       ),
-                      const Icon(Icons.draw_outlined)
+                      SvgPicture.asset(
+                        "assets/icons/edit.svg",
+                      ),
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: const GroupBalance(),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  child: GroupBalance(),
                 ),
                 const SizedBox(
                   height: 30,

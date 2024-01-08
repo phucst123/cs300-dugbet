@@ -32,7 +32,7 @@ class HomeHeaderBar extends StatelessWidget implements PreferredSizeWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CustomIconButton(
-              callback: onTap?.call() ?? () {},
+              callback: () => onTap?.call() ?? () {},
               child: leftWidget,
             ),
             Row(

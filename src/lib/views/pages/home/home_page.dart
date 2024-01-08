@@ -146,29 +146,4 @@ class HomePage extends GetView<HomeController> {
       ),
     );
   }
-
-  Widget _buildBottomAppBar() {
-    return CustomBottomAppBar(onChanged: (BottomBarEnum type) {
-      Get.toNamed(getCurrentRoute(type), arguments: type);
-    });
-  }
-
-  String getCurrentRoute(BottomBarEnum type) {
-    switch (type) {
-      case BottomBarEnum.Home:
-        return AppPage.homePage;
-      case BottomBarEnum.Settings:
-        return AppPage.settingPage;
-      case BottomBarEnum.Stat:
-        return AppPage.transactionHistoryPage;
-      case BottomBarEnum.Wallet:
-        return AppPage.walletPage;
-      default:
-        return "/";
-    }
-  }
-
-  onTapAnalyze() => Get.offAndToNamed(
-        AppPage.transactionHistoryPage,
-      );
 }

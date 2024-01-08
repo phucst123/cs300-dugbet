@@ -2,14 +2,10 @@ import 'package:dugbet/consts/color/colors.dart';
 import 'package:dugbet/consts/fonts/text_theme_builder.dart';
 import 'package:dugbet/consts/utils/function_utils.dart';
 import 'dart:math';
-
-import 'package:dugbet/views/pages/transaction_history/transaction_history_page.dart';
-
 import 'package:dugbet/views/pages/transaction_history/transaction_template.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:dugbet/consts/app_export.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:fl_chart/fl_chart.dart';
 
 class PieQuickView extends StatefulWidget {

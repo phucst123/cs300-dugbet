@@ -2,9 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/firebase_ref/references.dart';
 
-List<String> transactionsList = <String>[
-  '100001'
-];
+List<String> transactionsList = <String>['100001'];
 
 class TransactionSummary {
   final String title;
@@ -25,7 +23,6 @@ class TransactionSummary {
 }
 
 class TransactionHistoryController extends GetxController {
-
   @override
   void onReady() {
     getTransactionsData();
@@ -34,16 +31,23 @@ class TransactionHistoryController extends GetxController {
 
   Future<void> getTransactionsData() async {
     for (String transactionId in transactionsList) {
-      DocumentSnapshot transactionSnapshot = await transactionsRef.doc(transactionId).get();
+      DocumentSnapshot transactionSnapshot =
+          await transactionsRef.doc(transactionId).get();
       if (transactionSnapshot.exists) {
-        Map<String, dynamic>? transactionData = transactionSnapshot.data() as Map<String, dynamic>?;
+        Map<String, dynamic>? transactionData =
+            transactionSnapshot.data() as Map<String, dynamic>?;
         String transactionCategory = transactionData!['category'];
         String transactionSubCategory = transactionData['subCategory'];
         String categoryID = '400001';
-        DocumentSnapshot categorySnapshot = await categoriesRef.doc(categoryID).collection('categories')
-                                              .doc(transactionCategory).collection('subCategories')
-                                              .doc(transactionSubCategory).get();
-        Map<String, dynamic>? categoryData = categorySnapshot.data() as Map<String, dynamic>?;
+        DocumentSnapshot categorySnapshot = await categoriesRef
+            .doc(categoryID)
+            .collection('categories')
+            .doc(transactionCategory)
+            .collection('subCategories')
+            .doc(transactionSubCategory)
+            .get();
+        Map<String, dynamic>? categoryData =
+            categorySnapshot.data() as Map<String, dynamic>?;
         TransactionSummary transactionSummary = TransactionSummary(
           title: transactionData['title'],
           description: transactionData['description'],
@@ -52,9 +56,9 @@ class TransactionHistoryController extends GetxController {
           icon: categoryData!['icon'],
           type: transactionData['type'],
         );
-      }
-      else {
-        print('Transaction with ID $transactionId does not exist in the Transactions collection');
+      } else {
+        print(
+            'Transaction with ID $transactionId does not exist in the Transactions collection');
       }
     }
   }
