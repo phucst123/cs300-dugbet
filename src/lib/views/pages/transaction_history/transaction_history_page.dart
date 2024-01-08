@@ -131,7 +131,6 @@ class TransactionHistoryPage extends StatelessWidget {
         child: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-                                          
             TransactionChart(
               title: 'Statistics',
               incomeData: [2, 1, 3, 1, 0, 4, 5],
@@ -168,14 +167,15 @@ class TransactionHistoryPage extends StatelessWidget {
           floatingActionButton: ScanButton(
               height: 60,
               width: 57,
-              onTap: () {},
+              onTap: () => Get.toNamed(AppPage.transactionPage),
               // color of the floating button
-        
+
               child: CustomImageView(
                   imagePath: ImageConstant.floatScan,
                   height: 50.0.v,
                   width: 22.5.h)),
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
           // add color 0xFF15A69D to the floating action button
           floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
         ),

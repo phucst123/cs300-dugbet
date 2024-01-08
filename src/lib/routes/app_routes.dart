@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dugbet/bindings/transaction/transaction_binding.dart';
 import 'package:dugbet/bindings/wrapper/wrapper_bining.dart';
 import 'package:dugbet/routes/app_pages.dart';
 import 'package:dugbet/views/pages/wrapper/wrapper_page.dart';
@@ -37,6 +39,7 @@ class AppRoute {
           page: () => const TransactionHistoryPage(
             showNav: true,
           ),
+          binding: TransactionBinding(),
         ),
         GetPage(
           name: AppPage.splashPage,
