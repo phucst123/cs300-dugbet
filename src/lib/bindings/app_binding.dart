@@ -17,10 +17,10 @@ class AppBinding extends Bindings {
     Get.lazyPut<PasswordController>(() => PasswordController(), fenix: true);
     Get.lazyPut<SignupController>(() => SignupController(), fenix: true);
     Get.lazyPut(() => TransactionHistoryController());
-<<<<<<< Updated upstream
+    // conflict here
+    // 1
     Get.lazyPut<HomeController>(() => HomeController());
-=======
+    // 2
     Get.lazyPut(() => TransactionChartController());
->>>>>>> Stashed changes
   }
 }

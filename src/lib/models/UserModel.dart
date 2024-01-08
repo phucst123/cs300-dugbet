@@ -23,7 +23,6 @@ class UserModel {
   }
 
   Map<String, dynamic> toJson() {
-<<<<<<< Updated upstream
     final _data = <String, dynamic>{};
     _data['userId'] = userId;
     _data['username'] = username;
@@ -31,16 +30,6 @@ class UserModel {
     _data['transactions'] = transactions.map((e)=>e.toJson()).toList();
     _data['wallets'] = wallets.map((e)=>e.toJson()).toList();
     return _data;
-=======
-    final data = <String, dynamic>{};
-    data['userId'] = userId;
-    data['username'] = username;
-    data['password'] = password;
-    data['settings'] = settings.map((e)=>e.toJson()).toList();
-    data['transactions'] = transactions.map((e)=>e.toJson()).toList();
-    data['wallets'] = wallets.map((e)=>e.toJson()).toList();
-    return data;
->>>>>>> Stashed changes
   }
 }
 
@@ -104,40 +93,3 @@ class Settings {
     return data;
   }
 }
-<<<<<<< Updated upstream
-=======
-
-class Transactions {
-  Transactions({
-    required this.id,
-  });
-  late final String id;
-  
-  Transactions.fromJson(Map<String, dynamic> json){
-    id = json['id'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['id'] = id;
-    return data;
-  }
-}
-
-class Wallets {
-  Wallets({
-    required this.id,
-  });
-  late final String id;
-  
-  Wallets.fromJson(Map<String, dynamic> json){
-    id = json['id'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['id'] = id;
-    return data;
-  }
-}
->>>>>>> Stashed changes

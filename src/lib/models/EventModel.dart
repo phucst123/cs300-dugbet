@@ -43,41 +43,4 @@ class EventModel {
     data['members'] = members.map((e)=>e.toJson()).toList();
     return data;
   }
-<<<<<<< Updated upstream
-=======
-}
-
-class Transactions {
-  Transactions({
-    required this.id,
-  });
-  late final String id;
-  
-  Transactions.fromJson(Map<String, dynamic> json){
-    id = json['id'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['id'] = id;
-    return data;
-  }
-}
-
-class Members {
-  Members({
-    required this.id,
-  });
-  late final String id;
-  
-  Members.fromJson(Map<String, dynamic> json){
-    id = json['id'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['id'] = id;
-    return data;
-  }
->>>>>>> Stashed changes
 }

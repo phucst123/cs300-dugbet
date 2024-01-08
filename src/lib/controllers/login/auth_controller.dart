@@ -94,14 +94,13 @@ class AuthController extends GetxController {
         if (user != null) {
           // Get.snackbar("Success", "Account Created Successfully",
           //     snackPosition: SnackPosition.BOTTOM);
-<<<<<<< Updated upstream
 
-          saveUser(user, username);
-
+          // conflict here
+          // 1
+          //saveUser(user, username);
+          // 2
           Get.dialog(SignUpDialog());
-=======
           Get.dialog(const SignUpDialog());
->>>>>>> Stashed changes
           Get.offAndToNamed(AppPage.loginScreen);
         }
         ;
