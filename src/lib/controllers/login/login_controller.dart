@@ -1,4 +1,5 @@
 import 'package:dugbet/consts/app_export.dart';
+import 'package:dugbet/consts/color/colors.dart';
 import 'package:dugbet/controllers/login/auth_controller.dart';
 
 class LoginController extends GetxController {
@@ -8,6 +9,8 @@ class LoginController extends GetxController {
 
   late AuthController authController;
 
+  RxnBool isPasswordVisible = RxnBool(false);
+
   var email = "";
   var password = "";
 
@@ -16,8 +19,36 @@ class LoginController extends GetxController {
     super.onInit();
     emailController = TextEditingController();
     passwordController = TextEditingController();
-
+    isPasswordVisible.value = false;
     authController = Get.find<AuthController>();
+  }
+
+  String showPassword() {
+    if (isPasswordVisible.value!) {
+      return password;
+    } else {
+      return "********";
+    }
+  }
+
+  Widget eyeIcon() {
+    if (isPasswordVisible.value!) {
+      return CustomImageView(
+        imagePath: ImageConstant.imgFirreyecrossed,
+        height: 16.adaptSize,
+        width: 16.adaptSize,
+      );
+    } else {
+      return CustomImageView(
+        imagePath: "assets/icons/fi-rr-eye.svg",
+        height: 16.adaptSize,
+        width: 16.adaptSize,
+      );
+    }
+  }
+
+  void changeEye() {
+    isPasswordVisible.value = !isPasswordVisible.value!;
   }
 
   @override

@@ -140,6 +140,8 @@ class AppRoute {
         //   page: () => const WalletNewEvent(),
         // ),
         GetPage(
+            name: AppPage.walletNewWallet, page: () => const WalletNewEvent()),
+        GetPage(
           name: AppPage.eventTransaction,
           page: () => EventTransactionPage(),
         ),

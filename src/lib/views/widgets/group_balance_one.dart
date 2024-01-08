@@ -1,3 +1,4 @@
+import 'package:dugbet/consts/app_export.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -10,7 +11,7 @@ class GroupBalanceOne extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.only(top: 20,left: 15,right: 15),
+        padding: const EdgeInsets.only(left: 16,right: 16),
         child: Center(
           child: Stack(
             alignment: AlignmentDirectional.topCenter,
@@ -19,7 +20,7 @@ class GroupBalanceOne extends StatelessWidget {
               Positioned(
                   top: MediaQuery.of(context).size.width / 2 - 50,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () => Get.toNamed(AppPage.walletDetail),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: ColorPalette.incomeText,
                     ),

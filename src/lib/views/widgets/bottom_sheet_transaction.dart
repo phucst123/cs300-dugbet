@@ -18,11 +18,7 @@ class BottomSheetTransaction extends StatelessWidget {
             color: ColorPalette.white.withOpacity(0.3),
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-            border: Border(
-                top: BorderSide(color: ColorPalette.white, width: 1),
-                left: BorderSide(color: ColorPalette.white, width: 1),
-                right: BorderSide(color: ColorPalette.white, width: 1),
-                bottom: BorderSide(color: Colors.white, width: 0))),
+            border: Border.all(color: ColorPalette.white, width: 1)),
         child: Column(
           children: [
             SvgPicture.asset(

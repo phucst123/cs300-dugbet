@@ -108,16 +108,20 @@ class WalletList extends StatelessWidget {
                                               BorderRadius.circular(20)),
                                       child: Center(
                                         //child: ListTitleWallet(pathImage: "assets/images/defaultPlush.png",moneyValue: "200.000", nameWallet: "Momo"),
-                                        child: ListTitleWallet(
-                                            pathImage:
-                                                controller.walletList[index]
-                                                    .walletPicture,
-                                            moneyValue: (
-                                                    controller.walletList[index]
-                                                        .initialAmount)
-                                                .toString(),
-                                            nameWallet: controller
-                                                .walletList[index].name),
+                                        child: InkWell(
+                                          onTap: () => Get.toNamed(
+                                              AppPage.walletPersonal),
+                                          child: ListTitleWallet(
+                                              pathImage: controller
+                                                  .walletList[index]
+                                                  .walletPicture,
+                                              moneyValue: (controller
+                                                      .walletList[index]
+                                                      .initialAmount)
+                                                  .toString(),
+                                              nameWallet: controller
+                                                  .walletList[index].name),
+                                        ),
                                       ),
                                     ),
                                   ],
