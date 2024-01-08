@@ -8,6 +8,8 @@ import 'package:dugbet/consts/app_export.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fl_chart/fl_chart.dart';
 
+import 'package:dugbet/controllers/home/home_controller.dart';
+
 class PieQuickView extends StatefulWidget {
   const PieQuickView({super.key});
 
@@ -185,33 +187,48 @@ class SchedulePainter extends CustomPainter {
 }
 
 class TransactionQuickView extends StatelessWidget {
-  const TransactionQuickView({super.key, required this.transactionList});
-
-  final List<TransactionTemplate> transactionList;
+  TransactionQuickView({super.key, required this.transactionList});
+  HomeController controller = Get.put(HomeController());
+  List<TransactionTemplate> transactionList;
   @override
   Widget build(BuildContext context) {
-    final List<TransactionTemplate> transactionList = groupTransactions()[0];
-    // get top 3 transaction
-    while (transactionList.length > 4) {
-      transactionList.removeLast();
-    }
-    return Container(
-        padding: const EdgeInsets.only(
-            left: 16.0, right: 16.0, top: 20.0, bottom: 16.0),
-        child: QVTransactionItemList(transaction_list: transactionList)
-        //   ],
-        // child: ListView(
+    return GetBuilder<HomeController>(
+        init: HomeController(),
+        initState: (_) {},
+        builder: (controller) {
+          controller.getTransactions();
+          transactionList = controller.transactionlist;
+          if (transactionList.isEmpty) {
+            print(controller.transactionlist.length);
+            print("transaction list is empty");
+            return Container();
+          }
+          transactionList = groupTransactions()[0];
+          // get top 3 transaction
+          while (transactionList.length > 4) {
+            transactionList.removeLast();
+          }
+          return Container(
+              padding: const EdgeInsets.only(
+                  left: 16.0, right: 16.0, top: 20.0, bottom: 16.0),
+              child: QVTransactionItemList(transaction_list: transactionList)
+              //   ],
+              // child: ListView(
 
-        // )
-        // ),
-        );
+              // )
+              // ),
+              );
+        });
   }
 
   List<List<TransactionTemplate>> groupTransactions() {
-    transactionList.sort((a, b) => a.date.compareTo(b.date));
     // copy transactionList to transaction_list
     List<List<TransactionTemplate>> groupedTransactions = [];
     List<TransactionTemplate> temp = [];
+    if (transactionList.isEmpty) {
+      return groupedTransactions;
+    }
+    transactionList.sort((a, b) => a.date.compareTo(b.date));
     int currentDay = transactionList[0].date.day;
 
     for (var transaction in transactionList) {
@@ -263,7 +280,8 @@ class QVTransactionItemList extends StatelessWidget {
                         ),
                         height: 15.v,
                         width: 15.v,
-                        child: SvgPicture.asset("assets/icons/category/${transaction.category.toLowerCase()}/${transaction.icon.toLowerCase()}")),
+                        child: SvgPicture.asset(
+                            "assets/icons/category/${transaction.category.toLowerCase()}/${transaction.icon.toLowerCase()}")),
                     const SizedBox(width: 10.0),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -328,7 +346,6 @@ class StatQuickView extends StatelessWidget {
     incomeHeight = incomeHeight == 0 ? 1 : incomeHeight;
     double expenseHeight = expenseData * 100 / maxData;
     expenseHeight = expenseHeight == 0 ? 1 : expenseHeight;
-
 
     return Container(
       padding: const EdgeInsets.only(
