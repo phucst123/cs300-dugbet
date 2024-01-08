@@ -1,6 +1,5 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
-import 'package:dugbet/views/pages/wallet/wallet_controller.dart';
 import 'package:dugbet/views/widgets/list_title_wallet.dart';
 import 'package:flutter/material.dart';
 
