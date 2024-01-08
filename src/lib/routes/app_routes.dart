@@ -48,8 +48,8 @@ class AppRoute {
         GetPage(
           name: AppPage.homePage,
           page: () => const MainWrapper(),
+          binding: WrapperBinding()
           // transition: Transition.leftToRight
-          // binding: WrapperBinding()
         ),
         GetPage(
             name: AppPage.loginOpenScreen, page: () => const LoginOpenScreen()),

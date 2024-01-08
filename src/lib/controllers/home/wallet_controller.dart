@@ -1,13 +1,14 @@
+import 'package:dugbet/consts/utils/function_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeWalletController extends GetxController {
-  RxString money = "0.000".obs;
+  RxInt balance = 123000.obs;
   RxInt showValue = 0.obs;
 
-  String showMoney() {
+  String showBalance() {
     if (showValue.value == 0) {
-      return money.value;
+      return convertToCurrency(balance.value);
     } else {
       return "******";
     }

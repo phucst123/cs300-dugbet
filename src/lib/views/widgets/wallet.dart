@@ -1,6 +1,7 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/fonts/text_theme_builder.dart';
 import 'package:dugbet/controllers/home/wallet_controller.dart';
+import 'package:dugbet/models/WalletModel.dart';
 import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -8,7 +9,9 @@ import '../../consts/color/colors.dart';
 import 'list_title_wallet.dart';
 
 class Wallet extends GetView<HomeWalletController> {
-  const Wallet({super.key});
+  const Wallet({super.key, required this.walletList});
+
+  final List<WalletModel> walletList;
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +36,7 @@ class Wallet extends GetView<HomeWalletController> {
                 ),
                 InkWell(
                     onTap: controller.onChangeValue,
-                    child:
-                        Obx(() => controller.showEyeIcon())),
+                    child: Obx(() => controller.showEyeIcon())),
               ],
             ),
             const SizedBox(
@@ -61,7 +63,7 @@ class Wallet extends GetView<HomeWalletController> {
                 ),
                 Obx(
                   () => Text(
-                    controller.showMoney(),
+                    controller.showBalance(),
                     style: TextThemeBuilder.robotoTextTheme.titleLarge,
                   ),
                 ),
