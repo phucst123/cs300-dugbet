@@ -48,11 +48,6 @@ class CategoryItem extends StatelessWidget {
   Widget IconItem(String title, String icon,String category) {
     return InkWell(
       onTap: () {
-        final controller = Get.find<TransactionController>();
-        controller.icon.value = icon;
-        controller.category.value = category;
-        controller.title.value = title;
-        Get.back();
       },
       child: Column(
         //mainAxisSize: MainAxisSize.min,

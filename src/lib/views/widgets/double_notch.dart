@@ -181,7 +181,7 @@ class DoubleNotch extends StatelessWidget {
                     top: 119,
                     child: InkWell(
                       onTap: () {
-                        Get.dialog(SearchCategoryCustom());
+                        Get.dialog(SearchCategoryCustom(isEvent: false,));
                       },
                       child: Container(
                           height: 72,

@@ -1,11 +1,11 @@
-import 'package:dugbet/consts/color/colors.dart';
 import 'package:dugbet/views/pages/category/category_data.dart';
-import 'package:dugbet/views/pages/category/category_item.dart';
+import 'package:dugbet/views/widgets/category_item_custom.dart';
 import 'package:flutter/material.dart';
 
 
 class SearchCategoryCustom extends StatelessWidget {
-  const SearchCategoryCustom({super.key});
+  const SearchCategoryCustom({super.key, required this.isEvent});
+  final bool isEvent;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class SearchCategoryCustom extends StatelessWidget {
           //shrinkWrap: true,
           itemBuilder: (context, index) {
             //print("Building item $index");
-            return CategoryItem(category: allCategories[index]);
+            return CategoryItemCustom(category: allCategories[index],isEvent: isEvent,);
           }),
     );
   }
