@@ -14,8 +14,9 @@ class TransactionController extends GetxController {
   var selectedWallet = "Momo".obs;
   var isIncome = true.obs;
   var isEdit = false.obs;
-  var title = "".obs;
-  var icon = Icons.add.obs;
+  var title = "snack".obs;
+  var category = "Fnb".obs;
+  var icon = "snack.svg".obs;
   var  type = 0.obs;
 
   @override

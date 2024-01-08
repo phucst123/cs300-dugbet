@@ -1,5 +1,8 @@
 import 'package:dugbet/views/pages/category/category_data.dart';
+import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class CategoryItem extends StatelessWidget {
   final Category category;
@@ -23,7 +26,7 @@ class CategoryItem extends StatelessWidget {
           children: [
             Row(
               children: [
-                category.icon,
+                SvgPicture.asset("assets/icons/category/${category.title.toLowerCase()}/${category.icon.toLowerCase()}"),
                 const SizedBox(width: 8.0), // You can adjust the space between the icon and the title
                 Text(category.title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               ],
@@ -34,7 +37,7 @@ class CategoryItem extends StatelessWidget {
               mainAxisSpacing: 8.0,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              children: category.sub_categories.map((subCategory) => IconItem(subCategory.item1, subCategory.item2)).toList(),
+              children: category.sub_categories.map((subCategory) => IconItem(subCategory.item1, subCategory.item2,category.title)).toList(),
             )
           ],
         ),
@@ -42,15 +45,19 @@ class CategoryItem extends StatelessWidget {
     );
   }
 
-  Widget IconItem(String title, Widget icon) {
+  Widget IconItem(String title, String icon,String category) {
     return InkWell(
       onTap: () {
-        print("click");
+        final controller = Get.find<TransactionController>();
+        controller.icon.value = icon;
+        controller.category.value = category;
+        controller.title.value = title;
+        Get.back();
       },
       child: Column(
         //mainAxisSize: MainAxisSize.min,
         children:[
-          icon,
+          SvgPicture.asset("assets/icons/category/${category.toLowerCase()}/${icon.toLowerCase()}"),
           const SizedBox(height: 8.0),
           Expanded(
             child: Center(

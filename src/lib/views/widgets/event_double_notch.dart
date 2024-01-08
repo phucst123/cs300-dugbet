@@ -2,6 +2,7 @@ import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/views/pages/category/choose_category_page.dart';
 import 'package:dugbet/views/pages/transaction/event_transaction_controller.dart';
 import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
+import 'package:dugbet/views/widgets/search_category_custom.dart';
 import 'package:dugbet/views/widgets/stat.dart';
 import 'package:dugbet/views/widgets/stat_one.dart';
 import 'package:flutter/material.dart';
@@ -182,7 +183,7 @@ class EventDoubleNotch extends StatelessWidget {
                 top: 119,
                 child: InkWell(
                   onTap: () {
-                    Get.dialog(ChooseCategoryPage());
+                    Get.dialog(SearchCategoryCustom());
                   },
                   child: Container(
                       height: 72,
@@ -191,7 +192,7 @@ class EventDoubleNotch extends StatelessWidget {
                           shape: BoxShape.circle,
                           border: Border.all(color: ColorPalette.black)),
                       child: Center(
-                        child: Icon(controller.icon.value),
+                        child: SvgPicture.asset("assets/icons/category/${controller.title.value.toLowerCase()}/${controller.icon.value.toLowerCase()}"),
                       )),
                 )),
             Padding(

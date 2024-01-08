@@ -47,7 +47,7 @@ class TransactionItemList extends StatelessWidget {
                         ),
                         height: 36.v,
                         width: 36.v,
-                        child: Icon(transaction.icon)),
+                        child: SvgPicture.asset("assets/icons/category/${transaction.category.toLowerCase()}/${transaction.icon.toLowerCase()}",fit: BoxFit.scaleDown,)),
                     const SizedBox(width: 10.0),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,6 +101,7 @@ class TransactionItemList extends StatelessWidget {
       controller.title.value = transaction.title;
       controller.icon.value = transaction.icon;
       controller.type.value = transaction.type;
+      controller.category.value = transaction.category;
       controller.isEdit.value = true;
       controller.incomeTextEdit.text = transaction.amount;
       controller.descriptionTextEdit.text = transaction.description;
@@ -112,6 +113,7 @@ class TransactionItemList extends StatelessWidget {
       controller.title.value = transaction.title;
       controller.icon.value = transaction.icon;
       controller.type.value = transaction.type;
+      controller.category.value = transaction.category;
       controller.isEdit.value = true;
       controller.incomeTextEdit.text = transaction.amount;
       controller.descriptionTextEdit.text = transaction.description;
