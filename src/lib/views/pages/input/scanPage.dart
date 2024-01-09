@@ -114,7 +114,11 @@ class Scanning extends StatelessWidget {
                       radius: 30,
                       child: Center(
                         child: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              //controller.updateFileName(ImageSource.camera);
+                              print("textResult: ${controller.getAmount()}");
+                            
+                            },
                             iconSize: 40,
                             icon: const Icon(
                               Icons.document_scanner,

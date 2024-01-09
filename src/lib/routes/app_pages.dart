@@ -1,7 +1,7 @@
 class AppPage {
   // static const splashPage = '/';
   // static const homePage = '/homePage';
-  static const splashPage = '/splashPage';
+  static const splashPage = '/';
   static const homePage = '/home';
   static const settingPage = '/setting';
   static const editProfilePage = '/setting/editprofile';
