@@ -39,7 +39,7 @@ class AppRoute {
   static List<GetPage> routes() => [
         GetPage(
           name: AppPage.transactionHistoryPage,
-          page: () => const TransactionHistoryPage(
+          page: () => TransactionHistoryPage(
             showNav: true,
           ),
           binding: TransactionBinding(),

@@ -9,23 +9,23 @@ import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
 import 'package:dugbet/views/widgets/home_header_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-List<TransactionTemplate> transaction_list = [
-  TransactionTemplate(
-      category: "Clothing",
-      title: "Ear muffs",
-      description: "Income from design project",
-      amount: "5.000",
-      date: DateTime.now(),
-      icon: "ear_muffs.svg",
-      type: 1),
-  TransactionTemplate(
-      category: "Fnb",
-      title: "Burger",
-      description: "Monthly rent payment",
-      amount: "1.000.000",
-      date: DateTime.now(),
-      icon: "burger.svg",
-      type: 0),
+// List<TransactionTemplate> transaction_list = [
+//   TransactionTemplate(
+//       category: "Clothing",
+//       title: "Ear muffs",
+//       description: "Income from design project",
+//       amount: "5.000",
+//       date: DateTime.now(),
+//       icon: "ear_muffs.svg",
+//       type: 1),
+//   TransactionTemplate(
+//       category: "Fnb",
+//       title: "Burger",
+//       description: "Monthly rent payment",
+//       amount: "1.000.000",
+//       date: DateTime.now(),
+//       icon: "burger.svg",
+//       type: 0),
   // TransactionTemplate(
   //     title: "Grocery shopping",
   //     description: "Purchased groceries",
@@ -117,7 +117,7 @@ List<TransactionTemplate> transaction_list = [
   //     date: DateTime.now().add(const Duration(days: -2)),
   //     icon: Icons.restaurant,
   //     type: 0),
-];
+//];
 
 class TransactionHistoryPage extends StatelessWidget {
   //const TransactionHistoryPage({required Key key}) : super(key: key);
@@ -129,7 +129,7 @@ class TransactionHistoryPage extends StatelessWidget {
       Container(
         padding: const EdgeInsets.only(
             left: 16.0, right: 16.0, top: 30.0, bottom: 0.0),
-        child: const Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TransactionChart(

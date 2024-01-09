@@ -26,6 +26,7 @@ class HomeController extends GetxController {
    Future <void> getTransactions() async {
     try {
       QuerySnapshot transactions = await FirebaseFirestore.instance.collection('Users').doc('vinh123@gmail.com').collection('Transactions').get();
+
       transactionListModel.clear();
       transactionlist.clear();
       income.value = 0;
@@ -34,7 +35,7 @@ class HomeController extends GetxController {
         category: "Fnb",
           title: "Snack",
           description: "Income from design project",
-          amount: "85.000",
+          amount: 85,
           date: DateTime.now(),
           icon: "snack.svg",
           type: 1));
@@ -43,7 +44,7 @@ class HomeController extends GetxController {
         category: "Clothing",
           title: "Rent payment",
           description: "Monthly rent payment",
-          amount: "123.000",
+          amount: 123,
           date: DateTime.now(),
           icon: "socks.svg",
           type: 0));
@@ -55,7 +56,9 @@ class HomeController extends GetxController {
           category: transaction['category'],
           title: transaction['title'],
           description: transaction['description'],
-          amount: convertToCurrency(transaction['amount']),
+          // from Minh: Vinh hay Binh code cho nay thi fix lai gium tui nhe. Tui tam thoi comment de tranh error
+          //amount: convertToCurrency(transaction['amount']),
+          amount: 100,
           // convert to DateTime from Timestamp
           date: DateTime.now(), ///transaction['date'].toDate(),
           icon: 'snack.svg',
@@ -90,7 +93,7 @@ class HomeController extends GetxController {
         category: "Fnb",
           title: "Snack",
           description: "Income from design project",
-          amount: "5.000",
+          amount: 5,
           date: DateTime.now(),
           icon: "snack.svg",
           type: 1),
@@ -98,7 +101,7 @@ class HomeController extends GetxController {
         category: "Clothing",
           title: "Rent payment",
           description: "Monthly rent payment",
-          amount: "1.000.000",
+          amount: 1000000,
           date: DateTime.now(),
           icon: "socks.svg",
           type: 0),

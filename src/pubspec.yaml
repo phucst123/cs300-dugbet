@@ -90,7 +90,7 @@ flutter:
       - assets/user/
       - assets/icons/
       - assets/icons/category/
-      - assets/icons/category/fnb/
+      - assets/icons/category/food_beverages/
       - assets/icons/category/transportation/
       - assets/icons/category/clothing/
       - assets/icons/category/others/

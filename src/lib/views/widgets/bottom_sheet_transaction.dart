@@ -1,13 +1,13 @@
 import 'package:dugbet/consts/color/colors.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_history_page.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_list/transaction_list.dart';
+import 'package:dugbet/views/pages/transaction_history/transaction_template.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class BottomSheetTransaction extends StatelessWidget {
-  const BottomSheetTransaction({
-    super.key,
-  });
+  const BottomSheetTransaction({Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class BottomSheetTransaction extends StatelessWidget {
               // colorFilter: const ColorFilter.mode(ColorPalette.white, BlendMode.srcIn),
             ),
             const SizedBox(height: 14.0),
-            TransactionList(transaction_list: transaction_list),
+            TransactionList(),
             const SizedBox(height: 200.0),
           ],
         ));

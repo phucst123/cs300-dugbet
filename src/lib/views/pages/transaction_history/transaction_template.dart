@@ -5,7 +5,7 @@ class TransactionTemplate {
   final String category;
   final String title;
   final String description;
-  final String amount;
+  final int amount;
   final DateTime date;
   final String icon;
   final int type; // 0 for expense, 1 for income
