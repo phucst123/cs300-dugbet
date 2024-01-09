@@ -6,7 +6,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:dugbet/models/TransactionModel.dart';
-import 'package:dugbet/consts/utils/function_utils.dart';
 import 'package:dugbet/firebase_ref/references.dart';
 //import '../..firebase_ref/references.dart';
 class HomeController extends GetxController {

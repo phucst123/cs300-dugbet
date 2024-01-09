@@ -59,36 +59,33 @@ class WalletPersonal extends GetView<WalletPersonalController> {
                           ),
                         ],
                       ),
-                      Obx(
-                        () {
-                          return DropdownButton<String>(
-                            value: controller.selectMode.value,
-                            underline: Container(
-                              color: Colors.grey,
-                              width: 1,
-                            ),
-                            dropdownColor: ColorPalette.white.withOpacity(0.9),
-                            items: const [
-                              DropdownMenuItem(
-                                  value: "today", child: Text("Today")),
-                              DropdownMenuItem(
-                                  value: "week", child: Text("This week")),
-                              DropdownMenuItem(
-                                  value: "month", child: Text("This month")),
-                              DropdownMenuItem(
-                                  value: "quarter", child: Text("This quarter")),
-                              DropdownMenuItem(
-                                  value: "year", child: Text("This year"))
-                            ],
-                            style: const TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
-                            onChanged: (String? value) =>
-                                controller.onModeClick(value!),
-                          );
-                        }
-                      ),
+                      DropdownButton<String>(
+                        value: controller.selectMode.value,
+                        underline: Container(
+                          color: Colors.grey,
+                          width: 1,
+                        ),
+                        dropdownColor: ColorPalette.white.withOpacity(0.9),
+                        items: const [
+                          // the chart cannot show transactions just for one day
+                          // DropdownMenuItem(
+                          //     value: "today", child: Text("Today")),
+                          DropdownMenuItem(
+                              value: "week", child: Text("This week")),
+                          DropdownMenuItem(
+                              value: "month", child: Text("This month")),
+                          DropdownMenuItem(
+                              value: "quarter", child: Text("This quarter")),
+                          DropdownMenuItem(
+                              value: "year", child: Text("This year"))
+                        ],
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
+                        onChanged: (String? value) =>
+                            controller.onModeClick(value!),
+                      )
                     ],
                   ),
                 ),
