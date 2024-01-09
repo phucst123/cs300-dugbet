@@ -6,6 +6,7 @@ import 'package:dugbet/views/dialogs/sign_up_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:dugbet/firebase_ref/references.dart';
 
 class AuthController extends GetxController {
   @override
@@ -130,7 +131,7 @@ class AuthController extends GetxController {
   Future<void> saveUser(User? user, String username) async {
     try {
       if (user != null) {
-        await userRF.doc(user.email).set({
+        await usersRef.doc(user.email).set({
           "email": user.email,
           "name": username,
         });

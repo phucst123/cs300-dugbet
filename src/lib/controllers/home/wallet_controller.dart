@@ -1,4 +1,7 @@
 import 'package:dugbet/consts/utils/function_utils.dart';
+import 'package:dugbet/controllers/login/auth_controller.dart';
+import 'package:dugbet/firebase_ref/references.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,10 +10,10 @@ import 'package:dugbet/models/WalletModel.dart';
 class HomeWalletController extends GetxController {
   RxInt balance = 123000.obs;
   RxInt showValue = 0.obs;
+  late User? user;
 
   var walletList = <WalletModel>[];
   @override
-
   void onReady() {
     super.onReady();
 
@@ -18,11 +21,13 @@ class HomeWalletController extends GetxController {
 
   void onInit() {
     super.onInit();
+    user = Get.find<AuthController>().getUser();
   }
 
   Future <void> getWallets() async {
+    String? user_id = user!.email;
     try {
-      QuerySnapshot wallets = await FirebaseFirestore.instance.collection('Users').doc('vinh123@gmail.com').collection('Wallets').get();
+      QuerySnapshot wallets = await usersRef.doc(user_id).collection('Wallets').get();
       walletList.clear();
       balance.value = 0;
       for (var wallet in wallets.docs) {

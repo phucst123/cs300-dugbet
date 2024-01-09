@@ -10,12 +10,14 @@ final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
 Reference get firebaseStorage => FirebaseStorage.instance.ref();
 
+// collection Users
 final CollectionReference usersRef =
     firestore.collection('Users').withConverter<UserModel>(
           fromFirestore: (snapshot, _) => UserModel.fromJson(snapshot.data()!),
           toFirestore: (user, _) => user.toJson(),
         );
 
+// collection Wallets
 final CollectionReference walletsRef = firestore
     .collection('Wallets')
     .withConverter<WalletModel>(
@@ -42,5 +44,3 @@ final CollectionReference categoriesRef = firestore
       fromFirestore: (snapshot, _) => CategoryModel.fromJson(snapshot.data()!),
       toFirestore: (category, _) => category.toJson(),
     );
-
-final userRF = firestore.collection('Users');
