@@ -18,12 +18,25 @@ class WalletController extends GetxController {
   var walletList = <WalletModel>[];
   var eventList = <EventModel>[];
   late User? user;
+
+  final TextEditingController incomeTextEdit = TextEditingController();
+  final TextEditingController descriptionTextEdit = TextEditingController();
+  var selectedTime = TimeOfDay.now().obs;
+  var selectedDate = DateTime.now().obs;
+  var selectedWallet = "Momo".obs;
+  var isIncome = true.obs;
+  var isEdit = false.obs;
+  var bankIcon = "Momo".obs;
+  var  type = 0.obs;
+
+
+
   //String? user_id;
   @override
   void onReady() {
     super.onReady();
   }
-
+  @override
   void onInit() {
     super.onInit();
     user = Get.find<AuthController>().getUser();
@@ -47,6 +60,7 @@ class WalletController extends GetxController {
         walletList
             .add(WalletModel.fromDocumentSnapshot(documentSnapshot: wallet));
       }
+      update();
     } catch (e) {
       print(e);
       Get.snackbar("Error", 'Error while getting wallet list',
@@ -65,6 +79,7 @@ class WalletController extends GetxController {
         eventList
             .add(EventModel.fromDocumentSnapshot(documentSnapshot: event));
       }
+      update();
     } catch (e) {
       print(e);
       Get.snackbar("Error", 'Error while getting event list',
