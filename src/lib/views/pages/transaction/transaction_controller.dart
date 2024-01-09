@@ -1,10 +1,10 @@
 import 'package:dugbet/controllers/login/auth_controller.dart';
 import 'package:dugbet/firebase_ref/references.dart';
+import 'package:dugbet/models/TransactionModel.dart';
 import 'package:dugbet/views/widgets/choose_list_wallet.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 
 class TransactionController extends GetxController {
   final TextEditingController incomeTextEdit = TextEditingController();
@@ -17,7 +17,22 @@ class TransactionController extends GetxController {
   var title = "snack".obs;
   var category = "Fnb".obs;
   var icon = "snack.svg".obs;
-  var  type = 0.obs;
+  var type = 0.obs;
+
+  // Rx<TransactionModel> transaction = TransactionModel(
+  //   transactionId: '0',
+  //   title: "New Transaction",
+  //   isIncome: false,
+  //   type: "Personal",
+  //   category: "food_beverages",
+  //   subCategory: "fine_dining",
+  //   amount: 100000,
+  //   description: "...",
+  //   date: DateTime.now(),
+  //   payerId: 'demo@gmail.com',
+  //   walletId: '0',
+  //   members: [],
+  // ).obs;
 
   late User? user;
 
@@ -70,10 +85,8 @@ class TransactionController extends GetxController {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Colors.white
-          ),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10), color: Colors.white),
             child: const ChooseListWallet()),
       ),
     ));

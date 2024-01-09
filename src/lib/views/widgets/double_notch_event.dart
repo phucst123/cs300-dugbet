@@ -1,12 +1,10 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
 import 'package:dugbet/views/widgets/icon_display_circle.dart';
-import 'package:dugbet/views/widgets/search_category_custom.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../consts/color/colors.dart';
-import '../../consts/color/theme.dart';
 import '../../consts/fonts/text_theme_builder.dart';
 
 class DoubleNotchEvent extends StatelessWidget {

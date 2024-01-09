@@ -25,42 +25,113 @@ class DoubleNotch extends StatelessWidget {
                 Column(
                   children: [
                     Stack(
-                      children: [
-                        SvgPicture.asset(
-                          "assets/images/top_notch.svg",
-                          width: MediaQuery.of(context).size.width,
-                          // height: 150,
-                        ),
-                        Positioned(
-                            top: 35,
-                            right: 20,
-                            child: Text(
-                              "Amount",
-                              style: TextThemeBuilder
-                                  .robotoTextTheme.headlineLarge,
-                            )),
-                      ],
+                  children: [
+                    SvgPicture.asset(
+                      "assets/images/top_notch.svg",
+                      width: MediaQuery.of(context).size.width,
+                      // height: 150,
                     ),
-                    const SizedBox(
-                      height: 10,
+                    Padding(
+                      padding: EdgeInsets.only(
+                          top: 40,
+                          left: MediaQuery.of(context).size.width / 2,
+                          right: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            "Initial Amount",
+                            style:
+                                TextThemeBuilder.robotoTextTheme.headlineLarge,
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextField(
+                                  onTapOutside: (event) {
+                                    FocusManager.instance.primaryFocus
+                                        ?.unfocus();
+                                  },
+                                  textAlign: TextAlign.right,
+                                  decoration: InputDecoration(
+                                    // hintText: "0 ",
+                                    
+                                    border: InputBorder.none,
+                                    hintStyle: TextThemeBuilder
+                                        .robotoTextTheme.titleLarge,
+                                  ),
+                                  controller: controller.incomeTextEdit,
+                                  maxLength: 9,
+                                  keyboardType: TextInputType.number,
+                                  style: TextThemeBuilder
+                                      .robotoTextTheme.titleLarge,
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.deny(
+                                        RegExp(r'\n')),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 20),
+                                child:
+                                    SvgPicture.asset("assets/images/dIcon.svg"),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                    Stack(
-                      children: [
-                        SvgPicture.asset(
-                          "assets/images/bot_notch.svg",
-                          width: MediaQuery.of(context).size.width,
-                          // height: 150,
-                        ),
-                        Positioned(
-                            top: 33,
-                            right: 20,
-                            child: Text(
-                              "Description",
-                              style: TextThemeBuilder
-                                  .robotoTextTheme.headlineLarge,
-                            )),
-                      ],
-                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Stack(
+                  children: [
+                    SvgPicture.asset(
+                      "assets/images/bot_notch.svg",
+                      width: MediaQuery.of(context).size.width,
+                      // height: 150,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          top: 40,
+                          left: MediaQuery.of(context).size.width / 2,
+                          right: 20),
+                      // right: 2,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            "Description",
+                            style:
+                                TextThemeBuilder.robotoTextTheme.headlineLarge,
+                          ),
+                          TextField(
+                            onTapOutside: (event) {
+                              FocusManager.instance.primaryFocus?.unfocus();
+                            },
+                            textAlign: TextAlign.right,
+                            decoration: InputDecoration(
+                              hintText: "...",
+                              border: InputBorder.none,
+                              hintStyle:
+                                  TextThemeBuilder.robotoTextTheme.titleLarge,
+                            ),
+                            controller: controller.descriptionTextEdit,
+                            style:
+                                TextThemeBuilder.robotoTextTheme.headlineLarge,
+                            maxLines: 2,
+                            maxLength: 30,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.deny(RegExp(r'\n')),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                )
                   ],
                 ),
                 Positioned(
@@ -177,7 +248,7 @@ class DoubleNotch extends StatelessWidget {
                     top: 155,
                     child: InkWell(
                       onTap: () {
-                        Get.dialog(SearchCategoryCustom(
+                        Get.dialog(const SearchCategoryCustom(
                           isEvent: false,
                         ));
                       },
@@ -192,65 +263,65 @@ class DoubleNotch extends StatelessWidget {
                                 "assets/icons/category/${controller.category.value.toLowerCase()}/${controller.title.value.replaceAll(' ', '').toLowerCase()}"),
                           )),
                     )),
-                Padding(
-                  padding: EdgeInsets.only(
-                      top: 55,
-                      left: MediaQuery.of(context).size.width / 2,
-                      right: MediaQuery.of(context).size.width - 360),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          onTapOutside: (event) {
-                            FocusManager.instance.primaryFocus?.unfocus();
-                          },
-                          textAlign: TextAlign.right,
-                          decoration: InputDecoration(
-                            hintText: "0",
-                            border: InputBorder.none,
-                            hintStyle:
-                                TextThemeBuilder.robotoTextTheme.titleLarge,
-                          ),
-                          controller: controller.incomeTextEdit,
-                          maxLength: 9,
-                          keyboardType: TextInputType.number,
-                          style: TextThemeBuilder.robotoTextTheme.titleLarge,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.deny(RegExp(r'\n')),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 20, right: 20),
-                        child: SvgPicture.asset("assets/images/dIcon.svg"),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                      top: 186,
-                      left: MediaQuery.of(context).size.width / 2,
-                      right: MediaQuery.of(context).size.width - 360),
-                  child: TextField(
-                    onTapOutside: (event) {
-                      FocusManager.instance.primaryFocus?.unfocus();
-                    },
-                    textAlign: TextAlign.right,
-                    decoration: InputDecoration(
-                      hintText: "...",
-                      border: InputBorder.none,
-                      hintStyle: TextThemeBuilder.robotoTextTheme.titleLarge,
-                    ),
-                    controller: controller.descriptionTextEdit,
-                    style: TextThemeBuilder.robotoTextTheme.headlineLarge,
-                    maxLines: 4,
-                    maxLength: 63,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.deny(RegExp(r'\n')),
-                    ],
-                  ),
-                ),
+                // Padding(
+                //   padding: EdgeInsets.only(
+                //       top: 55,
+                //       left: MediaQuery.of(context).size.width / 2,
+                //       right: MediaQuery.of(context).size.width - 360),
+                //   child: Row(
+                //     children: [
+                //       Expanded(
+                //         child: TextField(
+                //           onTapOutside: (event) {
+                //             FocusManager.instance.primaryFocus?.unfocus();
+                //           },
+                //           textAlign: TextAlign.right,
+                //           decoration: InputDecoration(
+                //             hintText: "0",
+                //             border: InputBorder.none,
+                //             hintStyle:
+                //                 TextThemeBuilder.robotoTextTheme.titleLarge,
+                //           ),
+                //           controller: controller.incomeTextEdit,
+                //           maxLength: 9,
+                //           keyboardType: TextInputType.number,
+                //           style: TextThemeBuilder.robotoTextTheme.titleLarge,
+                //           inputFormatters: [
+                //             FilteringTextInputFormatter.deny(RegExp(r'\n')),
+                //           ],
+                //         ),
+                //       ),
+                //       Padding(
+                //         padding: const EdgeInsets.only(bottom: 20, right: 20),
+                //         child: SvgPicture.asset("assets/images/dIcon.svg"),
+                //       )
+                //     ],
+                //   ),
+                // ),
+                // Padding(
+                //   padding: EdgeInsets.only(
+                //       top: 186,
+                //       left: MediaQuery.of(context).size.width / 2,
+                //       right: MediaQuery.of(context).size.width - 360),
+                //   child: TextField(
+                //     onTapOutside: (event) {
+                //       FocusManager.instance.primaryFocus?.unfocus();
+                //     },
+                //     textAlign: TextAlign.right,
+                //     decoration: InputDecoration(
+                //       hintText: "...",
+                //       border: InputBorder.none,
+                //       hintStyle: TextThemeBuilder.robotoTextTheme.titleLarge,
+                //     ),
+                //     controller: controller.descriptionTextEdit,
+                //     style: TextThemeBuilder.robotoTextTheme.headlineLarge,
+                //     maxLines: 4,
+                //     maxLength: 63,
+                //     inputFormatters: [
+                //       FilteringTextInputFormatter.deny(RegExp(r'\n')),
+                //     ],
+                //   ),
+                // ),
                 Positioned(
                   bottom: -10,
                   child: InkWell(
