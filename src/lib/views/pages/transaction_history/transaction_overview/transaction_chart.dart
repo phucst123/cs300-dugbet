@@ -1,6 +1,6 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/fonts/text_theme_builder.dart';
-import 'package:dugbet/controllers/transaction/transaction_chart_controller.dart';
+import 'package:dugbet/views/pages/transaction_history/transaction_overview/transaction_chart_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:dugbet/consts/color/colors.dart';
