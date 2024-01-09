@@ -214,5 +214,10 @@ class TransactionPage extends StatelessWidget {
     Get.delete<TransactionController>();
   }
 
-  onTapSave() => Get.back();
+  onTapSave() {
+    print("In onTapSave() of TransactionPage");
+    controller!.pushToFirestore().then((_) {
+      Get.back();
+    });
+  }
 }

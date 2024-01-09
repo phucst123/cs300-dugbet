@@ -1,4 +1,7 @@
+import 'package:dugbet/controllers/login/auth_controller.dart';
+import 'package:dugbet/firebase_ref/references.dart';
 import 'package:dugbet/views/widgets/choose_list_wallet.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,11 +19,13 @@ class TransactionController extends GetxController {
   var icon = "snack.svg".obs;
   var  type = 0.obs;
 
+  late User? user;
+
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-
+    user = Get.find<AuthController>().getUser();
   }
 
   @override
@@ -74,5 +79,22 @@ class TransactionController extends GetxController {
     ));
   }
 
+  Future<void> pushToFirestore() async {
+    String? user_id = user!.email;
+    DateTime now = DateTime.now();
+    usersRef.doc(user_id).collection('Transactions').add({
+      'amount': int.parse(incomeTextEdit.text),
+      'category': category.value,
+      'date': selectedDate.value,
+      'description': descriptionTextEdit.text,
+      'isIncome': isIncome.value,
+      'payerId': user_id,
+      'subCategory': title.value,
+      'title': title.value,
+      'transactionId': '${now.year}-${now.month}-${now.day}-${now.hour}-${now.minute}-${now.second}-${user_id}',
+      'type': 'Personal',
+      'walletId': 'Momo'
+    });
+  }
 
 }
