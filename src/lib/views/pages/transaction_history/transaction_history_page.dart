@@ -132,10 +132,10 @@ class TransactionHistoryPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TransactionChart(),
-            SizedBox(height: 18.0),
+            const TransactionChart(),
+            const SizedBox(height: 18.0),
             BalanceStatus(),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
           ],
         ),
       ),
