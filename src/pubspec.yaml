@@ -87,6 +87,9 @@ flutter:
   assets:
       - assets/images/
       - assets/lottie/
+      - assets/Event/
+      - assets/Event/0.svg
+      - assets/Bank/
       - assets/user/
       - assets/icons/
       - assets/icons/category/

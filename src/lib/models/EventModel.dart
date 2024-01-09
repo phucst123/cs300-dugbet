@@ -1,4 +1,5 @@
 import 'package:dugbet/models/UtilityModel.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class EventModel {
   EventModel({
@@ -32,6 +33,18 @@ class EventModel {
     transactions = List.from(json['transactions']).map((e)=>TransactionInfo.fromJson(e)).toList();
     members = List.from(json['members']).map((e)=>Member.fromJson(e)).toList();
     eventPicture = json['eventPicture'];
+  }
+
+  EventModel.fromDocumentSnapshot({required DocumentSnapshot documentSnapshot}){
+    id = documentSnapshot.id;
+    name = documentSnapshot['name'];
+    description = documentSnapshot['description'];
+    startDate = documentSnapshot['startDate'].toDate();
+    endDate = documentSnapshot['endDate'].toDate();
+    initialAmount = documentSnapshot['initialAmount'];
+    //transactions = List.from(documentSnapshot['transactions']).map((e)=>TransactionInfo.fromJson(e)).toList();
+    //members = List.from(documentSnapshot['members']).map((e)=>Member.fromJson(e)).toList();
+    eventPicture = documentSnapshot['eventPicture'];
   }
 
   Map<String, dynamic> toJson() {
