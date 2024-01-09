@@ -10,10 +10,11 @@ import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
 
 class WalletPage extends StatelessWidget {
   const WalletPage({super.key, this.showNav = false});
+
   final bool showNav;
+
   @override
   Widget build(BuildContext context) {
-
     List<Widget> pageWidgets = [
       Padding(
         padding: const EdgeInsets.only(top: 12.0, bottom: 20.0, left: 16.0),
@@ -23,22 +24,6 @@ class WalletPage extends StatelessWidget {
         ),
       ),
       WalletList(),
-      InkWell(
-        onTap: () {
-          Get.toNamed(AppPage.walletNewWallet);
-        },
-        child: Container(
-          height: 60,
-          width: 60,
-          decoration: const BoxDecoration(
-              color: Colors.orangeAccent, shape: BoxShape.circle),
-          child: const Center(
-              child: Text(
-            "+",
-            style: TextStyle(fontSize: 30),
-          )),
-        ),
-      )
     ];
     if (showNav == false) {
       return SafeArea(
@@ -51,14 +36,38 @@ class WalletPage extends StatelessWidget {
             ),
           ),
           resizeToAvoidBottomInset: false,
-          body: Container(
-            decoration: const BoxDecoration(color: ColorPalette.tearButton),
-            child: ListView.builder(
-                itemCount: pageWidgets.length,
-                shrinkWrap: true,
-                itemBuilder: (BuildContext context, int index) {
-                  return pageWidgets[index];
-                }),
+          body: Stack(
+            children: [
+              Container(
+                decoration: const BoxDecoration(color: ColorPalette.tearButton),
+                child: ListView.builder(
+                    itemCount: pageWidgets.length,
+                    shrinkWrap: true,
+                    itemBuilder: (BuildContext context, int index) {
+                      return pageWidgets[index];
+                    }),
+              ),
+              Positioned(
+                right: 20,
+                bottom: 50,
+                child: InkWell(
+                  onTap: () {
+                    Get.toNamed(AppPage.walletNewWallet);
+                  },
+                  child: Container(
+                    height: 60,
+                    width: 60,
+                    decoration: const BoxDecoration(
+                        color: Colors.orangeAccent, shape: BoxShape.circle),
+                    child: const Center(
+                        child: Text(
+                      "+",
+                      style: TextStyle(fontSize: 30),
+                    )),
+                  ),
+                ),
+              )
+            ],
           ),
         ),
       );

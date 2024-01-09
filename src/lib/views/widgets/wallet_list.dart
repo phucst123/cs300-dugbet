@@ -1,4 +1,5 @@
 import 'package:dugbet/consts/app_export.dart';
+import 'package:dugbet/consts/utils/function_utils.dart';
 import 'package:dugbet/views/widgets/list_title_wallet.dart';
 
 import '../../consts/color/colors.dart';
@@ -8,7 +9,7 @@ import '../../../controllers/wallet/wallet_controller.dart';
 // ignore: must_be_immutable
 class WalletList extends StatelessWidget {
   WalletList({super.key});
-  WalletController controller = Get.put(WalletController());
+  WalletController controller0 = Get.put(WalletController());
   @override
   Widget build(BuildContext context) {
     final keyboardSpace = MediaQuery.of(context).viewInsets.bottom;
@@ -17,6 +18,7 @@ class WalletList extends StatelessWidget {
         initState: (_) {},
         builder: (controller) {
           controller.getWallets();
+
           return Container(
             constraints: BoxConstraints(
                 maxHeight: MediaQuery.of(context).size.height - 150),
@@ -31,7 +33,7 @@ class WalletList extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               child: Padding(
                 padding: EdgeInsets.only(bottom: keyboardSpace + 80),
-                child: Column(
+                child: Obx(() => Column(
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 20),
@@ -39,25 +41,32 @@ class WalletList extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           TextButton(
-                              onPressed: () {},
-                              child: Text(
-                                "My Wallets",
-                                style: TextThemeBuilder
-                                    .robotoTextTheme.titleMedium
-                                    ?.copyWith(color: Colors.black),
-                              )),
+                            onPressed: () => controller.switchMode(true),
+                            child: Text(
+                              "My Wallets",
+                              style: TextThemeBuilder
+                                  .robotoTextTheme.titleMedium
+                                  ?.copyWith(
+                                  color: controller0.isWallet.value
+                                      ? Colors.black
+                                      : Colors.grey),
+                            ),
+                          ),
                           Container(
                             color: Colors.grey,
                             width: 2,
                             height: 20,
                           ),
                           TextButton(
-                              onPressed: () {},
+                              onPressed: () => controller.switchMode(false),
                               child: Text(
                                 "Trip/Event",
                                 style: TextThemeBuilder
                                     .robotoTextTheme.titleMedium
-                                    ?.copyWith(color: Colors.grey),
+                                    ?.copyWith(
+                                    color: controller0.isWallet.value
+                                        ? Colors.grey
+                                        : Colors.black),
                               )),
                         ],
                       ),
@@ -70,8 +79,8 @@ class WalletList extends StatelessWidget {
                       child: TextField(
                         style: TextThemeBuilder.robotoTextTheme.titleSmall,
                         decoration: InputDecoration(
-                            // fillColor:LightTheme.primaryColor,
-                            // filled: true,
+                          // fillColor:LightTheme.primaryColor,
+                          // filled: true,
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                                 borderSide: BorderSide.none),
@@ -86,46 +95,86 @@ class WalletList extends StatelessWidget {
                       height: MediaQuery.of(context).size.height - 170,
                       child: ListView.builder(
                           scrollDirection: Axis.vertical,
-                          itemCount: controller.walletList.length,
+                          itemCount: controller0.isWallet.value?controller.walletList.length:controller.eventWalletList.length,
                           itemBuilder: (context, index) => Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      width: MediaQuery.of(context).size.width -
-                                          50,
-                                      height: 80,
-                                      decoration: BoxDecoration(
-                                          border:
-                                              Border.all(color: Colors.black),
-                                          color: ColorPalette.white,
-                                          borderRadius:
-                                              BorderRadius.circular(20)),
-                                      child: Center(
-                                        //child: ListTitleWallet(pathImage: "assets/images/defaultPlush.png",moneyValue: "200.000", nameWallet: "Momo"),
-                                        child: InkWell(
-                                          onTap: () => Get.toNamed(
-                                              AppPage.walletPersonal),
-                                          child: ListTitleWallet(
-                                              pathImage: controller
-                                                  .walletList[index]
-                                                  .walletPicture,
-                                              moneyValue: (controller
-                                                      .walletList[index]
-                                                      .initialAmount)
-                                                  .toString(),
-                                              nameWallet: controller
-                                                  .walletList[index].name),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                            padding: const EdgeInsets.all(10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: MediaQuery.of(context).size.width -
+                                      50,
+                                  height: 80,
+                                  decoration: BoxDecoration(
+                                      border:
+                                      Border.all(color: Colors.black),
+                                      color: ColorPalette.white,
+                                      borderRadius:
+                                      BorderRadius.circular(20)),
+                                  child: Center(
+                                    //child: ListTitleWallet(pathImage: "assets/images/defaultPlush.png",moneyValue: "200.000", nameWallet: "Momo"),
+                                    child: InkWell(
+                                        onTap: () => Get.toNamed(
+                                            AppPage.walletPersonal,
+                                            arguments: controller0.isWallet.value?controller
+                                                .walletList[index]:controller.eventWalletList[index]),
+                                        // child: Obx(
+                                        //   () {
+                                        //     // return controller.isWallet.value
+                                        //     //     ? ListTitleWallet(
+                                        //     //         pathImage: controller
+                                        //     //             .walletList[index]
+                                        //     //             .walletPicture,
+                                        //     //         moneyValue:
+                                        //     //             convertToCurrency(
+                                        //     //                 controller
+                                        //     //                     .walletList[
+                                        //     //                         index]
+                                        //     //                     .balance),
+                                        //     //         nameWallet: controller
+                                        //     //             .walletList[index].name)
+                                        //     //     : ListTitleWallet(
+                                        //     //         pathImage: controller
+                                        //     //             .eventList[index]
+                                        //     //             .eventPicture,
+                                        //     //         moneyValue:
+                                        //     //             convertToCurrency(
+                                        //     //                 controller
+                                        //     //                     .walletList[
+                                        //     //                         index]
+                                        //     //                     .balance),
+                                        //     //         nameWallet: controller
+                                        //     //             .eventList[index]
+                                        //     //             .name);
+                                        //     return ListTitleWallet(
+                                        //         pathImage: controller
+                                        //             .walletList[index]
+                                        //             .walletPicture,
+                                        //         moneyValue: convertToCurrency(
+                                        //             controller
+                                        //                 .walletList[index]
+                                        //                 .balance),
+                                        //         nameWallet: controller
+                                        //             .walletList[index].name);
+                                        //   },
+                                        // ),
+                                        child: ListTitleWallet(
+                                            pathImage: controller
+                                                .walletList[index]
+                                                .walletPicture,
+                                            moneyValue: convertToCurrency(
+                                                controller.walletList[index]
+                                                    .balance),
+                                            nameWallet: controller
+                                                .walletList[index].name)),
+                                  ),
                                 ),
-                              )),
+                              ],
+                            ),
+                          )),
                     ),
                   ],
-                ),
+                )),
               ),
             ),
           );

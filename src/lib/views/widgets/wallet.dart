@@ -16,7 +16,7 @@ class Wallet extends GetView<HomeWalletController> {
 
   @override
   Widget build(BuildContext context) {
-    print("Wallet ${walletData.length}");
+    //print("Wallet ${walletData.length}");
     // return GetBuilder<HomeWalletController>(
     //     init: HomeWalletController(),
     //     initState: (_) {},
@@ -122,11 +122,15 @@ class Wallet extends GetView<HomeWalletController> {
                                   border: Border.all(
                                       color: ColorPalette.black, width: 1)),
                               child: Center(
-                                child: ListTitleWallet(
-                                    pathImage: walletData[index].walletPicture,
-                                    moneyValue: controller
-                                        .showBalance(walletData[index].balance),
-                                    nameWallet: walletData[index].name),
+                                child: Obx(
+                                  () {
+                                    return ListTitleWallet(
+                                        pathImage: walletData[index].walletPicture,
+                                        moneyValue: controller
+                                            .showBalance(walletData[index].balance),
+                                        nameWallet: walletData[index].name);
+                                  }
+                                ),
                               ),
                             ),
                           ),
