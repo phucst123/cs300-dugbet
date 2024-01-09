@@ -103,6 +103,8 @@ flutter:
       - assets/DB/Transactions/
       - assets/DB/Users/
       - assets/DB/Wallets/
+      - assets/Bank/
+      - assets/Event/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

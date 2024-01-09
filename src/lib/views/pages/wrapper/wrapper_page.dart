@@ -17,7 +17,7 @@ class MainWrapper extends GetView<WrapperController> {
       body: Obx(
         () => IndexedStack(
           index: controller.tabIndex.value,
-          children: [
+          children: const [
             HomePage(),
             SettingPage(),
             TransactionHistoryPage(),
