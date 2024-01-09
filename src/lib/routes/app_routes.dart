@@ -1,5 +1,5 @@
 import 'package:dugbet/bindings/transaction/transaction_binding.dart';
-import 'package:dugbet/bindings/wrapper/wrapper_bining.dart';
+import 'package:dugbet/bindings/wrapper/wrapper_binding.dart';
 import 'package:dugbet/controllers/login/login_controller.dart';
 import 'package:dugbet/controllers/login/password_controller.dart';
 import 'package:dugbet/controllers/login/signup_controller.dart';

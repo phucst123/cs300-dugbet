@@ -68,6 +68,7 @@ class TransactionItemSummary extends StatelessWidget {
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Row(
               children: [
@@ -77,7 +78,6 @@ class TransactionItemSummary extends StatelessWidget {
                     color: ColorPalette.incomeText
                   )
                 ),
-                SizedBox(width: 2.0.v),
                 SvgPicture.asset(
                   "assets/images/dIcon.svg",
                   colorFilter: const ColorFilter.mode(
@@ -96,7 +96,6 @@ class TransactionItemSummary extends StatelessWidget {
                     color: ColorPalette.expenseText
                   )
                 ),
-                SizedBox(width: 2.0.v),
                 SvgPicture.asset(
                   "assets/images/dIcon.svg",
                   colorFilter: const ColorFilter.mode(
