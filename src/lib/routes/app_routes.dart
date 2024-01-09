@@ -1,5 +1,5 @@
 import 'package:dugbet/bindings/transaction/transaction_binding.dart';
-import 'package:dugbet/bindings/wrapper/wrapper_bining.dart';
+import 'package:dugbet/bindings/wrapper/wrapper_binding.dart';
 import 'package:dugbet/controllers/login/login_controller.dart';
 import 'package:dugbet/controllers/login/password_controller.dart';
 import 'package:dugbet/controllers/login/signup_controller.dart';
@@ -9,6 +9,7 @@ import 'package:dugbet/views/pages/wrapper/wrapper_page.dart';
 import 'package:dugbet/views/pages/transaction/transaction_page.dart';
 import 'package:dugbet/views/pages/category/choose_category_page.dart';
 import 'package:dugbet/views/pages/notification/notification_page.dart';
+
 // import 'package:dugbet/views/pages/home/home_page.dart';
 import 'package:dugbet/views/pages/setttings/edit_notification_page.dart';
 import 'package:dugbet/views/pages/setttings/edit_profile_page.dart';
@@ -26,14 +27,17 @@ import 'package:dugbet/views/pages/wallet/wallet_detail.dart';
 import 'package:dugbet/views/pages/wallet/wallet_event.dart';
 import 'package:dugbet/views/pages/wallet/wallet_event_detail.dart';
 import 'package:dugbet/views/pages/wallet/wallet_new_event.dart';
+
 // import 'package:dugbet/views/pages/wallet/wallet_new_wallet.dart';
 import 'package:dugbet/views/pages/wallet/wallet_page.dart';
 import 'package:dugbet/views/pages/wallet/wallet_personal.dart';
+import 'package:dugbet/views/widgets/pick_bank_icon.dart';
 
 import 'package:get/get.dart';
 
 import '../views/pages/input/scanPage.dart';
 import '../views/pages/transaction/event_transaction_page.dart';
+import '../views/widgets/pick_event_icon.dart';
 
 class AppRoute {
   static List<GetPage> routes() => [
@@ -134,7 +138,9 @@ class AppRoute {
         ),
         GetPage(
           name: AppPage.walletDetail,
-          page: () => WalletDetail(walletData: Get.arguments,),
+          page: () => WalletDetail(
+            walletData: Get.arguments,
+          ),
         ),
         GetPage(
           name: AppPage.walletEventDetail,

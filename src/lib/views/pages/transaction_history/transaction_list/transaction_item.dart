@@ -1,4 +1,5 @@
 import 'package:dugbet/consts/color/colors.dart';
+import 'package:dugbet/consts/utils/function_utils.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_list/transaction_item_list.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_list/transaction_item_summary.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_template.dart';
@@ -30,8 +31,8 @@ class TransactionItem extends StatelessWidget {
         children: [
           TransactionItemSummary(
             date: transaction_list[0].date,
-            income: calculateIncome().toString(),
-            expense: calculateExpense().toString()
+            income: convertToCurrency(calculateIncome()),
+            expense: convertToCurrency(calculateExpense())
           ),
           const SizedBox(height: 8.0),
           const Divider(),
