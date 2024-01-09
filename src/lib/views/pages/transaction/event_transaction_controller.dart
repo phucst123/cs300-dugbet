@@ -12,7 +12,7 @@ class EventTransactionController extends GetxController {
   var selectedWallet = "Momo".obs;
   var isIncome = true.obs;
   var isEdit = false.obs;
-  var title = "snack".obs;
+  var title = "12".obs;
   var category = "Fnb".obs;
   var icon = "snack.svg".obs;
   var  type = 0.obs;

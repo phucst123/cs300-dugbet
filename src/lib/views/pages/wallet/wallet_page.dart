@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../consts/color/colors.dart';
 import '../../../consts/fonts/text_theme_builder.dart';
+import '../../../controllers/wallet/wallet_controller.dart';
 import '../../widgets/wallet_list.dart';
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/views/widgets/button/scan_button.dart';
@@ -16,6 +17,12 @@ class WalletPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WalletController controller;
+    if (Get.isRegistered<WalletController>()) {
+      controller = Get.find<WalletController>();
+    } else {
+      controller = Get.put<WalletController>(WalletController());
+    }
     List<Widget> pageWidgets = [
       Padding(
         padding: const EdgeInsets.only(top: 12.0, bottom: 20.0, left: 16.0),
@@ -53,7 +60,11 @@ class WalletPage extends StatelessWidget {
                 bottom: 50,
                 child: InkWell(
                   onTap: () {
-                    Get.toNamed(AppPage.walletNewWallet);
+                    if (controller.isWallet.value) {
+                      Get.toNamed(AppPage.walletNewWallet);
+                    } else {
+                      Get.toNamed(AppPage.walletEvent);
+                    }
                   },
                   child: Container(
                     height: 60,
@@ -83,14 +94,42 @@ class WalletPage extends StatelessWidget {
             ),
           ),
           resizeToAvoidBottomInset: false,
-          body: Container(
-            decoration: const BoxDecoration(color: ColorPalette.tearButton),
-            child: ListView.builder(
-                itemCount: pageWidgets.length,
-                shrinkWrap: true,
-                itemBuilder: (BuildContext context, int index) {
-                  return pageWidgets[index];
-                }),
+          body: Stack(
+            children: [
+              Container(
+                decoration: const BoxDecoration(color: ColorPalette.tearButton),
+                child: ListView.builder(
+                    itemCount: pageWidgets.length,
+                    shrinkWrap: true,
+                    itemBuilder: (BuildContext context, int index) {
+                      return pageWidgets[index];
+                    }),
+              ),
+              Positioned(
+                right: 20,
+                bottom: 50,
+                child: InkWell(
+                  onTap: () {
+                    if (controller.isWallet.value) {
+                      Get.toNamed(AppPage.walletNewWallet);
+                    } else {
+                      Get.toNamed(AppPage.walletEvent);
+                    }
+                  },
+                  child: Container(
+                    height: 60,
+                    width: 60,
+                    decoration: const BoxDecoration(
+                        color: Colors.orangeAccent, shape: BoxShape.circle),
+                    child: const Center(
+                        child: Text(
+                      "+",
+                      style: TextStyle(fontSize: 30),
+                    )),
+                  ),
+                ),
+              )
+            ],
           ),
           bottomNavigationBar: _buildBottomAppBar(),
           floatingActionButton: ScanButton(

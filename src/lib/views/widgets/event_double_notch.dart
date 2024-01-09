@@ -1,5 +1,6 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/views/pages/transaction/event_transaction_controller.dart';
+import 'package:dugbet/views/widgets/pick_event_icon.dart';
 import 'package:dugbet/views/widgets/search_category_custom.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -177,7 +178,8 @@ class EventDoubleNotch extends StatelessWidget {
                 top: 119,
                 child: InkWell(
                   onTap: () {
-                    Get.dialog(SearchCategoryCustom(isEvent: true,));
+                    // Get.dialog(SearchCategoryCustom(isEvent: true,));
+                    Get.dialog(PickEventIcon());
                   },
                   child: Container(
                       height: 72,
@@ -186,7 +188,7 @@ class EventDoubleNotch extends StatelessWidget {
                           shape: BoxShape.circle,
                           border: Border.all(color: ColorPalette.black)),
                       child: Center(
-                        child: SvgPicture.asset("assets/icons/category/${controller.category.value.toLowerCase()}/${controller.icon.value.toLowerCase()}"),
+                        child: SvgPicture.asset("assets/Event/${controller.title.value.toLowerCase()}.png"),
                       )),
                 )),
             Padding(

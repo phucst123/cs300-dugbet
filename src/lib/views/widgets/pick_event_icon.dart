@@ -1,4 +1,6 @@
+import 'package:dugbet/views/pages/transaction/event_transaction_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PickEventIcon extends StatelessWidget {
   PickEventIcon({super.key});
@@ -24,7 +26,17 @@ class PickEventIcon extends StatelessWidget {
 
 Widget IventIconChoose(String name) {
   return InkWell(
-    onTap: () {},
+    onTap: () {
+      EventTransactionController controller;
+      if(Get.isRegistered<EventTransactionController>()){
+        controller = Get.find<EventTransactionController>();
+      }
+      else{
+        controller = Get.put<EventTransactionController>(EventTransactionController());
+      }
+      controller.title.value = name;
+
+    },
     child: Center(
       child: Image.asset("assets/Event/${name.toLowerCase()}.png",width: 50,height: 50,),
     ),
