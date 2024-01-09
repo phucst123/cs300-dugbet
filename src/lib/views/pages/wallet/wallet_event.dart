@@ -11,9 +11,9 @@ import '../../../consts/fonts/text_theme_builder.dart';
 import '../../widgets/bottom_sheet_transaction.dart';
 
 class WalletEvent extends StatelessWidget {
-  const WalletEvent({super.key});
+  const WalletEvent({super.key, required this.eventModel});
 
-  EventModel get eventModel => Get.arguments;
+  final EventModel eventModel;
 
   @override
   Widget build(BuildContext context) {

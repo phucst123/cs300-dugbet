@@ -46,7 +46,7 @@ class DoubleNotchPersonal extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            "Amount",
+                            "Initial Amount",
                             style:
                                 TextThemeBuilder.robotoTextTheme.headlineLarge,
                           ),
@@ -60,7 +60,8 @@ class DoubleNotchPersonal extends StatelessWidget {
                                   },
                                   textAlign: TextAlign.right,
                                   decoration: InputDecoration(
-                                    hintText: "0 ",
+                                    // hintText: "0 ",
+                                    
                                     border: InputBorder.none,
                                     hintStyle: TextThemeBuilder
                                         .robotoTextTheme.titleLarge,

@@ -1,5 +1,4 @@
 import 'package:dugbet/consts/app_export.dart';
-import 'package:dugbet/controllers/wallet/wallet_personal_controller.dart';
 import 'package:dugbet/models/WalletModel.dart';
 import 'package:dugbet/views/widgets/double_notch_personal.dart';
 import 'package:dugbet/views/widgets/normal_header_bar.dart';
