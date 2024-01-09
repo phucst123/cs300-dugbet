@@ -2,6 +2,7 @@ import 'package:dugbet/consts/app_export.dart';
 
 import '../../consts/color/colors.dart';
 
+// ignore: must_be_immutable
 class EmailDialog extends StatelessWidget {
   EmailDialog({
     super.key,

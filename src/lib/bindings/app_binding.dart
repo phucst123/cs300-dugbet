@@ -1,12 +1,8 @@
 import 'package:dugbet/controllers/home/home_controller.dart';
 import 'package:dugbet/controllers/login/auth_controller.dart';
-import 'package:dugbet/controllers/login/login_controller.dart';
-import 'package:dugbet/controllers/login/password_controller.dart';
-import 'package:dugbet/controllers/login/signup_controller.dart';
 import 'package:dugbet/controllers/splash/loading_controller.dart';
 import 'package:dugbet/controllers/transaction/transaction_chart_controller.dart';
 import 'package:dugbet/controllers/wallet/wallet_controller.dart';
-import 'package:dugbet/controllers/wrapper/wrapper_controller.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_history_controller.dart';
 import 'package:get/get.dart';
 

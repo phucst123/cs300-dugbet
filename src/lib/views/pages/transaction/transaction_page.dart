@@ -6,6 +6,7 @@ import 'package:dugbet/views/widgets/normal_header_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 
+// ignore: must_be_immutable
 class TransactionPage extends StatelessWidget {
   TransactionPage({super.key});
   TransactionController? controller;

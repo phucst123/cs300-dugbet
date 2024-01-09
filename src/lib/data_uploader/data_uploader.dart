@@ -9,7 +9,6 @@ import 'package:dugbet/models/WalletModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:dugbet/firebase_ref/references.dart';
 
 
 class DataUploader extends GetxController {

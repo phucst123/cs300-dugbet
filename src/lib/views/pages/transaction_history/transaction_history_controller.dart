@@ -48,6 +48,7 @@ class TransactionHistoryController extends GetxController {
             .get();
         Map<String, dynamic>? categoryData =
             categorySnapshot.data() as Map<String, dynamic>?;
+        // ignore: unused_local_variable
         TransactionSummary transactionSummary = TransactionSummary(
           title: transactionData['title'],
           description: transactionData['description'],

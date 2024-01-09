@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dugbet/bindings/transaction/transaction_binding.dart';
 import 'package:dugbet/bindings/wrapper/wrapper_bining.dart';
 import 'package:dugbet/controllers/login/login_controller.dart';

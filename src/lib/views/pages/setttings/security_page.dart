@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class SecurityPage extends StatelessWidget {
   SecurityPage({super.key});
 

@@ -2,6 +2,7 @@ import 'package:dugbet/views/pages/transaction_history/transaction_list/transact
 import 'package:dugbet/views/pages/transaction_history/transaction_template.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class TransactionList extends StatelessWidget {
   TransactionList({super.key, required this.transaction_list});
   List<TransactionTemplate> transaction_list;

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../consts/color/colors.dart';
 
+// ignore: must_be_immutable
 class IconDisplayCircle extends StatelessWidget {
   IconDisplayCircle(
       {super.key, this.pathImage});
