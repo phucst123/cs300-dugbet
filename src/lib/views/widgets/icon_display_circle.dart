@@ -13,7 +13,7 @@ class IconDisplayCircle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (pathImage == "") {
-      print("OH NO LOI ROI");
+      print("OH NO LOI ROI"); 
     }
     return Container(
         height: 60,
