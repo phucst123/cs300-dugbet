@@ -129,7 +129,9 @@ class AppRoute {
         ),
         GetPage(
           name: AppPage.walletEvent,
-          page: () => const WalletEvent(),
+          page: () => WalletEvent(
+            eventModel: Get.arguments,
+          ),
         ),
         GetPage(
           name: AppPage.walletPersonal,
@@ -145,7 +147,9 @@ class AppRoute {
         ),
         GetPage(
           name: AppPage.walletEventDetail,
-          page: () => const WalletEventDetail(),
+          page: () => WalletEventDetail(
+            eventData: Get.arguments,
+          ),
         ),
         // GetPage(
         //   name: AppPage.walletNewEvent,

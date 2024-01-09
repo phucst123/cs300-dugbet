@@ -1,5 +1,7 @@
+import 'package:dugbet/controllers/wallet/wallet_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class PickBankIcon extends StatelessWidget {
   PickBankIcon({super.key});
@@ -41,7 +43,11 @@ class PickBankIcon extends StatelessWidget {
 
 Widget BankItem(String name) {
   return InkWell(
-    onTap: () {},
+    onTap: () {
+      final controller = Get.find<WalletController>();
+      controller.bankIcon.value= name;
+      Get.back();
+    },
     child: Center(
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

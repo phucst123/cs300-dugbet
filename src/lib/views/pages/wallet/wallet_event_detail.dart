@@ -6,9 +6,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../consts/fonts/text_theme_builder.dart';
 
 class WalletEventDetail extends StatelessWidget {
-  const WalletEventDetail({super.key});
+  const WalletEventDetail({super.key, required this.eventData});
 
-  EventModel get eventData => Get.arguments;
+  // EventModel get eventData => Get.arguments;
+  final EventModel eventData;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,9 @@ class WalletEventDetail extends StatelessWidget {
                   const SizedBox(
                     width: 10,
                   ),
-                  DoubleNotchEvent(walletImage: eventData.eventPicture,),
+                  DoubleNotchEvent(
+                    walletImage: eventData.eventPicture,
+                  ),
                   const SizedBox(
                     height: 30,
                   ),

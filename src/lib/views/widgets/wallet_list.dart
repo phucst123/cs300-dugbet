@@ -9,16 +9,22 @@ import '../../../controllers/wallet/wallet_controller.dart';
 // ignore: must_be_immutable
 class WalletList extends StatelessWidget {
   WalletList({super.key});
-  WalletController controller = Get.put(WalletController());
+
   @override
   Widget build(BuildContext context) {
     final keyboardSpace = MediaQuery.of(context).viewInsets.bottom;
+    WalletController controller;
+    if(Get.isRegistered<WalletController>()){
+      controller = Get.find<WalletController>();
+    }
+    else{
+      controller = Get.put<WalletController>(WalletController());
+    }
+
     return GetBuilder<WalletController>(
-        init: WalletController(),
-        initState: (_) {},
+        // init: WalletController(),
+        // initState: (_) {},
         builder: (controller) {
-          controller.getWallets();
-          controller.getEvents();
           return Container(
             constraints: BoxConstraints(
                 maxHeight: MediaQuery.of(context).size.height - 150),

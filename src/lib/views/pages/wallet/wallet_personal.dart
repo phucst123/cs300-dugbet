@@ -17,93 +17,101 @@ class WalletPersonal extends GetView<WalletPersonalController> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: HomeHeaderBar(
-          leftWidget: Transform.flip(
-            flipX: true,
-            child: SvgPicture.asset(
-              "assets/icons/arrow.svg",
-              colorFilter:
-                  const ColorFilter.mode(ColorPalette.white, BlendMode.srcIn),
-            ),
-          ),
-          onTap: () {
-            Get.back();
-          },
-        ),
-        body: Container(
-          height: MediaQuery.of(context).size.height,
-          decoration: const BoxDecoration(color: ColorPalette.tearButton),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                      top: 12.0, bottom: 20.0, left: 16.0, right: 16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return GetBuilder<WalletPersonalController>(
+        init: WalletPersonalController(),
+        initState: (_) {},
+        builder: (controller) {
+          return SafeArea(
+            child: Scaffold(
+              appBar: HomeHeaderBar(
+                leftWidget: Transform.flip(
+                  flipX: true,
+                  child: SvgPicture.asset(
+                    "assets/icons/arrow.svg",
+                    colorFilter: const ColorFilter.mode(
+                        ColorPalette.white, BlendMode.srcIn),
+                  ),
+                ),
+                onTap: () {
+                  Get.back();
+                },
+              ),
+              body: Container(
+                height: MediaQuery.of(context).size.height,
+                decoration: const BoxDecoration(color: ColorPalette.tearButton),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          Text(
-                            walletData.name,
-                            style: TextThemeBuilder.robotoTextTheme.titleLarge,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          SvgPicture.asset(
-                            "assets/icons/edit.svg",
-                          ),
-                        ],
-                      ),
-                      DropdownButton<String>(
-                        value: controller.selectMode.value,
-                        underline: Container(
-                          color: Colors.grey,
-                          width: 1,
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 12.0, bottom: 20.0, left: 16.0, right: 16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  walletData.name,
+                                  style: TextThemeBuilder
+                                      .robotoTextTheme.titleLarge,
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                SvgPicture.asset(
+                                  "assets/icons/edit.svg",
+                                ),
+                              ],
+                            ),
+                            DropdownButton<String>(
+                              value: controller.selectMode.value,
+                              underline: Container(
+                                color: Colors.grey,
+                                width: 1,
+                              ),
+                              dropdownColor:
+                                  ColorPalette.white.withOpacity(0.9),
+                              items: const [
+                                // the chart cannot show transactions just for one day
+                                // DropdownMenuItem(
+                                //     value: "today", child: Text("Today")),
+                                DropdownMenuItem(
+                                    value: "week", child: Text("This week")),
+                                DropdownMenuItem(
+                                    value: "month", child: Text("This month")),
+                                DropdownMenuItem(
+                                    value: "quarter",
+                                    child: Text("This quarter")),
+                                DropdownMenuItem(
+                                    value: "year", child: Text("This year"))
+                              ],
+                              style: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
+                              onChanged: (String? value) =>
+                                  controller.onModeClick(value!),
+                            )
+                          ],
                         ),
-                        dropdownColor: ColorPalette.white.withOpacity(0.9),
-                        items: const [
-                          // the chart cannot show transactions just for one day
-                          // DropdownMenuItem(
-                          //     value: "today", child: Text("Today")),
-                          DropdownMenuItem(
-                              value: "week", child: Text("This week")),
-                          DropdownMenuItem(
-                              value: "month", child: Text("This month")),
-                          DropdownMenuItem(
-                              value: "quarter", child: Text("This quarter")),
-                          DropdownMenuItem(
-                              value: "year", child: Text("This year"))
-                        ],
-                        style: const TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16),
-                        onChanged: (String? value) =>
-                            controller.onModeClick(value!),
-                      )
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        child: GroupBalance(
+                          walletData: walletData,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      const BottomSheetTransaction()
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: GroupBalance(
-                    walletData: walletData,
-                  ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                const BottomSheetTransaction()
-              ],
+              ),
             ),
-          ),
-        ),
-      ),
-    );
+          );
+        });
   }
 }

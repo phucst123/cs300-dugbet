@@ -1,5 +1,6 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/views/widgets/double_notch.dart';
+import 'package:dugbet/views/widgets/double_notch_new_wallet.dart';
 import '../../../consts/fonts/text_theme_builder.dart';
 import '../../widgets/wallet_header.dart';
 
@@ -20,74 +21,74 @@ class WalletNewEvent extends StatelessWidget {
                 children: [
                   WalletHeader(callback1: (){}, callback2: (){},),
                   Text(
-                    "Design ITUS",
+                    "New Wallet",
                     style: TextThemeBuilder.robotoTextTheme.titleLarge,
                   ),
                   const SizedBox(
                     width: 10,
                   ),
-                  DoubleNotch(),
+                  DoubleNotchNewWallet(),
                   const SizedBox(
                     height: 30,
                   ),
-                  Container(
-                    height: 80,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey, width: 1),
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Padding(
-                      padding:
-                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Members",
-                                style: TextThemeBuilder.robotoTextTheme.headlineLarge,
-                              ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              Text(
-                                "3/Member List",
-                                style: TextThemeBuilder.robotoTextTheme.titleMedium,
-                              ),
-                            ],
-                          ),
-
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Container(
-                    height: 40,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey, width: 1),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        children: [
-                          Text(
-                            "Show more details",
-                            style: TextThemeBuilder.robotoTextTheme.labelLarge,
-                          ),
-                          const Spacer(),
-                          IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.keyboard_arrow_down))
-                        ],
-                      ),
-                    ),
-                  ),
+                  // Container(
+                  //   height: 80,
+                  //   width: MediaQuery.of(context).size.width,
+                  //   decoration: BoxDecoration(
+                  //       border: Border.all(color: Colors.grey, width: 1),
+                  //       borderRadius: BorderRadius.circular(20)),
+                  //   child: Padding(
+                  //     padding:
+                  //     const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
+                  //     child: Row(
+                  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //       children: [
+                  //         Column(
+                  //           crossAxisAlignment: CrossAxisAlignment.start,
+                  //           children: [
+                  //             Text(
+                  //               "Members",
+                  //               style: TextThemeBuilder.robotoTextTheme.headlineLarge,
+                  //             ),
+                  //             const SizedBox(
+                  //               height: 15,
+                  //             ),
+                  //             Text(
+                  //               "3/Member List",
+                  //               style: TextThemeBuilder.robotoTextTheme.titleMedium,
+                  //             ),
+                  //           ],
+                  //         ),
+                  //
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+                  // const SizedBox(
+                  //   height: 30,
+                  // ),
+                  // Container(
+                  //   height: 40,
+                  //   width: MediaQuery.of(context).size.width,
+                  //   decoration: BoxDecoration(
+                  //       border: Border.all(color: Colors.grey, width: 1),
+                  //       borderRadius: BorderRadius.circular(10)),
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.symmetric(horizontal: 20),
+                  //     child: Row(
+                  //       children: [
+                  //         Text(
+                  //           "Show more details",
+                  //           style: TextThemeBuilder.robotoTextTheme.labelLarge,
+                  //         ),
+                  //         const Spacer(),
+                  //         IconButton(
+                  //             onPressed: () {},
+                  //             icon: const Icon(Icons.keyboard_arrow_down))
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
 
                 ],
               ),
