@@ -20,13 +20,13 @@ class TransactionPage extends StatelessWidget {
       controller = Get.put<TransactionController>(TransactionController());
     }
     return SafeArea(
-      child: SingleChildScrollView(
-        child: Scaffold(
-          backgroundColor: Colors.white,
-          appBar: NormalHeaderBar(),
-          body: Padding(
-            padding:
-                const EdgeInsets.only(bottom: 16.0, left: 20.0, right: 20.0),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: NormalHeaderBar(),
+        body: Padding(
+          padding:
+              const EdgeInsets.only(bottom: 16.0, left: 20.0, right: 20.0),
+          child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
