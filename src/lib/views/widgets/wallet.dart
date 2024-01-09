@@ -1,13 +1,11 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/fonts/text_theme_builder.dart';
 import 'package:dugbet/controllers/home/wallet_controller.dart';
-import 'package:dugbet/models/WalletModel.dart';
 import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../consts/color/colors.dart';
 import 'list_title_wallet.dart';
-import 'package:get/get.dart';
 //import '../../../controllers/wallet/wallet_controller.dart';
 
 class Wallet extends GetView<HomeWalletController> {

@@ -1,5 +1,4 @@
 // transaction template, could be implemented in the future
-import 'package:flutter/material.dart';
 
 class TransactionTemplate {
   final String category;

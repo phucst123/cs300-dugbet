@@ -1,7 +1,6 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/models/WalletModel.dart';
 
-import '../../models/EventModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 class WalletController extends GetxController {
  var isWallet = true.obs;

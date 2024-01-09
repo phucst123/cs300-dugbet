@@ -1,5 +1,4 @@
 import 'package:dugbet/consts/app_export.dart';
-import 'package:dugbet/consts/color/colors.dart';
 import 'package:dugbet/controllers/login/auth_controller.dart';
 
 class LoginController extends GetxController {

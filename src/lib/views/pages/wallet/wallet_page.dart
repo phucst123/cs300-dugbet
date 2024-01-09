@@ -8,7 +8,6 @@ import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/views/widgets/button/scan_button.dart';
 import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
 
-import '../../../controllers/wallet/wallet_controller.dart';
 class WalletPage extends StatelessWidget {
   const WalletPage({super.key, this.showNav = false});
   final bool showNav;

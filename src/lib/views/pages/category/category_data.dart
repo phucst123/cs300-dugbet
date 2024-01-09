@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:tuple/tuple.dart';
 
 class Category {
@@ -10,7 +8,7 @@ class Category {
 }
 
 List<Category> categoryData = [
-  Category(
+  const Category(
     title: 'Fnb',
     icon: "food.svg",
     sub_categories: [
@@ -28,7 +26,7 @@ List<Category> categoryData = [
       Tuple2('Vegetables', "vegetables.svg"),
     ],
   ),
-  Category(
+  const Category(
     title: 'Transportation',
     icon: "transportation.svg",
     sub_categories: [
@@ -45,7 +43,7 @@ List<Category> categoryData = [
       Tuple2('Petrol', "petrol.svg"),
     ],
   ),
-  Category(
+  const Category(
     title: 'Clothing',
     icon: "tshirt.svg",
     sub_categories: [
@@ -57,7 +55,7 @@ List<Category> categoryData = [
       Tuple2('Hanger', "hanger.svg"),
     ],
   ),
-  Category(
+  const Category(
     title: 'Others',
     icon: "package.svg",
     sub_categories: [

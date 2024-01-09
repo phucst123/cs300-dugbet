@@ -62,20 +62,20 @@ class SchedulePainter extends CustomPainter {
     var center = Offset(centerX, centerY);
     var radius = min(centerX, centerY);
 
-    var outerCircleRadius = radius;
-    var innerCircleRadius = radius;
+    // var outerCircleRadius = radius;
+    // var innerCircleRadius = radius;
 
     Rect myRect = Rect.fromCircle(
         center: Offset(size.width / 2, size.height / 2), radius: radius - 14);
 
     var fillBrush = Paint()..color = const Color(0xFFFFFFFF);
     var backgroudBrush = Paint()..color = const Color(0xFF77DDFF);
-    var outlineBrush = Paint()
-      ..color = const Color(0xFFEAECFF)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 16;
+    // var outlineBrush = Paint()
+    //   ..color = const Color(0xFFEAECFF)
+    //   ..style = PaintingStyle.stroke
+    //   ..strokeWidth = 16;
 
-    var centerFillBrush = Paint()..color = const Color(0xFFEAECFF);
+    // var centerFillBrush = Paint()..color = const Color(0xFFEAECFF);
 
     var secHandBrush = Paint()
       ..color = Colors.blue[300]!
@@ -83,27 +83,27 @@ class SchedulePainter extends CustomPainter {
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 3;
 
-    var minHandBrush = Paint()
-      ..shader =
-          const RadialGradient(colors: [Color(0xFF748EF6), Color(0xFF77DDFF)])
-              .createShader(Rect.fromCircle(center: center, radius: radius))
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round
-      ..strokeWidth = 8;
+    // var minHandBrush = Paint()
+    //   ..shader =
+    //       const RadialGradient(colors: [Color(0xFF748EF6), Color(0xFF77DDFF)])
+    //           .createShader(Rect.fromCircle(center: center, radius: radius))
+    //   ..style = PaintingStyle.stroke
+    //   ..strokeCap = StrokeCap.round
+    //   ..strokeWidth = 8;
 
-    var hourHandBrush = Paint()
-      ..shader =
-          const RadialGradient(colors: [Color(0xFFEA74AB), Color(0xFFC279FB)])
-              .createShader(Rect.fromCircle(center: center, radius: radius))
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round
-      ..strokeWidth = 12;
+    // var hourHandBrush = Paint()
+    //   ..shader =
+    //       const RadialGradient(colors: [Color(0xFFEA74AB), Color(0xFFC279FB)])
+    //           .createShader(Rect.fromCircle(center: center, radius: radius))
+    //   ..style = PaintingStyle.stroke
+    //   ..strokeCap = StrokeCap.round
+    //   ..strokeWidth = 12;
 
-    var dashBrush = Paint()
-      ..color = const Color(0xFFEAECFF)
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round
-      ..strokeWidth = 2;
+    // var dashBrush = Paint()
+      // ..color = const Color(0xFFEAECFF)
+      // ..style = PaintingStyle.stroke
+      // ..strokeCap = StrokeCap.round
+      // ..strokeWidth = 2;
 
     var startAngle = -30 * pi / 180;
     var sweepAngle = pi / 180.0 * (360.0 / 12.0);
@@ -186,6 +186,7 @@ class SchedulePainter extends CustomPainter {
   }
 }
 
+// ignore: must_be_immutable
 class TransactionQuickView extends StatelessWidget {
   TransactionQuickView({super.key, required this.transactionList});
   HomeController controller = Get.put(HomeController());
