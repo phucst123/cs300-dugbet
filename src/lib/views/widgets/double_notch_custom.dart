@@ -34,7 +34,7 @@ class DoubleNotchCustom extends StatelessWidget {
                         SvgPicture.asset(
                           "assets/images/top_notch.svg",
                           width: MediaQuery.of(context).size.width,
-                          height: 150,
+                          // height: 150,
                         ),
                         Positioned(
                             top: 35,
@@ -69,7 +69,7 @@ class DoubleNotchCustom extends StatelessWidget {
                   ],
                 ),
                 Positioned(
-                    top: -20,
+                    top: -10,
                     child: ElevatedButton(
                       onPressed: () {
                         Get.dialog(SafeArea(
@@ -179,10 +179,10 @@ class DoubleNotchCustom extends StatelessWidget {
                       ),
                     )),
                 Positioned(
-                    top: 119,
+                  top: 155,
                     child: InkWell(
                       onTap: () {
-                        Get.dialog(SearchCategoryCustom(
+                        Get.dialog(const SearchCategoryCustom(
                           isEvent: false,
                         ));
                       },
@@ -257,23 +257,45 @@ class DoubleNotchCustom extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                    top: 280,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Get.toNamed(AppPage.scanPage);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: ColorPalette.incomeText,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 5),
+                  bottom: -10,
+                  // child: ElevatedButton(
+                  //   onPressed: () {
+                  //     Get.toNamed(AppPage.scanPage);
+                  //   },
+                  //   style: ElevatedButton.styleFrom(
+                  //     backgroundColor: ColorPalette.incomeText,
+                  //   ),
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.symmetric(
+                  //         horizontal: 10, vertical: 5),
+                  //     child: Text(
+                  //       controller.isEdit.value ? " Edit " : " Scan ",
+                  //       style: const TextStyle(color: ColorPalette.white),
+                  //     ),
+                  //   ),
+                  // ),
+                  child: InkWell(
+                    onTap: () => Get.toNamed(AppPage.scanPage),
+                    child: Container(
+                      height: 40,
+                      width: 100,
+                      decoration: BoxDecoration(
+                          gradient: const LinearGradient(colors: [
+                            ColorPalette.primaryColor,
+                            ColorPalette.tertiaryColor
+                          ]),
+                          borderRadius: BorderRadius.circular(25)),
+                      child: Center(
                         child: Text(
                           controller.isEdit.value ? " Edit " : " Scan ",
-                          style: const TextStyle(color: ColorPalette.white),
+                          style: theme.textTheme.titleSmall!.copyWith(
+                            color: ColorPalette.white,
+                          ),
                         ),
                       ),
-                    )),
+                    ),
+                  ),
+                ),
               ],
             )),
       ),

@@ -48,6 +48,8 @@ class WalletModel {
     //transactions = List.from(documentSnapshot['transactions']).map((e)=>TransactionInfo.fromJson(e)).toList();
   }
 
+  int get balance => initialAmount + income - expense;
+
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
     data['id'] = id;
