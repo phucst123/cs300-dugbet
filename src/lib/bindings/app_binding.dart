@@ -18,11 +18,11 @@ class AppBinding extends Bindings {
     Get.lazyPut(() => HomeController());
     Get.lazyPut(() => HomeWalletController());
     Get.lazyPut(() => LoadingController());
+    Get.lazyPut(() => WalletPersonalController());
     Get.lazyPut<TransactionHistoryController>(
         () => TransactionHistoryController(),
         fenix: true);
     Get.lazyPut<TransactionChartController>(() => TransactionChartController(),
         fenix: true);
-    Get.lazyPut<WalletPersonalController>(() => WalletPersonalController());
   }
 }

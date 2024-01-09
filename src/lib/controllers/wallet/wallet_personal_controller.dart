@@ -4,6 +4,11 @@ import 'package:get/get.dart';
 //import '../..firebase_ref/references.dart';
 class WalletPersonalController extends GetxController {
   RxString selectMode = "month".obs;
+  @override
+  void onInit() {
+    super.onInit();
+  }
+
   void onModeClick(String newMode) {
     selectMode(newMode);
     if (newMode == "today") {
