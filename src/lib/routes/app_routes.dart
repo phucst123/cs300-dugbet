@@ -128,11 +128,13 @@ class AppRoute {
         ),
         GetPage(
           name: AppPage.walletPersonal,
-          page: () => const WalletPersonal(),
+          page: () => WalletPersonal(
+            walletData: Get.arguments,
+          ),
         ),
         GetPage(
           name: AppPage.walletDetail,
-          page: () => const WalletDetail(),
+          page: () => WalletDetail(walletData: Get.arguments,),
         ),
         GetPage(
           name: AppPage.walletEventDetail,

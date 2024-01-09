@@ -5,7 +5,12 @@ import '../../consts/color/colors.dart';
 import 'icon_display_circle.dart';
 
 class ListTitleWallet extends StatelessWidget {
-  const ListTitleWallet({super.key, required this.pathImage, required this.moneyValue, required this.nameWallet});
+  const ListTitleWallet({
+    super.key,
+    required this.pathImage,
+    required this.moneyValue,
+    required this.nameWallet,
+  });
   final pathImage;
   final moneyValue;
   final nameWallet;
@@ -13,21 +18,18 @@ class ListTitleWallet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: IconDisplayCircle(
-          pathImage: pathImage),
+      leading: IconDisplayCircle(pathImage: pathImage),
       title: Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: Text(
           nameWallet,
-          style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
       ),
       subtitle: Row(
         children: [
           Text(
-            "$moneyValue ",
+            moneyValue,
             style: const TextStyle(
                 color: ColorPalette.grey,
                 fontWeight: FontWeight.bold,
@@ -44,7 +46,7 @@ class ListTitleWallet extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           IconButton(
-            onPressed: (){},
+            onPressed: () {},
             icon: const Icon(
               Icons.menu,
               color: ColorPalette.black,
