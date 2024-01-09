@@ -152,9 +152,9 @@ class WalletList extends StatelessWidget {
                                                     moneyValue:
                                                         convertToCurrency(
                                                             controller
-                                                                .walletList[
+                                                                .eventList[
                                                                     index]
-                                                                .balance),
+                                                                .initialAmount),
                                                     nameWallet: controller
                                                         .eventList[index].name);
                                           }),

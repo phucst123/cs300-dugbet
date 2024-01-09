@@ -17,10 +17,18 @@ class WalletPersonal extends GetView<WalletPersonalController> {
 
   @override
   Widget build(BuildContext context) {
+    WalletPersonalController controller;
+    if(Get.isRegistered<WalletPersonalController>()){
+      controller = Get.find<WalletPersonalController>();
+    }
+    else{
+      controller = Get.put<WalletPersonalController>(WalletPersonalController());
+    }
     return GetBuilder<WalletPersonalController>(
         init: WalletPersonalController(),
         initState: (_) {},
         builder: (controller) {
+          //controller.chooseWallet(walletData.id);
           return SafeArea(
             child: Scaffold(
               appBar: HomeHeaderBar(
