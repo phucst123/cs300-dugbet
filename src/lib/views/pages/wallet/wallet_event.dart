@@ -2,6 +2,7 @@ import 'package:dugbet/models/EventModel.dart';
 import 'package:dugbet/views/widgets/button/custom_icon_button.dart';
 import 'package:dugbet/views/widgets/group_balance_one.dart';
 import 'package:dugbet/views/widgets/home_header_bar.dart';
+import 'package:dugbet/views/widgets/member_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -78,27 +79,46 @@ class WalletEvent extends StatelessWidget {
                           colorFilter: const ColorFilter.mode(
                               ColorPalette.white, BlendMode.srcIn),
                         ),
-                        callback: () {}),
+                        callback: () {
+                          print("Leave event here");
+                        }),
                     CustomIconButton(
                         child: SvgPicture.asset(
                           "assets/icons/people.svg",
                           colorFilter: const ColorFilter.mode(
                               ColorPalette.white, BlendMode.srcIn),
                         ),
-                        callback: () {}),
+                        callback: () {
+                          Get.dialog(SafeArea(
+                            minimum: const EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 100),
+                            child: Scaffold(
+                              backgroundColor: Colors.transparent,
+                              body: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.white),
+                                  child: const MemberList()),
+                            ),
+                          ));
+                        }),
                     CustomIconButton(
                         child: SvgPicture.asset(
                           "assets/icons/admin.svg",
                           colorFilter: const ColorFilter.mode(
                               ColorPalette.white, BlendMode.srcIn),
                         ),
-                        callback: () {}),
+                        callback: () {
+                          print("Split money here");
+                        }),
                   ],
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                const BottomSheetTransaction()
+                BottomSheetTransaction(
+                  transaction_list: [],
+                )
               ],
             ),
           ),

@@ -36,6 +36,7 @@ class TransactionPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
+                        // controller.title.value,
                         "New Transaction",
                         style: TextThemeBuilder.robotoTextTheme.titleLarge,
                       ),

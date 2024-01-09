@@ -50,13 +50,13 @@ class WalletController extends GetxController {
   }
 
   Future<void> getWallets() async {
-    print("im here to read wallet");
+    print("im here to read wallet page");
     String? user_id = user!.email;
     try {
       QuerySnapshot wallets = await usersRef.doc(user_id).collection('Wallets').get();
       walletList.clear();
       for (var wallet in wallets.docs) {
-        print("im here to read ${wallet.data()}");
+        //print("im here to read ${wallet.data()}");
         walletList
             .add(WalletModel.fromDocumentSnapshot(documentSnapshot: wallet));
       }

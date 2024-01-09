@@ -1,5 +1,7 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/color/colors.dart';
+import 'package:dugbet/controllers/home/home_controller.dart';
+import 'package:dugbet/controllers/wallet/wallet_controller.dart';
 import 'package:dugbet/views/widgets/button/custom_icon_button.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -44,7 +46,13 @@ class HomeHeaderBar extends StatelessWidget implements PreferredSizeWidget {
                       colorFilter: const ColorFilter.mode(
                           ColorPalette.white, BlendMode.srcIn),
                     ),
-                    callback: () {}),
+                    callback: () {
+                      Get.find<HomeController>().loadingData();
+                      Get.find<HomeController>().getWallets();
+                      Get.find<HomeController>().getTransactions();
+                      Get.find<WalletController>().getWallets();
+                      Get.find<WalletController>().getEvents();
+                    }),
                 const SizedBox(
                   width: 16,
                 ),
