@@ -37,6 +37,7 @@ class WalletPersonal extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              
               children: [
                 Padding(
                   padding: const EdgeInsets.only(
@@ -64,6 +65,7 @@ class WalletPersonal extends StatelessWidget {
                   height: 30,
                 ),
                 const BottomSheetTransaction()
+                
               ],
             ),
           ),

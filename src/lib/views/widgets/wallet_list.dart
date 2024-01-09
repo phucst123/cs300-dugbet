@@ -1,4 +1,5 @@
 import 'package:dugbet/consts/app_export.dart';
+import 'package:dugbet/consts/utils/function_utils.dart';
 import 'package:dugbet/views/widgets/list_title_wallet.dart';
 
 import '../../consts/color/colors.dart';
@@ -17,6 +18,7 @@ class WalletList extends StatelessWidget {
         initState: (_) {},
         builder: (controller) {
           controller.getWallets();
+
           return Container(
             constraints: BoxConstraints(
                 maxHeight: MediaQuery.of(context).size.height - 150),
@@ -35,32 +37,41 @@ class WalletList extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          TextButton(
-                              onPressed: () {},
+                      child: Obx(() {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            TextButton(
+                              onPressed: () => controller.switchMode(true),
                               child: Text(
                                 "My Wallets",
                                 style: TextThemeBuilder
                                     .robotoTextTheme.titleMedium
-                                    ?.copyWith(color: Colors.black),
-                              )),
-                          Container(
-                            color: Colors.grey,
-                            width: 2,
-                            height: 20,
-                          ),
-                          TextButton(
-                              onPressed: () {},
-                              child: Text(
-                                "Trip/Event",
-                                style: TextThemeBuilder
-                                    .robotoTextTheme.titleMedium
-                                    ?.copyWith(color: Colors.grey),
-                              )),
-                        ],
-                      ),
+                                    ?.copyWith(
+                                        color: controller.isWallet.value
+                                            ? Colors.black
+                                            : Colors.grey),
+                              ),
+                            ),
+                            Container(
+                              color: Colors.grey,
+                              width: 2,
+                              height: 20,
+                            ),
+                            TextButton(
+                                onPressed: () => controller.switchMode(false),
+                                child: Text(
+                                  "Trip/Event",
+                                  style: TextThemeBuilder
+                                      .robotoTextTheme.titleMedium
+                                      ?.copyWith(
+                                          color: controller.isWallet.value
+                                              ? Colors.grey
+                                              : Colors.black),
+                                )),
+                          ],
+                        );
+                      }),
                     ),
                     Container(
                       width: MediaQuery.of(context).size.width - 50,
@@ -105,19 +116,59 @@ class WalletList extends StatelessWidget {
                                       child: Center(
                                         //child: ListTitleWallet(pathImage: "assets/images/defaultPlush.png",moneyValue: "200.000", nameWallet: "Momo"),
                                         child: InkWell(
-                                          onTap: () => Get.toNamed(
-                                              AppPage.walletPersonal),
-                                          child: ListTitleWallet(
-                                              pathImage: controller
-                                                  .walletList[index]
-                                                  .walletPicture,
-                                              moneyValue: (controller
-                                                      .walletList[index]
-                                                      .initialAmount)
-                                                  .toString(),
-                                              nameWallet: controller
-                                                  .walletList[index].name),
-                                        ),
+                                            onTap: () => Get.toNamed(
+                                                AppPage.walletPersonal,
+                                                arguments: controller
+                                                    .walletList[index]),
+                                            // child: Obx(
+                                            //   () {
+                                            //     // return controller.isWallet.value
+                                            //     //     ? ListTitleWallet(
+                                            //     //         pathImage: controller
+                                            //     //             .walletList[index]
+                                            //     //             .walletPicture,
+                                            //     //         moneyValue:
+                                            //     //             convertToCurrency(
+                                            //     //                 controller
+                                            //     //                     .walletList[
+                                            //     //                         index]
+                                            //     //                     .balance),
+                                            //     //         nameWallet: controller
+                                            //     //             .walletList[index].name)
+                                            //     //     : ListTitleWallet(
+                                            //     //         pathImage: controller
+                                            //     //             .eventList[index]
+                                            //     //             .eventPicture,
+                                            //     //         moneyValue:
+                                            //     //             convertToCurrency(
+                                            //     //                 controller
+                                            //     //                     .walletList[
+                                            //     //                         index]
+                                            //     //                     .balance),
+                                            //     //         nameWallet: controller
+                                            //     //             .eventList[index]
+                                            //     //             .name);
+                                            //     return ListTitleWallet(
+                                            //         pathImage: controller
+                                            //             .walletList[index]
+                                            //             .walletPicture,
+                                            //         moneyValue: convertToCurrency(
+                                            //             controller
+                                            //                 .walletList[index]
+                                            //                 .balance),
+                                            //         nameWallet: controller
+                                            //             .walletList[index].name);
+                                            //   },
+                                            // ),
+                                            child: ListTitleWallet(
+                                                pathImage: controller
+                                                    .walletList[index]
+                                                    .walletPicture,
+                                                moneyValue: convertToCurrency(
+                                                    controller.walletList[index]
+                                                        .balance),
+                                                nameWallet: controller
+                                                    .walletList[index].name)),
                                       ),
                                     ),
                                   ],

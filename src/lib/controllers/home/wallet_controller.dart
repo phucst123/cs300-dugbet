@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dugbet/consts/utils/function_utils.dart';
 import 'package:dugbet/controllers/login/auth_controller.dart';
 import 'package:dugbet/firebase_ref/references.dart';
@@ -19,26 +20,6 @@ class HomeWalletController extends GetxController {
     super.onInit();
     // getWallets();
   }
-
-  Future <void> getWallets() async {
-    try {
-      QuerySnapshot wallets = await FirebaseFirestore.instance.collection('Users').doc('vinh123@gmail.com').collection('Wallets').get();
-      walletList.clear();
-      balance.value = 0;
-      for (var wallet in wallets.docs) {
-        print("im here to read ${wallet.data()}");
-        walletList.add(WalletModel.fromDocumentSnapshot(documentSnapshot: wallet));
-        balance.value += double.parse(wallet['initialAmount'].toString()).toInt();
-        update();
-      }
-    }
-    catch (e) {
-      print(e);
-      Get.snackbar("Error", 'Error while getting wallet list',
-          snackPosition: SnackPosition.BOTTOM);
-    }
-  }
-
   String showBalance(int value) {
     if (showValue.value == 0) {
       return convertToCurrency(value);

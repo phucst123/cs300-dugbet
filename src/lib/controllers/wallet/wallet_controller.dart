@@ -17,6 +17,11 @@ class WalletController extends GetxController {
     super.onInit();
   }
 
+  void switchMode(bool isWallet) {
+    this.isWallet.value = isWallet;
+  }
+  
+
   // For wallets
   Future<void> getWallets() async {
     try {
