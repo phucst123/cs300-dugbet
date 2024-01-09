@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/controllers/login/auth_controller.dart';
@@ -10,12 +12,21 @@ class TransactionHistoryController extends GetxController {
   List<TransactionTemplate> transactionsList = [];
   var isLoading = true.obs;
   RxString selectMode = "week".obs;
+  StreamSubscription? _transactionSubscription;
 
   @override
   void onInit() {
     super.onInit();
     user = Get.find<AuthController>().getUser();
     getTransactionsData();
+  }
+
+  @override
+  void onClose() {
+    // dispose of the listener set in onInit
+    _transactionSubscription?.cancel();
+    super.onClose();
+    
   }
 
   void onModeClick(String newMode) {
@@ -28,28 +39,46 @@ class TransactionHistoryController extends GetxController {
     String? user_id = user!.email;
     //print("In getTransactionsData() of TransactionHistoryController");
     //print(user_id);
-    usersRef.doc(user_id).collection('Transactions').get().then(
+
+    _transactionSubscription = usersRef.doc(user_id).collection('Transactions').snapshots().listen(
       (QuerySnapshot querySnapshot) {
-        if (querySnapshot.docs.isNotEmpty) {
-          querySnapshot.docs.forEach(
-            (doc) {
-              transactionsList.add(
-                TransactionTemplate(
-                  category: doc['category'],
-                  title: doc['title'],
-                  description: doc['description'],
-                  amount: doc['amount'],
-                  date: doc['date'].toDate(),
-                  icon: 'vegetables.svg',
-                  type: doc['isIncome'] == true ? 1 : 0,
-                )
-              );
-            }
-          );
-        }
+        transactionsList = querySnapshot.docs.map(
+          (doc) => TransactionTemplate(
+            category: doc['category'],
+            title: doc['title'],
+            description: doc['description'],
+            amount: doc['amount'],
+            date: doc['date'].toDate(),
+            icon: 'vegetables.svg',
+            type: doc['isIncome'] == true ? 1 : 0,
+          )
+        ).toList();
         isLoading.value = false;
       }
     );
+
+    // usersRef.doc(user_id).collection('Transactions').get().then(
+    //   (QuerySnapshot querySnapshot) {
+    //     if (querySnapshot.docs.isNotEmpty) {
+    //       querySnapshot.docs.forEach(
+    //         (doc) {
+    //           transactionsList.add(
+    //             TransactionTemplate(
+    //               category: doc['category'],
+    //               title: doc['title'],
+    //               description: doc['description'],
+    //               amount: doc['amount'],
+    //               date: doc['date'].toDate(),
+    //               icon: 'vegetables.svg',
+    //               type: doc['isIncome'] == true ? 1 : 0,
+    //             )
+    //           );
+    //         }
+    //       );
+    //     }
+    //     isLoading.value = false;
+    //   }
+    // );
   }
 
   int calculateIncome() {

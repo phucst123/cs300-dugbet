@@ -84,12 +84,12 @@ class TransactionController extends GetxController {
     DateTime now = DateTime.now();
     usersRef.doc(user_id).collection('Transactions').add({
       'amount': int.parse(incomeTextEdit.text),
-      'category': 'food_beverages',
+      'category': category.value,
       'date': selectedDate.value,
       'description': descriptionTextEdit.text,
-      'isIncome': false,
+      'isIncome': isIncome.value,
       'payerId': user_id,
-      'subCategory': 'fine_dining',
+      'subCategory': title.value,
       'title': title.value,
       'transactionId': '${now.year}-${now.month}-${now.day}-${now.hour}-${now.minute}-${now.second}-${user_id}',
       'type': 'Personal',
