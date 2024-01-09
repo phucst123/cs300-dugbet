@@ -122,10 +122,15 @@ class WalletList extends StatelessWidget {
                                       child: Center(
                                         //child: ListTitleWallet(pathImage: "assets/images/defaultPlush.png",moneyValue: "200.000", nameWallet: "Momo"),
                                         child: InkWell(
-                                          onTap: () => Get.toNamed(
-                                              AppPage.walletPersonal,
-                                              arguments:
-                                                  controller.walletList[index]),
+                                          onTap: () => controller
+                                                  .onPersonal.value
+                                              ? Get.toNamed(
+                                                  AppPage.walletPersonal,
+                                                  arguments: controller
+                                                      .walletList[index])
+                                              : Get.toNamed(AppPage.walletEvent,
+                                                  arguments: controller
+                                                      .eventList[index]),
                                           child: Obx(() {
                                             return controller.onPersonal.value
                                                 ? ListTitleWallet(
@@ -151,8 +156,7 @@ class WalletList extends StatelessWidget {
                                                                     index]
                                                                 .balance),
                                                     nameWallet: controller
-                                                        .eventList[index]
-                                                        .name);
+                                                        .eventList[index].name);
                                           }),
                                         ),
                                       ),

@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:dugbet/models/UtilityModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -60,4 +61,7 @@ class EventModel {
     data['eventPicture'] = eventPicture;
     return data;
   }
+
+  // int get balance => initialAmount - 
+  
 }

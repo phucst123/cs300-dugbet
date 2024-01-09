@@ -4,6 +4,7 @@ import 'package:dugbet/controllers/login/login_controller.dart';
 import 'package:dugbet/controllers/login/password_controller.dart';
 import 'package:dugbet/controllers/login/signup_controller.dart';
 import 'package:dugbet/controllers/setting/edit_profile_controller.dart';
+import 'package:dugbet/controllers/setting/setting_controller.dart';
 import 'package:dugbet/routes/app_pages.dart';
 import 'package:dugbet/views/pages/wrapper/wrapper_page.dart';
 import 'package:dugbet/views/pages/transaction/transaction_page.dart';
@@ -81,7 +82,7 @@ class AppRoute {
             })),
         GetPage(
           name: AppPage.settingPage,
-          page: () => const SettingPage(showNav: true),
+          page: () => SettingPage(showNav: true),
         ),
         GetPage(
           name: AppPage.editProfilePage,
@@ -128,7 +129,9 @@ class AppRoute {
         ),
         GetPage(
           name: AppPage.walletEvent,
-          page: () => const WalletEvent(),
+          page: () => WalletEvent(
+            eventModel: Get.arguments,
+          ),
         ),
         GetPage(
           name: AppPage.walletPersonal,
@@ -144,7 +147,9 @@ class AppRoute {
         ),
         GetPage(
           name: AppPage.walletEventDetail,
-          page: () => const WalletEventDetail(),
+          page: () => WalletEventDetail(
+            eventData: Get.arguments,
+          ),
         ),
         // GetPage(
         //   name: AppPage.walletNewEvent,
