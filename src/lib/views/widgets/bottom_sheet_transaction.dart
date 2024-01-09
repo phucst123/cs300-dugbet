@@ -21,17 +21,19 @@ class BottomSheetTransaction extends StatelessWidget {
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(30), topRight: Radius.circular(30)),
             border: Border.all(color: ColorPalette.white, width: 1)),
-        child: Column(
-          children: [
-            SvgPicture.asset(
-              "assets/icons/top.svg",
-              // height: 20,
-              // colorFilter: const ColorFilter.mode(ColorPalette.white, BlendMode.srcIn),
-            ),
-            const SizedBox(height: 14.0),
-            TransactionList(),
-            const SizedBox(height: 200.0),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SvgPicture.asset(
+                "assets/icons/top.svg",
+                // height: 20,
+                // colorFilter: const ColorFilter.mode(ColorPalette.white, BlendMode.srcIn),
+              ),
+              const SizedBox(height: 14.0),
+              TransactionList(),
+              const SizedBox(height: 200.0),
+            ],
+          ),
         ));
   }
 }
