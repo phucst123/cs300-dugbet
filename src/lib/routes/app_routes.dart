@@ -4,7 +4,6 @@ import 'package:dugbet/controllers/login/login_controller.dart';
 import 'package:dugbet/controllers/login/password_controller.dart';
 import 'package:dugbet/controllers/login/signup_controller.dart';
 import 'package:dugbet/controllers/setting/edit_profile_controller.dart';
-import 'package:dugbet/controllers/setting/setting_controller.dart';
 import 'package:dugbet/routes/app_pages.dart';
 import 'package:dugbet/views/pages/wrapper/wrapper_page.dart';
 import 'package:dugbet/views/pages/transaction/transaction_page.dart';
@@ -32,13 +31,11 @@ import 'package:dugbet/views/pages/wallet/wallet_new_event.dart';
 // import 'package:dugbet/views/pages/wallet/wallet_new_wallet.dart';
 import 'package:dugbet/views/pages/wallet/wallet_page.dart';
 import 'package:dugbet/views/pages/wallet/wallet_personal.dart';
-import 'package:dugbet/views/widgets/pick_bank_icon.dart';
 
 import 'package:get/get.dart';
 
 import '../views/pages/input/scanPage.dart';
 import '../views/pages/transaction/event_transaction_page.dart';
-import '../views/widgets/pick_event_icon.dart';
 
 class AppRoute {
   static List<GetPage> routes() => [

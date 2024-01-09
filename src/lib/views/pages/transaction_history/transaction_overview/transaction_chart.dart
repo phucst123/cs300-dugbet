@@ -196,22 +196,22 @@ class TransactionChart extends GetView<TransactionHistoryController> {
   Widget leftTitleWidgetsWeek(double value, TitleMeta meta) {
     const style = TextStyle(
       fontWeight: FontWeight.bold,
-      fontSize: 14,
+      fontSize: 12,
     );
     String text;
-    int oneFifth = (getVerticalMaxWeek()/5).toInt();
+    int oneFifth = getVerticalMaxWeek()~/5;
     switch (value.toInt()) {
       case 1:
-        text = shortenFigure(oneFifth.toString()) + 'd';
+        text = shortenFigure(oneFifth.toString());
         break;
       case 2:
-        text = shortenFigure((2*oneFifth).toString()) + 'd';
+        text = shortenFigure((2*oneFifth).toString());
         break;
       case 3:
-        text = shortenFigure((3*oneFifth).toString()) + 'd';
+        text = shortenFigure((3*oneFifth).toString());
         break;
       case 4:
-        text = shortenFigure((4*oneFifth).toString()) + 'd';
+        text = shortenFigure((4*oneFifth).toString());
         break;
       default:
         text = '';

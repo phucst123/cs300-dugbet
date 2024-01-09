@@ -2,7 +2,6 @@ import 'package:dugbet/consts/color/colors.dart';
 import 'package:dugbet/views/widgets/bottom_sheet_transaction.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_overview/balance_status.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_overview/transaction_chart.dart';
-import 'package:dugbet/views/pages/transaction_history/transaction_template.dart';
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/views/widgets/button/scan_button.dart';
 import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
