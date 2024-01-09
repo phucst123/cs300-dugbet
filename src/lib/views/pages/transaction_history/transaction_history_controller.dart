@@ -17,6 +17,35 @@ class TransactionHistoryController extends GetxController {
     getTransactionsData();
   }
 
+  Future<void> getTransactionsData() async {
+    isLoading.value = true;
+    String? user_id = user!.email;
+    //print("In getTransactionsData() of TransactionHistoryController");
+    //print(user_id);
+    usersRef.doc(user_id).collection('Transactions').get().then(
+      (QuerySnapshot querySnapshot) {
+        if (querySnapshot.docs.isNotEmpty) {
+          querySnapshot.docs.forEach(
+            (doc) {
+              transactionsList.add(
+                TransactionTemplate(
+                  category: doc['category'],
+                  title: doc['title'],
+                  description: doc['description'],
+                  amount: doc['amount'],
+                  date: doc['date'].toDate(),
+                  icon: 'vegetables.svg',
+                  type: doc['isIncome'] == true ? 1 : 0,
+                )
+              );
+            }
+          );
+        }
+        isLoading.value = false;
+      }
+    );
+  }
+
   int calculateIncome() {
     int income = 0;
     for (var transaction in transactionsList) {
@@ -37,39 +66,65 @@ class TransactionHistoryController extends GetxController {
     return expense;
   }
 
-  Future<void> getTransactionsData() async {
-    isLoading.value = true;
-    String? user_id = user!.email;
-    print("In getTransactionsData() of TransactionHistoryController");
-    print(user_id);
-    usersRef.doc(user_id).collection('Transactions').get().then(
-      (QuerySnapshot querySnapshot) {
-        if (querySnapshot.docs.isNotEmpty) {
-          querySnapshot.docs.forEach(
-            (doc) {
-              print("Adding document: " + doc['category']);
-              print("Adding document: " + doc['title']);
-              print("Adding document: " + doc['description']);
-              print("Adding document: " + doc['amount'].toString());
-              print("Adding document: " + doc['date'].toString());
-              print("Adding document: " + doc['isIncome'].toString());
-              transactionsList.add(
-                TransactionTemplate(
-                  category: doc['category'],
-                  title: doc['title'],
-                  description: doc['description'],
-                  amount: doc['amount'],
-                  date: doc['date'].toDate(),
-                  icon: 'vegetables.svg',
-                  type: doc['isIncome'] == true ? 1 : 0,
-                )
-              );
-            }
-          );
-        }
-        isLoading.value = false;
-      }
-    );
-    print("Finish getTransactionsData() of TransactionHistoryController");
+  List<TransactionTemplate> filterTransactionsByDate(DateTime startDate, DateTime endDate) {
+    return transactionsList
+      .where((transaction) =>
+        transaction.date.isAfter(startDate.subtract(Duration(days: 1))) &&
+        transaction.date.isBefore(endDate.add(Duration(days: 1))))
+      .toList();
   }
+
+  List<TransactionTemplate> filterTransactionsByCurrentWeek() {
+    DateTime now = DateTime.now();
+    DateTime startOfWeek = now.subtract(Duration(days: now.weekday - 1));
+    DateTime endOfWeek = now.add(Duration(days: DateTime.daysPerWeek - now.weekday));
+
+    return transactionsList
+        .where((transaction) =>
+            transaction.date.isAfter(startOfWeek.subtract(Duration(days: 1))) &&
+            transaction.date.isBefore(endOfWeek.add(Duration(days: 1))))
+        .toList();
+  }
+
+  List<TransactionTemplate> filterTransactionsByCurrentMonth() {
+    DateTime now = DateTime.now();
+    DateTime startOfMonth = DateTime(now.year, now.month, 1);
+    DateTime endOfMonth = DateTime(now.year, now.month + 1, 0);
+
+    return transactionsList
+      .where((transaction) =>
+        transaction.date.isAfter(startOfMonth.subtract(Duration(days: 1))) &&
+        transaction.date.isBefore(endOfMonth.add(Duration(days: 1))))
+      .toList();
+  }
+
+  List<TransactionTemplate> filterTransactionsByCurrentYear() {
+    DateTime now = DateTime.now();
+    DateTime startOfYear = DateTime(now.year, 1, 1);
+    DateTime endOfYear = DateTime(now.year + 1, 1, 0);
+
+    return transactionsList
+      .where((transaction) =>
+        transaction.date.isAfter(startOfYear.subtract(Duration(days: 1))) &&
+        transaction.date.isBefore(endOfYear.add(Duration(days: 1))))
+      .toList();
+  }
+
+  List<TransactionTemplate> filterTransactionsByCurrentQuarter() {
+    DateTime now = DateTime.now();
+    int currentQuarter = (now.month - 1) ~/ 3 + 1;
+    DateTime startOfQuarter = DateTime(now.year, (currentQuarter - 1) * 3 + 1, 1);
+    DateTime endOfQuarter = DateTime(now.year, currentQuarter * 3, 0);
+
+    return transactionsList
+      .where((transaction) =>
+        transaction.date.isAfter(startOfQuarter.subtract(Duration(days: 1))) &&
+        transaction.date.isBefore(endOfQuarter.add(Duration(days: 1))))
+      .toList();
+  }
+
 }
+  
+
+
+
