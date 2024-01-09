@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/controllers/login/auth_controller.dart';
 import 'package:dugbet/models/WalletModel.dart';
@@ -9,6 +11,7 @@ import 'package:dugbet/models/TransactionModel.dart';
 import 'package:dugbet/firebase_ref/references.dart';
 //import '../..firebase_ref/references.dart';
 class HomeController extends GetxController {
+  StreamSubscription? _walletSubscription;
   Rxn<User?> user = Rxn();
   RxInt income = 2500000.obs;
   RxInt expense = 480000.obs;
@@ -19,18 +22,31 @@ class HomeController extends GetxController {
   RxInt displayExpense = 0.obs;
   RxList<WalletModel> walletData = <WalletModel>[].obs;
   RxInt balance = 0.obs;
+  var isLoadingWallet = true.obs;
+  var isLoadingTransaction = true.obs;
   var transactionListModel = <TransactionModel>[];
   @override
   void onInit() {
     // getWallets();
     user.value = Get.find<AuthController>().getUser();
     super.onInit();
+    getWallets();
     //transactionlist = getTransactionList();
-    // getTransactions();
+    getTransactions();
+  }
+
+  void loadingData() {
+    isLoadingWallet.value = true;
+    isLoadingTransaction.value = true;
   }
 
   Future<void> getWallets() async {
+    if (isLoadingWallet.value) {
+      isLoadingWallet.value = false;
+    }
+    else return;
     String? user_id = user.value!.email;
+    print('im here to read wallet homepage');
     try {
       QuerySnapshot wallets = await usersRef.doc(user_id).collection('Wallets')
           .get();
@@ -45,15 +61,39 @@ class HomeController extends GetxController {
             + double.parse(wallet['income'].toString()).toInt()
             - double.parse(wallet['expense'].toString()).toInt();
       }
-      // update();
+       update();
     } catch (e) {
       print(e);
       Get.snackbar("Error", 'Error while getting wallet list',
           snackPosition: SnackPosition.BOTTOM);
     }
+    // print('im here to read wallet homepage');
+    // walletData.clear();
+    // balance.value = 0;
+    // _walletSubscription = usersRef.doc(user_id).collection('Wallets').snapshots().listen(
+    //   (QuerySnapshot querySnapshot) {
+    //     walletData = querySnapshot.docs.map(
+    //       (doc) => WalletModel.fromDocumentSnapshot(documentSnapshot: doc)
+    //     ).toList().obs;
+    //     isLoading.value = false;
+    //   }
+    // );
+    // print("Coooko ${walletData}");
+    // for (var wallet in walletData) {
+    //   balance.value += wallet.initialAmount + wallet.income - wallet.expense;
+      
+    //   print(wallet.name);
+    //   print(wallet.income);
+    // }
+    update();
   }
 
   Future<void> getTransactions() async {
+    if (isLoadingTransaction.value) {
+      isLoadingTransaction.value = false;
+    }
+    else return;
+    print('im here to read transaction homepage');
     String? user_id = user.value!.email;
     try {
       QuerySnapshot transactions = await usersRef.doc(user_id)
