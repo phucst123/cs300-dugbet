@@ -6,9 +6,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class WalletController extends GetxController {
   var isWallet = true.obs;
+  RxBool onPersonal = true.obs;
   var walletList = <WalletModel>[];
-  var eventWalletList = <EventModel>[];
-
+  var eventList = <EventModel>[];
   @override
   void onReady() {
     super.onReady();
@@ -18,12 +18,10 @@ class WalletController extends GetxController {
     super.onInit();
   }
 
-  void switchMode(bool isWallet) {
-    this.isWallet.value = isWallet;
+  void switchMode(bool value) {
+    onPersonal.value = value;
   }
-  
 
-  // For wallets
   Future<void> getWallets() async {
     try {
       QuerySnapshot wallets = await FirebaseFirestore.instance
@@ -33,8 +31,9 @@ class WalletController extends GetxController {
           .get();
       walletList.clear();
       for (var wallet in wallets.docs) {
-        //print("im here to read ${wallet.data()}");
-        walletList.add(WalletModel.fromDocumentSnapshot(documentSnapshot: wallet));
+        print("im here to read ${wallet.data()}");
+        walletList
+            .add(WalletModel.fromDocumentSnapshot(documentSnapshot: wallet));
       }
     } catch (e) {
       print(e);
@@ -43,9 +42,9 @@ class WalletController extends GetxController {
     }
   }
 
-  Future<void> addWallets(WalletModel walletAdd) async {}
-
-  Future<void> updateWallet(WalletModel walletUp) async {}
+  void debug() {
+    print("Hello how are you im wallet controller");
+  }
 
   Stream<List<WalletModel>> readWallet() {
     var collection = FirebaseFirestore.instance
@@ -55,13 +54,4 @@ class WalletController extends GetxController {
     return collection.snapshots().map((event) =>
         event.docs.map((e) => WalletModel.fromJson(e.data())).toList());
   }
-
-  // For trip/ events
-  Future<void> getEventWallets() async {}
-
-  Future<void> addEventWallet(EventModel event) async {}
-
-  Future<void> updateEventWallet(EventModel event) async {}
-
-  Future<void> getOneEventWallet() async {}
 }
