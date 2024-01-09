@@ -13,6 +13,7 @@ class AppBinding extends Bindings {
     Get.lazyPut(() => WalletController());
     //Get.put<WalletController>(WalletController());
     Get.lazyPut(() => HomeController());
+    
     Get.lazyPut(() => LoadingController());
     Get.lazyPut<TransactionHistoryController>(
         () => TransactionHistoryController(),

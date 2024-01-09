@@ -7,32 +7,62 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:dugbet/models/TransactionModel.dart';
 import 'package:dugbet/consts/utils/function_utils.dart';
+
 class HomeController extends GetxController {
   Rxn<User?> user = Rxn();
   RxInt income = 2500000.obs;
   RxInt expense = 480000.obs;
   RxString selectMode = "month".obs;
   List<TransactionTemplate> transactionlist = [];
-  List<WalletModel> wallet = [];
+  RxList<WalletModel> walletData = <WalletModel>[].obs;
+  RxInt balance = 0.obs;
   var transactionListModel = <TransactionModel>[];
   @override
   void onInit() {
-    super.onInit();
+    // getWallets();
     user.value = Get.find<AuthController>().getUser();
+    super.onInit();
     //transactionlist = getTransactionList();
-    wallet = getWalletList();
+    // getTransactions();
   }
 
-   Future <void> getTransactions() async {
+  Future<void> getWallets() async {
     try {
-      QuerySnapshot transactions = await FirebaseFirestore.instance.collection('Users').doc('vinh123@gmail.com').collection('Transactions').get();
+      QuerySnapshot wallets = await FirebaseFirestore.instance
+          .collection('Users')
+          .doc('vinh123@gmail.com')
+          .collection('Wallets')
+          .get();
+      walletData.clear();
+      balance.value = 0;
+      for (var wallet in wallets.docs) {
+        print("im here to read ${wallet.data()}");
+        walletData
+            .add(WalletModel.fromDocumentSnapshot(documentSnapshot: wallet));
+        balance.value +=
+            double.parse(wallet['initialAmount'].toString()).toInt();
+      }
+      // update();
+    } catch (e) {
+      print(e);
+      Get.snackbar("Error", 'Error while getting wallet list',
+          snackPosition: SnackPosition.BOTTOM);
+    }
+  }
 
+  Future<void> getTransactions() async {
+    try {
+      QuerySnapshot transactions = await FirebaseFirestore.instance
+          .collection('Users')
+          .doc('vinh123@gmail.com')
+          .collection('Transactions')
+          .get();
       transactionListModel.clear();
       transactionlist.clear();
       income.value = 0;
       expense.value = 0;
       transactionlist.add(TransactionTemplate(
-        category: "Fnb",
+          category: "Fnb",
           title: "Snack",
           description: "Income from design project",
           amount: 85,
@@ -41,7 +71,7 @@ class HomeController extends GetxController {
           type: 1));
       income.value += 85000;
       transactionlist.add(TransactionTemplate(
-        category: "Clothing",
+          category: "Clothing",
           title: "Rent payment",
           description: "Monthly rent payment",
           amount: 123,
@@ -51,7 +81,8 @@ class HomeController extends GetxController {
       expense.value += 123000;
       for (var transaction in transactions.docs) {
         print("im here to read ${transaction.data()}");
-        transactionListModel.add(TransactionModel.fromDocumentSnapshot(documentSnapshot: transaction));
+        transactionListModel.add(TransactionModel.fromDocumentSnapshot(
+            documentSnapshot: transaction));
         transactionlist.add(TransactionTemplate(
           category: transaction['category'],
           title: transaction['title'],
@@ -60,37 +91,32 @@ class HomeController extends GetxController {
           //amount: convertToCurrency(transaction['amount']),
           amount: 100,
           // convert to DateTime from Timestamp
-          date: DateTime.now(), ///transaction['date'].toDate(),
+          date: DateTime.now(),
+
+          ///transaction['date'].toDate(),
           icon: 'snack.svg',
           type: transaction['isIncome'] ? 1 : 0,
         ));
         // convert to int amount from number to int
         if (transaction['isIncome']) {
-          income.value += double.parse(transaction['amount'].toString()).toInt();
+          income.value +=
+              double.parse(transaction['amount'].toString()).toInt();
         } else {
-          expense.value += double.parse(transaction['amount'].toString()).toInt();
+          expense.value +=
+              double.parse(transaction['amount'].toString()).toInt();
         }
-        
       }
-    }
-    catch (e) {
+    } catch (e) {
       print(e);
       Get.snackbar("Error", 'Error while getting transaction list',
           snackPosition: SnackPosition.BOTTOM);
     }
   }
 
-
-  List<WalletModel> getWalletList() {
-    return [
-      // WalletModel(id: '01', walletPicture: walletPicture, description: description, initialAmount: initialAmount, expense: expense, income: income, name: name, type: type, transactions: transactions)
-    ];
-  }
-
   List<TransactionTemplate> getTransactionList() {
     return [
       TransactionTemplate(
-        category: "Fnb",
+          category: "Fnb",
           title: "Snack",
           description: "Income from design project",
           amount: 5,
@@ -98,7 +124,7 @@ class HomeController extends GetxController {
           icon: "snack.svg",
           type: 1),
       TransactionTemplate(
-        category: "Clothing",
+          category: "Clothing",
           title: "Rent payment",
           description: "Monthly rent payment",
           amount: 1000000,
