@@ -22,11 +22,11 @@ class HomePage extends GetView<HomeController> {
           List<Widget> quickViewList = [
             // const PieQuickView(),
             Obx(() => StatQuickView(
-                  incomeData: controller.income.value,
-                  expenseData: controller.expense.value,
+                  incomeData: controller.displayIncome.value,
+                  expenseData: controller.displayExpense.value,
                 )),
             TransactionQuickView(
-              transactionList: controller.transactionlist,
+              transactionList: controller.displayTransactionList,
             ),
           ];
           Widget walletRegion = Obx(() {

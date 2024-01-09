@@ -21,7 +21,7 @@ class WalletController extends GetxController {
       QuerySnapshot wallets = await FirebaseFirestore.instance.collection('Users').doc('vinh123@gmail.com').collection('Wallets').get();
       walletList.clear();
       for (var wallet in wallets.docs) {
-        print("im here to read ${wallet.data()}");
+        //print("im here to read ${wallet.data()}");
         walletList.add(WalletModel.fromDocumentSnapshot(documentSnapshot: wallet));
       }
     }
