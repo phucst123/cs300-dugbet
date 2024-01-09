@@ -36,7 +36,7 @@ class HomePage extends GetView<HomeController> {
                           //walletList: controller.wallet,
                         );
                       });
-          print('current list ${controller.transactionlist.length}');
+          //print('current list ${controller.transactionlist.length}');
           return SafeArea(
             child: Scaffold(
               // backgroundColor: ColorPalette.expenseText,

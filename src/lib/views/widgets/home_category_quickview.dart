@@ -198,13 +198,13 @@ class TransactionQuickView extends StatelessWidget {
         initState: (_) {},
         builder: (controller) {
           controller.getTransactions();
-          transactionList = controller.transactionlist;
+          transactionList = controller.displayTransactionList;
           if (transactionList.isEmpty) {
-            print(controller.transactionlist.length);
+            print(controller.displayTransactionList.length);
             print("transaction list is empty");
             return Container();
           }
-          transactionList = groupTransactions()[0];
+          //transactionList = groupTransactions()[0];
           // get top 3 transaction
           while (transactionList.length > 4) {
             transactionList.removeLast();
@@ -260,7 +260,7 @@ class QVTransactionItemList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         for (var transaction in transaction_list) ...[
@@ -305,7 +305,7 @@ class QVTransactionItemList extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      transaction.amount.toString(),
+                      convertToCurrency(transaction.amount),
                       style: theme.textTheme.bodyMedium?.copyWith(
                           color: transaction.type == 1
                               ? ColorPalette.incomeText
