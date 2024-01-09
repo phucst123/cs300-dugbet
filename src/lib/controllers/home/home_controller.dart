@@ -68,22 +68,22 @@ class HomeController extends GetxController {
           category: "Fnb",
           title: "Snack",
           description: "Income from design project",
-          amount: 85,
-          date: DateTime.now(),
+          amount: 25000,
+          date: DateTime(2024, 1, 8),
           icon: "snack.svg",
           type: 1));
-      income.value += 85000;
+      income.value += 25000;
       transactionlist.add(TransactionTemplate(
           category: "Clothing",
           title: "Rent payment",
           description: "Monthly rent payment",
-          amount: 123,
+          amount: 15000,
           date: DateTime.now(),
           icon: "socks.svg",
           type: 0));
-      expense.value += 123000;
+      expense.value += 15000;
       for (var transaction in transactions.docs) {
-        print("im here to read ${transaction.data()}");
+        //print("im here to read ${transaction.data()}");
         transactionListModel.add(TransactionModel.fromDocumentSnapshot(
             documentSnapshot: transaction));
         transactionlist.add(TransactionTemplate(
@@ -94,7 +94,7 @@ class HomeController extends GetxController {
           //amount: convertToCurrency(transaction['amount']),
           amount: transaction['amount'],
           // convert to DateTime from Timestamp
-          date: DateTime.now(),
+          date: transaction['date'].toDate(),
 
           ///transaction['date'].toDate(),
           icon: 'snack.svg',
@@ -108,15 +108,16 @@ class HomeController extends GetxController {
           expense.value +=
               double.parse(transaction['amount'].toString()).toInt();
         }
-        displayIncome.value = 0;
-        displayExpense.value = 0;
-        for (var transaction in transactionlist) {
-          if (transaction.type == 1) {
-            displayIncome.value += transaction.amount;
-          } else {
-            displayExpense.value += transaction.amount;
-          }
-        }
+        // displayIncome.value = 0;
+        // displayExpense.value = 0;
+        // for (var transaction in transactionlist) {
+        //   if (transaction.type == 1) {
+        //     displayIncome.value += transaction.amount;
+        //   } else {
+        //     displayExpense.value += transaction.amount;
+        //   }
+        // }
+        onModeClick(selectMode.value);
       }
     } catch (e) {
       print(e);
@@ -186,9 +187,9 @@ class HomeController extends GetxController {
     selectMode(newMode);
     if (newMode == "today") {
       DateTime now = DateTime.now();
-      DateTime startOfWeek = now.subtract(Duration(days: now.day - 1));
-      DateTime endOfWeek = now;
-      displayTransactionList = filterTransactionsByDate(startOfWeek, endOfWeek);
+      DateTime startOfToday = DateTime(now.year, now.month, now.day);
+      DateTime endOfToday = DateTime(now.year, now.month, now.day + 1);
+      displayTransactionList = filterTransactionsByDate(startOfToday, endOfToday);
     } else if (newMode == "week") {
       displayTransactionList = filterTransactionsByCurrentWeek();
     } else if (newMode == "month") {
