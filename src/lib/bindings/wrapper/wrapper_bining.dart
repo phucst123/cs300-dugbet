@@ -12,7 +12,7 @@ class WrapperBinding extends Bindings {
 
     Get.lazyPut<HomeController>(() => HomeController());
     Get.lazyPut<HomeWalletController>(() => HomeWalletController());
-    
+  
     Get.lazyPut<TransactionChartController>(() => TransactionChartController());
     Get.lazyPut<TransactionController>(() => TransactionController());
   }

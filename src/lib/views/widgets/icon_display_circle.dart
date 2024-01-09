@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../consts/color/colors.dart';
 
@@ -11,14 +12,17 @@ class IconDisplayCircle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (pathImage == "") {
+      print("OH NO LOI ROI");
+    }
     return Container(
         height: 60,
         width: 60,
         decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(color: ColorPalette.black, width: 1)),
-        child: pathImage != ""
-          ? Image.network(
+        child: pathImage != "" && pathImage != null
+          ? Image.asset(
               pathImage!,
               scale: 0.75,
             )
