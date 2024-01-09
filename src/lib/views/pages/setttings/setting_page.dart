@@ -1,4 +1,5 @@
 import 'package:dugbet/consts/color/colors.dart';
+import 'package:dugbet/controllers/setting/setting_controller.dart';
 import 'package:dugbet/views/dialogs/logout_dialog.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:dugbet/consts/app_export.dart';
@@ -6,12 +7,10 @@ import 'package:dugbet/views/widgets/button/scan_button.dart';
 import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
 
 // ignore: must_be_immutable
-class SettingPage extends StatelessWidget {
-  const SettingPage({super.key, this.showNav = false, this.isPremium = false});
+class SettingPage extends GetView<SettingController> {
+  SettingPage({super.key, this.showNav = false});
 
   final bool showNav;
-
-  final bool isPremium;
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +27,16 @@ class SettingPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
-              color: isPremium ? ColorPalette.expenseText : ColorPalette.white,
+              color: controller.isPremium.value
+                  ? ColorPalette.expenseText
+                  : ColorPalette.primaryColor.withOpacity(0.1),
               height: 260,
               width: double.infinity,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  if (isPremium) SvgPicture.asset("assets/icons/crown.svg"),
+                  if (controller.isPremium.value)
+                    SvgPicture.asset("assets/icons/crown.svg"),
                   const SizedBox(
                     height: 5,
                   ),
@@ -60,14 +62,14 @@ class SettingPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Text(
-                    "Anomyous",
-                    style: context.textTheme.titleLarge,
-                  ),
-                  Text(
-                    "youremail@email.com",
-                    style: context.textTheme.labelLarge,
-                  ),
+                  Obx(() => Text(
+                        controller.name.value,
+                        style: context.textTheme.titleLarge,
+                      )),
+                  Obx(() => Text(
+                        controller.email.value,
+                        style: context.textTheme.labelLarge,
+                      )),
                 ],
               ),
             ),
@@ -192,13 +194,16 @@ class SettingPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
-              color: isPremium ? ColorPalette.expenseText : ColorPalette.white,
+              color: controller.isPremium.value
+                  ? ColorPalette.expenseText
+                  : ColorPalette.primaryColor.withOpacity(0.1),
               height: 260,
               width: double.infinity,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  if (isPremium) SvgPicture.asset("assets/icons/crown.svg"),
+                  if (controller.isPremium.value)
+                    SvgPicture.asset("assets/icons/crown.svg"),
                   const SizedBox(
                     height: 5,
                   ),
@@ -224,14 +229,14 @@ class SettingPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Text(
-                    "Anomyous",
-                    style: context.textTheme.titleLarge,
-                  ),
-                  Text(
-                    "youremail@email.com",
-                    style: context.textTheme.labelLarge,
-                  ),
+                  Obx(() => Text(
+                        controller.name.value,
+                        style: context.textTheme.titleLarge,
+                      )),
+                  Obx(() => Text(
+                        controller.email.value,
+                        style: context.textTheme.labelLarge,
+                      )),
                 ],
               ),
             ),
