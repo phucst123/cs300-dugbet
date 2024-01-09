@@ -64,24 +64,24 @@ class HomeController extends GetxController {
       transactionlist.clear();
       income.value = 0;
       expense.value = 0;
-      transactionlist.add(TransactionTemplate(
-          category: "Fnb",
-          title: "Snack",
-          description: "Income from design project",
-          amount: 25000,
-          date: DateTime(2024, 1, 8),
-          icon: "snack.svg",
-          type: 1));
-      income.value += 25000;
-      transactionlist.add(TransactionTemplate(
-          category: "Clothing",
-          title: "Rent payment",
-          description: "Monthly rent payment",
-          amount: 15000,
-          date: DateTime.now(),
-          icon: "socks.svg",
-          type: 0));
-      expense.value += 15000;
+      // transactionlist.add(TransactionTemplate(
+      //     category: "Fnb",
+      //     title: "Snack",
+      //     description: "Income from design project",
+      //     amount: 25000,
+      //     date: DateTime(2024, 1, 8),
+      //     icon: "snack.svg",
+      //     type: 1));
+      // income.value += 25000;
+      // transactionlist.add(TransactionTemplate(
+      //     category: "Clothing",
+      //     title: "Rent payment",
+      //     description: "Monthly rent payment",
+      //     amount: 15000,
+      //     date: DateTime.now(),
+      //     icon: "socks.svg",
+      //     type: 0));
+      // expense.value += 15000;
       for (var transaction in transactions.docs) {
         //print("im here to read ${transaction.data()}");
         transactionListModel.add(TransactionModel.fromDocumentSnapshot(
@@ -117,8 +117,8 @@ class HomeController extends GetxController {
         //     displayExpense.value += transaction.amount;
         //   }
         // }
-        onModeClick(selectMode.value);
       }
+        onModeClick(selectMode.value);
     } catch (e) {
       print(e);
       Get.snackbar("Error", 'Error while getting transaction list',

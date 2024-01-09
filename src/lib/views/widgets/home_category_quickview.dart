@@ -200,9 +200,13 @@ class TransactionQuickView extends StatelessWidget {
           controller.getTransactions();
           transactionList = controller.displayTransactionList;
           if (transactionList.isEmpty) {
-            print(controller.displayTransactionList.length);
-            print("transaction list is empty");
-            return Container();
+            //print(controller.displayTransactionList.length);
+            //print("transaction list is empty");
+            return Container(
+              padding: const EdgeInsets.only(
+                  left: 16.0, right: 16.0, top: 20.0, bottom: 16.0),
+              child: Text("No transaction yet"),
+            );
           }
           //transactionList = groupTransactions()[0];
           // get top 3 transaction
@@ -342,7 +346,7 @@ class StatQuickView extends StatelessWidget {
   final int expenseData;
   @override
   Widget build(BuildContext context) {
-    int maxData = max(incomeData, expenseData);
+    int maxData = max(incomeData, expenseData) + 1;
     double incomeHeight = incomeData * 100 / maxData;
     incomeHeight = incomeHeight == 0 ? 1 : incomeHeight;
     double expenseHeight = expenseData * 100 / maxData;
