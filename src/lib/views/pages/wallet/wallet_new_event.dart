@@ -2,6 +2,7 @@ import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/views/widgets/double_notch.dart';
 import 'package:dugbet/views/widgets/double_notch_new_wallet.dart';
 import '../../../consts/fonts/text_theme_builder.dart';
+import '../../../controllers/wallet/wallet_controller.dart';
 import '../../widgets/wallet_header.dart';
 
 class WalletNewEvent extends StatelessWidget {
@@ -9,9 +10,15 @@ class WalletNewEvent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WalletController controller;
+    if (Get.isRegistered<WalletController>()) {
+      controller = Get.find<WalletController>();
+    } else {
+      controller = Get.put<WalletController>(WalletController());
+    }
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
+        padding: EdgeInsets.symmetric(horizontal: 15,vertical: 15),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -20,10 +27,10 @@ class WalletNewEvent extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   WalletHeader(callback1: (){}, callback2: (){},),
-                  Text(
-                    "New Wallet",
+                  Obx(() => Text(
+                    controller.bankIcon.value,
                     style: TextThemeBuilder.robotoTextTheme.titleLarge,
-                  ),
+                  )),
                   const SizedBox(
                     width: 10,
                   ),
