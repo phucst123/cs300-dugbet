@@ -7,6 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class WalletController extends GetxController {
   var isWallet = true.obs;
   var walletList = <WalletModel>[];
+  var eventWalletList = <EventModel>[];
 
   @override
   void onReady() {
