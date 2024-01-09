@@ -29,6 +29,7 @@ class HomeWalletController extends GetxController {
         print("im here to read ${wallet.data()}");
         walletList.add(WalletModel.fromDocumentSnapshot(documentSnapshot: wallet));
         balance.value += double.parse(wallet['initialAmount'].toString()).toInt();
+        update();
       }
     }
     catch (e) {

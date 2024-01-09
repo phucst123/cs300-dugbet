@@ -48,62 +48,58 @@ class HomePage extends GetView<HomeController> {
                       child: DropdownButtonHideUnderline(
                         child: Padding(
                           padding: const EdgeInsets.all(0.0),
-                          child: Obx(
-                            () => DropdownButton<String>(
-                              value: controller.selectMode.value,
-                              underline: Container(
-                                color: Colors.grey,
-                                width: 1,
-                              ),
-                              dropdownColor:
-                                  ColorPalette.white.withOpacity(0.9),
-                              items: const [
-                                DropdownMenuItem(
-                                    value: "today", child: Text("Today")),
-                                DropdownMenuItem(
-                                    value: "week", child: Text("This week")),
-                                DropdownMenuItem(
-                                    value: "month", child: Text("This month")),
-                                DropdownMenuItem(
-                                    value: "quarter",
-                                    child: Text("This quarter")),
-                                DropdownMenuItem(
-                                    value: "year", child: Text("This year"))
-                              ],
-                              style: const TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16),
-                              onChanged: (String? value) =>
-                                  controller.onModeClick(value!),
+                          child: DropdownButton<String>(
+                            value: controller.selectMode.value,
+                            underline: Container(
+                              color: Colors.grey,
+                              width: 1,
                             ),
+                            dropdownColor:
+                            ColorPalette.white.withOpacity(0.9),
+                            items: const [
+                              DropdownMenuItem(
+                                  value: "today", child: Text("Today")),
+                              DropdownMenuItem(
+                                  value: "week", child: Text("This week")),
+                              DropdownMenuItem(
+                                  value: "month", child: Text("This month")),
+                              DropdownMenuItem(
+                                  value: "quarter",
+                                  child: Text("This quarter")),
+                              DropdownMenuItem(
+                                  value: "year", child: Text("This year"))
+                            ],
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                            onChanged: (String? value) =>
+                                controller.onModeClick(value!),
                           ),
                         ),
                       ),
                     ),
                     Center(
-                      child: Expanded(
-                        child: Swiper(
-                          viewportFraction: 0.9,
-                          scale: 0.75,
-                          itemCount: quickViewList.length,
-                          duration: 1000,
-                          loop: true,
-                          itemHeight: 250,
-                          itemWidth: 270,
-                          layout: SwiperLayout.TINDER,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) => Container(
-                            //color: Colors.white,
-                            // add border radius
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(color: Colors.black, width: 1),
-                              color: Colors.white,
-                              // add box border black corner
-                            ),
-                            child: quickViewList[index],
+                      child: Swiper(
+                        viewportFraction: 0.9,
+                        scale: 0.75,
+                        itemCount: quickViewList.length,
+                        duration: 1000,
+                        loop: true,
+                        itemHeight: 250,
+                        itemWidth: 270,
+                        layout: SwiperLayout.TINDER,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) => Container(
+                          //color: Colors.white,
+                          // add border radius
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: Colors.black, width: 1),
+                            color: Colors.white,
+                            // add box border black corner
                           ),
+                          child: quickViewList[index],
                         ),
                       ),
                     ),
