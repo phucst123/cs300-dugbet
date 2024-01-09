@@ -7,13 +7,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:dugbet/models/TransactionModel.dart';
 import 'package:dugbet/consts/utils/function_utils.dart';
-
+import 'package:dugbet/firebase_ref/references.dart';
+//import '../..firebase_ref/references.dart';
 class HomeController extends GetxController {
   Rxn<User?> user = Rxn();
   RxInt income = 2500000.obs;
   RxInt expense = 480000.obs;
   RxString selectMode = "month".obs;
   List<TransactionTemplate> transactionlist = [];
+  List<TransactionTemplate> displayTransactionList = [];
+  RxInt displayIncome = 0.obs;
+  RxInt displayExpense = 0.obs;
   RxList<WalletModel> walletData = <WalletModel>[].obs;
   RxInt balance = 0.obs;
   var transactionListModel = <TransactionModel>[];
@@ -27,16 +31,14 @@ class HomeController extends GetxController {
   }
 
   Future<void> getWallets() async {
+    String? user_id = user.value!.email;
     try {
-      QuerySnapshot wallets = await FirebaseFirestore.instance
-          .collection('Users')
-          .doc('vinh123@gmail.com')
-          .collection('Wallets')
+      QuerySnapshot wallets = await usersRef.doc(user_id).collection('Wallets')
           .get();
       walletData.clear();
       balance.value = 0;
       for (var wallet in wallets.docs) {
-        print("im here to read ${wallet.data()}");
+        //print("im here to read ${wallet.data()}");
         walletData
             .add(WalletModel.fromDocumentSnapshot(documentSnapshot: wallet));
         balance.value +=
@@ -53,10 +55,9 @@ class HomeController extends GetxController {
   }
 
   Future<void> getTransactions() async {
+    String? user_id = user.value!.email;
     try {
-      QuerySnapshot transactions = await FirebaseFirestore.instance
-          .collection('Users')
-          .doc('vinh123@gmail.com')
+      QuerySnapshot transactions = await usersRef.doc(user_id)
           .collection('Transactions')
           .get();
       transactionListModel.clear();
@@ -91,7 +92,7 @@ class HomeController extends GetxController {
           description: transaction['description'],
           // from Minh: Vinh hay Binh code cho nay thi fix lai gium tui nhe. Tui tam thoi comment de tranh error
           //amount: convertToCurrency(transaction['amount']),
-          amount: 100,
+          amount: transaction['amount'],
           // convert to DateTime from Timestamp
           date: DateTime.now(),
 
@@ -107,13 +108,109 @@ class HomeController extends GetxController {
           expense.value +=
               double.parse(transaction['amount'].toString()).toInt();
         }
+        displayIncome.value = 0;
+        displayExpense.value = 0;
+        for (var transaction in transactionlist) {
+          if (transaction.type == 1) {
+            displayIncome.value += transaction.amount;
+          } else {
+            displayExpense.value += transaction.amount;
+          }
+        }
       }
     } catch (e) {
       print(e);
       Get.snackbar("Error", 'Error while getting transaction list',
           snackPosition: SnackPosition.BOTTOM);
     }
+  } 
+
+  List<TransactionTemplate> filterTransactionsByDate(DateTime startDate, DateTime endDate) {
+    return transactionlist
+      .where((transaction) =>
+        transaction.date.isAfter(startDate.subtract(Duration(days: 1))) &&
+        transaction.date.isBefore(endDate.add(Duration(days: 1))))
+      .toList();
   }
+
+  List<TransactionTemplate> filterTransactionsByCurrentWeek() {
+    DateTime now = DateTime.now();
+    DateTime startOfWeek = now.subtract(Duration(days: now.weekday - 1));
+    DateTime endOfWeek = now.add(Duration(days: DateTime.daysPerWeek - now.weekday));
+
+    return transactionlist
+        .where((transaction) =>
+            transaction.date.isAfter(startOfWeek.subtract(Duration(days: 1))) &&
+            transaction.date.isBefore(endOfWeek.add(Duration(days: 1))))
+        .toList();
+  }
+
+  List<TransactionTemplate> filterTransactionsByCurrentMonth() {
+    DateTime now = DateTime.now();
+    DateTime startOfMonth = DateTime(now.year, now.month, 1);
+    DateTime endOfMonth = DateTime(now.year, now.month + 1, 0);
+
+    return transactionlist
+      .where((transaction) =>
+        transaction.date.isAfter(startOfMonth.subtract(Duration(days: 1))) &&
+        transaction.date.isBefore(endOfMonth.add(Duration(days: 1))))
+      .toList();
+  }
+
+  List<TransactionTemplate> filterTransactionsByCurrentYear() {
+    DateTime now = DateTime.now();
+    DateTime startOfYear = DateTime(now.year, 1, 1);
+    DateTime endOfYear = DateTime(now.year + 1, 1, 0);
+
+    return transactionlist
+      .where((transaction) =>
+        transaction.date.isAfter(startOfYear.subtract(Duration(days: 1))) &&
+        transaction.date.isBefore(endOfYear.add(Duration(days: 1))))
+      .toList();
+  }
+
+  List<TransactionTemplate> filterTransactionsByCurrentQuarter() {
+    DateTime now = DateTime.now();
+    int currentQuarter = (now.month - 1) ~/ 3 + 1;
+    DateTime startOfQuarter = DateTime(now.year, (currentQuarter - 1) * 3 + 1, 1);
+    DateTime endOfQuarter = DateTime(now.year, currentQuarter * 3, 0);
+
+    return transactionlist
+      .where((transaction) =>
+        transaction.date.isAfter(startOfQuarter.subtract(Duration(days: 1))) &&
+        transaction.date.isBefore(endOfQuarter.add(Duration(days: 1))))
+      .toList();
+  }
+
+  void onModeClick(String newMode) {
+    selectMode(newMode);
+    if (newMode == "today") {
+      DateTime now = DateTime.now();
+      DateTime startOfWeek = now.subtract(Duration(days: now.day - 1));
+      DateTime endOfWeek = now;
+      displayTransactionList = filterTransactionsByDate(startOfWeek, endOfWeek);
+    } else if (newMode == "week") {
+      displayTransactionList = filterTransactionsByCurrentWeek();
+    } else if (newMode == "month") {
+      displayTransactionList = filterTransactionsByCurrentMonth();
+    } else if (newMode == "quarter") {
+      displayTransactionList = filterTransactionsByCurrentQuarter();
+    } else if (newMode == "year") {
+      displayTransactionList = filterTransactionsByCurrentYear();
+    }
+    // update income and expense
+    displayIncome.value = 0;
+    displayExpense.value = 0;
+    for (var transaction in displayTransactionList) {
+      if (transaction.type == 1) {
+        displayIncome.value += transaction.amount;
+      } else {
+        displayExpense.value += transaction.amount;
+      }
+    }
+    update();
+  }
+
 
   List<TransactionTemplate> getTransactionList() {
     return [
@@ -227,26 +324,6 @@ class HomeController extends GetxController {
     ];
   }
 
-  void onModeClick(String newMode) {
-    selectMode(newMode);
-    if (newMode == "today") {
-      income.value = 0;
-      expense.value = 30000;
-    } else if (newMode == "week") {
-      income.value = 100000;
-      expense.value = 320000;
-    } else if (newMode == "month") {
-      income.value = 2500000;
-      expense.value = 480000;
-    } else if (newMode == "quarter") {
-      income.value = 5000000;
-      expense.value = 750000;
-    } else if (newMode == "year") {
-      income.value = 100000000;
-      expense.value = 2345000;
-    }
-    update();
-  }
 
   @override
   void onClose() {}

@@ -16,7 +16,7 @@ class Wallet extends GetView<HomeWalletController> {
 
   @override
   Widget build(BuildContext context) {
-    print("Wallet ${walletData.length}");
+    //print("Wallet ${walletData.length}");
     // return GetBuilder<HomeWalletController>(
     //     init: HomeWalletController(),
     //     initState: (_) {},

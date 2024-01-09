@@ -33,9 +33,8 @@ class WalletController extends GetxController {
           .get();
       walletList.clear();
       for (var wallet in wallets.docs) {
-        print("im here to read ${wallet.data()}");
-        walletList
-            .add(WalletModel.fromDocumentSnapshot(documentSnapshot: wallet));
+        //print("im here to read ${wallet.data()}");
+        walletList.add(WalletModel.fromDocumentSnapshot(documentSnapshot: wallet));
       }
     } catch (e) {
       print(e);
