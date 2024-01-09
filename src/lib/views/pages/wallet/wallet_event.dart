@@ -1,3 +1,4 @@
+import 'package:dugbet/models/EventModel.dart';
 import 'package:dugbet/views/widgets/button/custom_icon_button.dart';
 import 'package:dugbet/views/widgets/group_balance_one.dart';
 import 'package:dugbet/views/widgets/home_header_bar.dart';
@@ -11,6 +12,8 @@ import '../../widgets/bottom_sheet_transaction.dart';
 
 class WalletEvent extends StatelessWidget {
   const WalletEvent({super.key});
+
+  EventModel get eventModel => Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +44,7 @@ class WalletEvent extends StatelessWidget {
                   child: Row(
                     children: [
                       Text(
-                        "Event",
+                        eventModel.name,
                         style: TextThemeBuilder.robotoTextTheme.titleLarge,
                       ),
                       const SizedBox(
@@ -53,7 +56,9 @@ class WalletEvent extends StatelessWidget {
                     ],
                   ),
                 ),
-                const GroupBalanceOne(),
+                GroupBalanceOne(
+                  eventData: eventModel,
+                ),
                 const SizedBox(
                   height: 20,
                 ),
