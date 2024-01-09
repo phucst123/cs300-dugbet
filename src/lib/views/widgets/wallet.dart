@@ -122,11 +122,15 @@ class Wallet extends GetView<HomeWalletController> {
                                   border: Border.all(
                                       color: ColorPalette.black, width: 1)),
                               child: Center(
-                                child: ListTitleWallet(
-                                    pathImage: walletData[index].walletPicture,
-                                    moneyValue: controller
-                                        .showBalance(walletData[index].balance),
-                                    nameWallet: walletData[index].name),
+                                child: Obx(
+                                  () {
+                                    return ListTitleWallet(
+                                        pathImage: walletData[index].walletPicture,
+                                        moneyValue: controller
+                                            .showBalance(walletData[index].balance),
+                                        nameWallet: walletData[index].name);
+                                  }
+                                ),
                               ),
                             ),
                           ),

@@ -12,6 +12,8 @@ class BottomSheetTransaction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
         padding: const EdgeInsets.only(
             left: 16.0, right: 16.0, top: 20.0, bottom: 0.0),
         decoration: BoxDecoration(

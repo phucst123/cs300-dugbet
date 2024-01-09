@@ -10,6 +10,7 @@ class EventModel {
     required this.initialAmount,
     required this.transactions,
     required this.members,
+    required this.eventPicture,
   });
   late final String id;
   late final String name;
@@ -19,6 +20,7 @@ class EventModel {
   late final int initialAmount;
   late final List<TransactionInfo> transactions;
   late final List<Member> members;
+  late final String eventPicture;
   
   EventModel.fromJson(Map<String, dynamic> json){
     id = json['id'];
@@ -29,6 +31,7 @@ class EventModel {
     initialAmount = json['initialAmount'];
     transactions = List.from(json['transactions']).map((e)=>TransactionInfo.fromJson(e)).toList();
     members = List.from(json['members']).map((e)=>Member.fromJson(e)).toList();
+    eventPicture = json['eventPicture'];
   }
 
   Map<String, dynamic> toJson() {
@@ -41,6 +44,7 @@ class EventModel {
     data['initialAmount'] = initialAmount;
     data['transactions'] = transactions.map((e)=>e.toJson()).toList();
     data['members'] = members.map((e)=>e.toJson()).toList();
+    data['eventPicture'] = eventPicture;
     return data;
   }
 }
