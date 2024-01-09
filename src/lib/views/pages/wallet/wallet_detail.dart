@@ -1,10 +1,12 @@
 import 'package:dugbet/consts/app_export.dart';
+import 'package:dugbet/models/WalletModel.dart';
 import 'package:dugbet/views/widgets/double_notch_custom.dart';
 import 'package:dugbet/views/widgets/normal_header_bar.dart';
 import '../../../consts/fonts/text_theme_builder.dart';
 
 class WalletDetail extends StatelessWidget {
-  const WalletDetail({super.key});
+  const WalletDetail({super.key, required this.walletData});
+  final WalletModel walletData;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class WalletDetail extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Momo",
+                    walletData.name,
                     style: TextThemeBuilder.robotoTextTheme.titleLarge,
                   ),
                   const SizedBox(

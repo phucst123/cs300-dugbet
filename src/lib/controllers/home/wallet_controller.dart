@@ -1,23 +1,23 @@
 import 'package:dugbet/consts/utils/function_utils.dart';
+import 'package:dugbet/controllers/login/auth_controller.dart';
+import 'package:dugbet/firebase_ref/references.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dugbet/models/WalletModel.dart';
 
 class HomeWalletController extends GetxController {
-  RxInt balance = 123000.obs;
+  // RxInt balance = 123000.obs;
   RxInt showValue = 0.obs;
+  late User? user;
 
-  var walletList = <WalletModel>[];
   @override
-
   void onReady() {
     super.onReady();
-
   }
 
   void onInit() {
     super.onInit();
+    // getWallets();
   }
 
   Future <void> getWallets() async {
@@ -39,9 +39,9 @@ class HomeWalletController extends GetxController {
     }
   }
 
-  String showBalance() {
+  String showBalance(int value) {
     if (showValue.value == 0) {
-      return convertToCurrency(balance.value);
+      return convertToCurrency(value);
     } else {
       return "******";
     }
@@ -52,8 +52,7 @@ class HomeWalletController extends GetxController {
     update();
   }
 
-  Icon showEyeIcon()
-  {
+  Icon showEyeIcon() {
     if (showValue.value == 0) {
       return const Icon(Icons.lock_open_outlined);
     } else {

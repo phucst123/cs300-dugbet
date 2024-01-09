@@ -18,6 +18,7 @@ class HomePage extends GetView<HomeController> {
         initState: (_) {},
         builder: (controller) {
           controller.getTransactions();
+          controller.getWallets();
           List<Widget> quickViewList = [
             // const PieQuickView(),
             Obx(() => StatQuickView(
@@ -28,6 +29,13 @@ class HomePage extends GetView<HomeController> {
               transactionList: controller.transactionlist,
             ),
           ];
+          Widget walletRegion = Obx(() {
+                        return Wallet(
+                          walletData: controller.walletData,
+                          balance: controller.balance.value,
+                          //walletList: controller.wallet,
+                        );
+                      });
           print('current list ${controller.transactionlist.length}');
           return SafeArea(
             child: Scaffold(
@@ -117,18 +125,20 @@ class HomePage extends GetView<HomeController> {
                                 ColorPalette.tertiaryColor
                               ]),
                               borderRadius: BorderRadius.circular(25)),
-                          child: const Center(
-                              child: Text(
-                            "Analyze",
-                            style: TextStyle(color: ColorPalette.white),
-                          )),
+                          child: Center(
+                            child: Text(
+                              "Analyze",
+                              style: theme.textTheme.titleSmall!.copyWith(
+                                color: ColorPalette.white,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
                     Expanded(
-                        child: Wallet(
-                            //walletList: controller.wallet,
-                            ))
+                      child: walletRegion
+                    )
                   ],
                 ),
               ),

@@ -29,7 +29,7 @@ class DoubleNotch extends StatelessWidget {
                         SvgPicture.asset(
                           "assets/images/top_notch.svg",
                           width: MediaQuery.of(context).size.width,
-                          height: 150,
+                          // height: 150,
                         ),
                         Positioned(
                             top: 35,
@@ -64,120 +64,122 @@ class DoubleNotch extends StatelessWidget {
                   ],
                 ),
                 Positioned(
-                    top: -20,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Get.dialog(SafeArea(
-                          minimum: const EdgeInsets.all(40),
-                          child: Scaffold(
-                            backgroundColor: Colors.transparent,
-                            body: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: InkWell(
-                                    onTap: () {
-                                      controller.isIncome.value = true;
-                                      Get.back();
-                                    },
-                                    child: Container(
-                                      width: 80,
-                                      height: 80,
-                                      decoration: BoxDecoration(
-                                          color: ColorPalette.white,
-                                          border: Border.all(
-                                              color: ColorPalette.black),
-                                          borderRadius:
-                                              BorderRadius.circular(20)),
-                                      child: Center(
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Container(
-                                                width: 40,
-                                                height: 40,
-                                                decoration: BoxDecoration(
-                                                    color:
-                                                        LightTheme.primaryColor,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12)),
-                                                child: const Icon(
-                                                    Icons.arrow_upward_outlined,
-                                                    color: Colors.white)),
-                                            Text("Income",
-                                                style: TextThemeBuilder
-                                                    .robotoTextTheme
-                                                    .headlineLarge)
-                                          ],
-                                        ),
+                  top: -10,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Get.dialog(SafeArea(
+                        minimum: const EdgeInsets.all(40),
+                        child: Scaffold(
+                          backgroundColor: Colors.transparent,
+                          body: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: InkWell(
+                                  onTap: () {
+                                    controller.isIncome.value = true;
+                                    Get.back();
+                                  },
+                                  child: Container(
+                                    width: 80,
+                                    height: 80,
+                                    decoration: BoxDecoration(
+                                        color: ColorPalette.white,
+                                        border: Border.all(
+                                            color: ColorPalette.black),
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    child: Center(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Container(
+                                              width: 40,
+                                              height: 40,
+                                              decoration: BoxDecoration(
+                                                  color:
+                                                      LightTheme.primaryColor,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          12)),
+                                              child: const Icon(
+                                                  Icons.arrow_upward_outlined,
+                                                  color: Colors.white)),
+                                          Text("Income",
+                                              style: TextThemeBuilder
+                                                  .robotoTextTheme
+                                                  .headlineLarge)
+                                        ],
                                       ),
                                     ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: InkWell(
-                                    onTap: () {
-                                      controller.isIncome.value = false;
-                                      Get.back();
-                                    },
-                                    child: Container(
-                                      width: 80,
-                                      height: 80,
-                                      decoration: BoxDecoration(
-                                          color: Colors.yellow.withOpacity(0.7),
-                                          border: Border.all(
-                                              color: ColorPalette.black),
-                                          borderRadius:
-                                              BorderRadius.circular(20)),
-                                      child: Center(
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Container(
-                                                width: 40,
-                                                height: 40,
-                                                decoration: BoxDecoration(
-                                                    color:
-                                                        LightTheme.primaryColor,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12)),
-                                                child: const Icon(
-                                                    Icons
-                                                        .arrow_downward_outlined,
-                                                    color: Colors.white)),
-                                            Text("Expense",
-                                                style: TextThemeBuilder
-                                                    .robotoTextTheme
-                                                    .headlineLarge)
-                                          ],
-                                        ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: InkWell(
+                                  onTap: () {
+                                    controller.isIncome.value = false;
+                                    Get.back();
+                                  },
+                                  child: Container(
+                                    width: 80,
+                                    height: 80,
+                                    decoration: BoxDecoration(
+                                        color: Colors.yellow.withOpacity(0.7),
+                                        border: Border.all(
+                                            color: ColorPalette.black),
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    child: Center(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Container(
+                                              width: 40,
+                                              height: 40,
+                                              decoration: BoxDecoration(
+                                                  color:
+                                                      LightTheme.primaryColor,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          12)),
+                                              child: const Icon(
+                                                  Icons.arrow_downward_outlined,
+                                                  color: Colors.white)),
+                                          Text("Expense",
+                                              style: TextThemeBuilder
+                                                  .robotoTextTheme
+                                                  .headlineLarge)
+                                        ],
                                       ),
                                     ),
                                   ),
-                                )
-                              ],
-                            ),
+                                ),
+                              )
+                            ],
                           ),
-                        ));
-                      },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: ColorPalette.incomeText),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 2),
-                        child: Text(
-                            controller.isIncome.value ? 'Income' : 'Expense',
-                            style: const TextStyle(color: ColorPalette.white)),
-                      ),
-                    )),
+                        ),
+                      ));
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: ColorPalette.incomeText),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 2),
+                      child: Text(
+                          controller.isIncome.value ? 'Income' : 'Expense',
+                          style: const TextStyle(color: ColorPalette.white)),
+                    ),
+                  ),
+                ),
                 Positioned(
-                    top: 119,
+                    top: 155,
                     child: InkWell(
                       onTap: () {
-                        Get.dialog(SearchCategoryCustom(isEvent: false,));
+                        Get.dialog(SearchCategoryCustom(
+                          isEvent: false,
+                        ));
                       },
                       child: Container(
                           height: 72,
@@ -186,7 +188,8 @@ class DoubleNotch extends StatelessWidget {
                               shape: BoxShape.circle,
                               border: Border.all(color: ColorPalette.black)),
                           child: Center(
-                            child: SvgPicture.asset("assets/icons/category/${controller.category.value.toLowerCase()}/${controller.icon.value.toLowerCase()}"),
+                            child: SvgPicture.asset(
+                                "assets/icons/category/${controller.category.value.toLowerCase()}/${controller.icon.value.toLowerCase()}"),
                           )),
                     )),
                 Padding(
@@ -249,23 +252,29 @@ class DoubleNotch extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                    top: 280,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Get.toNamed(AppPage.scanPage);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: ColorPalette.incomeText,
-                      ),
-                      child: Padding(
-                        padding:
-                            const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  bottom: -10,
+                  child: InkWell(
+                    onTap: () => Get.toNamed(AppPage.scanPage),
+                    child: Container(
+                      height: 40,
+                      width: 100,
+                      decoration: BoxDecoration(
+                          gradient: const LinearGradient(colors: [
+                            ColorPalette.primaryColor,
+                            ColorPalette.tertiaryColor
+                          ]),
+                          borderRadius: BorderRadius.circular(25)),
+                      child: Center(
                         child: Text(
                           controller.isEdit.value ? " Edit " : " Scan ",
-                          style: const TextStyle(color: ColorPalette.white),
+                          style: theme.textTheme.titleSmall!.copyWith(
+                            color: ColorPalette.white,
+                          ),
                         ),
                       ),
-                    )),
+                    ),
+                  ),
+                ),
               ],
             )),
       ),
