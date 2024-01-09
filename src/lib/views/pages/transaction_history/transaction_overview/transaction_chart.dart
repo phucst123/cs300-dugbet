@@ -284,7 +284,7 @@ class TransactionChart extends GetView<TransactionHistoryController> {
       }
       maxSum = max(maxSum, sum);
     }
-    print("maxSum is $maxSum");
+    //print("maxSum is $maxSum");
     return maxSum;
   }
   
@@ -411,7 +411,7 @@ class TransactionChart extends GetView<TransactionHistoryController> {
       }
       maxSum = max(maxSum, sum);
     }
-    print("maxSum is $maxSum");
+    //print("maxSum is $maxSum");
     return maxSum;
   }
   
@@ -534,7 +534,7 @@ class TransactionChart extends GetView<TransactionHistoryController> {
       }
       maxSum = max(maxSum, sum);
     }
-    print("maxSum is $maxSum");
+    //print("maxSum is $maxSum");
     return maxSum;
   }
   
@@ -660,7 +660,7 @@ class TransactionChart extends GetView<TransactionHistoryController> {
       }
       maxSum = max(maxSum, sum);
     }
-    print("maxSum is $maxSum");
+    //print("maxSum is $maxSum");
     return maxSum;
   }
   

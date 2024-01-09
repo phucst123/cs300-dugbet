@@ -18,7 +18,7 @@ class WalletList extends StatelessWidget {
         initState: (_) {},
         builder: (controller) {
           controller.getWallets();
-
+          controller.getEvents();
           return Container(
             constraints: BoxConstraints(
                 maxHeight: MediaQuery.of(context).size.height - 150),

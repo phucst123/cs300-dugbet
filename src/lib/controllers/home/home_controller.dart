@@ -76,6 +76,7 @@ class HomeController extends GetxController {
       // transactionlist.add(TransactionTemplate(
       //     category: "Clothing",
       //     title: "Rent payment",
+      
       //     description: "Monthly rent payment",
       //     amount: 15000,
       //     date: DateTime.now(),

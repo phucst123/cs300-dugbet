@@ -95,7 +95,7 @@ class WalletPage extends StatelessWidget {
           floatingActionButton: ScanButton(
               height: 60,
               width: 57,
-              onTap: () => Get.toNamed(AppPage.transactionPage),
+              onTap: () => Get.toNamed(AppPage.walletNewWallet),
               // color of the floating button
 
               child: CustomImageView(
