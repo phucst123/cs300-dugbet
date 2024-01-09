@@ -9,12 +9,18 @@ class TransactionHistoryController extends GetxController {
   late User? user;
   List<TransactionTemplate> transactionsList = [];
   var isLoading = true.obs;
+  RxString selectMode = "week".obs;
 
   @override
   void onInit() {
     super.onInit();
     user = Get.find<AuthController>().getUser();
     getTransactionsData();
+  }
+
+  void onModeClick(String newMode) {
+    selectMode(newMode);
+    update();
   }
 
   Future<void> getTransactionsData() async {

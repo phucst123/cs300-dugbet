@@ -132,11 +132,7 @@ class TransactionHistoryPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TransactionChart(
-              title: 'Statistics',
-              incomeData: [2, 1, 3, 1, 0, 4, 5],
-              expenseData: [3, 5, 1, 4, 3, 0, 4],
-            ),
+            TransactionChart(),
             SizedBox(height: 18.0),
             BalanceStatus(),
             SizedBox(height: 20.0),
