@@ -2,15 +2,13 @@ import 'package:dugbet/consts/color/colors.dart';
 import 'package:dugbet/consts/fonts/text_theme_builder.dart';
 import 'package:dugbet/consts/utils/function_utils.dart';
 import 'dart:math';
-
-import 'package:dugbet/views/pages/transaction_history/transaction_history_page.dart';
-
 import 'package:dugbet/views/pages/transaction_history/transaction_template.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:dugbet/consts/app_export.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:fl_chart/fl_chart.dart';
+
+import 'package:dugbet/controllers/home/home_controller.dart';
 
 class PieQuickView extends StatefulWidget {
   const PieQuickView({super.key});
@@ -64,20 +62,20 @@ class SchedulePainter extends CustomPainter {
     var center = Offset(centerX, centerY);
     var radius = min(centerX, centerY);
 
-    var outerCircleRadius = radius;
-    var innerCircleRadius = radius;
+    // var outerCircleRadius = radius;
+    // var innerCircleRadius = radius;
 
     Rect myRect = Rect.fromCircle(
         center: Offset(size.width / 2, size.height / 2), radius: radius - 14);
 
     var fillBrush = Paint()..color = const Color(0xFFFFFFFF);
     var backgroudBrush = Paint()..color = const Color(0xFF77DDFF);
-    var outlineBrush = Paint()
-      ..color = const Color(0xFFEAECFF)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 16;
+    // var outlineBrush = Paint()
+    //   ..color = const Color(0xFFEAECFF)
+    //   ..style = PaintingStyle.stroke
+    //   ..strokeWidth = 16;
 
-    var centerFillBrush = Paint()..color = const Color(0xFFEAECFF);
+    // var centerFillBrush = Paint()..color = const Color(0xFFEAECFF);
 
     var secHandBrush = Paint()
       ..color = Colors.blue[300]!
@@ -85,27 +83,27 @@ class SchedulePainter extends CustomPainter {
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 3;
 
-    var minHandBrush = Paint()
-      ..shader =
-          const RadialGradient(colors: [Color(0xFF748EF6), Color(0xFF77DDFF)])
-              .createShader(Rect.fromCircle(center: center, radius: radius))
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round
-      ..strokeWidth = 8;
+    // var minHandBrush = Paint()
+    //   ..shader =
+    //       const RadialGradient(colors: [Color(0xFF748EF6), Color(0xFF77DDFF)])
+    //           .createShader(Rect.fromCircle(center: center, radius: radius))
+    //   ..style = PaintingStyle.stroke
+    //   ..strokeCap = StrokeCap.round
+    //   ..strokeWidth = 8;
 
-    var hourHandBrush = Paint()
-      ..shader =
-          const RadialGradient(colors: [Color(0xFFEA74AB), Color(0xFFC279FB)])
-              .createShader(Rect.fromCircle(center: center, radius: radius))
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round
-      ..strokeWidth = 12;
+    // var hourHandBrush = Paint()
+    //   ..shader =
+    //       const RadialGradient(colors: [Color(0xFFEA74AB), Color(0xFFC279FB)])
+    //           .createShader(Rect.fromCircle(center: center, radius: radius))
+    //   ..style = PaintingStyle.stroke
+    //   ..strokeCap = StrokeCap.round
+    //   ..strokeWidth = 12;
 
-    var dashBrush = Paint()
-      ..color = const Color(0xFFEAECFF)
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round
-      ..strokeWidth = 2;
+    // var dashBrush = Paint()
+      // ..color = const Color(0xFFEAECFF)
+      // ..style = PaintingStyle.stroke
+      // ..strokeCap = StrokeCap.round
+      // ..strokeWidth = 2;
 
     var startAngle = -30 * pi / 180;
     var sweepAngle = pi / 180.0 * (360.0 / 12.0);
@@ -188,34 +186,50 @@ class SchedulePainter extends CustomPainter {
   }
 }
 
+// ignore: must_be_immutable
 class TransactionQuickView extends StatelessWidget {
-  const TransactionQuickView({super.key, required this.transactionList});
-
-  final List<TransactionTemplate> transactionList;
+  TransactionQuickView({super.key, required this.transactionList});
+  HomeController controller = Get.put(HomeController());
+  List<TransactionTemplate> transactionList;
   @override
   Widget build(BuildContext context) {
-    final List<TransactionTemplate> transactionList = groupTransactions()[0];
-    // get top 3 transaction
-    while (transactionList.length > 4) {
-      transactionList.removeLast();
-    }
-    return Container(
-        padding: const EdgeInsets.only(
-            left: 16.0, right: 16.0, top: 20.0, bottom: 16.0),
-        child: QVTransactionItemList(transaction_list: transactionList)
-        //   ],
-        // child: ListView(
+    return GetBuilder<HomeController>(
+        init: HomeController(),
+        initState: (_) {},
+        builder: (controller) {
+          controller.getTransactions();
+          transactionList = controller.transactionlist;
+          if (transactionList.isEmpty) {
+            print(controller.transactionlist.length);
+            print("transaction list is empty");
+            return Container();
+          }
+          transactionList = groupTransactions()[0];
+          // get top 3 transaction
+          while (transactionList.length > 4) {
+            transactionList.removeLast();
+          }
+          return Container(
+              padding: const EdgeInsets.only(
+                  left: 16.0, right: 16.0, top: 20.0, bottom: 16.0),
+              child: QVTransactionItemList(transaction_list: transactionList)
+              //   ],
+              // child: ListView(
 
-        // )
-        // ),
-        );
+              // )
+              // ),
+              );
+        });
   }
 
   List<List<TransactionTemplate>> groupTransactions() {
-    transactionList.sort((a, b) => a.date.compareTo(b.date));
     // copy transactionList to transaction_list
     List<List<TransactionTemplate>> groupedTransactions = [];
     List<TransactionTemplate> temp = [];
+    if (transactionList.isEmpty) {
+      return groupedTransactions;
+    }
+    transactionList.sort((a, b) => a.date.compareTo(b.date));
     int currentDay = transactionList[0].date.day;
 
     for (var transaction in transactionList) {
@@ -267,7 +281,8 @@ class QVTransactionItemList extends StatelessWidget {
                         ),
                         height: 15.v,
                         width: 15.v,
-                        child: SvgPicture.asset("assets/icons/category/${transaction.category.toLowerCase()}/${transaction.icon.toLowerCase()}")),
+                        child: SvgPicture.asset(
+                            "assets/icons/category/${transaction.category.toLowerCase()}/${transaction.icon.toLowerCase()}")),
                     const SizedBox(width: 10.0),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -332,7 +347,6 @@ class StatQuickView extends StatelessWidget {
     incomeHeight = incomeHeight == 0 ? 1 : incomeHeight;
     double expenseHeight = expenseData * 100 / maxData;
     expenseHeight = expenseHeight == 0 ? 1 : expenseHeight;
-
 
     return Container(
       padding: const EdgeInsets.only(

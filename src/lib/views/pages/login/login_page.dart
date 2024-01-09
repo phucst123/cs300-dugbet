@@ -141,32 +141,31 @@ class LoginScreen extends GetView<LoginController> {
           style: theme.textTheme.bodySmall,
         ),
         SizedBox(height: 3.v),
-        CustomTextFormField(
-          controller: controller.passwordController,
-          onSaved: (value) {
-            controller.password = value!;
-          },
-          hintText: "*********",
-          textInputAction: TextInputAction.done,
-          textInputType: TextInputType.visiblePassword,
-          suffix: Container(
-            margin: EdgeInsets.fromLTRB(30.h, 16.v, 14.h, 16.v),
-            child: CustomImageView(
-              imagePath: ImageConstant.imgFirreyecrossed,
-              height: 16.adaptSize,
-              width: 16.adaptSize,
+        Obx(() {
+          return CustomTextFormField(
+            controller: controller.passwordController,
+            onSaved: (value) {
+              controller.password = value!;
+            },
+            hintText: "*********",
+            textInputAction: TextInputAction.done,
+            textInputType: TextInputType.visiblePassword,
+            suffix: Container(
+              margin: EdgeInsets.fromLTRB(30.h, 16.v, 14.h, 16.v),
+              child: InkWell(
+                  onTap: controller.changeEye, child: controller.eyeIcon()),
             ),
-          ),
-          suffixConstraints: BoxConstraints(
-            maxHeight: 48.v,
-          ),
-          obscureText: true,
-          contentPadding: EdgeInsets.only(
-            left: 8.h,
-            top: 15.v,
-            bottom: 15.v,
-          ),
-        ),
+            suffixConstraints: BoxConstraints(
+              maxHeight: 48.v,
+            ),
+            obscureText: !controller.isPasswordVisible.value!,
+            contentPadding: EdgeInsets.only(
+              left: 8.h,
+              top: 15.v,
+              bottom: 15.v,
+            ),
+          );
+        }),
       ],
     );
   }

@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 
 import '../../widgets/event_double_notch.dart';
 
+// ignore: must_be_immutable
 class EventTransactionPage extends StatelessWidget {
   EventTransactionPage({super.key});
   EventTransactionController? controller;

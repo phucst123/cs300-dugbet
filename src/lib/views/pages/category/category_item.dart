@@ -1,8 +1,6 @@
 import 'package:dugbet/views/pages/category/category_data.dart';
-import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 
 class CategoryItem extends StatelessWidget {
   final Category category;

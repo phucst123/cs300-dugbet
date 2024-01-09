@@ -8,13 +8,18 @@ import '../../consts/color/colors.dart';
 import '../../consts/color/theme.dart';
 import '../../consts/fonts/text_theme_builder.dart';
 
-class DoubleNotch extends StatelessWidget {
-  DoubleNotch({super.key});
-
-  final controller = Get.find<TransactionController>();
+class DoubleNotchCustom extends StatelessWidget {
+  const DoubleNotchCustom({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller;
+    if (Get.isRegistered<TransactionController>()) {
+      controller = Get.find<TransactionController>();
+    } else {
+      controller = Get.put<TransactionController>(TransactionController());
+    }
+
     return Padding(
       padding: const EdgeInsets.only(top: 20, bottom: 20),
       child: Center(
@@ -177,7 +182,9 @@ class DoubleNotch extends StatelessWidget {
                     top: 119,
                     child: InkWell(
                       onTap: () {
-                        Get.dialog(SearchCategoryCustom(isEvent: false,));
+                        Get.dialog(SearchCategoryCustom(
+                          isEvent: false,
+                        ));
                       },
                       child: Container(
                           height: 72,
@@ -186,7 +193,8 @@ class DoubleNotch extends StatelessWidget {
                               shape: BoxShape.circle,
                               border: Border.all(color: ColorPalette.black)),
                           child: Center(
-                            child: SvgPicture.asset("assets/icons/category/${controller.category.value.toLowerCase()}/${controller.icon.value.toLowerCase()}"),
+                            child: SvgPicture.asset(
+                                "assets/icons/category/${controller.category.value.toLowerCase()}/${controller.icon.value.toLowerCase()}"),
                           )),
                     )),
                 Padding(
@@ -258,8 +266,8 @@ class DoubleNotch extends StatelessWidget {
                         backgroundColor: ColorPalette.incomeText,
                       ),
                       child: Padding(
-                        padding:
-                            const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 5),
                         child: Text(
                           controller.isEdit.value ? " Edit " : " Scan ",
                           style: const TextStyle(color: ColorPalette.white),

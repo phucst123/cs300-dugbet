@@ -71,7 +71,8 @@ class Scanning extends StatelessWidget {
                   children: [
                     TextButton(
                         onPressed: () {
-                          Get.offAndToNamed(AppPage.transactionPage);
+                          // Get.offAndToNamed(AppPage.transactionPage);
+                          Get.back();
                         },
                         child: Text(
                           "Input",

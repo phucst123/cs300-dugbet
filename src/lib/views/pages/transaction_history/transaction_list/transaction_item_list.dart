@@ -102,7 +102,7 @@ class TransactionItemList extends StatelessWidget {
       controller.type.value = transaction.type;
       controller.category.value = transaction.category;
       controller.isEdit.value = true;
-      controller.incomeTextEdit.text = transaction.amount;
+      controller.incomeTextEdit.text = transaction.amount.toString();
       controller.descriptionTextEdit.text = transaction.description;
       controller.selectedDate.value = transaction.date;
       controller.selectedTime.value = TimeOfDay.fromDateTime(transaction.date);
@@ -114,7 +114,7 @@ class TransactionItemList extends StatelessWidget {
       controller.type.value = transaction.type;
       controller.category.value = transaction.category;
       controller.isEdit.value = true;
-      controller.incomeTextEdit.text = transaction.amount;
+      controller.incomeTextEdit.text = transaction.amount.toString();
       controller.descriptionTextEdit.text = transaction.description;
       controller.selectedDate.value = transaction.date;
       controller.selectedTime.value = TimeOfDay.fromDateTime(transaction.date);

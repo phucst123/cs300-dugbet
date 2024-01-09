@@ -1,25 +1,27 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/color/colors.dart';
 import 'package:dugbet/consts/fonts/base_font.dart';
+import 'package:dugbet/views/pages/transaction_history/transaction_history_controller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class BalanceStatus extends StatelessWidget {
-  const BalanceStatus({super.key});
+  BalanceStatus({super.key});
+  TransactionHistoryController transactionHistoryController = Get.find<TransactionHistoryController>();
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         AmountBox(
           iconData: Icons.arrow_upward,
-          figure: '234.000',
+          figure: transactionHistoryController.calculateExpense().toString(),
           label: 'Expense',
           color: ColorPalette.expenseText,
         ),
         AmountBox(
           iconData: Icons.arrow_downward,
-          figure: '234.000',
+          figure: transactionHistoryController.calculateIncome().toString(),
           label: 'Income',
           color: ColorPalette.incomeText,
         )

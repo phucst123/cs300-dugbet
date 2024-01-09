@@ -30,8 +30,8 @@ class TransactionItem extends StatelessWidget {
         children: [
           TransactionItemSummary(
             date: transaction_list[0].date,
-            income: "100.000",
-            expense: "200.000"
+            income: calculateIncome().toString(),
+            expense: calculateExpense().toString()
           ),
           const SizedBox(height: 8.0),
           const Divider(),
@@ -41,24 +41,24 @@ class TransactionItem extends StatelessWidget {
     );
   }
 
-  double calculateIncome() {
-    double incomeSum = 0;
+  int calculateIncome() {
+    int incomeSum = 0;
 
     for (var transaction in transaction_list) {
       if (transaction.type == 1) {
-        incomeSum = 200;
+        incomeSum += transaction.amount;
       }
     }
 
     return incomeSum;
   }
 
-  double calculateExpense() {
-    double expenseSum = 0;
+  int calculateExpense() {
+    int expenseSum = 0;
 
     for (var transaction in transaction_list) {
       if (transaction.type == 0) {
-        expenseSum += 200;
+        expenseSum += transaction.amount;
       }
     }
 

@@ -4,7 +4,6 @@ import 'package:dugbet/models/EventModel.dart';
 import 'package:dugbet/models/UserModel.dart';
 import 'package:dugbet/models/UtilityModel.dart';
 import 'package:dugbet/models/WalletModel.dart';
-import 'package:dugbet/views/widgets/wallet.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 final FirebaseFirestore firestore = FirebaseFirestore.instance;

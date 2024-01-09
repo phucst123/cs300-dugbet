@@ -43,6 +43,10 @@ class CustomBottomAppBar extends StatelessWidget {
     bottomMenuList[indexPage].isSelected = true;
     return Obx(
       () => BottomAppBar(
+        color: Colors.white,
+        surfaceTintColor: Colors.white,
+        shadowColor: Colors.black,
+        elevation: 10,
         // add stroke color
         
         // clipBehavior: Clip.antiAliasWithSaveLayer,

@@ -1,5 +1,5 @@
 import 'package:dugbet/models/UtilityModel.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 class TransactionModel {
   TransactionModel({
     required this.transactionId,
@@ -41,6 +41,21 @@ class TransactionModel {
     payerId = json['payerId'];
     walletId = json['walletId'];
     members = List.from(json['members']).map((e)=>Member.fromJson(e)).toList();
+  }
+
+  TransactionModel.fromDocumentSnapshot({required DocumentSnapshot documentSnapshot}){
+    transactionId = documentSnapshot.id;
+    amount = documentSnapshot['amount'];
+    category = documentSnapshot['category'];
+    subCategory = documentSnapshot['subCategory'];
+    //date = DateTime.parse(documentSnapshot['date']);
+    description = documentSnapshot['description'];
+    title = documentSnapshot['title'];
+    type = documentSnapshot['type'];
+    isIncome = documentSnapshot['isIncome'];
+    payerId = documentSnapshot['payerId'];
+    walletId = documentSnapshot['walletId'];
+    //members = List.from(documentSnapshot['members']).map((e)=>Member.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {

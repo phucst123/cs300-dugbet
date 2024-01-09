@@ -13,6 +13,7 @@ class WalletPage extends StatelessWidget {
   final bool showNav;
   @override
   Widget build(BuildContext context) {
+
     List<Widget> pageWidgets = [
       Padding(
         padding: const EdgeInsets.only(top: 12.0, bottom: 20.0, left: 16.0),
@@ -21,9 +22,11 @@ class WalletPage extends StatelessWidget {
           style: TextThemeBuilder.robotoTextTheme.titleLarge,
         ),
       ),
-      const WalletList(),
+      WalletList(),
       InkWell(
-        onTap: () {},
+        onTap: () {
+          Get.toNamed(AppPage.walletNewWallet);
+        },
         child: Container(
           height: 60,
           width: 60,

@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../consts/color/colors.dart';
 
+// ignore: must_be_immutable
 class IconDisplayCircle extends StatelessWidget {
   IconDisplayCircle(
-      {super.key, this.pathImage = "assets/images/defaultPlush.png"});
+      {super.key, this.pathImage});
 
-  String pathImage = "assets/images/defaultPlush.png";
+  String? pathImage = "";
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +17,15 @@ class IconDisplayCircle extends StatelessWidget {
         decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(color: ColorPalette.black, width: 1)),
-        child: Image.asset(
-          pathImage,
-          scale: 0.75,
-        ));
+        child: pathImage != ""
+          ? Image.network(
+              pathImage!,
+              scale: 0.75,
+            )
+          : Image.asset(
+              "assets/images/defaultPlush.png",
+              scale: 0.75,
+            ),
+            );
   }
 }

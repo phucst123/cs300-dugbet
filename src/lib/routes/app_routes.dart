@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dugbet/bindings/transaction/transaction_binding.dart';
 import 'package:dugbet/bindings/wrapper/wrapper_bining.dart';
 import 'package:dugbet/controllers/login/login_controller.dart';
@@ -40,7 +39,7 @@ class AppRoute {
   static List<GetPage> routes() => [
         GetPage(
           name: AppPage.transactionHistoryPage,
-          page: () => const TransactionHistoryPage(
+          page: () => TransactionHistoryPage(
             showNav: true,
           ),
           binding: TransactionBinding(),
@@ -139,10 +138,12 @@ class AppRoute {
           name: AppPage.walletEventDetail,
           page: () => const WalletEventDetail(),
         ),
+        // GetPage(
+        //   name: AppPage.walletNewEvent,
+        //   page: () => const WalletNewEvent(),
+        // ),
         GetPage(
-          name: AppPage.walletNewEvent,
-          page: () => const WalletNewEvent(),
-        ),
+            name: AppPage.walletNewWallet, page: () => const WalletNewEvent()),
         GetPage(
           name: AppPage.eventTransaction,
           page: () => EventTransactionPage(),

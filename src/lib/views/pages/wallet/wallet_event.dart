@@ -1,5 +1,9 @@
+import 'package:dugbet/views/widgets/button/custom_icon_button.dart';
 import 'package:dugbet/views/widgets/group_balance_one.dart';
+import 'package:dugbet/views/widgets/home_header_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../../../consts/color/colors.dart';
 import '../../../consts/fonts/text_theme_builder.dart';
@@ -10,92 +14,88 @@ class WalletEvent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: Colors.orangeAccent,
-        child: const Icon(Icons.edit_calendar_outlined),
-      ),
-      body: Container(
-        decoration:
-            const BoxDecoration(gradient: ColorPalette.secondaryGradient),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Text(
-                    "Design ITUS",
-                    style: TextThemeBuilder.robotoTextTheme.titleLarge,
+    return SafeArea(
+      child: Scaffold(
+        appBar: HomeHeaderBar(
+          leftWidget: Transform.flip(
+            flipX: true,
+            child: SvgPicture.asset(
+              "assets/icons/arrow.svg",
+              colorFilter:
+                  const ColorFilter.mode(ColorPalette.white, BlendMode.srcIn),
+            ),
+          ),
+          onTap: () {
+            Get.back();
+          },
+        ),
+        body: Container(
+          height: MediaQuery.of(context).size.height,
+          decoration: const BoxDecoration(color: ColorPalette.tearButton),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                      top: 12.0, bottom: 20.0, left: 16.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Event",
+                        style: TextThemeBuilder.robotoTextTheme.titleLarge,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      SvgPicture.asset(
+                        "assets/icons/edit.svg",
+                      ),
+                    ],
                   ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  const Icon(Icons.draw_outlined)
-                ],
-              ),
-              const GroupBalanceOne(),
-              const SizedBox(
-                height: 30,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: ColorPalette.white, width: 2),
-                        color: ColorPalette.primaryColor),
-                    child: Center(
-                      child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.note_alt_outlined,
-                              color: ColorPalette.white)),
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: ColorPalette.white, width: 2),
-                        color: ColorPalette.primaryColor),
-                    child: Center(
-                      child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.exit_to_app_outlined,
-                              color: ColorPalette.white)),
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: ColorPalette.white, width: 2),
-                        color: ColorPalette.primaryColor),
-                    child: Center(
-                      child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.people_alt_sharp,
-                              color: ColorPalette.white)),
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: ColorPalette.white, width: 2),
-                        color: ColorPalette.grey.withOpacity(0.3)),
-                    child: Center(
-                      child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.notifications_active_outlined,
-                              color: ColorPalette.white)),
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              const BottomSheetTransaction()
-            ],
+                ),
+                const GroupBalanceOne(),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CustomIconButton(
+                        child: SvgPicture.asset(
+                          "assets/icons/edit.svg",
+                          colorFilter: const ColorFilter.mode(
+                              ColorPalette.white, BlendMode.srcIn),
+                        ),
+                        callback: () {}),
+                    CustomIconButton(
+                        child: SvgPicture.asset(
+                          "assets/icons/logout.svg",
+                          colorFilter: const ColorFilter.mode(
+                              ColorPalette.white, BlendMode.srcIn),
+                        ),
+                        callback: () {}),
+                    CustomIconButton(
+                        child: SvgPicture.asset(
+                          "assets/icons/people.svg",
+                          colorFilter: const ColorFilter.mode(
+                              ColorPalette.white, BlendMode.srcIn),
+                        ),
+                        callback: () {}),
+                    CustomIconButton(
+                        child: SvgPicture.asset(
+                          "assets/icons/admin.svg",
+                          colorFilter: const ColorFilter.mode(
+                              ColorPalette.white, BlendMode.srcIn),
+                        ),
+                        callback: () {}),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const BottomSheetTransaction()
+              ],
+            ),
           ),
         ),
       ),

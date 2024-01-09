@@ -1,3 +1,5 @@
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dugbet/models/UtilityModel.dart';
 
 class WalletModel {
@@ -32,6 +34,18 @@ class WalletModel {
     name = json['name'];
     type = json['type'];
     transactions = List.from(json['transactions']).map((e)=>TransactionInfo.fromJson(e)).toList();
+  }
+
+  WalletModel.fromDocumentSnapshot({required DocumentSnapshot documentSnapshot}){
+    id = documentSnapshot.id;
+    walletPicture = documentSnapshot['walletPicture'];
+    description = documentSnapshot['description'];
+    initialAmount = documentSnapshot['initialAmount'];
+    expense = documentSnapshot['expense'];
+    income = documentSnapshot['income'];
+    name = documentSnapshot['name'];
+    type = documentSnapshot['type'];
+    //transactions = List.from(documentSnapshot['transactions']).map((e)=>TransactionInfo.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
