@@ -98,7 +98,7 @@ class WalletEvent extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                const BottomSheetTransaction()
+                BottomSheetTransaction(transaction_list: [],)
               ],
             ),
           ),

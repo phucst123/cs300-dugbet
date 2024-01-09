@@ -113,7 +113,7 @@ class WalletPersonal extends GetView<WalletPersonalController> {
                       const SizedBox(
                         height: 30,
                       ),
-                      const BottomSheetTransaction()
+                      BottomSheetTransaction(transaction_list: controller.displayTransactionList)
                     ],
                   ),
                 ),
