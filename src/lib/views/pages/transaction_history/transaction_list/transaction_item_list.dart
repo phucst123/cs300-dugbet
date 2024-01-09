@@ -1,5 +1,6 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/color/colors.dart';
+import 'package:dugbet/consts/utils/function_utils.dart';
 import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_template.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -69,13 +70,12 @@ class TransactionItemList extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      transaction.amount.toString(),
+                      convertToCurrency(transaction.amount),
                       style: theme.textTheme.headlineLarge?.copyWith(
                           color: transaction.type == 1
                               ? ColorPalette.incomeText
                               : ColorPalette.expenseText),
                     ),
-                    SizedBox(width: 2.0.v),
                     SvgPicture.asset(
                       "assets/images/dIcon.svg",
                       colorFilter: ColorFilter.mode(

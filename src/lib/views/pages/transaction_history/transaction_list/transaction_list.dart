@@ -13,7 +13,7 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       if (transactionHistoryController.isLoading.value) {
-        return CircularProgressIndicator(); // Show a loading spinner while waiting for data
+        return const CircularProgressIndicator(); // Show a loading spinner while waiting for data
       } else {
         // Now we're sure the data is loaded
         List<List<TransactionTemplate>> groupedTransactions = groupTransactions(transactionHistoryController.transactionsList);
