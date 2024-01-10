@@ -9,15 +9,18 @@ class PickEventIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: GridView.count(
-          crossAxisCount: 4,
-          mainAxisSpacing: 8.0,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          children: eventIconList.map((icon) => IventIconChoose(icon)).toList(),
+    return SafeArea(
+      minimum: const EdgeInsets.all(20),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Center(
+          child: GridView.count(
+            crossAxisCount: 4,
+            mainAxisSpacing: 8.0,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            children: eventIconList.map((icon) => IventIconChoose(icon)).toList(),
+          ),
         ),
       ),
     );
@@ -35,6 +38,7 @@ Widget IventIconChoose(String name) {
         controller = Get.put<EventTransactionController>(EventTransactionController());
       }
       controller.title.value = name;
+      Get.back();
 
     },
     child: Center(
