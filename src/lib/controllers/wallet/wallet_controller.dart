@@ -1,8 +1,11 @@
 import 'package:dugbet/consts/app_export.dart';
+import 'package:dugbet/controllers/home/home_controller.dart';
 import 'package:dugbet/models/EventModel.dart';
+import 'package:dugbet/models/UtilityModel.dart';
 import 'package:dugbet/models/WalletModel.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dugbet/views/pages/transaction_history/transaction_history_controller.dart';
 import 'package:get/get.dart';
 
 import 'package:dugbet/consts/utils/function_utils.dart';
@@ -69,12 +72,14 @@ class WalletController extends GetxController {
         walletList
             .add(WalletModel.fromDocumentSnapshot(documentSnapshot: wallet));
       }
+      
       update();
     } catch (e) {
       print(e);
       Get.snackbar("Error", 'Error while getting wallet list',
           snackPosition: SnackPosition.BOTTOM);
     }
+    
   }
 
   Future <void> getEvents() async {
@@ -99,8 +104,72 @@ class WalletController extends GetxController {
           snackPosition: SnackPosition.BOTTOM);
     }
   }
+
+  Future <void> addWallet(String name, String walletPicture, String description, String id, String type, int income, int expense, int initialAmount) async {
+    String? user_id = user!.email;
+    print('im here to add new wallet');
+    try {
+      await usersRef.doc(user_id).collection('Wallets').doc(id).set({
+        'name': name,
+        'walletPicture': walletPicture,
+        'description': description,
+        'id': id,
+        'type': type,
+        'income': income,
+        'expense': expense,
+        'initialAmount': initialAmount,
+      });
+      print('add wallet successfully');
+      getWallets();
+    } catch (e) {
+      print(e);
+      Get.snackbar("Error", 'Error while adding wallet',
+          snackPosition: SnackPosition.BOTTOM);
+    }
+  }
+
   void debug() {
     print("Hello how are you im wallet controller");
+  }
+
+  // update wallet data fo firestore
+  Future<void> updateWallet() async {
+    String? user_id = user!.email;
+    // get transaction list from transaction list controller
+    var transactionListController = Get.find<HomeController>();
+    var transactionList = transactionListController.transactionListModel;
+    // update income and expense of wallet
+    print("im here to update wallet consistent, wallet list length: ${walletList.length}");
+
+    for (var wallet in walletList) {
+      int newIncome = 0;
+      int newExpense = 0;
+      for (var transaction in transactionList) {
+        if (transaction.walletId != wallet.id) continue;
+        if (transaction.isIncome) {
+          newIncome += transaction.amount;
+        } else {
+          newExpense += transaction.amount;
+        }
+      }
+      {
+        try {
+          await usersRef
+              .doc(user_id)
+              .collection('Wallets')
+              .doc(wallet.id)
+              .update({
+            'income': newIncome,
+            'expense': newExpense,
+            'initialAmount': 650000,
+          });
+        } catch (e) {
+          print(e);
+        }
+      }
+
+    }
+
   }
 
   // Stream<List<WalletModel>> readWallet() {

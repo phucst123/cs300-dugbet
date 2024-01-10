@@ -48,7 +48,7 @@ class TransactionModel {
     amount = documentSnapshot['amount'];
     category = documentSnapshot['category'];
     subCategory = documentSnapshot['subCategory'];
-    //date = DateTime.parse(documentSnapshot['date']);
+    date = documentSnapshot['date'].toDate();
     description = documentSnapshot['description'];
     title = documentSnapshot['title'];
     type = documentSnapshot['type'];

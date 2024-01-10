@@ -163,7 +163,7 @@ class WalletPersonalController extends GetxController {
       balance.value = 0;
       for (var transaction in transactions.docs) {
         if (transaction['walletId'] != walletNameID.value) continue;
-        print("im here to read ${transaction.data()}");
+        //print("im here to read ${transaction.data()}");
         transactionListModel.add(TransactionModel.fromDocumentSnapshot(
             documentSnapshot: transaction));
         transactionlist.add(TransactionTemplate(
@@ -205,6 +205,8 @@ class WalletPersonalController extends GetxController {
       Get.snackbar("Error", 'Error while getting transaction list',
           snackPosition: SnackPosition.BOTTOM);
     }
+
+
     // get transactionlist from home_controller
     // var temp_transactionlist = Get.find<HomeController>().transactionListModel;
     // transactionlist.clear();

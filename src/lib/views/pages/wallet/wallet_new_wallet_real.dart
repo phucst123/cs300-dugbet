@@ -1,5 +1,6 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/views/widgets/double_notch.dart';
+import 'package:dugbet/views/widgets/double_notch_new_event.dart';
 import 'package:dugbet/views/widgets/double_notch_new_wallet.dart';
 import '../../../consts/fonts/text_theme_builder.dart';
 import '../../../controllers/wallet/wallet_controller.dart';
@@ -34,7 +35,7 @@ class WalletNewEvent extends StatelessWidget {
                   const SizedBox(
                     width: 10,
                   ),
-                  DoubleNotchNewWallet(),
+                  DoubleNotchNewEvent(),
                   const SizedBox(
                     height: 30,
                   ),
@@ -130,5 +131,24 @@ class WalletNewEvent extends StatelessWidget {
 
   onTapCancel() => Get.back();
 
-  onTapSave() => Get.back();
+  onTapSave(){
+     print('hello im ready to add new walltet');
+    final new_transaction = Get.find<WalletController>();
+    String name = new_transaction.bankIcon.value;
+    String id = new_transaction.user!.displayName! + '-' + name.toLowerCase();
+    int initialAmount = int.parse(new_transaction.incomeTextEdit.text.replaceAll(',', ''));
+    String description = new_transaction.descriptionTextEdit.text;
+    String walletPicture = 'assets/Bank/' + name.toLowerCase() + '.png';
+    String type = 'Personal';
+    int income = 0;
+    int expense = 0;
+    if (Get.isRegistered<WalletController>()) {
+      final controller = Get.find<WalletController>();
+      controller.addWallet(name, walletPicture, description, id, type, income, expense, initialAmount);
+    } else {
+      final controller = Get.put<WalletController>(WalletController());
+      controller.addWallet(name, walletPicture, description, id, type, income, expense, initialAmount);
+    }
+    Get.back();
+  }
 }
