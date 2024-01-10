@@ -1,10 +1,12 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/fonts/text_theme_builder.dart';
+import 'package:dugbet/controllers/wallet/wallet_controller.dart';
 import 'package:dugbet/views/pages/transaction/event_transaction_controller.dart';
 import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 
+import '../../../consts/color/colors.dart';
 import '../../widgets/event_double_notch.dart';
 
 // ignore: must_be_immutable
@@ -30,6 +32,22 @@ class EventTransactionPage extends StatelessWidget {
             child: Obx(() => Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    TextField(
+                      onTap: () {},
+                      style: TextThemeBuilder.robotoTextTheme.titleMedium,
+                      controller: controller!.nameText,
+                      decoration: InputDecoration(
+                        // fillColor:LightTheme.primaryColor,
+                        // filled: true,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                              borderSide: BorderSide.none),
+                          hintText: "Event Name...",
+                          hintStyle: TextStyle(
+                              color: ColorPalette.grey.withOpacity(0.7),
+                              fontWeight: FontWeight.normal),
+                          prefixIcon: const Icon(Icons.search)),
+                    ),
                     EventDoubleNotch(),
                     const SizedBox(
                       height: 20,
@@ -98,7 +116,7 @@ class EventTransactionPage extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: 8.0, horizontal: 20),
-                        child: GestureDetector(
+                        child: InkWell(
                           onTap: () {
                             controller!.chooseMembers();
                           },
@@ -131,6 +149,7 @@ class EventTransactionPage extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
+
                     // Container(
                     //   height: 40,
                     //   width: MediaQuery.of(context).size.width,
@@ -169,7 +188,13 @@ class EventTransactionPage extends StatelessWidget {
                         ),
                         StringButton(
                           text: "Save".tr,
-                          callback: onTapSave,
+                          callback: () {
+                            controller!.pushToFirestore();
+                            Get.snackbar("Event", "Add Event Transaction Successfully");
+                            final controller2 = Get.find<WalletController>();
+                            controller2.getEvents();
+                            Get.offAndToNamed(AppPage.walletPage);
+                          },
                           buttonStyle: CustomButtonStyles.none,
                           decoration:
                               CustomButtonStyles.gradientTealToTealDecoration,
@@ -196,9 +221,11 @@ class EventTransactionPage extends StatelessWidget {
   }
 
   onTapCancel() {
-    Get.back();
-    Get.delete<TransactionController>();
+    Get.offAndToNamed(AppPage.walletPage);
+
   }
 
-  onTapSave() => Get.back();
+  onTapSave() {
+    controller!.pushToFirestore();
+  }
 }
