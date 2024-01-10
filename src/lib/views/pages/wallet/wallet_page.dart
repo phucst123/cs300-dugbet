@@ -63,7 +63,7 @@ class WalletPage extends StatelessWidget {
                     if (controller.isWallet.value) {
                       Get.toNamed(AppPage.walletNewWallet);
                     } else {
-                      Get.toNamed(AppPage.walletEvent);
+                      Get.toNamed(AppPage.eventTransaction);
                     }
                   },
                   child: Container(
@@ -113,7 +113,7 @@ class WalletPage extends StatelessWidget {
                     if (controller.isWallet.value) {
                       Get.toNamed(AppPage.walletNewWallet);
                     } else {
-                      Get.toNamed(AppPage.walletEvent);
+                      Get.toNamed(AppPage.eventTransaction);
                     }
                   },
                   child: Container(

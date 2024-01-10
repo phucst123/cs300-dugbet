@@ -135,8 +135,8 @@ class TransactionPage extends StatelessWidget {
                                 },
                                 child: ClipOval(
                                   child: Center(
-                                    child: SvgPicture.asset(
-                                        "assets/images/momo.svg"),
+                                    child: Image.asset(
+                                        "assets/Bank/${controller!.selectedWallet.toLowerCase()}.png"),
                                   ),
                                 ),
                               ),

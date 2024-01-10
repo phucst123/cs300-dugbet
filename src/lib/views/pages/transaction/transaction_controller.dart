@@ -19,6 +19,7 @@ class TransactionController extends GetxController {
   var icon = "snack.svg".obs;
   var type = 0.obs;
 
+
   // Rx<TransactionModel> transaction = TransactionModel(
   //   transactionId: '0',
   //   title: "New Transaction",
@@ -94,11 +95,12 @@ class TransactionController extends GetxController {
 
   Future<void> pushToFirestore() async {
     String? user_id = user!.email;
+    String? user_name = user!.displayName;
     DateTime now = DateTime.now();
     usersRef.doc(user_id).collection('Transactions').add({
       'amount': int.parse(incomeTextEdit.text),
       'category': category.value,
-      'date': selectedDate.value,
+      'date': DateTime(selectedDate.value.year,selectedDate.value.month,selectedDate.value.day,selectedTime.value.hour,selectedTime.value.minute),
       'description': descriptionTextEdit.text,
       'isIncome': isIncome.value,
       'payerId': user_id,
@@ -106,8 +108,8 @@ class TransactionController extends GetxController {
       'title': title.value,
       'transactionId': '${now.year}-${now.month}-${now.day}-${now.hour}-${now.minute}-${now.second}-${user_id}',
       'type': 'Personal',
-      'walletId': 'Momo'
-    });
+      'walletId': "${user_name!.toLowerCase()}-${selectedWallet.value.toLowerCase()}"
+    }).whenComplete(() => Get.snackbar("Transaction", "Add Transaction Successfully"));
   }
 
 }

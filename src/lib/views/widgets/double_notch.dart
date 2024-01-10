@@ -260,7 +260,7 @@ class DoubleNotch extends StatelessWidget {
                               border: Border.all(color: ColorPalette.black)),
                           child: Center(
                             child: SvgPicture.asset(
-                                "assets/icons/category/${controller.category.value.toLowerCase()}/${controller.title.value.replaceAll(' ', '').toLowerCase()}"),
+                                "assets/icons/category/${controller.category.value.toLowerCase()}/${controller.title.value.replaceAll(' ', '').toLowerCase()}.svg"),
                           )),
                     )),
                 // Padding(
