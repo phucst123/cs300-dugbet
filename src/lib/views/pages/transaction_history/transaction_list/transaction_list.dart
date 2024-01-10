@@ -3,38 +3,48 @@ import 'package:dugbet/views/pages/transaction_history/transaction_history_contr
 import 'package:dugbet/views/pages/transaction_history/transaction_list/transaction_item.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_template.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 
 // ignore: must_be_immutable
 class TransactionList extends StatelessWidget {
   TransactionList({super.key, required this.transactionList});
 
   final List<TransactionTemplate> transactionList;
-  TransactionHistoryController transactionHistoryController = Get.find<TransactionHistoryController>();
-
+  // TransactionHistoryController transactionHistoryController = Get.find<TransactionHistoryController>();
 
   @override
   Widget build(BuildContext context) {
-    
-        // Now we're sure the data is loaded
-        return Obx(() {
-          if (transactionHistoryController.isLoading.value) {
-            return CircularProgressIndicator(); // Show a loading spinner while waiting for data
-          } else {
-            // Now we're sure the data is loaded
-            List<List<TransactionTemplate>> groupedTransactions = groupTransactions(transactionHistoryController.transactionsList);
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                for (var transaction in groupedTransactions)...[
-                  TransactionItem(transaction_list: transaction),
-                  const SizedBox(height: 20.0)
-                ]
-              ]
-            );
-          }
-        });
-      
+    // Now we're sure the data is loaded
+    // return Obx(() {
+    //   if (transactionHistoryController.isLoading.value) {
+    //     return CircularProgressIndicator(); // Show a loading spinner while waiting for data
+    //   } else {
+    //     // Now we're sure the data is loaded
+    //     List<List<TransactionTemplate>> groupedTransactions = groupTransactions(transactionHistoryController.transactionsList);
+    //     return Column(
+    //       mainAxisAlignment: MainAxisAlignment.start,
+    //       mainAxisSize: MainAxisSize.min,
+    //       children: [
+    //         for (var transaction in groupedTransactions)...[
+    //           TransactionItem(transaction_list: transaction),
+    //           const SizedBox(height: 20.0)
+    //         ]
+    //       ]
+    //     );
+    //   }
+    // });
+    return GetBuilder<TransactionHistoryController>(
+        builder: (newcontroller) => Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  for (var transaction
+                      in groupTransactions(newcontroller.transactionsList)) ...[
+                    TransactionItem(transaction_list: transaction),
+                    const SizedBox(height: 20.0)
+                  ]
+                ]));
+
     // return ListView.builder(
     //   itemCount: groupedTransactions.length,
     //   shrinkWrap: true,
@@ -46,7 +56,8 @@ class TransactionList extends StatelessWidget {
     // );
   }
 
-  List<List<TransactionTemplate>> groupTransactions(List<TransactionTemplate> transaction_list) {
+  List<List<TransactionTemplate>> groupTransactions(
+      List<TransactionTemplate> transaction_list) {
     print("In groupTransactions() of TransactionList");
     print("transaction_list.length: " + transaction_list.length.toString());
     transaction_list.sort((a, b) => a.date.compareTo(b.date));
@@ -54,7 +65,7 @@ class TransactionList extends StatelessWidget {
     if (transaction_list.isNotEmpty) {
       List<TransactionTemplate> temp = [];
       int currentDay = transaction_list[0].date.day;
-      
+
       for (var transaction in transaction_list) {
         if (transaction.date.day == currentDay) {
           temp.add(transaction);
@@ -71,5 +82,4 @@ class TransactionList extends StatelessWidget {
     }
     return groupedTransactions;
   }
-
 }
