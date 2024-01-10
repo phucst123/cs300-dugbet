@@ -49,7 +49,7 @@ class TransactionHistoryController extends GetxController {
             description: doc['description'],
             amount: doc['amount'],
             date: doc['date'].toDate(),
-            icon: 'vegetables.svg',
+            icon: doc['subCategory'],
             type: doc['isIncome'] == true ? 1 : 0,
           )
         ).toList();

@@ -47,7 +47,7 @@ class TransactionItemList extends StatelessWidget {
                         ),
                         height: 36.v,
                         width: 36.v,
-                        child: SvgPicture.asset("assets/icons/category/${transaction.category.toLowerCase()}/${transaction.icon.toLowerCase()}",fit: BoxFit.scaleDown,)),
+                        child: SvgPicture.asset("assets/icons/category/${transaction.category.toLowerCase()}/${transaction.icon.toLowerCase()}.svg",fit: BoxFit.scaleDown,)),
                     const SizedBox(width: 10.0),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
