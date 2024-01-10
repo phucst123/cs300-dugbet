@@ -25,7 +25,10 @@ class EditProfileController extends GetxController {
   void onInit() async {
     super.onInit();
     user.value = Get.find<AuthController>().getUser();
-    nameController = TextEditingController(text: user.value!.displayName);
+
+    nameController = TextEditingController();
+
+    nameController.text = user.value!.displayName!;
     await fetchData();
   }
 
