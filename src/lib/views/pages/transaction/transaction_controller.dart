@@ -16,7 +16,7 @@ class TransactionController extends GetxController {
   var isIncome = true.obs;
   var isEdit = false.obs;
   var title = "snack".obs;
-  var category = "food_beverages".obs;
+  var category = "Food and beverages".obs;
   var icon = "snack.svg".obs;
   var type = 0.obs;
   RxBool newTransaction = false.obs;

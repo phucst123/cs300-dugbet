@@ -16,7 +16,7 @@ class EventTransactionController extends GetxController {
   var isIncome = true.obs;
   var isEdit = false.obs;
   var title = "12".obs;
-  var category = "Fnb".obs;
+  var category = "Food and beverages".obs;
   var icon = "snack.svg".obs;
   var type = 0.obs;
   var listMember = <UserDemo>[].obs;

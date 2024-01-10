@@ -27,7 +27,7 @@ class WalletNewEvent extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  WalletHeader(callback1: (){}, callback2: (){},),
+                  // WalletHeader(callback1: (){}, callback2: (){},),
                   Obx(() => Text(
                     controller.bankIcon.value,
                     style: TextThemeBuilder.robotoTextTheme.titleLarge,
