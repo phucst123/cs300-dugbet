@@ -26,7 +26,7 @@ import 'package:dugbet/views/pages/transaction_history/transaction_history_page.
 import 'package:dugbet/views/pages/wallet/wallet_detail.dart';
 import 'package:dugbet/views/pages/wallet/wallet_event.dart';
 import 'package:dugbet/views/pages/wallet/wallet_event_detail.dart';
-import 'package:dugbet/views/pages/wallet/wallet_new_event.dart';
+import 'package:dugbet/views/pages/wallet/wallet_new_wallet_real.dart';
 
 // import 'package:dugbet/views/pages/wallet/wallet_new_wallet.dart';
 import 'package:dugbet/views/pages/wallet/wallet_page.dart';
