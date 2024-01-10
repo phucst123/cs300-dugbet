@@ -104,6 +104,30 @@ class WalletController extends GetxController {
           snackPosition: SnackPosition.BOTTOM);
     }
   }
+
+  Future <void> addWallet(String name, String walletPicture, String description, String id, String type, int income, int expense, int initialAmount) async {
+    String? user_id = user!.email;
+    print('im here to add new wallet');
+    try {
+      await usersRef.doc(user_id).collection('Wallets').add({
+        'name': name,
+        'walletPicture': walletPicture,
+        'description': description,
+        'id': id,
+        'type': type,
+        'income': income,
+        'expense': expense,
+        'initialAmount': initialAmount,
+      });
+      print('add wallet successfully');
+      getWallets();
+    } catch (e) {
+      print(e);
+      Get.snackbar("Error", 'Error while adding wallet',
+          snackPosition: SnackPosition.BOTTOM);
+    }
+  }
+
   void debug() {
     print("Hello how are you im wallet controller");
   }
