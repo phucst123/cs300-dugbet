@@ -122,7 +122,7 @@ class TransactionChart extends GetView<TransactionHistoryController> {
         gridData: gridData,
         titlesData: titlesDataWeek,
         borderData: borderData,
-        lineBarsData: [lineChartBarDataWeek],
+        lineBarsData: [lineChartBarDataWeek_expense, lineChartBarDataWeek_income],
         minX: 0,
         maxX: 8,
         maxY: 5,
@@ -136,7 +136,7 @@ class TransactionChart extends GetView<TransactionHistoryController> {
         gridData: gridData,
         titlesData: titlesDataMonth,
         borderData: borderData,
-        lineBarsData: [lineChartBarDataMonth],
+        lineBarsData: [lineChartBarDataMonth_expense, lineChartBarDataMonth_income],
         minX: 0,
         maxX: 32,
         maxY: 5,
@@ -150,7 +150,7 @@ class TransactionChart extends GetView<TransactionHistoryController> {
         gridData: gridData,
         titlesData: titlesDataQuarter,
         borderData: borderData,
-        lineBarsData: [lineChartBarDataQuarter],
+        lineBarsData: [lineChartBarDataQuarter_expense, lineChartBarDataQuarter_income],
         minX: 0,
         maxX: 4,
         maxY: 5,
@@ -164,7 +164,7 @@ class TransactionChart extends GetView<TransactionHistoryController> {
         gridData: gridData,
         titlesData: titlesDataYear,
         borderData: borderData,
-        lineBarsData: [lineChartBarDataYear],
+        lineBarsData: [lineChartBarDataYear_expense, lineChartBarDataYear_income],
         minX: 0,
         maxX: 13,
         maxY: 5,
@@ -257,7 +257,7 @@ class TransactionChart extends GetView<TransactionHistoryController> {
         getTitlesWidget: bottomTitleWidgetsWeek,
       );
 
-  List<FlSpot> getTransactionsWeekData() {
+  List<FlSpot> getTransactionsWeekData_expense() {
     List<FlSpot> spots = [];
     List<TransactionTemplate> transactions = controller.filterTransactionsByCurrentWeek();
     for (int wday = 1; wday <= 7; wday++) {
@@ -272,13 +272,28 @@ class TransactionChart extends GetView<TransactionHistoryController> {
     return spots;
   }
 
+  List<FlSpot> getTransactionsWeekData_income() {
+    List<FlSpot> spots = [];
+    List<TransactionTemplate> transactions = controller.filterTransactionsByCurrentWeek();
+    for (int wday = 1; wday <= 7; wday++) {
+      double sum = 0;
+      for (var transaction in transactions) {
+        if (transaction.date.weekday == wday && transaction.type == 1) {
+          sum += transaction.amount;
+        }
+      }
+      spots.add(FlSpot(wday.toDouble(), transformNumber(sum, getVerticalMaxWeek())));
+    }
+    return spots;
+  }
+
   double getVerticalMaxWeek() {
     List<TransactionTemplate> transactions = controller.filterTransactionsByCurrentWeek();
     double maxSum = 0;
     for (int wday = 1; wday <= 7; wday++) {
       double sum = 0;
       for (var transaction in transactions) {
-        if (transaction.date.weekday == wday && transaction.type == 0) {
+        if (transaction.date.weekday == wday) {
           sum += transaction.amount;
         }
       }
@@ -288,14 +303,24 @@ class TransactionChart extends GetView<TransactionHistoryController> {
     return maxSum;
   }
   
-  LineChartBarData get lineChartBarDataWeek => LineChartBarData(
+  LineChartBarData get lineChartBarDataWeek_expense => LineChartBarData(
+        isCurved: true,
+        color: ColorPalette.expenseText,
+        barWidth: 8,
+        isStrokeCapRound: true,
+        dotData:  FlDotData(show: false),
+        belowBarData: BarAreaData(show: false),
+        spots: getTransactionsWeekData_expense(),
+      );
+
+  LineChartBarData get lineChartBarDataWeek_income => LineChartBarData(
         isCurved: true,
         color: ColorPalette.incomeText,
         barWidth: 8,
         isStrokeCapRound: true,
         dotData:  FlDotData(show: false),
         belowBarData: BarAreaData(show: false),
-        spots: getTransactionsWeekData(),
+        spots: getTransactionsWeekData_income(),
       );
 
 
@@ -384,7 +409,7 @@ class TransactionChart extends GetView<TransactionHistoryController> {
         getTitlesWidget: bottomTitleWidgetsMonth,
       );
 
-  List<FlSpot> getTransactionsMonthData() {
+  List<FlSpot> getTransactionsMonthData_expense() {
     List<FlSpot> spots = [];
     List<TransactionTemplate> transactions = controller.filterTransactionsByCurrentMonth();
     for (int mday = 1; mday <= 31; mday++) {
@@ -399,13 +424,28 @@ class TransactionChart extends GetView<TransactionHistoryController> {
     return spots;
   }
 
+  List<FlSpot> getTransactionsMonthData_income() {
+    List<FlSpot> spots = [];
+    List<TransactionTemplate> transactions = controller.filterTransactionsByCurrentMonth();
+    for (int mday = 1; mday <= 31; mday++) {
+      double sum = 0;
+      for (var transaction in transactions) {
+        if (transaction.date.day == mday && transaction.type == 1) {
+          sum += transaction.amount;
+        }
+      }
+      spots.add(FlSpot(mday.toDouble(), transformNumber(sum, getVerticalMaxMonth())));
+    }
+    return spots;
+  }
+
   double getVerticalMaxMonth() {
     List<TransactionTemplate> transactions = controller.filterTransactionsByCurrentMonth();
     double maxSum = 0;
     for (int mday = 1; mday <= 31; mday++) {
       double sum = 0;
       for (var transaction in transactions) {
-        if (transaction.date.day == mday && transaction.type == 0) {
+        if (transaction.date.day == mday) {
           sum += transaction.amount;
         }
       }
@@ -415,14 +455,24 @@ class TransactionChart extends GetView<TransactionHistoryController> {
     return maxSum;
   }
   
-  LineChartBarData get lineChartBarDataMonth => LineChartBarData(
+  LineChartBarData get lineChartBarDataMonth_expense => LineChartBarData(
+        isCurved: true,
+        color: ColorPalette.expenseText,
+        barWidth: 8,
+        isStrokeCapRound: true,
+        dotData:  FlDotData(show: false),
+        belowBarData: BarAreaData(show: false),
+        spots: getTransactionsMonthData_expense(),
+      );
+
+  LineChartBarData get lineChartBarDataMonth_income => LineChartBarData(
         isCurved: true,
         color: ColorPalette.incomeText,
         barWidth: 8,
         isStrokeCapRound: true,
         dotData:  FlDotData(show: false),
         belowBarData: BarAreaData(show: false),
-        spots: getTransactionsMonthData(),
+        spots: getTransactionsMonthData_income(),
       );
 
   FlTitlesData get titlesDataQuarter => FlTitlesData(
@@ -507,7 +557,7 @@ class TransactionChart extends GetView<TransactionHistoryController> {
         getTitlesWidget: bottomTitleWidgetsQuarter,
       );
 
-  List<FlSpot> getTransactionsQuarterData() {
+  List<FlSpot> getTransactionsQuarterData_expense() {
     List<FlSpot> spots = [];
     List<TransactionTemplate> transactions = controller.filterTransactionsByCurrentQuarter();
     for (int m = 1; m <= 3; m++) {
@@ -522,13 +572,28 @@ class TransactionChart extends GetView<TransactionHistoryController> {
     return spots;
   }
 
+  List<FlSpot> getTransactionsQuarterData_income() {
+    List<FlSpot> spots = [];
+    List<TransactionTemplate> transactions = controller.filterTransactionsByCurrentQuarter();
+    for (int m = 1; m <= 3; m++) {
+      double sum = 0;
+      for (var transaction in transactions) {
+        if (transaction.date.month == m && transaction.type == 1) {
+          sum += transaction.amount;
+        }
+      }
+      spots.add(FlSpot(m.toDouble(), transformNumber(sum, getVerticalMaxQuarter())));
+    }
+    return spots;
+  }
+
   double getVerticalMaxQuarter() {
     List<TransactionTemplate> transactions = controller.filterTransactionsByCurrentQuarter();
     double maxSum = 0;
     for (int m = 1; m <= 3; m++) {
       double sum = 0;
       for (var transaction in transactions) {
-        if (transaction.date.month == m && transaction.type == 0) {
+        if (transaction.date.month == m) {
           sum += transaction.amount;
         }
       }
@@ -538,14 +603,24 @@ class TransactionChart extends GetView<TransactionHistoryController> {
     return maxSum;
   }
   
-  LineChartBarData get lineChartBarDataQuarter => LineChartBarData(
+  LineChartBarData get lineChartBarDataQuarter_expense => LineChartBarData(
+        isCurved: true,
+        color: ColorPalette.expenseText,
+        barWidth: 8,
+        isStrokeCapRound: true,
+        dotData:  FlDotData(show: false),
+        belowBarData: BarAreaData(show: false),
+        spots: getTransactionsQuarterData_expense(),
+      );
+
+  LineChartBarData get lineChartBarDataQuarter_income => LineChartBarData(
         isCurved: true,
         color: ColorPalette.incomeText,
         barWidth: 8,
         isStrokeCapRound: true,
         dotData:  FlDotData(show: false),
         belowBarData: BarAreaData(show: false),
-        spots: getTransactionsQuarterData(),
+        spots: getTransactionsQuarterData_income(),
       );
 
   FlTitlesData get titlesDataYear => FlTitlesData(
@@ -633,7 +708,7 @@ class TransactionChart extends GetView<TransactionHistoryController> {
         getTitlesWidget: bottomTitleWidgetsYear,
       );
 
-  List<FlSpot> getTransactionsYearData() {
+  List<FlSpot> getTransactionsYearData_expense() {
     List<FlSpot> spots = [];
     List<TransactionTemplate> transactions = controller.filterTransactionsByCurrentYear();
     for (int m = 1; m <= 12; m++) {
@@ -648,13 +723,28 @@ class TransactionChart extends GetView<TransactionHistoryController> {
     return spots;
   }
 
+  List<FlSpot> getTransactionsYearData_income() {
+    List<FlSpot> spots = [];
+    List<TransactionTemplate> transactions = controller.filterTransactionsByCurrentYear();
+    for (int m = 1; m <= 12; m++) {
+      double sum = 0;
+      for (var transaction in transactions) {
+        if (transaction.date.month == m && transaction.type == 1) {
+          sum += transaction.amount;
+        }
+      }
+      spots.add(FlSpot(m.toDouble(), transformNumber(sum, getVerticalMaxYear())));
+    }
+    return spots;
+  }
+
   double getVerticalMaxYear() {
     List<TransactionTemplate> transactions = controller.filterTransactionsByCurrentYear();
     double maxSum = 0;
     for (int m = 1; m <= 12; m++) {
       double sum = 0;
       for (var transaction in transactions) {
-        if (transaction.date.month == m && transaction.type == 0) {
+        if (transaction.date.month == m) {
           sum += transaction.amount;
         }
       }
@@ -664,16 +754,25 @@ class TransactionChart extends GetView<TransactionHistoryController> {
     return maxSum;
   }
   
-  LineChartBarData get lineChartBarDataYear => LineChartBarData(
+  LineChartBarData get lineChartBarDataYear_expense => LineChartBarData(
+        isCurved: true,
+        color: ColorPalette.expenseText,
+        barWidth: 8,
+        isStrokeCapRound: true,
+        dotData:  FlDotData(show: false),
+        belowBarData: BarAreaData(show: false),
+        spots: getTransactionsYearData_expense(),
+      );
+
+  LineChartBarData get lineChartBarDataYear_income => LineChartBarData(
         isCurved: true,
         color: ColorPalette.incomeText,
         barWidth: 8,
         isStrokeCapRound: true,
         dotData:  FlDotData(show: false),
         belowBarData: BarAreaData(show: false),
-        spots: getTransactionsYearData(),
+        spots: getTransactionsYearData_income(),
       );
-
 
   LineTouchData get lineTouchData => LineTouchData(
         handleBuiltInTouches: true,
