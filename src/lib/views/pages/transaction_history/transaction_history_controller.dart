@@ -61,6 +61,7 @@ class TransactionHistoryController extends GetxController {
         isLoading.value = false;
       }
     );
+      update();
 
     // usersRef.doc(user_id).collection('Transactions').get().then(
     //   (QuerySnapshot querySnapshot) {
