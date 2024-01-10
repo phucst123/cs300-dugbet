@@ -354,16 +354,16 @@ class TransactionChart extends GetView<TransactionHistoryController> {
     int oneFifth = (getVerticalMaxMonth()/5).toInt();
     switch (value.toInt()) {
       case 1:
-        text = shortenFigure((oneFifth).toString()) + 'd';
+        text = shortenFigure((oneFifth).toString()) ;
         break;
       case 2:
-        text = shortenFigure((2*oneFifth).toString()) + 'd';
+        text = shortenFigure((2*oneFifth).toString()) ;
         break;
       case 3:
-        text = shortenFigure((3*oneFifth).toString()) + 'd';
+        text = shortenFigure((3*oneFifth).toString()) ;
         break;
       case 4:
-        text = shortenFigure((4*oneFifth).toString()) + 'd';
+        text = shortenFigure((4*oneFifth).toString()) ;
         break;
       default:
         text = '';
@@ -505,16 +505,16 @@ class TransactionChart extends GetView<TransactionHistoryController> {
     int oneFifth = (getVerticalMaxQuarter()/5).toInt();
     switch (value.toInt()) {
       case 1:
-        text = shortenFigure(oneFifth.toString()) + 'd';
+        text = shortenFigure(oneFifth.toString()) ;
         break;
       case 2:
-        text = shortenFigure((2*oneFifth).toString()) + 'd';
+        text = shortenFigure((2*oneFifth).toString()) ;
         break;
       case 3:
-        text = shortenFigure((3*oneFifth).toString()) + 'd';
+        text = shortenFigure((3*oneFifth).toString()) ;
         break;
       case 4:
-        text = shortenFigure((4*oneFifth).toString()) + 'd';
+        text = shortenFigure((4*oneFifth).toString()) ;
         break;
       default:
         text = '';
@@ -653,16 +653,16 @@ class TransactionChart extends GetView<TransactionHistoryController> {
     int oneFifth = (getVerticalMaxYear()/5).toInt();
     switch (value.toInt()) {
       case 1:
-        text = shortenFigure(oneFifth.toString()) + 'd';
+        text = shortenFigure(oneFifth.toString()) ;
         break;
       case 2:
-        text = shortenFigure((2*oneFifth).toString()) + 'd';
+        text = shortenFigure((2*oneFifth).toString()) ;
         break;
       case 3:
-        text = shortenFigure((3*oneFifth).toString()) + 'd';
+        text = shortenFigure((3*oneFifth).toString()) ;
         break;
       case 4:
-        text = shortenFigure((4*oneFifth).toString()) + 'd';
+        text = shortenFigure((4*oneFifth).toString()) ;
         break;
       default:
         text = '';

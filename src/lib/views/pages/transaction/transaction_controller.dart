@@ -1,6 +1,5 @@
 import 'package:dugbet/controllers/login/auth_controller.dart';
 import 'package:dugbet/firebase_ref/references.dart';
-import 'package:dugbet/models/TransactionModel.dart';
 import 'package:dugbet/views/widgets/choose_list_wallet.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -9,16 +8,17 @@ import 'package:get/get.dart';
 class TransactionController extends GetxController {
   final TextEditingController incomeTextEdit = TextEditingController();
   final TextEditingController descriptionTextEdit = TextEditingController();
+  final TextEditingController titleTextEdit = TextEditingController();
   var selectedTime = TimeOfDay.now().obs;
   var selectedDate = DateTime.now().obs;
   var selectedWallet = "Momo".obs;
   var isIncome = true.obs;
   var isEdit = false.obs;
   var title = "snack".obs;
-  var category = "Fnb".obs;
+  var category = "food_beverages".obs;
   var icon = "snack.svg".obs;
   var type = 0.obs;
-
+  RxBool newTransaction = false.obs;
 
   // Rx<TransactionModel> transaction = TransactionModel(
   //   transactionId: '0',
@@ -56,6 +56,7 @@ class TransactionController extends GetxController {
     super.dispose();
     incomeTextEdit.dispose();
     descriptionTextEdit.dispose();
+    titleTextEdit.dispose();
   }
 
   chooseTime() async {
@@ -94,22 +95,31 @@ class TransactionController extends GetxController {
   }
 
   Future<void> pushToFirestore() async {
-    String? user_id = user!.email;
-    String? user_name = user!.displayName;
-    DateTime now = DateTime.now();
-    usersRef.doc(user_id).collection('Transactions').add({
-      'amount': int.parse(incomeTextEdit.text),
-      'category': category.value,
-      'date': DateTime(selectedDate.value.year,selectedDate.value.month,selectedDate.value.day,selectedTime.value.hour,selectedTime.value.minute),
-      'description': descriptionTextEdit.text,
-      'isIncome': isIncome.value,
-      'payerId': user_id,
-      'subCategory': title.value,
-      'title': title.value,
-      'transactionId': '${now.year}-${now.month}-${now.day}-${now.hour}-${now.minute}-${now.second}-${user_id}',
-      'type': 'Personal',
-      'walletId': "${user_name!.toLowerCase()}-${selectedWallet.value.toLowerCase()}"
-    }).whenComplete(() => Get.snackbar("Transaction", "Add Transaction Successfully"));
+    if (newTransaction.value) {
+      String? user_id = user!.email;
+      String? user_name = user!.displayName;
+      DateTime now = DateTime.now();
+      usersRef.doc(user_id).collection('Transactions').add({
+        'amount': int.parse(incomeTextEdit.text),
+        'category': category.value,
+        'date': DateTime(
+            selectedDate.value.year,
+            selectedDate.value.month,
+            selectedDate.value.day,
+            selectedTime.value.hour,
+            selectedTime.value.minute),
+        'description': descriptionTextEdit.text,
+        'isIncome': isIncome.value,
+        'payerId': user_id,
+        'subCategory': title.value,
+        'title': titleTextEdit.text,
+        'transactionId':
+            '${now.year}-${now.month}-${now.day}-${now.hour}-${now.minute}-${now.second}-${user_id}',
+        'type': 'Personal',
+        'walletId':
+            "${user_name!.toLowerCase()}-${selectedWallet.value.toLowerCase()}"
+      }).whenComplete(
+          () => Get.snackbar("Transaction", "Add Transaction Successfully"));
+    }
   }
-
 }

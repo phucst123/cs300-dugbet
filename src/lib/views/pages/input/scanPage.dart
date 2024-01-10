@@ -88,7 +88,8 @@ class Scanning extends StatelessWidget {
                         onPressed: () {},
                         child: Text(
                           "Scan",
-                          style: TextThemeBuilder.robotoTextTheme.titleMedium,
+                          style: TextThemeBuilder.robotoTextTheme.titleMedium
+                              ?.copyWith(color: Colors.black),
                         )),
                   ],
                 ),
@@ -117,7 +118,6 @@ class Scanning extends StatelessWidget {
                             onPressed: () {
                               //controller.updateFileName(ImageSource.camera);
                               print("textResult: ${controller.getAmount()}");
-                            
                             },
                             iconSize: 40,
                             icon: const Icon(

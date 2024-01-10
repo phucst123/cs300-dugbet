@@ -1,4 +1,5 @@
 import 'package:dugbet/consts/app_export.dart';
+import 'package:dugbet/consts/utils/function_utils.dart';
 import 'package:dugbet/controllers/wrapper/wrapper_controller.dart';
 import 'package:dugbet/views/pages/home/home_page.dart';
 import 'package:dugbet/views/pages/setttings/setting_page.dart';
@@ -18,10 +19,10 @@ class MainWrapper extends GetView<WrapperController> {
         () => IndexedStack(
           index: controller.tabIndex.value,
           children: [
-            HomePage(),
+            const HomePage(),
             SettingPage(),
-            TransactionHistoryPage(),
-            WalletPage(),
+            const TransactionHistoryPage(),
+            const WalletPage(),
           ],
         ),
       ),
@@ -31,7 +32,7 @@ class MainWrapper extends GetView<WrapperController> {
       floatingActionButton: ScanButton(
           height: 60,
           width: 57,
-          onTap: () => Get.toNamed(AppPage.transactionPage),
+          onTap: navigateToTransactionPage,
           // color of the floating button
 
           child: CustomImageView(

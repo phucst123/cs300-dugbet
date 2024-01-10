@@ -1,3 +1,4 @@
+import 'package:dugbet/consts/utils/function_utils.dart';
 import 'package:dugbet/controllers/wallet/wallet_personal_controller.dart';
 import 'package:dugbet/views/widgets/home_header_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -135,7 +136,7 @@ class WalletPage extends StatelessWidget {
           floatingActionButton: ScanButton(
               height: 60,
               width: 57,
-              onTap: () => controller.isWallet.value ? Get.toNamed(AppPage.walletNewWallet) : Get.toNamed(AppPage.walletEventDetail),
+              onTap: navigateToTransactionPage,
               // color of the floating button
 
               child: CustomImageView(

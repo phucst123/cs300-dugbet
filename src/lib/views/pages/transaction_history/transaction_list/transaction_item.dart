@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 
 class TransactionItem extends StatelessWidget {
   const TransactionItem({super.key, required this.transaction_list});
-  final List<TransactionTemplate> transaction_list; // assuming all transactions are of the same date
+  final List<TransactionTemplate>
+      transaction_list; // assuming all transactions are of the same date
 
   @override
   Widget build(BuildContext context) {
@@ -20,26 +21,23 @@ class TransactionItem extends StatelessWidget {
     //   TransactionItemList(transaction_list: transaction_list)
     // ];
     return Container(
-      //padding: const EdgeInsets.all(16.0),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20.0),
-        border: Border.all(color: ColorPalette.black, width: 1)
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 24.0),
-      child: Column(
-        children: [
-          TransactionItemSummary(
-            date: transaction_list[0].date,
-            income: convertToCurrency(calculateIncome()),
-            expense: convertToCurrency(calculateExpense())
-          ),
-          const SizedBox(height: 8.0),
-          const Divider(),
-          TransactionItemList(transaction_list: transaction_list)
-        ],
-      )
-    );
+        //padding: const EdgeInsets.all(16.0),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20.0),
+            border: Border.all(color: ColorPalette.black, width: 1)),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 24.0),
+        child: Column(
+          children: [
+            TransactionItemSummary(
+                date: transaction_list[0].date,
+                income: convertToCurrency(calculateIncome()),
+                expense: convertToCurrency(calculateExpense())),
+            const SizedBox(height: 8.0),
+            const Divider(),
+            TransactionItemList(transaction_list: transaction_list)
+          ],
+        ));
   }
 
   int calculateIncome() {
