@@ -134,6 +134,7 @@ class AuthController extends GetxController {
         await usersRef.doc(user.email).set({
           "email": user.email,
           "name": username,
+          "isPremium": false,
         });
       }
     } catch (error) {
