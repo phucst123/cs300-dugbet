@@ -109,7 +109,7 @@ class WalletController extends GetxController {
     String? user_id = user!.email;
     print('im here to add new wallet');
     try {
-      await usersRef.doc(user_id).collection('Wallets').add({
+      await usersRef.doc(user_id).collection('Wallets').doc(id).set({
         'name': name,
         'walletPicture': walletPicture,
         'description': description,

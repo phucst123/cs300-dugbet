@@ -91,7 +91,7 @@ class ScanController extends GetxController {
         controller.incomeTextEdit.text = convertToCurrency(amount);
       }
       Get.back();
-    }
+      }
     return amount;
   }
 }

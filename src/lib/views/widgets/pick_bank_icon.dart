@@ -9,7 +9,7 @@ class PickBankIcon extends StatelessWidget {
   final banklist = [
     "ABBank",
     "ACB",
-    "Agribank",
+    "Agri",
     "BIDV",
     "LienVietBank",
     "MBBank",
