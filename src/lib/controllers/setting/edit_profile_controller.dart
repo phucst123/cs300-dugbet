@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dugbet/consts/app_export.dart';
+import 'package:dugbet/controllers/home/home_controller.dart';
 import 'package:dugbet/controllers/login/auth_controller.dart';
 import 'package:dugbet/controllers/setting/setting_controller.dart';
 import 'package:dugbet/firebase_ref/references.dart';
@@ -118,6 +119,7 @@ class EditProfileController extends GetxController {
       }, SetOptions(merge: true));
 
       Get.find<SettingController>().updateName(nameController.text);
+      Get.find<HomeController>().updateUsername(nameController.text);
     } catch (e) {
       print(e);
     }

@@ -30,19 +30,19 @@ class HomePage extends GetView<HomeController> {
             ),
           ];
           Widget walletRegion = Obx(() {
-                        return Wallet(
-                          walletData: controller.walletData,
-                          balance: controller.balance.value,
-                          //walletList: controller.wallet,
-                        );
-                      });
+            return Wallet(
+              walletData: controller.walletData,
+              balance: controller.balance.value,
+              //walletList: controller.wallet,
+            );
+          });
           //print('current list ${controller.transactionlist.length}');
           return SafeArea(
             child: Scaffold(
               // backgroundColor: ColorPalette.expenseText,
               appBar: HomeHeaderBar(
                 leftWidget: Text(
-                  'Hello ${controller.user.value!.displayName}',
+                  'Hello ${controller.username}',
                   style: context.textTheme.bodyLarge!
                       .merge(const TextStyle(color: ColorPalette.white)),
                 ),
@@ -62,8 +62,7 @@ class HomePage extends GetView<HomeController> {
                               color: Colors.grey,
                               width: 1,
                             ),
-                            dropdownColor:
-                            ColorPalette.white.withOpacity(0.9),
+                            dropdownColor: ColorPalette.white.withOpacity(0.9),
                             items: const [
                               DropdownMenuItem(
                                   value: "today", child: Text("Today")),
@@ -136,9 +135,7 @@ class HomePage extends GetView<HomeController> {
                         ),
                       ),
                     ),
-                    Expanded(
-                      child: walletRegion
-                    )
+                    Expanded(child: walletRegion)
                   ],
                 ),
               ),

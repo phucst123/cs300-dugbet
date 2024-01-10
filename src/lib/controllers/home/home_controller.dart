@@ -9,10 +9,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:dugbet/models/TransactionModel.dart';
 import 'package:dugbet/firebase_ref/references.dart';
+
 //import '../..firebase_ref/references.dart';
 class HomeController extends GetxController {
   StreamSubscription? _walletSubscription;
   Rxn<User?> user = Rxn();
+  var username = "".obs;
   RxInt income = 2500000.obs;
   RxInt expense = 480000.obs;
   RxString selectMode = "month".obs;
@@ -29,6 +31,7 @@ class HomeController extends GetxController {
   void onInit() {
     // getWallets();
     user.value = Get.find<AuthController>().getUser();
+    username.value = user.value!.displayName!;
     super.onInit();
     getWallets();
     //transactionlist = getTransactionList();
@@ -43,13 +46,13 @@ class HomeController extends GetxController {
   Future<void> getWallets() async {
     if (isLoadingWallet.value) {
       isLoadingWallet.value = false;
-    }
-    else return;
+    } else
+      return;
     String? user_id = user.value!.email;
     print('im here to read wallet homepage');
     try {
-      QuerySnapshot wallets = await usersRef.doc(user_id).collection('Wallets')
-          .get();
+      QuerySnapshot wallets =
+          await usersRef.doc(user_id).collection('Wallets').get();
       walletData.clear();
       balance.value = 0;
       for (var wallet in wallets.docs) {
@@ -57,31 +60,30 @@ class HomeController extends GetxController {
         walletData
             .add(WalletModel.fromDocumentSnapshot(documentSnapshot: wallet));
         balance.value +=
-            double.parse(wallet['initialAmount'].toString()).toInt()
-            + double.parse(wallet['income'].toString()).toInt()
-            - double.parse(wallet['expense'].toString()).toInt();
+            double.parse(wallet['initialAmount'].toString()).toInt() +
+                double.parse(wallet['income'].toString()).toInt() -
+                double.parse(wallet['expense'].toString()).toInt();
       }
-       update();
+      update();
     } catch (e) {
       print(e);
       Get.snackbar("Error", 'Error while getting wallet list',
           snackPosition: SnackPosition.BOTTOM);
     }
-    
+
     update();
   }
 
   Future<void> getTransactions() async {
     if (isLoadingTransaction.value) {
       isLoadingTransaction.value = false;
-    }
-    else return;
+    } else
+      return;
     print('im here to read transaction homepage');
     String? user_id = user.value!.email;
     try {
-      QuerySnapshot transactions = await usersRef.doc(user_id)
-          .collection('Transactions')
-          .get();
+      QuerySnapshot transactions =
+          await usersRef.doc(user_id).collection('Transactions').get();
       transactionListModel.clear();
       transactionlist.clear();
       income.value = 0;
@@ -98,7 +100,7 @@ class HomeController extends GetxController {
       // transactionlist.add(TransactionTemplate(
       //     category: "Clothing",
       //     title: "Rent payment",
-      
+
       //     description: "Monthly rent payment",
       //     amount: 15000,
       //     date: DateTime.now(),
@@ -142,26 +144,28 @@ class HomeController extends GetxController {
         //   }
         // }
       }
-        onModeClick(selectMode.value);
+      onModeClick(selectMode.value);
     } catch (e) {
       print(e);
       Get.snackbar("Error", 'Error while getting transaction list',
           snackPosition: SnackPosition.BOTTOM);
     }
-  } 
+  }
 
-  List<TransactionTemplate> filterTransactionsByDate(DateTime startDate, DateTime endDate) {
+  List<TransactionTemplate> filterTransactionsByDate(
+      DateTime startDate, DateTime endDate) {
     return transactionlist
-      .where((transaction) =>
-        transaction.date.isAfter(startDate.subtract(Duration(days: 1))) &&
-        transaction.date.isBefore(endDate.add(Duration(days: 1))))
-      .toList();
+        .where((transaction) =>
+            transaction.date.isAfter(startDate.subtract(Duration(days: 1))) &&
+            transaction.date.isBefore(endDate.add(Duration(days: 1))))
+        .toList();
   }
 
   List<TransactionTemplate> filterTransactionsByCurrentWeek() {
     DateTime now = DateTime.now();
     DateTime startOfWeek = now.subtract(Duration(days: now.weekday - 1));
-    DateTime endOfWeek = now.add(Duration(days: DateTime.daysPerWeek - now.weekday));
+    DateTime endOfWeek =
+        now.add(Duration(days: DateTime.daysPerWeek - now.weekday));
 
     return transactionlist
         .where((transaction) =>
@@ -176,10 +180,11 @@ class HomeController extends GetxController {
     DateTime endOfMonth = DateTime(now.year, now.month + 1, 0);
 
     return transactionlist
-      .where((transaction) =>
-        transaction.date.isAfter(startOfMonth.subtract(Duration(days: 1))) &&
-        transaction.date.isBefore(endOfMonth.add(Duration(days: 1))))
-      .toList();
+        .where((transaction) =>
+            transaction.date
+                .isAfter(startOfMonth.subtract(Duration(days: 1))) &&
+            transaction.date.isBefore(endOfMonth.add(Duration(days: 1))))
+        .toList();
   }
 
   List<TransactionTemplate> filterTransactionsByCurrentYear() {
@@ -188,23 +193,25 @@ class HomeController extends GetxController {
     DateTime endOfYear = DateTime(now.year + 1, 1, 0);
 
     return transactionlist
-      .where((transaction) =>
-        transaction.date.isAfter(startOfYear.subtract(Duration(days: 1))) &&
-        transaction.date.isBefore(endOfYear.add(Duration(days: 1))))
-      .toList();
+        .where((transaction) =>
+            transaction.date.isAfter(startOfYear.subtract(Duration(days: 1))) &&
+            transaction.date.isBefore(endOfYear.add(Duration(days: 1))))
+        .toList();
   }
 
   List<TransactionTemplate> filterTransactionsByCurrentQuarter() {
     DateTime now = DateTime.now();
     int currentQuarter = (now.month - 1) ~/ 3 + 1;
-    DateTime startOfQuarter = DateTime(now.year, (currentQuarter - 1) * 3 + 1, 1);
+    DateTime startOfQuarter =
+        DateTime(now.year, (currentQuarter - 1) * 3 + 1, 1);
     DateTime endOfQuarter = DateTime(now.year, currentQuarter * 3, 0);
 
     return transactionlist
-      .where((transaction) =>
-        transaction.date.isAfter(startOfQuarter.subtract(Duration(days: 1))) &&
-        transaction.date.isBefore(endOfQuarter.add(Duration(days: 1))))
-      .toList();
+        .where((transaction) =>
+            transaction.date
+                .isAfter(startOfQuarter.subtract(Duration(days: 1))) &&
+            transaction.date.isBefore(endOfQuarter.add(Duration(days: 1))))
+        .toList();
   }
 
   void onModeClick(String newMode) {
@@ -213,7 +220,8 @@ class HomeController extends GetxController {
       DateTime now = DateTime.now();
       DateTime startOfToday = DateTime(now.year, now.month, now.day);
       DateTime endOfToday = DateTime(now.year, now.month, now.day + 1);
-      displayTransactionList = filterTransactionsByDate(startOfToday, endOfToday);
+      displayTransactionList =
+          filterTransactionsByDate(startOfToday, endOfToday);
     } else if (newMode == "week") {
       displayTransactionList = filterTransactionsByCurrentWeek();
     } else if (newMode == "month") {
@@ -235,7 +243,6 @@ class HomeController extends GetxController {
     }
     update();
   }
-
 
   List<TransactionTemplate> getTransactionList() {
     return [
@@ -349,7 +356,11 @@ class HomeController extends GetxController {
     ];
   }
 
-
   @override
   void onClose() {}
+
+  void updateUsername(String newName) {
+    username.value = newName;
+    update();
+  }
 }
