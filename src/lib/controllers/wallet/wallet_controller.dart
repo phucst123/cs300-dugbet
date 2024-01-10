@@ -161,7 +161,7 @@ class WalletController extends GetxController {
               .update({
             'income': newIncome,
             'expense': newExpense,
-            'initialAmount': 650000,
+            
           });
         } catch (e) {
           print(e);
