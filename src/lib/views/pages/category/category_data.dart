@@ -9,7 +9,7 @@ class Category {
 
 List<Category> categoryData = [
   const Category(
-    title: 'Fnb',
+    title: 'Food and Beverages',
     icon: "food.svg",
     sub_categories: [
       Tuple2('Noodles', "noodles.svg"),

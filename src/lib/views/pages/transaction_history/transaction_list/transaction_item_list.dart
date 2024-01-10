@@ -47,7 +47,10 @@ class TransactionItemList extends StatelessWidget {
                         ),
                         height: 36.v,
                         width: 36.v,
-                        child: SvgPicture.asset("assets/icons/category/${transaction.category.toLowerCase()}/${transaction.icon.toLowerCase()}.svg",fit: BoxFit.scaleDown,)),
+                        child: SvgPicture.asset(
+                          "assets/icons/category/${transaction.category.toLowerCase()}/${transaction.icon.toLowerCase()}.svg",
+                          fit: BoxFit.scaleDown,
+                        )),
                     const SizedBox(width: 10.0),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,29 +98,33 @@ class TransactionItemList extends StatelessWidget {
   }
 
   onTapTransaction(TransactionTemplate transaction) {
-    if(Get.isRegistered<TransactionController>()){
+    if (Get.isRegistered<TransactionController>()) {
       final controller = Get.find<TransactionController>();
       controller.title.value = transaction.title;
       controller.icon.value = transaction.icon;
       controller.type.value = transaction.type;
       controller.category.value = transaction.category;
       controller.isEdit.value = true;
-      controller.incomeTextEdit.text = transaction.amount.toString();
+      controller.incomeTextEdit.text = convertToCurrency(transaction.amount);
       controller.descriptionTextEdit.text = transaction.description;
+      controller.titleTextEdit.text = transaction.title;
       controller.selectedDate.value = transaction.date;
       controller.selectedTime.value = TimeOfDay.fromDateTime(transaction.date);
-    }
-    else{
-      final controller = Get.put<TransactionController>(TransactionController());
+      controller.newTransaction.value = false;
+    } else {
+      final controller =
+          Get.put<TransactionController>(TransactionController());
       controller.title.value = transaction.title;
       controller.icon.value = transaction.icon;
       controller.type.value = transaction.type;
       controller.category.value = transaction.category;
       controller.isEdit.value = true;
-      controller.incomeTextEdit.text = transaction.amount.toString();
+      controller.incomeTextEdit.text = convertToCurrency(transaction.amount);
       controller.descriptionTextEdit.text = transaction.description;
+      controller.titleTextEdit.text = transaction.title;
       controller.selectedDate.value = transaction.date;
       controller.selectedTime.value = TimeOfDay.fromDateTime(transaction.date);
+      controller.newTransaction.value = false;
     }
     print(transaction.date);
 

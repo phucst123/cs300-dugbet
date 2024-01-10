@@ -5,29 +5,36 @@ import 'package:dugbet/consts/utils/function_utils.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_history_controller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class BalanceStatus extends StatelessWidget {
-  BalanceStatus({super.key});
-  TransactionHistoryController transactionHistoryController = Get.find<TransactionHistoryController>();
+class BalanceStatus extends GetView<TransactionHistoryController> {
+  const BalanceStatus({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        AmountBox(
-          iconData: Icons.arrow_upward,
-          figure: convertToCurrency(transactionHistoryController.calculateExpense()),
-          label: 'Expense',
-          color: ColorPalette.expenseText,
-        ),
-        AmountBox(
-          iconData: Icons.arrow_downward,
-          figure: convertToCurrency(transactionHistoryController.calculateIncome()),
-          label: 'Income',
-          color: ColorPalette.incomeText,
-        )
-      ],
-    );
+    return GetBuilder<TransactionHistoryController>(
+        init: Get.isRegistered<TransactionHistoryController>()
+            ? Get.find<TransactionHistoryController>()
+            : Get.put<TransactionHistoryController>(
+                TransactionHistoryController()),
+        initState: (_) {},
+        builder: (controller) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              AmountBox(
+                iconData: Icons.arrow_upward,
+                figure: convertToCurrency(controller.calculateExpense()),
+                label: 'Expense',
+                color: ColorPalette.expenseText,
+              ),
+              AmountBox(
+                iconData: Icons.arrow_downward,
+                figure: convertToCurrency(controller.calculateIncome()),
+                label: 'Income',
+                color: ColorPalette.incomeText,
+              )
+            ],
+          );
+        });
   }
 }
 
@@ -55,10 +62,10 @@ class AmountBox extends StatelessWidget {
       ),
       // width: context.mediaQuerySize.width / 2 - 25.h,
       // assign min width to avoid overflow
-      constraints: BoxConstraints(minWidth: context.mediaQuerySize.width / 2 - 25.h),
+      constraints:
+          BoxConstraints(minWidth: context.mediaQuerySize.width / 2 - 25.h),
       padding: const EdgeInsets.only(top: 22.0, bottom: 24.0, left: 12.0),
       child: Row(
-        
         children: <Widget>[
           Icon(
             iconData,

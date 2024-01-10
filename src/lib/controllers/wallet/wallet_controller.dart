@@ -28,13 +28,18 @@ class WalletController extends GetxController {
   var isEdit = false.obs;
   var bankIcon = "Momo".obs;
   var  type = 0.obs;
-
+  var isLoadingWallet = true.obs;
+  var isLoadingEvent = true.obs;
 
 
   //String? user_id;
   @override
   void onReady() {
     super.onReady();
+  }
+  void loadingData() {
+    isLoadingWallet.value = true;
+    isLoadingEvent.value = true;
   }
   @override
   void onInit() {
@@ -50,6 +55,10 @@ class WalletController extends GetxController {
   }
 
   Future<void> getWallets() async {
+    if (isLoadingWallet.value) {
+      isLoadingWallet.value = false;
+    }
+    else return;
     print("im here to read wallet page");
     String? user_id = user!.email;
     try {
@@ -69,6 +78,10 @@ class WalletController extends GetxController {
   }
 
   Future <void> getEvents() async {
+    if (isLoadingEvent.value) {
+      isLoadingEvent.value = false;
+    }
+    else return;
     print("im here to read event");
     String? user_id = user!.email;
     try {

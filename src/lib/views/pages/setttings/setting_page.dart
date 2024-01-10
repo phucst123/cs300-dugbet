@@ -1,4 +1,5 @@
 import 'package:dugbet/consts/color/colors.dart';
+import 'package:dugbet/consts/utils/function_utils.dart';
 import 'package:dugbet/controllers/setting/setting_controller.dart';
 import 'package:dugbet/views/dialogs/logout_dialog.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -170,7 +171,7 @@ class SettingPage extends GetView<SettingController> {
         floatingActionButton: ScanButton(
             height: 60,
             width: 57,
-            onTap: () => Get.toNamed(AppPage.transactionPage),
+            onTap: navigateToTransactionPage,
             // color of the floating button
 
             child: CustomImageView(

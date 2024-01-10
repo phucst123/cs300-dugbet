@@ -3,7 +3,6 @@ import 'package:dugbet/consts/fonts/text_theme_builder.dart';
 import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
 import 'package:dugbet/views/widgets/double_notch.dart';
 import 'package:dugbet/views/widgets/normal_header_bar.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 
 // ignore: must_be_immutable
@@ -24,8 +23,7 @@ class TransactionPage extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: NormalHeaderBar(),
         body: Padding(
-          padding:
-              const EdgeInsets.only(bottom: 16.0, left: 20.0, right: 20.0),
+          padding: const EdgeInsets.only(bottom: 16.0, left: 20.0, right: 20.0),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -35,9 +33,17 @@ class TransactionPage extends StatelessWidget {
                     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        // controller.title.value,
-                        "New Transaction",
+                      TextField(
+                        onTapOutside: (event) {
+                          FocusManager.instance.primaryFocus?.unfocus();
+                        },
+                        textAlign: TextAlign.left,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintStyle:
+                              TextThemeBuilder.robotoTextTheme.titleLarge,
+                        ),
+                        controller: controller?.titleTextEdit,
                         style: TextThemeBuilder.robotoTextTheme.titleLarge,
                       ),
                       DoubleNotch(),
@@ -99,48 +105,46 @@ class TransactionPage extends StatelessWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      Container(
-                        height: 80,
-                        width: 360,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey, width: 1),
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 8.0, horizontal: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Wallet",
-                                    style: TextThemeBuilder
-                                        .robotoTextTheme.headlineLarge,
-                                  ),
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
-                                  Text(
-                                    controller!.selectedWallet.value,
-                                    style: TextThemeBuilder
-                                        .robotoTextTheme.titleMedium,
-                                  ),
-                                ],
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  controller!.chooseWallet();
-                                },
-                                child: ClipOval(
+                      InkWell(
+                        onTap: controller!.chooseWallet,
+                        child: Container(
+                          height: 80,
+                          width: 360,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey, width: 1),
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Wallet",
+                                      style: TextThemeBuilder
+                                          .robotoTextTheme.headlineLarge,
+                                    ),
+                                    const SizedBox(
+                                      height: 15,
+                                    ),
+                                    Text(
+                                      controller!.selectedWallet.value,
+                                      style: TextThemeBuilder
+                                          .robotoTextTheme.titleMedium,
+                                    ),
+                                  ],
+                                ),
+                                ClipOval(
                                   child: Center(
                                     child: Image.asset(
                                         "assets/Bank/${controller!.selectedWallet.toLowerCase()}.png"),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),

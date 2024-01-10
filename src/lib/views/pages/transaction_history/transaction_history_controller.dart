@@ -29,16 +29,21 @@ class TransactionHistoryController extends GetxController {
     
   }
 
+  void loadingData() {
+    isLoading.value = true;
+  }
+
   void onModeClick(String newMode) {
     selectMode(newMode);
     update();
   }
 
   Future<void> getTransactionsData() async {
-    isLoading.value = true;
     String? user_id = user!.email;
     //print("In getTransactionsData() of TransactionHistoryController");
     //print(user_id);
+    isLoading.value = true;
+    print('im hear to get transaction history data');
 
     _transactionSubscription = usersRef.doc(user_id).collection('Transactions').snapshots().listen(
       (QuerySnapshot querySnapshot) {

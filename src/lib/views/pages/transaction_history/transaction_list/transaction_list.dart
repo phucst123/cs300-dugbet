@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class TransactionList extends StatelessWidget {
-  TransactionList({super.key, required this.transactionList});
+  const TransactionList({super.key, required this.transactionList});
 
   final List<TransactionTemplate> transactionList;
   // TransactionHistoryController transactionHistoryController = Get.find<TransactionHistoryController>();

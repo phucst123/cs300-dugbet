@@ -1,34 +1,34 @@
 import 'dart:io';
 
+import 'package:dugbet/consts/utils/function_utils.dart';
+import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart'; 
+import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+
 class ScanController extends GetxController {
-
-
   final fileName = "".obs;
   final textResult = "".obs;
 
   Future<void> updateFileName(ImageSource source) async {
     print("EEEEEE");
     final imageGetPath = await ImagePicker().pickImage(source: source);
-    if(imageGetPath!=null){
+    if (imageGetPath != null) {
       final filepath = File(imageGetPath.path);
       fileName(filepath.path);
     }
     getImageTotext(fileName.value);
   }
 
-  
-  Future getImageTotext(final imagePath) async { 
-    final textRecognizer = TextRecognizer(script: TextRecognitionScript.latin); 
-    final RecognizedText recognizedText = 
-        await textRecognizer.processImage(InputImage.fromFilePath(imagePath)); 
-    String text = recognizedText.text.toString(); 
+  Future getImageTotext(final imagePath) async {
+    final textRecognizer = TextRecognizer(script: TextRecognitionScript.latin);
+    final RecognizedText recognizedText =
+        await textRecognizer.processImage(InputImage.fromFilePath(imagePath));
+    String text = recognizedText.text.toString();
     textResult(text);
-  } 
+  }
 
-  String getText() { 
+  String getText() {
     return textResult.value;
   }
 
@@ -72,9 +72,25 @@ class ScanController extends GetxController {
     }
     if (amount == 0) {
       // snack bar
-      Get.snackbar("Error", "Cannot scan amount");
+      Get.snackbar("Error", "Cannot scan amount", snackPosition: SnackPosition.BOTTOM);
     } else {
-      print("Amount is ${amount}");
+      if (Get.isRegistered<TransactionController>()) {
+        final controller = Get.find<TransactionController>();
+        controller.isEdit.value = false;
+        controller.newTransaction.value = true;
+        controller.titleTextEdit.text = "New Bill";
+        controller.descriptionTextEdit.text = "";
+        controller.incomeTextEdit.text = convertToCurrency(amount);
+      } else {
+        final controller =
+            Get.put<TransactionController>(TransactionController());
+        controller.isEdit.value = false;
+        controller.newTransaction.value = true;
+        controller.titleTextEdit.text = "New Bill";
+        controller.descriptionTextEdit.text = "";
+        controller.incomeTextEdit.text = convertToCurrency(amount);
+      }
+      Get.back();
     }
     return amount;
   }
