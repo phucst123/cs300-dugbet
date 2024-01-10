@@ -72,7 +72,7 @@ class ScanController extends GetxController {
     }
     if (amount == 0) {
       // snack bar
-      Get.snackbar("Error", "Cannot scan amount");
+      Get.snackbar("Error", "Cannot scan amount", snackPosition: SnackPosition.BOTTOM);
     } else {
       print("Amount is ${amount}");
     }
