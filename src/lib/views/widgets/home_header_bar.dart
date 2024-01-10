@@ -52,6 +52,7 @@ class HomeHeaderBar extends StatelessWidget implements PreferredSizeWidget {
                       Get.find<HomeController>().getWallets();
                       Get.find<HomeController>().getTransactions();
                       Get.find<WalletController>().loadingData();
+                      Get.find<WalletController>().updateWallet();
                       Get.find<WalletController>().getWallets();
                       Get.find<WalletController>().getEvents();
                       Get.find<WalletPersonalController>().loadingData();

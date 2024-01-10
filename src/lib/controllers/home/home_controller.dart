@@ -67,24 +67,7 @@ class HomeController extends GetxController {
       Get.snackbar("Error", 'Error while getting wallet list',
           snackPosition: SnackPosition.BOTTOM);
     }
-    // print('im here to read wallet homepage');
-    // walletData.clear();
-    // balance.value = 0;
-    // _walletSubscription = usersRef.doc(user_id).collection('Wallets').snapshots().listen(
-    //   (QuerySnapshot querySnapshot) {
-    //     walletData = querySnapshot.docs.map(
-    //       (doc) => WalletModel.fromDocumentSnapshot(documentSnapshot: doc)
-    //     ).toList().obs;
-    //     isLoading.value = false;
-    //   }
-    // );
-    // print("Coooko ${walletData}");
-    // for (var wallet in walletData) {
-    //   balance.value += wallet.initialAmount + wallet.income - wallet.expense;
-      
-    //   print(wallet.name);
-    //   print(wallet.income);
-    // }
+    
     update();
   }
 
@@ -140,7 +123,7 @@ class HomeController extends GetxController {
           icon: transaction['subCategory'],
           type: transaction['isIncome'] ? 1 : 0,
         ));
-        print('category: ${transaction['category']}, icon: ${transaction['subCategory']}');
+        //print('category: ${transaction['category']}, icon: ${transaction['subCategory']}');
         // convert to int amount from number to int
         if (transaction['isIncome']) {
           income.value +=
