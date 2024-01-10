@@ -107,7 +107,7 @@ class EventDoubleNotch extends StatelessWidget {
                                             child: const Icon(
                                                 Icons.arrow_upward_outlined,
                                                 color: Colors.white)),
-                                        Text("Income",
+                                        Text("Event",
                                             style: TextThemeBuilder
                                                 .robotoTextTheme
                                                 .headlineLarge)
@@ -188,7 +188,7 @@ class EventDoubleNotch extends StatelessWidget {
                           shape: BoxShape.circle,
                           border: Border.all(color: ColorPalette.black)),
                       child: Center(
-                        child: SvgPicture.asset("assets/Event/${controller.title.value.toLowerCase()}.png"),
+                        child: Image.asset("assets/Event/${controller.title.value.toLowerCase()}.png"),
                       )),
                 )),
             Padding(
@@ -263,7 +263,7 @@ class EventDoubleNotch extends StatelessWidget {
                     padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     child: Text(
-                      controller.isEdit.value ? " Edit " : " Scan ",
+                      "Auto",
                       style: const TextStyle(color: ColorPalette.white),
                     ),
                   ),

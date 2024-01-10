@@ -25,6 +25,9 @@ class MemberList extends StatelessWidget {
               child: Column(
                 children: [
                   TextField(
+                    onTap: () {
+                      
+                    },
                     style: TextThemeBuilder.robotoTextTheme.titleSmall,
                     decoration: InputDecoration(
                         // fillColor:LightTheme.primaryColor,

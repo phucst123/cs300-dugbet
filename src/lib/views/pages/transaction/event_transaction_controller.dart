@@ -15,7 +15,7 @@ class EventTransactionController extends GetxController {
   var title = "12".obs;
   var category = "Fnb".obs;
   var icon = "snack.svg".obs;
-  var  type = 0.obs;
+  var type = 0.obs;
 
   @override
   void onInit() {
