@@ -2,6 +2,7 @@ import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/controllers/wallet/wallet_controller.dart';
 import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
 import 'package:dugbet/views/widgets/double_notch.dart';
+import 'package:dugbet/views/widgets/double_notch_new_wallet.dart';
 import 'package:dugbet/views/widgets/wallet_header.dart';
 import '../../../consts/fonts/text_theme_builder.dart';
 
@@ -27,7 +28,7 @@ class WalletNewWallet extends StatelessWidget {
                 const SizedBox(
                   width: 10,
                 ),
-                DoubleNotch(),
+                DoubleNotchNewWallet(),
                 const SizedBox(
                   height: 30,
                 ),
