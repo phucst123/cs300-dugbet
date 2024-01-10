@@ -6,28 +6,34 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class TransactionList extends StatelessWidget {
-  const TransactionList({super.key, required this.transactionList});
+  TransactionList({super.key, required this.transactionList});
 
   final List<TransactionTemplate> transactionList;
-  // TransactionHistoryController transactionHistoryController = Get.find<TransactionHistoryController>();
+  TransactionHistoryController transactionHistoryController = Get.find<TransactionHistoryController>();
 
 
   @override
   Widget build(BuildContext context) {
     
-       
         // Now we're sure the data is loaded
-        List<List<TransactionTemplate>> groupedTransactions = groupTransactions(transactionList);
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            for (var transaction in groupedTransactions)...[
-              TransactionItem(transaction_list: transaction),
-              const SizedBox(height: 20.0)
-            ]
-          ]
-        );
+        return Obx(() {
+          if (transactionHistoryController.isLoading.value) {
+            return CircularProgressIndicator(); // Show a loading spinner while waiting for data
+          } else {
+            // Now we're sure the data is loaded
+            List<List<TransactionTemplate>> groupedTransactions = groupTransactions(transactionHistoryController.transactionsList);
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                for (var transaction in groupedTransactions)...[
+                  TransactionItem(transaction_list: transaction),
+                  const SizedBox(height: 20.0)
+                ]
+              ]
+            );
+          }
+        });
       
     // return ListView.builder(
     //   itemCount: groupedTransactions.length,

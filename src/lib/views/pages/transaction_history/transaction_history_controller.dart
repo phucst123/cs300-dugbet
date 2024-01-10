@@ -43,25 +43,33 @@ class TransactionHistoryController extends GetxController {
     //print("In getTransactionsData() of TransactionHistoryController");
     //print(user_id);
     isLoading.value = true;
-    print('im hear to get transaction history data');
+    print("In getTransactionsData(): ${user_id}");
+    transactionsList = [];
 
-    _transactionSubscription = usersRef.doc(user_id).collection('Transactions').snapshots().listen(
+    usersRef.doc(user_id).collection('Transactions').get().then(
       (QuerySnapshot querySnapshot) {
-        transactionsList = querySnapshot.docs.map(
-          (doc) => TransactionTemplate(
-            category: doc['category'],
-            title: doc['title'],
-            description: doc['description'],
-            amount: doc['amount'],
-            date: doc['date'].toDate(),
-            icon: doc['subCategory'],
-            type: doc['isIncome'] == true ? 1 : 0,
-          )
-        ).toList();
+        if (querySnapshot.docs.isNotEmpty) {
+          print("In getTransactionsData(): ${querySnapshot.docs.length}");
+          querySnapshot.docs.forEach(
+            (doc) {
+              transactionsList.add(
+                TransactionTemplate(
+                  category: doc['category'],
+                  title: doc['title'],
+                  description: doc['description'],
+                  amount: doc['amount'],
+                  date: doc['date'].toDate(),
+                  icon: doc['subCategory'],
+                  type: doc['isIncome'] == true ? 1 : 0,
+                )
+              );
+            }
+          );
+        }
         isLoading.value = false;
       }
     );
-      update();
+      //update();
 
     // usersRef.doc(user_id).collection('Transactions').get().then(
     //   (QuerySnapshot querySnapshot) {
