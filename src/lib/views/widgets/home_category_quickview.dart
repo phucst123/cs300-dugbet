@@ -285,8 +285,8 @@ class QVTransactionItemList extends StatelessWidget {
                         ),
                         height: 15.v,
                         width: 15.v,
-                        child: SvgPicture.asset(
-                            "assets/icons/category/${transaction.category.toLowerCase()}/${transaction.icon.toLowerCase()}")),
+                        child: new SvgPicture.asset(
+                            "assets/icons/category/${transaction.category.toLowerCase()}/${transaction.icon.toLowerCase()}.svg")),
                     const SizedBox(width: 10.0),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

@@ -137,9 +137,10 @@ class HomeController extends GetxController {
           date: transaction['date'].toDate(),
 
           ///transaction['date'].toDate(),
-          icon: 'snack.svg',
+          icon: transaction['subCategory'],
           type: transaction['isIncome'] ? 1 : 0,
         ));
+        print('category: ${transaction['category']}, icon: ${transaction['subCategory']}');
         // convert to int amount from number to int
         if (transaction['isIncome']) {
           income.value +=

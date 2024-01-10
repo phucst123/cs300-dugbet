@@ -1,3 +1,4 @@
+import 'package:dugbet/controllers/wallet/wallet_controller.dart';
 import 'package:dugbet/models/EventModel.dart';
 import 'package:dugbet/views/widgets/button/custom_icon_button.dart';
 import 'package:dugbet/views/widgets/group_balance_one.dart';
@@ -9,6 +10,7 @@ import 'package:get/get.dart';
 
 import '../../../consts/color/colors.dart';
 import '../../../consts/fonts/text_theme_builder.dart';
+import '../../../firebase_ref/references.dart';
 import '../../widgets/bottom_sheet_transaction.dart';
 
 class WalletEvent extends StatelessWidget {
@@ -108,8 +110,51 @@ class WalletEvent extends StatelessWidget {
                           colorFilter: const ColorFilter.mode(
                               ColorPalette.white, BlendMode.srcIn),
                         ),
-                        callback: () {
-                          print("Split money here");
+                        callback: () async {
+                          var members = eventModel.members;
+                          for (int i = 0; i < members.length; i++) {
+                            var member = members[i];
+                            String? user_id = member.id;
+                            String? user_name = eventModel.id;
+                            DateTime now = DateTime.now();
+                            await usersRef
+                                .doc(user_id)
+                                .collection('Transactions')
+                                .add({
+                              'amount':
+                                  eventModel.initialAmount / members.length,
+                              'category': "Transportation",
+                              'date': DateTime.now(),
+                              'description':
+                                  "Split money for event ${user_name}",
+                              'isIncome': false,
+                              'payerId': user_id,
+                              'subCategory': "market",
+                              'title': "Market",
+                              'transactionId':
+                                  '${now.year}-${now.month}-${now.day}-${now.hour}-${now.minute}-${now.second}-${user_id}',
+                              'type': 'Personal',
+                              'walletId': eventModel.initialAmount
+                              //chưa xác định được
+                            });
+
+                            await usersRef
+                                .doc(user_id)
+                                .collection("Events")
+                                .doc(eventModel.id)
+                                .delete();
+                          }
+                          Get.snackbar("Event", "Split Event successfully");
+                          WalletController controller;
+                          if (Get.isRegistered<WalletController>()) {
+                            controller = Get.find<WalletController>();
+                          } else {
+                            controller =
+                                Get.put<WalletController>(WalletController());
+                          }
+                          controller.getEvents();
+                          // controller.getWallets();
+                          Get.back();
                         }),
                   ],
                 ),

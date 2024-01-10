@@ -91,8 +91,8 @@ flutter:
       - assets/Bank/
       - assets/user/
       - assets/icons/
+      - assets/icons/category/food_beverages/
       - assets/icons/category/
-      - assets/icons/category/fnb/
       - assets/icons/category/transportation/
       - assets/icons/category/clothing/
       - assets/icons/category/others/
