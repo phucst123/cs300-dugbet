@@ -1,5 +1,6 @@
 import 'package:dugbet/consts/color/colors.dart';
 import 'package:dugbet/consts/custom_button_style.dart';
+import 'package:dugbet/controllers/setting/setting_controller.dart';
 import 'package:dugbet/routes/app_pages.dart';
 import 'package:dugbet/views/widgets/button/custom_icon_button.dart';
 import 'package:dugbet/views/widgets/string_button.dart';
@@ -72,7 +73,8 @@ class PurchasePage extends StatelessWidget {
               child: StringButton(
                   text: "Buy for 99.000 đ",
                   callback: () {
-                    Get.toNamed(AppPage.premiumPage);
+                    Get.offAndToNamed(AppPage.premiumPage);
+                    Get.find<SettingController>().upgradePremium();
                   },
                   decoration: CustomButtonStyles.gradientTealToTealDecoration,
                   buttonStyle: CustomButtonStyles.none,

@@ -34,149 +34,159 @@ class SettingPage extends GetView<SettingController> {
           //         const ColorFilter.mode(ColorPalette.white, BlendMode.srcIn),
           //   ),
           // ),
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                color: controller.isPremium.value
-                    ? ColorPalette.expenseText
-                    : ColorPalette.primaryColor.withOpacity(0.1),
-                height: 260,
-                width: double.infinity,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    if (controller.isPremium.value)
-                      SvgPicture.asset("assets/icons/crown.svg"),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Stack(
+          body: Obx(() => Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    color: controller.isPremium.value
+                        ? ColorPalette.expenseText
+                        : ColorPalette.primaryColor.withOpacity(0.1),
+                    height: 260,
+                    width: double.infinity,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Container(
-                          width: 150,
-                          height: 150,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: ColorPalette.black,
-                              width: 1.0,
+                        if (controller.isPremium.value)
+                          SvgPicture.asset("assets/icons/crown.svg"),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Stack(
+                          children: [
+                            Container(
+                              width: 150,
+                              height: 150,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: ColorPalette.black,
+                                  width: 1.0,
+                                ),
+                              ),
+                              child: CircleAvatar(
+                                backgroundColor: ColorPalette.white,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(25.0),
+                                  child:
+                                      SvgPicture.asset("assets/user/user.svg"),
+                                ),
+                              ),
                             ),
-                          ),
-                          child: CircleAvatar(
-                            backgroundColor: ColorPalette.white,
-                            child: Padding(
-                              padding: const EdgeInsets.all(25.0),
-                              child: SvgPicture.asset("assets/user/user.svg"),
-                            ),
-                          ),
+                          ],
+                        ),
+                        Text(
+                          controller.name.value,
+                          style: context.textTheme.titleLarge,
+                        ),
+                        Text(
+                          controller.email.value,
+                          style: context.textTheme.labelLarge,
                         ),
                       ],
                     ),
-                    Obx(() => Text(
-                          controller.name.value,
-                          style: context.textTheme.titleLarge,
-                        )),
-                    Obx(() => Text(
-                          controller.email.value,
-                          style: context.textTheme.labelLarge,
-                        )),
-                  ],
-                ),
-              ),
-              Expanded(
-                  child: ListView(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                children: [
-                  ListTile(
-                    leading: SvgPicture.asset("assets/icons/profile.svg"),
-                    trailing: SvgPicture.asset("assets/icons/arrow.svg"),
-                    title: const Text(
-                      "Edit Profile",
-                    ),
-                    titleTextStyle: context.textTheme.bodyLarge,
-                    onTap: () => Get.toNamed(AppPage.editProfilePage),
                   ),
-                  ListTile(
-                    leading: SvgPicture.asset("assets/icons/notification.svg"),
-                    trailing: SvgPicture.asset("assets/icons/arrow.svg"),
-                    title: const Text(
-                      "Notifications",
-                    ),
-                    titleTextStyle: context.textTheme.bodyLarge,
-                    onTap: () => Get.toNamed(AppPage.editNotificationPage),
-                  ),
-                  ListTile(
-                    leading: SvgPicture.asset("assets/icons/appearance.svg"),
-                    trailing: SvgPicture.asset("assets/icons/arrow.svg"),
-                    title: const Text(
-                      "Appearance",
-                    ),
-                    titleTextStyle: context.textTheme.bodyLarge,
-                  ),
-                  ListTile(
-                    leading: SvgPicture.asset("assets/icons/security.svg"),
-                    trailing: SvgPicture.asset("assets/icons/arrow.svg"),
-                    title: const Text(
-                      "Security",
-                    ),
-                    titleTextStyle: context.textTheme.bodyLarge,
-                    onTap: () => Get.toNamed(AppPage.securityPage),
-                  ),
-                  ListTile(
-                    leading: SvgPicture.asset("assets/icons/policy.svg"),
-                    trailing: SvgPicture.asset("assets/icons/arrow.svg"),
-                    title: const Text(
-                      "Privacy Policy",
-                    ),
-                    titleTextStyle: context.textTheme.bodyLarge,
-                  ),
-                  ListTile(
-                    leading: SvgPicture.asset("assets/icons/help.svg"),
-                    trailing: SvgPicture.asset("assets/icons/arrow.svg"),
-                    title: const Text(
-                      "Contact Us",
-                    ),
-                    titleTextStyle: context.textTheme.bodyLarge,
-                  ),
-                  ListTile(
-                    leading: SvgPicture.asset("assets/icons/crown.svg"),
-                    trailing: SvgPicture.asset("assets/icons/arrow.svg"),
-                    title: const Text(
-                      "Premium",
-                    ),
-                    titleTextStyle: context.textTheme.bodyLarge,
-                    onTap: () => Get.toNamed(AppPage.purchasePage),
+                  Expanded(
+                      child: ListView(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: [
+                      ListTile(
+                        leading: SvgPicture.asset("assets/icons/profile.svg"),
+                        trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                        title: const Text(
+                          "Edit Profile",
+                        ),
+                        titleTextStyle: context.textTheme.bodyLarge,
+                        onTap: () => Get.toNamed(AppPage.editProfilePage),
+                      ),
+                      ListTile(
+                        leading:
+                            SvgPicture.asset("assets/icons/notification.svg"),
+                        trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                        title: const Text(
+                          "Notifications",
+                        ),
+                        titleTextStyle: context.textTheme.bodyLarge,
+                        onTap: () => Get.toNamed(AppPage.editNotificationPage),
+                      ),
+                      ListTile(
+                        leading:
+                            SvgPicture.asset("assets/icons/appearance.svg"),
+                        trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                        title: const Text(
+                          "Appearance",
+                        ),
+                        titleTextStyle: context.textTheme.bodyLarge,
+                      ),
+                      ListTile(
+                        leading: SvgPicture.asset("assets/icons/security.svg"),
+                        trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                        title: const Text(
+                          "Security",
+                        ),
+                        titleTextStyle: context.textTheme.bodyLarge,
+                        onTap: () => Get.toNamed(AppPage.securityPage),
+                      ),
+                      ListTile(
+                        leading: SvgPicture.asset("assets/icons/policy.svg"),
+                        trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                        title: const Text(
+                          "Privacy Policy",
+                        ),
+                        titleTextStyle: context.textTheme.bodyLarge,
+                      ),
+                      ListTile(
+                        leading: SvgPicture.asset("assets/icons/help.svg"),
+                        trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                        title: const Text(
+                          "Contact Us",
+                        ),
+                        titleTextStyle: context.textTheme.bodyLarge,
+                      ),
+                      ListTile(
+                        leading: SvgPicture.asset("assets/icons/crown.svg"),
+                        trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                        title: const Text(
+                          "Premium",
+                        ),
+                        titleTextStyle: context.textTheme.bodyLarge,
+                        onTap: () {
+                          if (controller.isPremium.value) {
+                            Get.toNamed(AppPage.premiumPage);
+                          } else {
+                            Get.toNamed(AppPage.purchasePage);
+                          }
+                        },
+                      ),
+                    ],
+                  )),
+                  Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      // child: NormalButton(
+                      //     title: "Logout",
+                      //     callback: () => {
+                      //           showDialog(
+                      //             context: context,
+                      //             builder: (_) => LogoutDialog(),
+                      //           )
+                      //         }),
+                      child: StringButton(
+                        text: "Logout",
+                        callback: () => {
+                          showDialog(
+                            context: context,
+                            builder: (_) => const LogoutDialog(),
+                          )
+                        },
+                        buttonTextStyle:
+                            CustomTextStyles.titleMediumBluegray900,
+                        buttonStyle: CustomButtonStyles.fillTear,
+                      )),
+                  const SizedBox(
+                    height: 50,
                   ),
                 ],
               )),
-              Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  // child: NormalButton(
-                  //     title: "Logout",
-                  //     callback: () => {
-                  //           showDialog(
-                  //             context: context,
-                  //             builder: (_) => LogoutDialog(),
-                  //           )
-                  //         }),
-                  child: StringButton(
-                    text: "Logout",
-                    callback: () => {
-                      showDialog(
-                        context: context,
-                        builder: (_) => const LogoutDialog(),
-                      )
-                    },
-                    buttonTextStyle: CustomTextStyles.titleMediumBluegray900,
-                    buttonStyle: CustomButtonStyles.fillTear,
-                  )),
-              const SizedBox(
-                height: 98,
-              ),
-            ],
-          ),
           bottomNavigationBar: _buildBottomAppBar(),
           floatingActionButton: ScanButton(
               height: 60,
@@ -195,14 +205,15 @@ class SettingPage extends GetView<SettingController> {
         );
       } else {
         return Scaffold(
-          // appBar: HeaderBar(
-          //   leftWidget: SvgPicture.asset(
-          //     "assets/icons/nav_stat.svg",
-          //     colorFilter:
-          //         const ColorFilter.mode(ColorPalette.white, BlendMode.srcIn),
-          //   ),
-          // ),
-          body: Column(
+            // appBar: HeaderBar(
+            //   leftWidget: SvgPicture.asset(
+            //     "assets/icons/nav_stat.svg",
+            //     colorFilter:
+            //         const ColorFilter.mode(ColorPalette.white, BlendMode.srcIn),
+            //   ),
+            // ),
+            body: Obx(
+          () => Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
@@ -241,14 +252,14 @@ class SettingPage extends GetView<SettingController> {
                         ),
                       ],
                     ),
-                    Obx(() => Text(
-                          controller.name.value,
-                          style: context.textTheme.titleLarge,
-                        )),
-                    Obx(() => Text(
-                          controller.email.value,
-                          style: context.textTheme.labelLarge,
-                        )),
+                    Text(
+                      controller.name.value,
+                      style: context.textTheme.titleLarge,
+                    ),
+                    Text(
+                      controller.email.value,
+                      style: context.textTheme.labelLarge,
+                    ),
                   ],
                 ),
               ),
@@ -315,7 +326,13 @@ class SettingPage extends GetView<SettingController> {
                       "Premium",
                     ),
                     titleTextStyle: context.textTheme.bodyLarge,
-                    onTap: () => Get.toNamed(AppPage.purchasePage),
+                    onTap: () {
+                      if (controller.isPremium.value) {
+                        Get.toNamed(AppPage.premiumPage);
+                      } else {
+                        Get.toNamed(AppPage.purchasePage);
+                      }
+                    },
                   ),
                 ],
               )),
@@ -341,11 +358,11 @@ class SettingPage extends GetView<SettingController> {
                     buttonStyle: CustomButtonStyles.fillTear,
                   )),
               const SizedBox(
-                height: 98,
+                height: 50,
               ),
             ],
           ),
-        );
+        ));
       }
     }
   }

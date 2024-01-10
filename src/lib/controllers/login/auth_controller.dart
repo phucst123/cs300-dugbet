@@ -91,22 +91,17 @@ class AuthController extends GetxController {
       try {
         await _auth
             .createUserWithEmailAndPassword(
-              email: email,
-              password: password,
-            )
-            .then(
-              (value) => value.user!.updateDisplayName(username),
-            );
-
-        final user = _auth.currentUser;
-
-        if (user != null) {
-          // Get.snackbar("Success", "Account Created Successfully",
-          //     snackPosition: SnackPosition.BOTTOM);
-
-          saveUser(user, username);
+          email: email,
+          password: password,
+        )
+            .then((value) {
+          value.user!.updateDisplayName(username);
+          saveUser(email, username);
           showSignUpDialog();
-        }
+        });
+
+        // Get.snackbar("Success", "Account Created Successfully",
+        //     snackPosition: SnackPosition.BOTTOM);
         ;
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
@@ -128,15 +123,13 @@ class AuthController extends GetxController {
     return _user.value;
   }
 
-  Future<void> saveUser(User? user, String username) async {
+  Future<void> saveUser(String email, String username) async {
     try {
-      if (user != null) {
-        await usersRef.doc(user.email).set({
-          "email": user.email,
-          "name": username,
-          "isPremium": false,
-        });
-      }
+      final docRef = firestore.collection('Users').doc(email);
+
+      await docRef.set({
+        "isPremium": false,
+      });
     } catch (error) {
       if (kDebugMode) {
         print("Error saving user: $error");

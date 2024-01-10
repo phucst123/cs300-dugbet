@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/controllers/login/auth_controller.dart';
@@ -23,7 +25,7 @@ class SettingController extends GetxController {
     try {
       isLoading.value = true;
 
-      final profileRef = usersRef.doc(email.value);
+      final profileRef = firestore.collection('Users').doc(email.value);
 
       DocumentSnapshot docSnapshot = await profileRef.get();
 
@@ -40,6 +42,32 @@ class SettingController extends GetxController {
       }
     } finally {
       isLoading.value = false;
+    }
+  }
+
+  void upgradePremium() {
+    isPremium.value = true;
+    syncData();
+  }
+
+  void updateName(String newName) {
+    name.value = newName;
+    Get.find<AuthController>().getUser()!.updateDisplayName(newName);
+  }
+
+  Future<void> syncData() async {
+    try {
+      final profileRef = firestore.collection('Users').doc(email.value);
+
+      await profileRef.set({
+        "email": email.value,
+        "name": name.value,
+        "isPremium": isPremium.value,
+      });
+    } catch (error) {
+      if (kDebugMode) {
+        print(error);
+      }
     }
   }
 }

@@ -191,7 +191,9 @@ class EditProfilePage extends GetView<EditProfileController> {
                                     },
                                     isExpanded: true,
                                     isDense: true,
-                                    value: controller.gender.value,
+                                    value: controller.gender.value == ""
+                                        ? null
+                                        : controller.gender.value,
                                     items: [
                                       DropdownMenuItem(
                                           value: "male",

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/controllers/login/auth_controller.dart';
+import 'package:dugbet/controllers/setting/setting_controller.dart';
 import 'package:dugbet/firebase_ref/references.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -106,8 +107,6 @@ class EditProfileController extends GetxController {
     // }
     profileFormKey.currentState!.save();
 
-    print("gender1: $gender, dob: ${convertDateTimeToString(dob.value)}");
-
     try {
       // from Minh: dung usersRef nhe
       final profileRef =
@@ -118,11 +117,9 @@ class EditProfileController extends GetxController {
         'dob': convertDateTimeToString(dob.value),
       }, SetOptions(merge: true));
 
-      user.value!.updateDisplayName(nameController.text);
+      Get.find<SettingController>().updateName(nameController.text);
     } catch (e) {
       print(e);
     }
-
-    print("gender2: $gender, dob: ${convertDateTimeToString(dob.value)}");
   }
 }
