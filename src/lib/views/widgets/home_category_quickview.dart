@@ -100,10 +100,10 @@ class SchedulePainter extends CustomPainter {
     //   ..strokeWidth = 12;
 
     // var dashBrush = Paint()
-      // ..color = const Color(0xFFEAECFF)
-      // ..style = PaintingStyle.stroke
-      // ..strokeCap = StrokeCap.round
-      // ..strokeWidth = 2;
+    // ..color = const Color(0xFFEAECFF)
+    // ..style = PaintingStyle.stroke
+    // ..strokeCap = StrokeCap.round
+    // ..strokeWidth = 2;
 
     var startAngle = -30 * pi / 180;
     var sweepAngle = pi / 180.0 * (360.0 / 12.0);
@@ -277,16 +277,19 @@ class QVTransactionItemList extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                        decoration: BoxDecoration(
-                          color: ColorPalette.white,
-                          borderRadius: BorderRadius.circular(18.v),
-                          border: Border.all(
-                              color: ColorPalette.black, width: 1.0.v),
-                        ),
-                        height: 15.v,
-                        width: 15.v,
-                        child: new SvgPicture.asset(
-                            "assets/icons/category/${transaction.category.toLowerCase()}/${transaction.icon.toLowerCase()}.svg")),
+                      decoration: BoxDecoration(
+                        color: ColorPalette.white,
+                        borderRadius: BorderRadius.circular(18.v),
+                        border:
+                            Border.all(color: ColorPalette.black, width: 1.0.v),
+                      ),
+                      height: 30.v,
+                      width: 30.v,
+                      child: SvgPicture.asset(
+                        "assets/icons/category/${transaction.category.toLowerCase()}/${transaction.icon.toLowerCase()}.svg",
+                        fit: BoxFit.scaleDown,
+                      ),
+                    ),
                     const SizedBox(width: 10.0),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

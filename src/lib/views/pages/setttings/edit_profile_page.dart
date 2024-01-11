@@ -1,14 +1,8 @@
 import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/color/colors.dart';
-import 'package:dugbet/consts/custom_button_style.dart';
-import 'package:dugbet/consts/theme_helper.dart';
 import 'package:dugbet/controllers/setting/edit_profile_controller.dart';
 import 'package:dugbet/views/widgets/button/custom_icon_button.dart';
-import 'package:dugbet/views/widgets/custom_text_form_field.dart';
-import 'package:dugbet/views/widgets/string_button.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 final contentStyle = theme.textTheme.bodyLarge!
@@ -54,7 +48,7 @@ class EditProfilePage extends GetView<EditProfileController> {
                   child: CircularProgressIndicator(),
                 )
               : SingleChildScrollView(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   child: Form(
                     key: controller.profileFormKey,
                     child: Padding(

@@ -2,11 +2,9 @@ import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/consts/fonts/text_theme_builder.dart';
 import 'package:dugbet/controllers/wallet/wallet_controller.dart';
 import 'package:dugbet/views/pages/transaction/event_transaction_controller.dart';
-import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:dugbet/views/widgets/normal_header_bar.dart';
 import 'package:intl/intl.dart';
 
-import '../../../consts/color/colors.dart';
 import '../../widgets/event_double_notch.dart';
 
 // ignore: must_be_immutable
@@ -19,34 +17,33 @@ class EventTransactionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     if (Get.isRegistered<EventTransactionController>()) {
       controller = Get.find<EventTransactionController>();
+      controller?.nameText.text = "New Event";
     } else {
       controller =
           Get.put<EventTransactionController>(EventTransactionController());
+      controller?.nameText.text = "New Event";
     }
     return SafeArea(
       child: Scaffold(
+        appBar: NormalHeaderBar(),
         backgroundColor: Colors.white,
         body: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           child: SingleChildScrollView(
             child: Obx(() => Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextField(
-                      onTap: () {},
-                      style: TextThemeBuilder.robotoTextTheme.titleMedium,
-                      controller: controller!.nameText,
+                      onTapOutside: (event) {
+                        FocusManager.instance.primaryFocus?.unfocus();
+                      },
+                      textAlign: TextAlign.left,
                       decoration: InputDecoration(
-                        // fillColor:LightTheme.primaryColor,
-                        // filled: true,
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide: BorderSide.none),
-                          hintText: "Event Name...",
-                          hintStyle: TextStyle(
-                              color: ColorPalette.grey.withOpacity(0.7),
-                              fontWeight: FontWeight.normal),
-                          prefixIcon: const Icon(Icons.search)),
+                        border: InputBorder.none,
+                        hintStyle: TextThemeBuilder.robotoTextTheme.titleLarge,
+                      ),
+                      controller: controller!.nameText,
+                      style: TextThemeBuilder.robotoTextTheme.titleLarge,
                     ),
                     EventDoubleNotch(),
                     const SizedBox(
@@ -135,7 +132,7 @@ class EventTransactionPage extends StatelessWidget {
                                     height: 15,
                                   ),
                                   Text(
-                                    "3/Member list",
+                                    "Member list",
                                     style: TextThemeBuilder
                                         .robotoTextTheme.titleMedium,
                                   ),
@@ -145,9 +142,6 @@ class EventTransactionPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 20,
                     ),
 
                     // Container(
@@ -173,7 +167,7 @@ class EventTransactionPage extends StatelessWidget {
                     //   ),
                     // ),
                     const SizedBox(
-                      height: 50,
+                      height: 20,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -190,7 +184,8 @@ class EventTransactionPage extends StatelessWidget {
                           text: "Save".tr,
                           callback: () {
                             controller!.pushToFirestore();
-                            Get.snackbar("Event", "Add Event Transaction Successfully");
+                            Get.snackbar(
+                                "Event", "Add Event Transaction Successfully");
                             final controller2 = Get.find<WalletController>();
                             controller2.getEvents();
                             Get.offAndToNamed(AppPage.walletPage);
@@ -222,7 +217,6 @@ class EventTransactionPage extends StatelessWidget {
 
   onTapCancel() {
     Get.offAndToNamed(AppPage.walletPage);
-
   }
 
   onTapSave() {

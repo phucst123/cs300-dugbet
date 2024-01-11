@@ -39,18 +39,19 @@ class TransactionItemList extends StatelessWidget {
                           ColorPalette.grey, BlendMode.srcIn),
                     ),
                     Container(
-                        decoration: BoxDecoration(
-                          color: ColorPalette.white,
-                          borderRadius: BorderRadius.circular(18.v),
-                          border: Border.all(
-                              color: ColorPalette.black, width: 1.0.v),
-                        ),
-                        height: 36.v,
-                        width: 36.v,
-                        child: SvgPicture.asset(
-                          "assets/icons/category/${transaction.category.toLowerCase()}/${transaction.icon.toLowerCase()}",
-                          fit: BoxFit.scaleDown,
-                        )),
+                      decoration: BoxDecoration(
+                        color: ColorPalette.white,
+                        borderRadius: BorderRadius.circular(18.v),
+                        border:
+                            Border.all(color: ColorPalette.black, width: 1.0.v),
+                      ),
+                      height: 36.v,
+                      width: 36.v,
+                      child: SvgPicture.asset(
+                        "assets/icons/category/${transaction.category.toLowerCase()}/${transaction.icon.toLowerCase()}.svg",
+                        fit: BoxFit.scaleDown,
+                      ),
+                    ),
                     const SizedBox(width: 10.0),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

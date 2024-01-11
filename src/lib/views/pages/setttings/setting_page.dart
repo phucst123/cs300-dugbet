@@ -9,7 +9,7 @@ import 'package:dugbet/views/widgets/custom_bottom_bar.dart';
 
 // ignore: must_be_immutable
 class SettingPage extends GetView<SettingController> {
-  SettingPage({super.key, this.showNav = false});
+  const SettingPage({super.key, this.showNav = false});
 
   final bool showNav;
 
@@ -27,52 +27,57 @@ class SettingPage extends GetView<SettingController> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Container(
-              color: controller.isPremium.value
-                  ? ColorPalette.expenseText
-                  : ColorPalette.primaryColor.withOpacity(0.1),
-              height: 260,
-              width: double.infinity,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  if (controller.isPremium.value)
-                    SvgPicture.asset("assets/icons/crown.svg"),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Stack(
+            Obx(
+              () {
+                return Container(
+                  color: controller.isPremium.value
+                      ? ColorPalette.expenseText.withOpacity(0.8)
+                      : ColorPalette.primaryColor.withOpacity(0.1),
+                  height: 260,
+                  width: double.infinity,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Container(
-                        width: 150,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: ColorPalette.black,
-                            width: 1.0,
+                      if (controller.isPremium.value)
+                        SvgPicture.asset("assets/icons/crown.svg"),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Stack(
+                        children: [
+                          Container(
+                            width: 150,
+                            height: 150,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: ColorPalette.black,
+                                width: 1.0,
+                              ),
+                            ),
+                            child: CircleAvatar(
+                              backgroundColor: ColorPalette.white,
+                              child: Image.asset(
+                                "assets/images/picture.png",
+                                width: 200,
+                                height: 200,
+                              ),
+                            ),
                           ),
-                        ),
-                        child: CircleAvatar(
-                          backgroundColor: ColorPalette.white,
-                          child: Padding(
-                            padding: const EdgeInsets.all(25.0),
-                            child: SvgPicture.asset("assets/user/user.svg"),
-                          ),
-                        ),
+                        ],
+                      ),
+                      Text(
+                        controller.name.value,
+                        style: context.textTheme.titleLarge,
+                      ),
+                      Text(
+                        controller.email.value,
+                        style: context.textTheme.labelLarge,
                       ),
                     ],
                   ),
-                  Obx(() => Text(
-                        controller.name.value,
-                        style: context.textTheme.titleLarge,
-                      )),
-                  Obx(() => Text(
-                        controller.email.value,
-                        style: context.textTheme.labelLarge,
-                      )),
-                ],
-              ),
+                );
+              },
             ),
             Expanded(
                 child: ListView(
@@ -142,7 +147,8 @@ class SettingPage extends GetView<SettingController> {
               ],
             )),
             Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 40),
                 // child: NormalButton(
                 //     title: "Logout",
                 //     callback: () => {
@@ -162,9 +168,9 @@ class SettingPage extends GetView<SettingController> {
                   buttonTextStyle: CustomTextStyles.titleMediumBluegray900,
                   buttonStyle: CustomButtonStyles.fillTear,
                 )),
-            const SizedBox(
-              height: 98,
-            ),
+            // const SizedBox(
+            //   height: 98,
+            // ),
           ],
         ),
         bottomNavigationBar: _buildBottomAppBar(),
@@ -196,7 +202,7 @@ class SettingPage extends GetView<SettingController> {
           children: [
             Container(
               color: controller.isPremium.value
-                  ? ColorPalette.expenseText
+                  ? ColorPalette.expenseText.withOpacity(0.8)
                   : ColorPalette.primaryColor.withOpacity(0.1),
               height: 260,
               width: double.infinity,
@@ -222,9 +228,10 @@ class SettingPage extends GetView<SettingController> {
                         ),
                         child: CircleAvatar(
                           backgroundColor: ColorPalette.white,
-                          child: Padding(
-                            padding: const EdgeInsets.all(25.0),
-                            child: SvgPicture.asset("assets/user/user.svg"),
+                          child: Image.asset(
+                            "assets/images/picture.png",
+                            width: 200,
+                            height: 200,
                           ),
                         ),
                       ),
@@ -242,74 +249,76 @@ class SettingPage extends GetView<SettingController> {
               ),
             ),
             Expanded(
-                child: ListView(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              children: [
-                ListTile(
-                  leading: SvgPicture.asset("assets/icons/profile.svg"),
-                  trailing: SvgPicture.asset("assets/icons/arrow.svg"),
-                  title: const Text(
-                    "Edit Profile",
+              child: ListView(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                children: [
+                  ListTile(
+                    leading: SvgPicture.asset("assets/icons/profile.svg"),
+                    trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                    title: const Text(
+                      "Edit Profile",
+                    ),
+                    titleTextStyle: context.textTheme.bodyLarge,
+                    onTap: () => Get.toNamed(AppPage.editProfilePage),
                   ),
-                  titleTextStyle: context.textTheme.bodyLarge,
-                  onTap: () => Get.toNamed(AppPage.editProfilePage),
-                ),
-                ListTile(
-                  leading: SvgPicture.asset("assets/icons/notification.svg"),
-                  trailing: SvgPicture.asset("assets/icons/arrow.svg"),
-                  title: const Text(
-                    "Notifications",
+                  ListTile(
+                    leading: SvgPicture.asset("assets/icons/notification.svg"),
+                    trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                    title: const Text(
+                      "Notifications",
+                    ),
+                    titleTextStyle: context.textTheme.bodyLarge,
+                    onTap: () => Get.toNamed(AppPage.editNotificationPage),
                   ),
-                  titleTextStyle: context.textTheme.bodyLarge,
-                  onTap: () => Get.toNamed(AppPage.editNotificationPage),
-                ),
-                ListTile(
-                  leading: SvgPicture.asset("assets/icons/appearance.svg"),
-                  trailing: SvgPicture.asset("assets/icons/arrow.svg"),
-                  title: const Text(
-                    "Appearance",
+                  ListTile(
+                    leading: SvgPicture.asset("assets/icons/appearance.svg"),
+                    trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                    title: const Text(
+                      "Appearance",
+                    ),
+                    titleTextStyle: context.textTheme.bodyLarge,
                   ),
-                  titleTextStyle: context.textTheme.bodyLarge,
-                ),
-                ListTile(
-                  leading: SvgPicture.asset("assets/icons/security.svg"),
-                  trailing: SvgPicture.asset("assets/icons/arrow.svg"),
-                  title: const Text(
-                    "Security",
+                  ListTile(
+                    leading: SvgPicture.asset("assets/icons/security.svg"),
+                    trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                    title: const Text(
+                      "Security",
+                    ),
+                    titleTextStyle: context.textTheme.bodyLarge,
+                    onTap: () => Get.toNamed(AppPage.securityPage),
                   ),
-                  titleTextStyle: context.textTheme.bodyLarge,
-                  onTap: () => Get.toNamed(AppPage.securityPage),
-                ),
-                ListTile(
-                  leading: SvgPicture.asset("assets/icons/policy.svg"),
-                  trailing: SvgPicture.asset("assets/icons/arrow.svg"),
-                  title: const Text(
-                    "Privacy Policy",
+                  ListTile(
+                    leading: SvgPicture.asset("assets/icons/policy.svg"),
+                    trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                    title: const Text(
+                      "Privacy Policy",
+                    ),
+                    titleTextStyle: context.textTheme.bodyLarge,
                   ),
-                  titleTextStyle: context.textTheme.bodyLarge,
-                ),
-                ListTile(
-                  leading: SvgPicture.asset("assets/icons/help.svg"),
-                  trailing: SvgPicture.asset("assets/icons/arrow.svg"),
-                  title: const Text(
-                    "Contact Us",
+                  ListTile(
+                    leading: SvgPicture.asset("assets/icons/help.svg"),
+                    trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                    title: const Text(
+                      "Contact Us",
+                    ),
+                    titleTextStyle: context.textTheme.bodyLarge,
                   ),
-                  titleTextStyle: context.textTheme.bodyLarge,
-                ),
-                ListTile(
-                  leading: SvgPicture.asset("assets/icons/crown.svg"),
-                  trailing: SvgPicture.asset("assets/icons/arrow.svg"),
-                  title: const Text(
-                    "Premium",
+                  ListTile(
+                    leading: SvgPicture.asset("assets/icons/crown.svg"),
+                    trailing: SvgPicture.asset("assets/icons/arrow.svg"),
+                    title: const Text(
+                      "Premium",
+                    ),
+                    titleTextStyle: context.textTheme.bodyLarge,
+                    onTap: () => Get.toNamed(AppPage.purchasePage),
                   ),
-                  titleTextStyle: context.textTheme.bodyLarge,
-                  onTap: () => Get.toNamed(AppPage.purchasePage),
-                ),
-              ],
-            )),
+                ],
+              ),
+            ),
             Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 40, horizontal: 16),
                 // child: NormalButton(
                 //     title: "Logout",
                 //     callback: () => {
@@ -329,9 +338,9 @@ class SettingPage extends GetView<SettingController> {
                   buttonTextStyle: CustomTextStyles.titleMediumBluegray900,
                   buttonStyle: CustomButtonStyles.fillTear,
                 )),
-            const SizedBox(
-              height: 98,
-            ),
+            // const SizedBox(
+            //   height: 98,
+            // ),
           ],
         ),
       );
