@@ -1,3 +1,4 @@
+import 'package:dugbet/consts/utils/function_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -23,7 +24,7 @@ class ListTitleWallet extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 10),
         child: Text(
           nameWallet,
-          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ),
       subtitle: Row(
@@ -37,7 +38,7 @@ class ListTitleWallet extends StatelessWidget {
           ),
           SvgPicture.asset(
             "assets/images/dIcon.svg",
-            height: 14,
+            height: 12,
             color: ColorPalette.grey,
           )
         ],

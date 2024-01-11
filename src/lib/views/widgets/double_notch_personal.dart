@@ -8,9 +8,15 @@ import '../../consts/color/colors.dart';
 import '../../consts/fonts/text_theme_builder.dart';
 
 class DoubleNotchPersonal extends StatelessWidget {
-  const DoubleNotchPersonal({super.key, required this.walletImage});
+  const DoubleNotchPersonal(
+      {super.key,
+      required this.walletImage,
+      required this.amount,
+      required this.description});
 
   final String walletImage;
+  final String amount;
+  final String description;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +26,8 @@ class DoubleNotchPersonal extends StatelessWidget {
     } else {
       controller = Get.put<TransactionController>(TransactionController());
     }
+    controller.incomeTextEdit.text = amount;
+    controller.descriptionTextEdit.text = description;
 
     return Padding(
       padding: const EdgeInsets.only(top: 20, bottom: 20),
@@ -61,7 +69,7 @@ class DoubleNotchPersonal extends StatelessWidget {
                                   textAlign: TextAlign.right,
                                   decoration: InputDecoration(
                                     // hintText: "0 ",
-                                    
+
                                     border: InputBorder.none,
                                     hintStyle: TextThemeBuilder
                                         .robotoTextTheme.titleLarge,

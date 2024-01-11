@@ -1,4 +1,5 @@
 import 'package:dugbet/consts/app_export.dart';
+import 'package:dugbet/consts/utils/function_utils.dart';
 import 'package:dugbet/models/WalletModel.dart';
 import 'package:dugbet/views/widgets/double_notch_personal.dart';
 import 'package:dugbet/views/widgets/normal_header_bar.dart';
@@ -37,6 +38,9 @@ class WalletDetail extends StatelessWidget {
                     ),
                     DoubleNotchPersonal(
                       walletImage: walletData.walletPicture,
+                      amount: convertToCurrency(walletData.initialAmount),
+                      description: walletData.description,
+                      
                     ),
                     const SizedBox(
                       height: 30,

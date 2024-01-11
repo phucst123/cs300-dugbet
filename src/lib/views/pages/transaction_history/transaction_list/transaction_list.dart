@@ -2,12 +2,10 @@ import 'package:dugbet/consts/app_export.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_history_controller.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_list/transaction_item.dart';
 import 'package:dugbet/views/pages/transaction_history/transaction_template.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 
 // ignore: must_be_immutable
 class TransactionList extends StatelessWidget {
-  TransactionList({super.key, required this.transactionList});
+  const TransactionList({super.key, required this.transactionList});
 
   final List<TransactionTemplate> transactionList;
   // TransactionHistoryController transactionHistoryController = Get.find<TransactionHistoryController>();

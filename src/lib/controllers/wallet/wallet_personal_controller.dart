@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dugbet/consts/app_export.dart';
-import 'package:dugbet/controllers/home/home_controller.dart';
 import 'package:dugbet/controllers/login/auth_controller.dart';
 import 'package:dugbet/firebase_ref/references.dart';
 import 'package:dugbet/models/TransactionModel.dart';
@@ -35,7 +34,6 @@ class WalletPersonalController extends GetxController {
     isLoadingTransaction.value = true;
   }
 
-
   void chooseWallet(String walletName) {
     print('what wallet: ${walletName}');
     print('current wallet: ${walletNameID.value}');
@@ -43,7 +41,6 @@ class WalletPersonalController extends GetxController {
     walletNameID.value = walletName;
     isLoadingTransaction.value = true;
     getTransactions();
-
   }
 
   void loadingData() {
@@ -147,15 +144,13 @@ class WalletPersonalController extends GetxController {
   Future<void> getTransactions() async {
     if (isLoadingTransaction.value) {
       isLoadingTransaction.value = false;
-    } 
-    else return;
+    } else
+      return;
     print('im here to read wallet transaction');
     String? user_id = user!.email;
     try {
-      QuerySnapshot transactions = await usersRef
-          .doc(user_id)
-          .collection('Transactions')
-          .get();
+      QuerySnapshot transactions =
+          await usersRef.doc(user_id).collection('Transactions').get();
       transactionListModel.clear();
       transactionlist.clear();
       income.value = 0;
@@ -205,7 +200,6 @@ class WalletPersonalController extends GetxController {
       Get.snackbar("Error", 'Error while getting transaction list',
           snackPosition: SnackPosition.BOTTOM);
     }
-
 
     // get transactionlist from home_controller
     // var temp_transactionlist = Get.find<HomeController>().transactionListModel;

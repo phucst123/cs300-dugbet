@@ -24,6 +24,7 @@ class WalletPersonal extends GetView<WalletPersonalController> {
     else{
       controller = Get.put<WalletPersonalController>(WalletPersonalController());
     }
+      // controller = Get.put<WalletPersonalController>(WalletPersonalController());
     return GetBuilder<WalletPersonalController>(
         init: WalletPersonalController(),
         initState: (_) {},

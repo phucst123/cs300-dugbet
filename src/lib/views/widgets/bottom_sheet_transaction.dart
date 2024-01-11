@@ -5,15 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class BottomSheetTransaction extends StatelessWidget {
-  BottomSheetTransaction({super.key, required this.transaction_list});
+  const BottomSheetTransaction({super.key, required this.transaction_list});
   final List<TransactionTemplate> transaction_list;
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width,
+        width: MediaQuery.of(context).size.width,
+        constraints: const BoxConstraints(minHeight: 450),
         padding: const EdgeInsets.only(
             left: 16.0, right: 16.0, top: 20.0, bottom: 0.0),
         decoration: BoxDecoration(
+        
             color: ColorPalette.white.withOpacity(0.3),
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(30), topRight: Radius.circular(30)),
@@ -26,8 +28,10 @@ class BottomSheetTransaction extends StatelessWidget {
               // colorFilter: const ColorFilter.mode(ColorPalette.white, BlendMode.srcIn),
             ),
             const SizedBox(height: 14.0),
-            TransactionList(transactionList: transaction_list,),
-            const SizedBox(height: 200.0),
+            TransactionList(
+              transactionList: transaction_list,
+            ),
+            const SizedBox(height: 40.0),
           ],
         ));
   }

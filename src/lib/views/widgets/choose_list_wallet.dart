@@ -1,3 +1,4 @@
+import 'package:dugbet/consts/utils/function_utils.dart';
 import 'package:dugbet/controllers/wallet/wallet_controller.dart';
 import 'package:dugbet/views/pages/transaction/transaction_controller.dart';
 import 'package:dugbet/views/widgets/list_title_wallet.dart';
@@ -44,7 +45,7 @@ class ChooseListWallet extends StatelessWidget {
                     Get.back();
                   },
                   child: Center(
-                    child: ListTitleWallet(pathImage: controller.walletList[index].walletPicture,moneyValue: controller.walletList[index].balance.toString(), nameWallet: controller.walletList[index].name),
+                    child: ListTitleWallet(pathImage: controller.walletList[index].walletPicture,moneyValue: convertToCurrency(controller.walletList[index].balance), nameWallet: controller.walletList[index].name),
                   ),
                 ),
               ),

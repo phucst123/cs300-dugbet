@@ -80,7 +80,7 @@ class ScanController extends GetxController {
         controller.newTransaction.value = true;
         controller.titleTextEdit.text = "New Bill";
         controller.descriptionTextEdit.text = "";
-        controller.incomeTextEdit.text = convertToCurrency(amount);
+        controller.incomeTextEdit.text = amount.toString();
       } else {
         final controller =
             Get.put<TransactionController>(TransactionController());
@@ -88,7 +88,7 @@ class ScanController extends GetxController {
         controller.newTransaction.value = true;
         controller.titleTextEdit.text = "New Bill";
         controller.descriptionTextEdit.text = "";
-        controller.incomeTextEdit.text = convertToCurrency(amount);
+        controller.incomeTextEdit.text = amount.toString();
       }
       Get.back();
     }
