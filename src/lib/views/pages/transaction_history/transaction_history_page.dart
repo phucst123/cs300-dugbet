@@ -126,6 +126,10 @@ class TransactionHistoryPage extends StatelessWidget {
   final bool showNav;
   @override
   Widget build(BuildContext context) {
+    return GetBuilder<TransactionHistoryController>(
+        init: TransactionHistoryController(),
+        initState: (_) {},
+        builder: (controller) {
     List<Widget> pageWidgets = [
       Container(
         padding: const EdgeInsets.only(
@@ -142,7 +146,7 @@ class TransactionHistoryPage extends StatelessWidget {
       ),
       BottomSheetTransaction(
           transaction_list:
-              Get.find<TransactionHistoryController>().transactionsList),
+              controller.transactionsList),
     ];
     if (showNav) {
       return SafeArea(
@@ -201,7 +205,10 @@ class TransactionHistoryPage extends StatelessWidget {
           ),
         ),
       );
+
     }
+  }
+    );
   }
 
   Widget _buildBottomAppBar() {
@@ -228,4 +235,5 @@ class TransactionHistoryPage extends StatelessWidget {
   onTapAnalyze() => Get.offAndToNamed(
         AppPage.transactionHistoryPage,
       );
+
 }
