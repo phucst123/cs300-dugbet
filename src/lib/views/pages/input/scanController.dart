@@ -72,7 +72,7 @@ class ScanController extends GetxController {
     }
     if (amount == 0) {
       // snack bar
-      Get.snackbar("Error", "Cannot scan amount", snackPosition: SnackPosition.BOTTOM);
+      Get.snackbar("Error", "Cannot scan amount");
     } else {
       if (Get.isRegistered<TransactionController>()) {
         final controller = Get.find<TransactionController>();
@@ -91,7 +91,7 @@ class ScanController extends GetxController {
         controller.incomeTextEdit.text = convertToCurrency(amount);
       }
       Get.back();
-      }
+    }
     return amount;
   }
 }

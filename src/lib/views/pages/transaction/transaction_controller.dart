@@ -1,6 +1,5 @@
 import 'package:dugbet/controllers/login/auth_controller.dart';
 import 'package:dugbet/firebase_ref/references.dart';
-import 'package:dugbet/views/pages/transaction_history/transaction_history_controller.dart';
 import 'package:dugbet/views/widgets/choose_list_wallet.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +15,7 @@ class TransactionController extends GetxController {
   var isIncome = true.obs;
   var isEdit = false.obs;
   var title = "snack".obs;
-  var category = "Food and beverages".obs;
+  var category = "food_beverages".obs;
   var icon = "snack.svg".obs;
   var type = 0.obs;
   RxBool newTransaction = false.obs;
@@ -121,9 +120,6 @@ class TransactionController extends GetxController {
             "${user_name!.toLowerCase()}-${selectedWallet.value.toLowerCase()}"
       }).whenComplete(
           () => Get.snackbar("Transaction", "Add Transaction Successfully"));
-          
-      var ctl = Get.find<TransactionHistoryController>();
-      await ctl.getTransactionsData();
     }
   }
 }
