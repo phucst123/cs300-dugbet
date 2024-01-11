@@ -39,7 +39,7 @@ class TransactionList extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   for (var transaction
-                      in groupTransactions(newcontroller.transactionsList).reversed) ...[
+                      in groupTransactions(transactionList).reversed) ...[
                     TransactionItem(transaction_list: transaction),
                     const SizedBox(height: 20.0)
                   ]
